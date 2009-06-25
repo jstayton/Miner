@@ -39,8 +39,8 @@
       return $this;
     }
 
-    public function addSelect($column) {
-      $this->select[] = $column;
+    public function addSelect($column, $alias = null) {
+      $this->select[$column] = $alias;
 
       return $this;
     }
@@ -50,8 +50,8 @@
         $QueryBuilder->addOption($currentOption);
       }
 
-      foreach ($this->select as $currentSelect) {
-        $QueryBuilder->addSelect($currentSelect);
+      foreach ($this->select as $currentColumn => $currentAlias) {
+        $QueryBuilder->addSelect($currentColumn, $currentAlias);
       }
 
       return $QueryBuilder;
@@ -64,32 +64,57 @@
         $select .= implode(' ', $this->option) . " ";
       }
 
-      $select .= implode(', ', $this->select);
+      foreach ($this->select as $currentColumn => $currentAlias) {
+        $select .= $currentColumn;
+
+        if (isset($currentAlias)) {
+          $select .= " AS " . $currentAlias;
+        }
+
+        $select .= ", ";
+      }
+
+      $select = substr($select, 0, -2);
 
       return $select;
     }
 
-    public function setFromTable($table) {
-      $this->fromTable = $table;
+    public function setFromTable($table, $alias = null) {
+      $this->fromTable = array('table' => $table,
+                               'alias' => $alias);
 
       return $this;
     }
 
     public function getFromTable() {
-      return $this->fromTable;
+      return $this->fromTable['table'];
     }
 
-    public function addJoin($table, Criteria $Criteria = null, $type = self::INNER_JOIN) {
+    public function getFromTableAlias() {
+      return $this->fromTable['alias'];
+    }
+
+    public function addJoin($table, Criteria $Criteria = null, $type = self::INNER_JOIN, $alias = null) {
       $this->join[] = array('table'    => $table,
                             'Criteria' => $Criteria,
-                            'type'     => $type);
+                            'type'     => $type,
+                            'alias'    => $alias);
 
       return $this;
     }
 
+    public function addLeftJoin($table, Criteria $Criteria = null, $alias = null) {
+      return $this->addJoin($table, $Criteria, self::LEFT_JOIN, $alias);
+    }
+
+    public function addRightJoin($table, Criteria $Criteria = null, $alias = null) {
+      return $this->addJoin($table, $Criteria, self::RIGHT_JOIN, $alias);
+    }
+
     public function mergeJoinInto(QueryBuilder $QueryBuilder) {
       foreach ($this->join as $currentJoin) {
-        $QueryBuilder->addJoin($currentJoin['table'], $currentJoin['Criteria'], $currentJoin['type']);
+        $QueryBuilder->addJoin($currentJoin['table'], $currentJoin['Criteria'], $currentJoin['type'],
+                               $currentJoin['alias']);
       }
 
       return $QueryBuilder;
@@ -100,6 +125,10 @@
 
       foreach ($this->join as $currentJoin) {
         $join .= " " . $currentJoin['type'] . " " . $currentJoin['table'];
+
+        if (isset($currentJoin['alias'])) {
+          $join .= " AS " . $currentJoin['alias'];
+        }
 
         if (isset($currentJoin['Criteria'])) {
           $join .= " ON " . $currentJoin['Criteria']->getCriteria();
@@ -115,8 +144,16 @@
       $from = "";
 
       if (isset($this->fromTable)) {
-        $from .= $this->fromTable . " " . $this->getJoinString();
+        $from .= $this->fromTable['table'];
+
+        if (isset($this->fromTable['alias'])) {
+          $from .= " AS " . $this->fromTable['alias'];
+        }
+
+        $from .= " " . $this->getJoinString();
       }
+
+      $from = rtrim($from);
 
       return $from;
     }
@@ -234,8 +271,8 @@
     }
 
     public function setLimit($limit, $offset = 0) {
-      $this->limit['offset'] = $offset;
       $this->limit['limit'] = $limit;
+      $this->limit['offset'] = $offset;
 
       return $this;
     }
