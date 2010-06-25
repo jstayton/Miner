@@ -9,7 +9,7 @@
    * @author   Justin Stayton <justin.stayton@gmail.com>
    * @version  3.0
    */
-  class QueryBuilderQueryBuilder {
+  class QueryBuilder3 {
 
     /**
      * JOIN types.
@@ -280,7 +280,7 @@
      * @uses   QueryBuilder::option()
      * @uses   QueryBuilder::select()
      */
-    public function mergeSelectInto(QueryBuilder $QueryBuilder) {
+    public function mergeSelectInto(QueryBuilder3 $QueryBuilder) {
       foreach ($this->option as $currentOption) {
         $QueryBuilder->option($currentOption);
       }
@@ -295,11 +295,12 @@
     /**
      * Returns the SELECT portion of the query as a string.
      *
+     * @param  bool $includeText optional include 'SELECT' text, default true
      * @return string
      * @uses   QueryBuilder::$option
      * @uses   QueryBuilder::$select
      */
-    public function getSelectString() {
+    public function getSelectString($includeText = true) {
       $select = "";
 
       // Add any execution options.
@@ -318,6 +319,10 @@
       }
 
       $select = substr($select, 0, -2);
+
+      if ($includeText && !empty($select)) {
+        $select = "SELECT " . $select;
+      }
 
       return $select;
     }
@@ -431,7 +436,7 @@
      * @uses   QueryBuilder::$join
      * @uses   QueryBuilder::join()
      */
-    public function mergeJoinInto(QueryBuilder $QueryBuilder) {
+    public function mergeJoinInto(QueryBuilder3 $QueryBuilder) {
       foreach ($this->join as $currentJoin) {
         $QueryBuilder->join($currentJoin['table'], $currentJoin['criteria'], $currentJoin['type'],
                             $currentJoin['alias']);
@@ -515,11 +520,12 @@
     /**
      * Returns the FROM portion of the query, including all JOINs, as a string.
      *
+     * @param  bool $includeText optional include 'FROM' text, default true
      * @return string
      * @uses   QueryBuilder::$from
      * @uses   QueryBuilder::getJoinString()
      */
-    public function getFromString() {
+    public function getFromString($includeText = true) {
       $from = "";
 
       if (!empty($this->from)) {
@@ -534,6 +540,10 @@
       }
 
       $from = rtrim($from);
+
+      if ($includeText && !empty($from)) {
+        $from = "FROM " . $from;
+      }
 
       return $from;
     }
@@ -823,6 +833,22 @@
       return $this->criteria($this->where, $column, $value, $operator, $connector);
     }
 
+  	/**
+     * Adds an AND WHERE condition.
+     *
+     * @param  string $column colum name
+     * @param  mixed $value value
+     * @param  string $operator optional comparison operator, default =
+     * @return QueryBuilder
+     * @uses   QueryBuilder::EQUALS
+     * @uses   QueryBuilder::LOGICAL_AND
+     * @uses   QueryBuilder::$where
+     * @uses   QueryBuilder::criteria()
+     */
+    public function andWhere($column, $value, $operator = self::EQUALS) {
+      return $this->criteria($this->where, $column, $value, $operator, self::LOGICAL_AND);
+    }
+
     /**
      * Adds an OR WHERE condition.
      *
@@ -912,7 +938,7 @@
      * @uses   QueryBuilder::closeWhere()
      * @uses   QueryBuilder::where()
      */
-    public function mergeWhereInto(QueryBuilder $QueryBuilder) {
+    public function mergeWhereInto(QueryBuilder3 $QueryBuilder) {
       foreach ($this->where as $currentWhere) {
         // Handle open/close brackets differently than other criteria.
         if (array_key_exists('bracket', $currentWhere)) {
@@ -936,13 +962,20 @@
      * Returns the WHERE portion of the query as a string.
      *
      * @param  bool $usePlaceholders optional use ? placeholders, default true
+     * @param  bool $includeText optional include 'WHERE' text, default true
      * @return string
      * @uses   QueryBuilder::$where
      * @uses   QueryBuilder::$wherePlaceholderValues
      * @uses   QueryBuilder::getCriteriaString()
      */
-    public function getWhereString($usePlaceholders = true) {
-      return $this->getCriteriaString($this->where, $usePlaceholders, $this->wherePlaceholderValues);
+    public function getWhereString($usePlaceholders = true, $includeText = true) {
+      $where = $this->getCriteriaString($this->where, $usePlaceholders, $this->wherePlaceholderValues);
+
+      if ($includeText && !empty($where)) {
+        $where = "WHERE " . $where;
+      }
+
+      return $where;
     }
 
     /**
@@ -981,7 +1014,7 @@
      * @uses   QueryBuilder::$groupBy
      * @uses   QueryBuilder::groupBy()
      */
-    public function mergeGroupByInto(QueryBuilder $QueryBuilder) {
+    public function mergeGroupByInto(QueryBuilder3 $QueryBuilder) {
       foreach ($this->groupBy as $currentGroupBy) {
         $QueryBuilder->groupBy($currentGroupBy['column'], $currentGroupBy['order']);
       }
@@ -992,10 +1025,11 @@
     /**
      * Returns the GROUP BY portion of the query as a string.
      *
+     * @param  bool $includeText optional include 'GROUP BY' text, default true
      * @return string
      * @uses   QueryBuilder::$groupBy
      */
-    public function getGroupByString() {
+    public function getGroupByString($includeText = true) {
       $groupBy = "";
 
       foreach ($this->groupBy as $currentGroupBy) {
@@ -1003,6 +1037,10 @@
       }
 
       $groupBy = substr($groupBy, 0, -2);
+
+      if ($includeText && !empty($groupBy)) {
+        $groupBy = "GROUP BY " . $groupBy;
+      }
 
       return $groupBy;
     }
@@ -1046,6 +1084,22 @@
      */
     public function having($column, $value, $operator = self::EQUALS, $connector = self::LOGICAL_AND) {
       return $this->criteria($this->having, $column, $value, $operator, $connector);
+    }
+
+  	/**
+     * Adds an AND HAVING condition.
+     *
+     * @param  string $column colum name
+     * @param  mixed $value value
+     * @param  string $operator optional comparison operator, default =
+     * @return QueryBuilder
+     * @uses   QueryBuilder::EQUALS
+     * @uses   QueryBuilder::LOGICAL_AND
+     * @uses   QueryBuilder::$having
+     * @uses   QueryBuilder::orCriteria()
+     */
+    public function andHaving($column, $value, $operator = self::EQUALS) {
+      return $this->criteria($this->having, $column, $value, $operator, self::LOGICAL_AND);
     }
 
     /**
@@ -1137,7 +1191,7 @@
      * @uses   QueryBuilder::closeHaving()
      * @uses   QueryBuilder::having()
      */
-    public function mergeHavingInto(QueryBuilder $QueryBuilder) {
+    public function mergeHavingInto(QueryBuilder3 $QueryBuilder) {
       foreach ($this->having as $currentHaving) {
         // Handle open/close brackets differently than other criteria.
         if (array_key_exists('bracket', $currentHaving)) {
@@ -1161,13 +1215,20 @@
      * Returns the HAVING portion of the query as a string.
      *
      * @param  bool $usePlaceholders optional use ? placeholders, default true
+     * @param  bool $includeText optional include 'HAVING' text, default true
      * @return string
      * @uses   QueryBuilder::$having
      * @uses   QueryBuilder::$havingPlaceholderValues
      * @uses   QueryBuilder::getCriteriaString()
      */
-    public function getHavingString($usePlaceholders = true) {
-      return $this->getCriteriaString($this->having, $usePlaceholders, $this->havingPlaceholderValues);
+    public function getHavingString($usePlaceholders = true, $includeText = true) {
+      $having = $this->getCriteriaString($this->having, $usePlaceholders, $this->havingPlaceholderValues);
+
+      if ($includeText && !empty($having)) {
+        $having = "HAVING " . $having;
+      }
+
+      return $having;
     }
 
     /**
@@ -1206,7 +1267,7 @@
      * @uses   QueryBuilder::$orderBy
      * @uses   QueryBuilder::orderBy()
      */
-    public function mergeOrderByInto(QueryBuilder $QueryBuilder) {
+    public function mergeOrderByInto(QueryBuilder3 $QueryBuilder) {
       foreach ($this->orderBy as $currentOrderBy) {
         $QueryBuilder->orderBy($currentOrderBy['column'], $currentOrderBy['order']);
       }
@@ -1217,10 +1278,11 @@
     /**
      * Returns the ORDER BY portion of the query as a string.
      *
+     * @param  bool $includeText optional include 'ORDER BY' text, default true
      * @return string
      * @uses   QueryBuilder::$orderBy
      */
-    public function getOrderByString() {
+    public function getOrderByString($includeText = true) {
       $orderBy = "";
 
       foreach ($this->orderBy as $currentOrderBy) {
@@ -1228,6 +1290,10 @@
       }
 
       $orderBy = substr($orderBy, 0, -2);
+
+      if ($includeText && !empty($orderBy)) {
+        $orderBy = "ORDER BY " . $orderBy;
+      }
 
       return $orderBy;
     }
@@ -1270,14 +1336,19 @@
     /**
      * Returns the LIMIT portion of the query as a string.
      *
+     * @param  bool $includeText optional include 'LIMIT' text, default true
      * @return string
      * @uses   QueryBuilder::$limit
      */
-    public function getLimitString() {
+    public function getLimitString($includeText = true) {
       $limit = "";
 
       if (!empty($this->limit)) {
         $limit .= $this->limit['offset'] . ", " . $this->limit['limit'];
+      }
+
+      if ($includeText && !empty($limit)) {
+        $limit = "LIMIT " . $limit;
       }
 
       return $limit;
@@ -1300,7 +1371,7 @@
      * @uses   QueryBuilder::getLimit()
      * @uses   QueryBuilder::getLimitOffset()
      */
-    public function mergeInto(QueryBuilder $QueryBuilder, $overwriteLimit = true) {
+    public function mergeInto(QueryBuilder3 $QueryBuilder, $overwriteLimit = true) {
       $this->mergeSelectInto($QueryBuilder);
       $this->mergeJoinInto($QueryBuilder);
       $this->mergeWhereInto($QueryBuilder);
@@ -1340,30 +1411,30 @@
 
       // Only return the full query string if a SELECT value is set.
       if (!empty($this->select)) {
-        $query .= "SELECT " . $this->getSelectString();
+        $query .= $this->getSelectString();
 
         if (!empty($this->from)) {
-          $query .= " FROM " . $this->getFromString();
+          $query .= " " . $this->getFromString();
         }
 
         if (!empty($this->where)) {
-          $query .= " WHERE " . $this->getWhereString($usePlaceholders);
+          $query .= " " . $this->getWhereString($usePlaceholders);
         }
 
         if (!empty($this->groupBy)) {
-          $query .= " GROUP BY " . $this->getGroupByString();
+          $query .= " " . $this->getGroupByString();
         }
 
         if (!empty($this->having)) {
-          $query .= " HAVING " . $this->getHavingString($usePlaceholders);
+          $query .= " " . $this->getHavingString($usePlaceholders);
         }
 
         if (!empty($this->orderBy)) {
-          $query .= " ORDER BY " . $this->getOrderByString();
+          $query .= " " . $this->getOrderByString();
         }
 
         if (!empty($this->limit)) {
-          $query .= " LIMIT " . $this->getLimitString();
+          $query .= " " . $this->getLimitString();
         }
       }
 
