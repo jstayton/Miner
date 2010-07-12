@@ -703,6 +703,7 @@
      */
     private function getCriteriaString(array &$criteria, $usePlaceholders = true, array &$placeholderValues = array()) {
       $string = "";
+      $placeholderValues = array();
 
       $useConnector = false;
 
