@@ -6,10 +6,10 @@
    * together for easy query modification, with an optional PDO database
    * connection to directly execute the query.
    *
-   * @author   Justin Stayton <justin.stayton@gmail.com>
-   * @version  3.0
+   * @author  Justin Stayton <justin.stayton@gmail.com>
+   * @version 3.0
    */
-  class QueryBuilder3 {
+  class QueryBuilder {
 
     /**
      * JOIN types.
@@ -280,7 +280,7 @@
      * @uses   QueryBuilder::option()
      * @uses   QueryBuilder::select()
      */
-    public function mergeSelectInto(QueryBuilder3 $QueryBuilder) {
+    public function mergeSelectInto(QueryBuilder $QueryBuilder) {
       foreach ($this->option as $currentOption) {
         $QueryBuilder->option($currentOption);
       }
@@ -436,7 +436,7 @@
      * @uses   QueryBuilder::$join
      * @uses   QueryBuilder::join()
      */
-    public function mergeJoinInto(QueryBuilder3 $QueryBuilder) {
+    public function mergeJoinInto(QueryBuilder $QueryBuilder) {
       foreach ($this->join as $currentJoin) {
         $QueryBuilder->join($currentJoin['table'], $currentJoin['criteria'], $currentJoin['type'],
                             $currentJoin['alias']);
@@ -939,7 +939,7 @@
      * @uses   QueryBuilder::closeWhere()
      * @uses   QueryBuilder::where()
      */
-    public function mergeWhereInto(QueryBuilder3 $QueryBuilder) {
+    public function mergeWhereInto(QueryBuilder $QueryBuilder) {
       foreach ($this->where as $currentWhere) {
         // Handle open/close brackets differently than other criteria.
         if (array_key_exists('bracket', $currentWhere)) {
@@ -1015,7 +1015,7 @@
      * @uses   QueryBuilder::$groupBy
      * @uses   QueryBuilder::groupBy()
      */
-    public function mergeGroupByInto(QueryBuilder3 $QueryBuilder) {
+    public function mergeGroupByInto(QueryBuilder $QueryBuilder) {
       foreach ($this->groupBy as $currentGroupBy) {
         $QueryBuilder->groupBy($currentGroupBy['column'], $currentGroupBy['order']);
       }
@@ -1192,7 +1192,7 @@
      * @uses   QueryBuilder::closeHaving()
      * @uses   QueryBuilder::having()
      */
-    public function mergeHavingInto(QueryBuilder3 $QueryBuilder) {
+    public function mergeHavingInto(QueryBuilder $QueryBuilder) {
       foreach ($this->having as $currentHaving) {
         // Handle open/close brackets differently than other criteria.
         if (array_key_exists('bracket', $currentHaving)) {
@@ -1268,7 +1268,7 @@
      * @uses   QueryBuilder::$orderBy
      * @uses   QueryBuilder::orderBy()
      */
-    public function mergeOrderByInto(QueryBuilder3 $QueryBuilder) {
+    public function mergeOrderByInto(QueryBuilder $QueryBuilder) {
       foreach ($this->orderBy as $currentOrderBy) {
         $QueryBuilder->orderBy($currentOrderBy['column'], $currentOrderBy['order']);
       }
@@ -1372,7 +1372,7 @@
      * @uses   QueryBuilder::getLimit()
      * @uses   QueryBuilder::getLimitOffset()
      */
-    public function mergeInto(QueryBuilder3 $QueryBuilder, $overwriteLimit = true) {
+    public function mergeInto(QueryBuilder $QueryBuilder, $overwriteLimit = true) {
       $this->mergeSelectInto($QueryBuilder);
       $this->mergeJoinInto($QueryBuilder);
       $this->mergeWhereInto($QueryBuilder);
