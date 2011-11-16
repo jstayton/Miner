@@ -64,7 +64,7 @@ or after
 Methods
 -------
 
-=== SELECT
+### SELECT
 
 *   [select](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodselect)
 *   [calcFoundRows](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodcalcFoundRows)
@@ -73,7 +73,7 @@ Methods
 *   [getSelectString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetSelectString)
 *   [mergeSelectInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeSelectInto)
 
-=== FROM
+### FROM
 
 *   [from](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodfrom)
 *   [innerJoin](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodinnerJoin)
@@ -86,7 +86,7 @@ Methods
 *   [getJoinString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetJoinString)
 *   [mergeJoinInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeJoinInto)
 
-=== WHERE
+### WHERE
 
 *   [where](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodwhere)
 *   [andWhere](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodandWhere)
@@ -101,13 +101,13 @@ Methods
 *   [getWhereString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetWhereString)
 *   [mergeWhereInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeWhereInto)
 
-=== GROUP BY
+### GROUP BY
 
 *   [groupBy](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgroupBy)
 *   [getGroupByString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetGroupByString)
 *   [mergeGroupByInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeGroupByInto)
 
-=== HAVING
+### HAVING
 
 *   [having](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodhaving)
 *   [andHaving](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodandHaving)
@@ -122,20 +122,20 @@ Methods
 *   [getHavingString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetHavingString)
 *   [mergeHavingInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeHavingInto)
 
-=== ORDER BY
+### ORDER BY
 
 *   [orderBy](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodorderBy)
 *   [getOrderByString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetOrderByString)
 *   [mergeOrderByInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeOrderByInto)
 
-=== LIMIT
+### LIMIT
 
 *   [limit](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodlimit)
 *   [getLimit](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetLimit)
 *   [getLimitOffset](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetLimitOffset)
 *   [getLimitString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetLimitString)
 
-=== Query
+### Query
 
 *   [query](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodquery)
 *   [getQueryString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetQueryString)
@@ -143,7 +143,7 @@ Methods
 *   [__tostring](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#method__toString)
 *   [mergeInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeInto)
 
-=== Utility
+### Utility
 
 *   [setPdoConnection](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodsetPdoConnection)
 *   [getPdoConnection](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetPdoConnection)
