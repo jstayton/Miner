@@ -1,0 +1,2735 @@
+<html>
+<head>
+<title>Docs For Class QueryBuilder</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">QueryBuilder</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+        
+                                    
+                              		  [ <a href="../classtrees_QueryBuilder.html" class="menu">class tree: QueryBuilder</a> ]
+		  [ <a href="../elementindex_QueryBuilder.html" class="menu">index: QueryBuilder</a> ]
+		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+      <b>Packages:</b><br />
+              <a href="../li_QueryBuilder.html">QueryBuilder</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../QueryBuilder/_QueryBuilder.php.html">		QueryBuilder.php
+		</a><br>
+	  </div><br />
+      
+      
+            <b>Classes:</b><br />
+        <div class="package">
+		    		<a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Class: QueryBuilder</h1>
+Source Location: /QueryBuilder.php<br /><br />
+
+
+<table width="100%" border="0">
+<tr><td valign="top">
+
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre></pre><br />
+<div class="description">A dead simple PHP 5 OO interface for building SQL queries. No manual  string concatenation necessary.</div><br /><br />
+<h4>Author(s):</h4>
+<ul>
+          <li>Justin Stayton &lt;<a href="mailto:justin.stayton@gmail.com">justin.stayton@gmail.com</a>&gt;</li>
+                        </ul>
+
+
+
+
+        
+          
+      
+<h4>Version:</h4>
+<ul>
+  <li>3.0.0</li>
+</ul>
+
+<h4>Copyright:</h4>
+<ul>
+  <li>Copyright 2011 by Justin Stayton</li>
+</ul>
+        
+</td>
+
+
+<td valign="top">
+<h3><a href="#class_consts">Constants</a></h3>
+<ul>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constBETWEEN">BETWEEN</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constBRACKET_CLOSE">BRACKET_CLOSE</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constBRACKET_OPEN">BRACKET_OPEN</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constEQUALS">EQUALS</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constGREATER_THAN">GREATER_THAN</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constGREATER_THAN_OR_EQUAL">GREATER_THAN_OR_EQUAL</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constIN">IN</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constINNER_JOIN">INNER_JOIN</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constIS">IS</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constIS_NOT">IS_NOT</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constLEFT_JOIN">LEFT_JOIN</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constLESS_THAN">LESS_THAN</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constLESS_THAN_OR_EQUAL">LESS_THAN_OR_EQUAL</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constLIKE">LIKE</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constLOGICAL_AND">LOGICAL_AND</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constLOGICAL_OR">LOGICAL_OR</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constNOT_BETWEEN">NOT_BETWEEN</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constNOT_EQUALS">NOT_EQUALS</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constNOT_IN">NOT_IN</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constNOT_LIKE">NOT_LIKE</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constNOT_REGEX">NOT_REGEX</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constORDER_BY_ASC">ORDER_BY_ASC</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constORDER_BY_DESC">ORDER_BY_DESC</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constREGEX">REGEX</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#constRIGHT_JOIN">RIGHT_JOIN</a></li>
+  </ul>
+</td>
+
+<td valign="top">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../QueryBuilder/QueryBuilder.html#method__construct">__construct</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodandHaving">andHaving</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodandWhere">andWhere</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodcalcFoundRows">calcFoundRows</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodcloseHaving">closeHaving</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodcloseWhere">closeWhere</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methoddistinct">distinct</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodfrom">from</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetFrom">getFrom</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetFromAlias">getFromAlias</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetFromString">getFromString</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetGroupByString">getGroupByString</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetHavingPlaceholderValues">getHavingPlaceholderValues</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetHavingString">getHavingString</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetJoinString">getJoinString</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetLimit">getLimit</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetLimitOffset">getLimitOffset</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetLimitString">getLimitString</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetOrderByString">getOrderByString</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetPdoConnection">getPdoConnection</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetPlaceholderValues">getPlaceholderValues</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetQueryString">getQueryString</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetSelectString">getSelectString</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetWherePlaceholderValues">getWherePlaceholderValues</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetWhereString">getWhereString</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgroupBy">groupBy</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodhaving">having</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodhavingBetween">havingBetween</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodhavingIn">havingIn</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodhavingNotBetween">havingNotBetween</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodhavingNotIn">havingNotIn</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodinnerJoin">innerJoin</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodjoin">join</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodleftJoin">leftJoin</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodlimit">limit</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodmergeGroupByInto">mergeGroupByInto</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodmergeHavingInto">mergeHavingInto</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodmergeInto">mergeInto</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodmergeJoinInto">mergeJoinInto</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodmergeOrderByInto">mergeOrderByInto</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodmergeSelectInto">mergeSelectInto</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodmergeWhereInto">mergeWhereInto</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodopenHaving">openHaving</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodopenWhere">openWhere</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodoption">option</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodorderBy">orderBy</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodorHaving">orHaving</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodorWhere">orWhere</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodquery">query</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodquote">quote</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodrightJoin">rightJoin</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodselect">select</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodsetPdoConnection">setPdoConnection</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodwhere">where</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodwhereBetween">whereBetween</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodwhereIn">whereIn</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodwhereNotBetween">whereNotBetween</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodwhereNotIn">whereNotIn</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#method__toString">__toString</a></li>
+  </ul>
+</td>
+
+</tr></table>
+<hr />
+
+<table width="100%" border="0"><tr>
+
+
+
+
+
+
+</tr></table>
+<hr />
+
+<a name="class_details"></a>
+<h3>Class Details</h3>
+<div class="tags">
+[line 13]<br />
+A dead simple PHP 5 OO interface for building SQL queries. No manual  string concatenation necessary.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Justin Stayton &lt;<a href="mailto:justin.stayton@gmail.com">justin.stayton@gmail.com</a>&gt;</td>
+  </tr>
+  <tr>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>3.0.0</td>
+  </tr>
+  <tr>
+    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright 2011 by Justin Stayton</td>
+  </tr>
+  <tr>
+    <td><b>license:</b>&nbsp;&nbsp;</td><td><a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a></td>
+  </tr>
+</table>
+</div>
+</div><br /><br />
+<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+
+<hr />
+<a name="class_methods"></a>
+<h3>Class Methods</h3>
+<div class="tags">
+
+  <hr />
+	<a name="method__construct"></a>
+	<h3>constructor __construct <span class="smalllinenumber">[line 230]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> __construct(
+[
+$PdoConnection = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Constructor.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">PDO|null&nbsp;&nbsp;</td>
+        <td><b>$PdoConnection</b>&nbsp;&nbsp;</td>
+        <td>optional PDO database connection</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodandHaving"></a>
+	<h3>method andHaving <span class="smalllinenumber">[line 1052]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> andHaving(
+string
+$column, mixed
+$value, [string
+$operator = self::EQUALS])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add an AND HAVING condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>colum name</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td>value</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$operator</b>&nbsp;&nbsp;</td>
+        <td>optional comparison operator, default =</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodandWhere"></a>
+	<h3>method andWhere <span class="smalllinenumber">[line 842]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> andWhere(
+string
+$column, mixed
+$value, [string
+$operator = self::EQUALS])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add an AND WHERE condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>colum name</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td>value</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$operator</b>&nbsp;&nbsp;</td>
+        <td>optional comparison operator, default =</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodcalcFoundRows"></a>
+	<h3>method calcFoundRows <span class="smalllinenumber">[line 309]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> calcFoundRows(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add SQL_CALC_FOUND_ROWS execution option.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodcloseHaving"></a>
+	<h3>method closeHaving <span class="smalllinenumber">[line 1027]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> closeHaving(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a closing bracket for nesting HAVING conditions.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodcloseWhere"></a>
+	<h3>method closeWhere <span class="smalllinenumber">[line 817]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> closeWhere(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a closing bracket for nesting WHERE conditions.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methoddistinct"></a>
+	<h3>method distinct <span class="smalllinenumber">[line 318]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> distinct(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add DISTINCT execution option.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodfrom"></a>
+	<h3>method from <span class="smalllinenumber">[line 393]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> from(
+string
+$table, [string
+$alias = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set the FROM table with optional alias.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$table</b>&nbsp;&nbsp;</td>
+        <td>table name</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$alias</b>&nbsp;&nbsp;</td>
+        <td>optional alias</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetFrom"></a>
+	<h3>method getFrom <span class="smalllinenumber">[line 405]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string getFrom(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the FROM table.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>FROM table</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetFromAlias"></a>
+	<h3>method getFromAlias <span class="smalllinenumber">[line 414]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string getFromAlias(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the FROM table alias.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>FROM table alias</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetFromString"></a>
+	<h3>method getFromString <span class="smalllinenumber">[line 564]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string getFromString(
+[bool
+$includeText = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the FROM portion of the query, including all JOINs, as a string.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>FROM portion of the query</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$includeText</b>&nbsp;&nbsp;</td>
+        <td>optional include 'FROM' text, default true</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetGroupByString"></a>
+	<h3>method getGroupByString <span class="smalllinenumber">[line 996]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string getGroupByString(
+[bool
+$includeText = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the GROUP BY portion of the query as a string.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>GROUP BY portion of the query</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$includeText</b>&nbsp;&nbsp;</td>
+        <td>optional include 'GROUP BY' text, default true</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetHavingPlaceholderValues"></a>
+	<h3>method getHavingPlaceholderValues <span class="smalllinenumber">[line 1168]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>array getHavingPlaceholderValues(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the HAVING placeholder values when  <a href="../QueryBuilder/QueryBuilder.html#methodgetHavingString">QueryBuilder::getHavingString()</a> is called with the parameter to  use placeholder values.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>HAVING placeholder values</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetHavingString"></a>
+	<h3>method getHavingString <span class="smalllinenumber">[line 1151]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string getHavingString(
+[bool
+$usePlaceholders = true], [bool
+$includeText = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the HAVING portion of the query as a string.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>HAVING portion of the query</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$usePlaceholders</b>&nbsp;&nbsp;</td>
+        <td>optional use ? placeholders, default true</td>
+      </tr>
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$includeText</b>&nbsp;&nbsp;</td>
+        <td>optional include 'HAVING' text, default true</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetJoinString"></a>
+	<h3>method getJoinString <span class="smalllinenumber">[line 520]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string getJoinString(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the JOIN portion of the query as a string.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>JOIN portion of the query</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetLimit"></a>
+	<h3>method getLimit <span class="smalllinenumber">[line 1241]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>int|string getLimit(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the LIMIT on number of rows to return.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>LIMIT on number of rows to return</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetLimitOffset"></a>
+	<h3>method getLimitOffset <span class="smalllinenumber">[line 1250]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>int|string getLimitOffset(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the LIMIT row number to start at.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>LIMIT row number to start at</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetLimitString"></a>
+	<h3>method getLimitString <span class="smalllinenumber">[line 1260]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string getLimitString(
+[bool
+$includeText = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the LIMIT portion of the query as a string.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>LIMIT portion of the query</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$includeText</b>&nbsp;&nbsp;</td>
+        <td>optional include 'LIMIT' text, default true</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetOrderByString"></a>
+	<h3>method getOrderByString <span class="smalllinenumber">[line 1206]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string getOrderByString(
+[bool
+$includeText = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the ORDER BY portion of the query as a string.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>ORDER BY portion of the query</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$includeText</b>&nbsp;&nbsp;</td>
+        <td>optional include 'ORDER BY' text, default true</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetPdoConnection"></a>
+	<h3>method getPdoConnection <span class="smalllinenumber">[line 264]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>PDO|null getPdoConnection(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the PDO database connection to use in executing this query.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetPlaceholderValues"></a>
+	<h3>method getPlaceholderValues <span class="smalllinenumber">[line 1343]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>array getPlaceholderValues(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get all placeholder values when <a href="../QueryBuilder/QueryBuilder.html#methodgetQueryString">QueryBuilder::getQueryString()</a>  is called with the parameter to use placeholder values.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>all placeholder values</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetQueryString"></a>
+	<h3>method getQueryString <span class="smalllinenumber">[line 1302]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string getQueryString(
+[bool
+$usePlaceholders = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the full query string.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>full query string</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$usePlaceholders</b>&nbsp;&nbsp;</td>
+        <td>optional use ? placeholders, default true</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetSelectString"></a>
+	<h3>method getSelectString <span class="smalllinenumber">[line 359]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string getSelectString(
+[bool
+$includeText = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the SELECT portion of the query as a string.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>SELECT portion of the query</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$includeText</b>&nbsp;&nbsp;</td>
+        <td>optional include 'SELECT' text, default true</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetWherePlaceholderValues"></a>
+	<h3>method getWherePlaceholderValues <span class="smalllinenumber">[line 958]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>array getWherePlaceholderValues(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the WHERE placeholder values when  <a href="../QueryBuilder/QueryBuilder.html#methodgetWhereString">QueryBuilder::getWhereString()</a> is called with the parameter to  use placeholder values.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>WHERE placeholder values</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetWhereString"></a>
+	<h3>method getWhereString <span class="smalllinenumber">[line 941]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string getWhereString(
+[bool
+$usePlaceholders = true], [bool
+$includeText = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the WHERE portion of the query as a string.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>WHERE portion of the query</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$usePlaceholders</b>&nbsp;&nbsp;</td>
+        <td>optional use ? placeholders, default true</td>
+      </tr>
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$includeText</b>&nbsp;&nbsp;</td>
+        <td>optional include 'WHERE' text, default true</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgroupBy"></a>
+	<h3>method groupBy <span class="smalllinenumber">[line 969]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> groupBy(
+string
+$column, [string
+$order = self::ORDER_BY_ASC])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a GROUP BY column.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>column name</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$order</b>&nbsp;&nbsp;</td>
+        <td>optional order direction, default ASC</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodhaving"></a>
+	<h3>method having <span class="smalllinenumber">[line 1040]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> having(
+string
+$column, mixed
+$value, [string
+$operator = self::EQUALS], [string
+$connector = self::LOGICAL_AND])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a HAVING condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>colum name</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td>value</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$operator</b>&nbsp;&nbsp;</td>
+        <td>optional comparison operator, default =</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$connector</b>&nbsp;&nbsp;</td>
+        <td>optional logical connector, default AND</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodhavingBetween"></a>
+	<h3>method havingBetween <span class="smalllinenumber">[line 1101]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> havingBetween(
+string
+$column, mixed
+$min, mixed
+$max, [string
+$connector = self::LOGICAL_AND])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a BETWEEN HAVING condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>column name</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$min</b>&nbsp;&nbsp;</td>
+        <td>minimum value</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$max</b>&nbsp;&nbsp;</td>
+        <td>maximum value</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$connector</b>&nbsp;&nbsp;</td>
+        <td>optional logical connector, default AND</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodhavingIn"></a>
+	<h3>method havingIn <span class="smalllinenumber">[line 1076]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> havingIn(
+string
+$column, 
+$values, [string
+$connector = self::LOGICAL_AND])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add an IN WHERE condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>column name</td>
+      </tr>
+          <tr>
+        <td class="type">array&nbsp;&nbsp;</td>
+        <td><b>$values</b>&nbsp;&nbsp;</td>
+        <td>values</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$connector</b>&nbsp;&nbsp;</td>
+        <td>optional logical connector, default AND</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodhavingNotBetween"></a>
+	<h3>method havingNotBetween <span class="smalllinenumber">[line 1114]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> havingNotBetween(
+string
+$column, mixed
+$min, mixed
+$max, [string
+$connector = self::LOGICAL_AND])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a NOT BETWEEN HAVING condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>column name</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$min</b>&nbsp;&nbsp;</td>
+        <td>minimum value</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$max</b>&nbsp;&nbsp;</td>
+        <td>maximum value</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$connector</b>&nbsp;&nbsp;</td>
+        <td>optional logical connector, default AND</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodhavingNotIn"></a>
+	<h3>method havingNotIn <span class="smalllinenumber">[line 1088]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> havingNotIn(
+string
+$column, 
+$values, [string
+$connector = self::LOGICAL_AND])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a NOT IN HAVING condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>column name</td>
+      </tr>
+          <tr>
+        <td class="type">array&nbsp;&nbsp;</td>
+        <td><b>$values</b>&nbsp;&nbsp;</td>
+        <td>values</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$connector</b>&nbsp;&nbsp;</td>
+        <td>optional logical connector, default AND</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodinnerJoin"></a>
+	<h3>method innerJoin <span class="smalllinenumber">[line 448]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> innerJoin(
+string
+$table, [string|array
+$criteria = null], [string
+$alias = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add an INNER JOIN table with optional ON criteria.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$table</b>&nbsp;&nbsp;</td>
+        <td>table name</td>
+      </tr>
+          <tr>
+        <td class="type">string|array&nbsp;&nbsp;</td>
+        <td><b>$criteria</b>&nbsp;&nbsp;</td>
+        <td>optional ON criteria</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$alias</b>&nbsp;&nbsp;</td>
+        <td>optional alias</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodjoin"></a>
+	<h3>method join <span class="smalllinenumber">[line 427]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> join(
+string
+$table, [string|array
+$criteria = null], [string
+$type = self::INNER_JOIN], [string
+$alias = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a JOIN table with optional ON criteria.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$table</b>&nbsp;&nbsp;</td>
+        <td>table name</td>
+      </tr>
+          <tr>
+        <td class="type">string|array&nbsp;&nbsp;</td>
+        <td><b>$criteria</b>&nbsp;&nbsp;</td>
+        <td>optional ON criteria</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$type</b>&nbsp;&nbsp;</td>
+        <td>optional type of join, default INNER JOIN</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$alias</b>&nbsp;&nbsp;</td>
+        <td>optional alias</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodleftJoin"></a>
+	<h3>method leftJoin <span class="smalllinenumber">[line 460]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> leftJoin(
+string
+$table, [string|array
+$criteria = null], [string
+$alias = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a LEFT JOIN table with optional ON criteria.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$table</b>&nbsp;&nbsp;</td>
+        <td>table name</td>
+      </tr>
+          <tr>
+        <td class="type">string|array&nbsp;&nbsp;</td>
+        <td><b>$criteria</b>&nbsp;&nbsp;</td>
+        <td>optional ON criteria</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$alias</b>&nbsp;&nbsp;</td>
+        <td>optional alias</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodlimit"></a>
+	<h3>method limit <span class="smalllinenumber">[line 1229]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> limit(
+int|string
+$limit, [int|string
+$offset = 0])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set the LIMIT on number of rows to return with optional offset.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">int|string&nbsp;&nbsp;</td>
+        <td><b>$limit</b>&nbsp;&nbsp;</td>
+        <td>number of rows to return</td>
+      </tr>
+          <tr>
+        <td class="type">int|string&nbsp;&nbsp;</td>
+        <td><b>$offset</b>&nbsp;&nbsp;</td>
+        <td>optional row number to start at, default 0</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodmergeGroupByInto"></a>
+	<h3>method mergeGroupByInto <span class="smalllinenumber">[line 982]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> mergeGroupByInto(
+<a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>
+$QueryBuilder)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Merge this QueryBuilder's GROUP BY into the given QueryBuilder.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type"><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>&nbsp;&nbsp;</td>
+        <td><b>$QueryBuilder</b>&nbsp;&nbsp;</td>
+        <td>to merge into</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodmergeHavingInto"></a>
+	<h3>method mergeHavingInto <span class="smalllinenumber">[line 1124]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> mergeHavingInto(
+<a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>
+$QueryBuilder)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Merge this QueryBuilder's HAVING into the given QueryBuilder.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type"><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>&nbsp;&nbsp;</td>
+        <td><b>$QueryBuilder</b>&nbsp;&nbsp;</td>
+        <td>to merge into</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodmergeInto"></a>
+	<h3>method mergeInto <span class="smalllinenumber">[line 1281]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> mergeInto(
+<a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>
+$QueryBuilder, [bool
+$overwriteLimit = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Merge this QueryBuilder into the given QueryBuilder.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type"><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>&nbsp;&nbsp;</td>
+        <td><b>$QueryBuilder</b>&nbsp;&nbsp;</td>
+        <td>to merge into</td>
+      </tr>
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$overwriteLimit</b>&nbsp;&nbsp;</td>
+        <td>optional overwrite limit, default true</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodmergeJoinInto"></a>
+	<h3>method mergeJoinInto <span class="smalllinenumber">[line 482]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> mergeJoinInto(
+<a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>
+$QueryBuilder)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Merge this QueryBuilder's JOINs into the given QueryBuilder.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type"><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>&nbsp;&nbsp;</td>
+        <td><b>$QueryBuilder</b>&nbsp;&nbsp;</td>
+        <td>to merge into</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodmergeOrderByInto"></a>
+	<h3>method mergeOrderByInto <span class="smalllinenumber">[line 1192]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> mergeOrderByInto(
+<a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>
+$QueryBuilder)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Merge this QueryBuilder's ORDER BY into the given QueryBuilder.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type"><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>&nbsp;&nbsp;</td>
+        <td><b>$QueryBuilder</b>&nbsp;&nbsp;</td>
+        <td>to merge into</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodmergeSelectInto"></a>
+	<h3>method mergeSelectInto <span class="smalllinenumber">[line 341]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> mergeSelectInto(
+<a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>
+$QueryBuilder)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Merge this QueryBuilder's SELECT into the given QueryBuilder.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type"><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>&nbsp;&nbsp;</td>
+        <td><b>$QueryBuilder</b>&nbsp;&nbsp;</td>
+        <td>to merge into</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodmergeWhereInto"></a>
+	<h3>method mergeWhereInto <span class="smalllinenumber">[line 914]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> mergeWhereInto(
+<a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>
+$QueryBuilder)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Merge this QueryBuilder's WHERE into the given QueryBuilder.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type"><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a>&nbsp;&nbsp;</td>
+        <td><b>$QueryBuilder</b>&nbsp;&nbsp;</td>
+        <td>to merge into</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodopenHaving"></a>
+	<h3>method openHaving <span class="smalllinenumber">[line 1018]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> openHaving(
+[string
+$connector = self::LOGICAL_AND])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add an open bracket for nesting HAVING conditions.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$connector</b>&nbsp;&nbsp;</td>
+        <td>optional logical connector, default AND</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodopenWhere"></a>
+	<h3>method openWhere <span class="smalllinenumber">[line 808]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> openWhere(
+[string
+$connector = self::LOGICAL_AND])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add an open bracket for nesting WHERE conditions.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$connector</b>&nbsp;&nbsp;</td>
+        <td>optional logical connector, default AND</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodoption"></a>
+	<h3>method option <span class="smalllinenumber">[line 298]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> option(
+string
+$option)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add an execution option like DISTINCT or SQL_CALC_FOUND_ROWS.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$option</b>&nbsp;&nbsp;</td>
+        <td>execution option to add</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodorderBy"></a>
+	<h3>method orderBy <span class="smalllinenumber">[line 1179]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> orderBy(
+string
+$column, [string
+$order = self::ORDER_BY_ASC])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a column to ORDER BY.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>column name</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$order</b>&nbsp;&nbsp;</td>
+        <td>optional order direction, default ASC</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodorHaving"></a>
+	<h3>method orHaving <span class="smalllinenumber">[line 1064]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> orHaving(
+string
+$column, mixed
+$value, [string
+$operator = self::EQUALS])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add an OR HAVING condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>colum name</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td>value</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$operator</b>&nbsp;&nbsp;</td>
+        <td>optional comparison operator, default =</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodorWhere"></a>
+	<h3>method orWhere <span class="smalllinenumber">[line 854]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> orWhere(
+string
+$column, mixed
+$value, [string
+$operator = self::EQUALS])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add an OR WHERE condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>colum name</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td>value</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$operator</b>&nbsp;&nbsp;</td>
+        <td>optional comparison operator, default =</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodquery"></a>
+	<h3>method query <span class="smalllinenumber">[line 1352]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>PDOStatement|false query(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Execute the query using the PDO database connection.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>executed query or false is failed</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodquote"></a>
+	<h3>method quote <span class="smalllinenumber">[line 274]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string|false quote(
+string
+$value)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Safely escape a value for use in a query.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>escaped value or false if failed</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td>value to escape</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodrightJoin"></a>
+	<h3>method rightJoin <span class="smalllinenumber">[line 472]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> rightJoin(
+string
+$table, [string|array
+$criteria = null], [string
+$alias = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a RIGHT JOIN table with optional ON criteria.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$table</b>&nbsp;&nbsp;</td>
+        <td>table name</td>
+      </tr>
+          <tr>
+        <td class="type">string|array&nbsp;&nbsp;</td>
+        <td><b>$criteria</b>&nbsp;&nbsp;</td>
+        <td>optional ON criteria</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$alias</b>&nbsp;&nbsp;</td>
+        <td>optional alias</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodselect"></a>
+	<h3>method select <span class="smalllinenumber">[line 329]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> select(
+string
+$column, [string
+$alias = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a SELECT column, table, or expression with optional alias.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>column name, table name, or expression</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$alias</b>&nbsp;&nbsp;</td>
+        <td>optional alias</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetPdoConnection"></a>
+	<h3>method setPdoConnection <span class="smalllinenumber">[line 253]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> setPdoConnection(
+[
+$PdoConnection = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set the PDO database connection to use in executing this query.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">PDO|null&nbsp;&nbsp;</td>
+        <td><b>$PdoConnection</b>&nbsp;&nbsp;</td>
+        <td>optional PDO database connection</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodwhere"></a>
+	<h3>method where <span class="smalllinenumber">[line 830]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> where(
+string
+$column, mixed
+$value, [string
+$operator = self::EQUALS], [string
+$connector = self::LOGICAL_AND])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a WHERE condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>column name</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td>value</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$operator</b>&nbsp;&nbsp;</td>
+        <td>optional comparison operator, default =</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$connector</b>&nbsp;&nbsp;</td>
+        <td>optional logical connector, default AND</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodwhereBetween"></a>
+	<h3>method whereBetween <span class="smalllinenumber">[line 891]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> whereBetween(
+string
+$column, mixed
+$min, mixed
+$max, [string
+$connector = self::LOGICAL_AND])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a BETWEEN WHERE condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>column name</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$min</b>&nbsp;&nbsp;</td>
+        <td>minimum value</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$max</b>&nbsp;&nbsp;</td>
+        <td>maximum value</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$connector</b>&nbsp;&nbsp;</td>
+        <td>optional logical connector, default AND</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodwhereIn"></a>
+	<h3>method whereIn <span class="smalllinenumber">[line 866]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> whereIn(
+string
+$column, 
+$values, [string
+$connector = self::LOGICAL_AND])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add an IN WHERE condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>column name</td>
+      </tr>
+          <tr>
+        <td class="type">array&nbsp;&nbsp;</td>
+        <td><b>$values</b>&nbsp;&nbsp;</td>
+        <td>values</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$connector</b>&nbsp;&nbsp;</td>
+        <td>optional logical connector, default AND</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodwhereNotBetween"></a>
+	<h3>method whereNotBetween <span class="smalllinenumber">[line 904]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> whereNotBetween(
+string
+$column, mixed
+$min, mixed
+$max, [string
+$connector = self::LOGICAL_AND])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a NOT BETWEEN WHERE condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>column name</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$min</b>&nbsp;&nbsp;</td>
+        <td>minimum value</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$max</b>&nbsp;&nbsp;</td>
+        <td>maximum value</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$connector</b>&nbsp;&nbsp;</td>
+        <td>optional logical connector, default AND</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodwhereNotIn"></a>
+	<h3>method whereNotIn <span class="smalllinenumber">[line 878]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> whereNotIn(
+string
+$column, 
+$values, [string
+$connector = self::LOGICAL_AND])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a NOT IN WHERE condition.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$column</b>&nbsp;&nbsp;</td>
+        <td>column name</td>
+      </tr>
+          <tr>
+        <td class="type">array&nbsp;&nbsp;</td>
+        <td><b>$values</b>&nbsp;&nbsp;</td>
+        <td>values</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$connector</b>&nbsp;&nbsp;</td>
+        <td>optional logical connector, default AND</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="method__toString"></a>
+	<h3>method __toString <span class="smalllinenumber">[line 1379]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string __toString(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the full query string without value placeholders.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>full query string</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+</div><br />
+
+<hr />
+<a name="class_consts"></a>
+<h3>Class Constants</h3>
+<div class="tags">
+	<a name="constBETWEEN"></a>
+	<p></p>
+	<h4>BETWEEN = <span class="value">&nbsp;&quot;BETWEEN&quot;</span></h4>
+	<p>[line 103]</p>
+  BETWEEN comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constBRACKET_CLOSE"></a>
+	<p></p>
+	<h4>BRACKET_CLOSE = <span class="value">&nbsp;&quot;)&quot;</span></h4>
+	<p>[line 138]</p>
+  Closing bracket for grouping criteria.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constBRACKET_OPEN"></a>
+	<p></p>
+	<h4>BRACKET_OPEN = <span class="value">&nbsp;&quot;(&quot;</span></h4>
+	<p>[line 133]</p>
+  Open bracket for grouping criteria.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constEQUALS"></a>
+	<p></p>
+	<h4>EQUALS = <span class="value">&nbsp;&quot;=&quot;</span></h4>
+	<p>[line 43]</p>
+  Equals comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constGREATER_THAN"></a>
+	<p></p>
+	<h4>GREATER_THAN = <span class="value">&nbsp;&quot;&gt;&quot;</span></h4>
+	<p>[line 63]</p>
+  Greater than comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constGREATER_THAN_OR_EQUAL"></a>
+	<p></p>
+	<h4>GREATER_THAN_OR_EQUAL = <span class="value">&nbsp;&quot;&gt;=&quot;</span></h4>
+	<p>[line 68]</p>
+  Greater than or equal to comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constIN"></a>
+	<p></p>
+	<h4>IN = <span class="value">&nbsp;&quot;IN&quot;</span></h4>
+	<p>[line 73]</p>
+  IN comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constINNER_JOIN"></a>
+	<p></p>
+	<h4>INNER_JOIN = <span class="value">&nbsp;&quot;INNER&nbsp;JOIN&quot;</span></h4>
+	<p>[line 18]</p>
+  INNER JOIN type.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constIS"></a>
+	<p></p>
+	<h4>IS = <span class="value">&nbsp;&quot;IS&quot;</span></h4>
+	<p>[line 113]</p>
+  IS comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constIS_NOT"></a>
+	<p></p>
+	<h4>IS_NOT = <span class="value">&nbsp;&quot;IS&nbsp;NOT&quot;</span></h4>
+	<p>[line 118]</p>
+  IS NOT comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constLEFT_JOIN"></a>
+	<p></p>
+	<h4>LEFT_JOIN = <span class="value">&nbsp;&quot;LEFT&nbsp;JOIN&quot;</span></h4>
+	<p>[line 23]</p>
+  LEFT JOIN type.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constLESS_THAN"></a>
+	<p></p>
+	<h4>LESS_THAN = <span class="value">&nbsp;&quot;&lt;&quot;</span></h4>
+	<p>[line 53]</p>
+  Less than comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constLESS_THAN_OR_EQUAL"></a>
+	<p></p>
+	<h4>LESS_THAN_OR_EQUAL = <span class="value">&nbsp;&quot;&lt;=&quot;</span></h4>
+	<p>[line 58]</p>
+  Less than or equal to comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constLIKE"></a>
+	<p></p>
+	<h4>LIKE = <span class="value">&nbsp;&quot;LIKE&quot;</span></h4>
+	<p>[line 83]</p>
+  LIKE comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constLOGICAL_AND"></a>
+	<p></p>
+	<h4>LOGICAL_AND = <span class="value">&nbsp;&quot;AND&quot;</span></h4>
+	<p>[line 33]</p>
+  AND logical operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constLOGICAL_OR"></a>
+	<p></p>
+	<h4>LOGICAL_OR = <span class="value">&nbsp;&quot;OR&quot;</span></h4>
+	<p>[line 38]</p>
+  OR logical operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constNOT_BETWEEN"></a>
+	<p></p>
+	<h4>NOT_BETWEEN = <span class="value">&nbsp;&quot;NOT&nbsp;BETWEEN&quot;</span></h4>
+	<p>[line 108]</p>
+  NOT BETWEEN comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constNOT_EQUALS"></a>
+	<p></p>
+	<h4>NOT_EQUALS = <span class="value">&nbsp;&quot;!=&quot;</span></h4>
+	<p>[line 48]</p>
+  Not equals comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constNOT_IN"></a>
+	<p></p>
+	<h4>NOT_IN = <span class="value">&nbsp;&quot;NOT&nbsp;IN&quot;</span></h4>
+	<p>[line 78]</p>
+  NOT IN comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constNOT_LIKE"></a>
+	<p></p>
+	<h4>NOT_LIKE = <span class="value">&nbsp;&quot;NOT&nbsp;LIKE&quot;</span></h4>
+	<p>[line 88]</p>
+  NOT LIKE comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constNOT_REGEX"></a>
+	<p></p>
+	<h4>NOT_REGEX = <span class="value">&nbsp;&quot;NOT&nbsp;REGEXP&quot;</span></h4>
+	<p>[line 98]</p>
+  NOT REGEXP comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constORDER_BY_ASC"></a>
+	<p></p>
+	<h4>ORDER_BY_ASC = <span class="value">&nbsp;&quot;ASC&quot;</span></h4>
+	<p>[line 123]</p>
+  Ascending ORDER BY direction.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constORDER_BY_DESC"></a>
+	<p></p>
+	<h4>ORDER_BY_DESC = <span class="value">&nbsp;&quot;DESC&quot;</span></h4>
+	<p>[line 128]</p>
+  Descending ORDER BY direction.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constREGEX"></a>
+	<p></p>
+	<h4>REGEX = <span class="value">&nbsp;&quot;REGEXP&quot;</span></h4>
+	<p>[line 93]</p>
+  REGEXP comparison operator.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constRIGHT_JOIN"></a>
+	<p></p>
+	<h4>RIGHT_JOIN = <span class="value">&nbsp;&quot;RIGHT&nbsp;JOIN&quot;</span></h4>
+	<p>[line 28]</p>
+  RIGHT JOIN type.<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+</div><br />
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Wed, 16 Nov 2011 19:20:06 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
