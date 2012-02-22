@@ -157,6 +157,27 @@
      * @var array
      */
     private $select;
+    
+    /**
+     * Column to INSERT INTO.
+     *
+     * @var string
+     */
+    private $insert;
+
+    /**
+     * Column to UPDATE.
+     *
+     * @var string
+     */
+    private $update;
+
+    /**
+     * Column to DELETE FROM.
+     *
+     * @var string
+     */
+    private $delete; 
 
     /**
      * Table to select FROM.
@@ -236,8 +257,7 @@
      */
     public function __construct(PDO $PdoConnection = null) {
       $this->option = array();
-      $this->select = array();
-      $this->insert = array(); 
+      $this->select = array(); 
       $this->from = array();
       $this->join = array();
       $this->where = array();
@@ -343,7 +363,7 @@
     }
 
      /**
-     * Add an INSERT table
+     * Set an INSERT table
      *
      * @param  string $table table name
      * @return QueryBuilder
@@ -354,7 +374,18 @@
     }
     
      /**
-     * Add an DELETE table
+     * Set an UPDATE table
+     *
+     * @param  string $table table name
+     * @return QueryBuilder
+     */
+    public function update($table) {
+      $this->update = $table;
+      return $this;
+    }
+
+     /**
+     * Set an DELETE table
      *
      * @param  string $table table name
      * @return QueryBuilder
@@ -363,7 +394,6 @@
       $this->delete = $table;
       return $this;
     }
-    
 
     /**
      * Merge this QueryBuilder's SELECT into the given QueryBuilder.
@@ -426,6 +456,17 @@
       $insert = "INSERT INTO " . $this->insert;
       return $insert;
     }
+
+    /**
+     * Get the UPDATE portion of the query as a string.
+     *
+     * @return string INSERT INTO portion of the query
+     */
+    public function getUpdateString() {
+      $update = "UPDATE " . $this->update;
+      return $update;
+    }
+    
 
     /**
      * Get the DELETE FROM portion of the query as a string.
@@ -1373,7 +1414,12 @@
       $limit = "";
 
       if (!empty($this->limit)) {
-        $limit .= $this->limit['offset'] . ", " . $this->limit['limit'];
+        if(!empty($this->limit['offset'])) {
+          $limit .= $this->limit['offset'] . ", " . $this->limit['limit'];
+        }
+        else {
+          $limit .= $this->limit['limit'];
+        }
       }
 
       if ($includeText && !empty($limit)) {
@@ -1443,7 +1489,7 @@
         }
       }
 
-      // Update if a UPDATE value is set
+      // INSERT
       if (!empty($this->insert)) {
         $query .= $this->getInsertString();
 
@@ -1456,7 +1502,25 @@
         }
       }
 
-      // Delete if a DELETE value is set
+      // UPDATE
+      if (!empty($this->update)) {
+        $query .= $this->getUpdateString();
+
+        if (!empty($this->set)) {
+          $query .= " " . $this->getSetString($usePlaceholders);
+        }
+
+        // Where should for safety reasons not be optional for UPDATE
+        //if (!empty($this->where)) {
+        $query .= " " . $this->getWhereString($usePlaceholders);
+        //}
+
+        if (!empty($this->limit)) {
+          $query .= " " . $this->getLimitString();
+        }
+      }
+
+      // DELETE
       if (!empty($this->delete)) {
         $query .= $this->getDeleteString();
 
@@ -1481,8 +1545,8 @@
      */
     public function getPlaceholderValues() {
 
-      return array_merge($this->getWherePlaceholderValues(),
-                         $this->getSetPlaceHolderValues(), 
+      return array_merge($this->getSetPlaceHolderValues(),
+                         $this->getWherePlaceholderValues(),
                          $this->getHavingPlaceholderValues());
     }
 
@@ -1503,6 +1567,7 @@
 
       // Only execute if a query is set.
       if (!empty($queryString)) {
+
         $PdoStatement = $PdoConnection->prepare($queryString);
         $PdoStatement->execute($this->getPlaceholderValues());
 
