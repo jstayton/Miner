@@ -948,7 +948,7 @@
       return $this; 
     }
 
-    /**
+  	/**
      * Add an AND WHERE condition.
      *
      * @param  string $column colum name
@@ -1194,7 +1194,7 @@
       return $this->criteria($this->having, $column, $value, $operator, $connector);
     }
 
-    /**
+  	/**
      * Add an AND HAVING condition.
      *
      * @param  string $column colum name
@@ -1460,7 +1460,7 @@
     public function getQueryString($usePlaceholders = true) {
       $query = "";
 
-      // Only return the full query string if a SELECT value is set.
+      // SELECT. Only return the full query string if a SELECT value is set.
       if (!empty($this->select)) {
         $query .= $this->getSelectString();
 
@@ -1469,7 +1469,7 @@
         }
 
         if (!empty($this->where)) {
-          $query .= " " . $this->getWhereString($usePlaceholders);
+            $query .= " " . $this->getWhereString($usePlaceholders);
         }
 
         if (!empty($this->groupBy)) {
@@ -1510,10 +1510,12 @@
           $query .= " " . $this->getSetString($usePlaceholders);
         }
 
-        // Where should for safety reasons not be optional for UPDATE
-        //if (!empty($this->where)) {
-        $query .= " " . $this->getWhereString($usePlaceholders);
-        //}
+        if (empty($this->where)) {
+            throw new Exception("A WHERE statement is required for UPDATE operations");
+        }
+        else {
+            $query .= " " . $this->getWhereString($usePlaceholders);
+        }
 
         if (!empty($this->limit)) {
           $query .= " " . $this->getLimitString();
@@ -1524,8 +1526,11 @@
       if (!empty($this->delete)) {
         $query .= $this->getDeleteString();
 
-        if (!empty($this->where)) {
-          $query .= " " . $this->getWhereString($usePlaceholders);
+        if (empty($this->where)) {
+            throw new Exception("A WHERE statement is required for DELETE operations");
+        }
+        else {  
+            $query .= " " . $this->getWhereString($usePlaceholders);
         }
 
         if (!empty($this->limit)) {
