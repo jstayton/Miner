@@ -157,6 +157,27 @@
      * @var array
      */
     private $select;
+    
+    /**
+     * Column to INSERT INTO.
+     *
+     * @var string
+     */
+    private $insert;
+
+    /**
+     * Column to UPDATE.
+     *
+     * @var string
+     */
+    private $update;
+
+    /**
+     * Column to DELETE FROM.
+     *
+     * @var string
+     */
+    private $delete; 
 
     /**
      * Table to select FROM.
@@ -215,6 +236,13 @@
     private $wherePlaceholderValues;
 
     /**
+     * SET placeholder values.
+     *
+     * @var array
+     */
+    private $setPlaceholderValues;
+
+    /**
      * HAVING placeholder values.
      *
      * @var array
@@ -229,16 +257,18 @@
      */
     public function __construct(PDO $PdoConnection = null) {
       $this->option = array();
-      $this->select = array();
+      $this->select = array(); 
       $this->from = array();
       $this->join = array();
       $this->where = array();
+      $this->set = array();
       $this->groupBy = array();
       $this->having = array();
       $this->orderBy = array();
       $this->limit = array();
 
       $this->wherePlaceholderValues = array();
+      $this->setPlaceholderValues = array();
       $this->havingPlaceholderValues = array();
 
       $this->setPdoConnection($PdoConnection);
@@ -332,6 +362,39 @@
       return $this;
     }
 
+     /**
+     * Set an INSERT table
+     *
+     * @param  string $table table name
+     * @return QueryBuilder
+     */
+    public function insert($table) {
+      $this->insert = $table;
+      return $this;
+    }
+    
+     /**
+     * Set an UPDATE table
+     *
+     * @param  string $table table name
+     * @return QueryBuilder
+     */
+    public function update($table) {
+      $this->update = $table;
+      return $this;
+    }
+
+     /**
+     * Set an DELETE table
+     *
+     * @param  string $table table name
+     * @return QueryBuilder
+     */
+    public function delete($table) {
+      $this->delete = $table;
+      return $this;
+    }
+
     /**
      * Merge this QueryBuilder's SELECT into the given QueryBuilder.
      *
@@ -381,6 +444,38 @@
       }
 
       return $select;
+    }
+
+
+    /**
+     * Get the INSERT INTO portion of the query as a string.
+     *
+     * @return string INSERT INTO portion of the query
+     */
+    public function getInsertString() {
+      $insert = "INSERT INTO " . $this->insert;
+      return $insert;
+    }
+
+    /**
+     * Get the UPDATE portion of the query as a string.
+     *
+     * @return string INSERT INTO portion of the query
+     */
+    public function getUpdateString() {
+      $update = "UPDATE " . $this->update;
+      return $update;
+    }
+    
+
+    /**
+     * Get the DELETE FROM portion of the query as a string.
+     *
+     * @return string INSERT INTO portion of the query
+     */
+    public function getDeleteString() {
+      $delete = "DELETE FROM " . $this->delete;
+      return $delete;
     }
 
     /**
@@ -831,6 +926,28 @@
       return $this->criteria($this->where, $column, $value, $operator, $connector);
     }
 
+    /**
+     * Add a SET condition.
+     *
+     * @param  string $column column name or array with column => value pairs
+     * @param  mixed $value value
+     * @param  string $operator optional comparison operator, default =
+     * @return QueryBuilder
+     */
+    public function set($column, $value = null) {
+      
+      if(is_array($column))
+      {
+        $this->set = array_merge($this->set, $column);  
+      }
+      else
+      {
+        $this->set[$column] = $value;
+      }
+
+      return $this; 
+    }
+
   	/**
      * Add an AND WHERE condition.
      *
@@ -948,6 +1065,31 @@
       return $where;
     }
 
+     /**
+     * Get the SET portion of the query as a string.
+     *
+     * @param  bool $usePlaceholders optional use ? placeholders, default true
+     * @return string WHERE portion of the query
+     */
+    public function getSetString($usePlaceholders = true) {
+      
+      foreach($this->set as $column => $value)
+      {
+        if ($usePlaceholders) {
+          $setValue = "?";  
+          $this->setPlaceholderValues[] = $value;
+        }
+        else {
+          $setValue = $this->quote($value);
+        }
+        $set .= $column . " = " . $setValue . ", "; 
+      }
+
+      $set = substr($set, 0, -2);
+      $set = "SET " . $set;
+      return $set;
+    }
+
     /**
      * Get the WHERE placeholder values when
      * {@link QueryBuilder::getWhereString()} is called with the parameter to
@@ -957,6 +1099,17 @@
      */
     public function getWherePlaceholderValues() {
       return $this->wherePlaceholderValues;
+    }
+
+    /**
+     * Get the SET placeholder values when
+     * {@link QueryBuilder::getSetString()} is called with the parameter to
+     * use placeholder values.
+     *
+     * @return array SET placeholder values
+     */
+    public function getSetPlaceholderValues() {
+      return $this->setPlaceholderValues;
     }
 
     /**
@@ -1261,7 +1414,12 @@
       $limit = "";
 
       if (!empty($this->limit)) {
-        $limit .= $this->limit['offset'] . ", " . $this->limit['limit'];
+        if(!empty($this->limit['offset'])) {
+          $limit .= $this->limit['offset'] . ", " . $this->limit['limit'];
+        }
+        else {
+          $limit .= $this->limit['limit'];
+        }
       }
 
       if ($includeText && !empty($limit)) {
@@ -1302,7 +1460,7 @@
     public function getQueryString($usePlaceholders = true) {
       $query = "";
 
-      // Only return the full query string if a SELECT value is set.
+      // SELECT. Only return the full query string if a SELECT value is set.
       if (!empty($this->select)) {
         $query .= $this->getSelectString();
 
@@ -1311,7 +1469,7 @@
         }
 
         if (!empty($this->where)) {
-          $query .= " " . $this->getWhereString($usePlaceholders);
+            $query .= " " . $this->getWhereString($usePlaceholders);
         }
 
         if (!empty($this->groupBy)) {
@@ -1331,6 +1489,56 @@
         }
       }
 
+      // INSERT
+      if (!empty($this->insert)) {
+        $query .= $this->getInsertString();
+
+        if (!empty($this->set)) {
+          $query .= " " . $this->getSetString($usePlaceholders);
+        }
+
+        if (!empty($this->limit)) {
+          $query .= " " . $this->getLimitString();
+        }
+      }
+
+      // UPDATE
+      if (!empty($this->update)) {
+        $query .= $this->getUpdateString();
+
+        if (!empty($this->set)) {
+          $query .= " " . $this->getSetString($usePlaceholders);
+        }
+
+        if (empty($this->where)) {
+            throw new Exception("A WHERE statement is required for UPDATE operations");
+        }
+        else {
+            $query .= " " . $this->getWhereString($usePlaceholders);
+        }
+
+        if (!empty($this->limit)) {
+          $query .= " " . $this->getLimitString();
+        }
+      }
+
+      // DELETE
+      if (!empty($this->delete)) {
+        $query .= $this->getDeleteString();
+
+        if (empty($this->where)) {
+            throw new Exception("A WHERE statement is required for DELETE operations");
+        }
+        else {  
+            $query .= " " . $this->getWhereString($usePlaceholders);
+        }
+
+        if (!empty($this->limit)) {
+          $query .= " " . $this->getLimitString();
+        }
+      }
+
+
       return $query;
     }
 
@@ -1341,7 +1549,10 @@
      * @return array all placeholder values
      */
     public function getPlaceholderValues() {
-      return array_merge($this->getWherePlaceholderValues(), $this->getHavingPlaceholderValues());
+
+      return array_merge($this->getSetPlaceHolderValues(),
+                         $this->getWherePlaceholderValues(),
+                         $this->getHavingPlaceholderValues());
     }
 
     /**
@@ -1361,6 +1572,7 @@
 
       // Only execute if a query is set.
       if (!empty($queryString)) {
+
         $PdoStatement = $PdoConnection->prepare($queryString);
         $PdoStatement->execute($this->getPlaceholderValues());
 
@@ -1369,6 +1581,24 @@
       else {
         return false;
       }
+    }
+
+    /**
+     * Shortcut to $this->query()->fetchAll(PDO::FETCH_OBJ)
+     * @return [type]
+     */
+    public function fetchObjects() {
+      $query = $this->query();
+      return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * Shortcut to $this->query()->fetch(PDO::FETCH_OBJ)
+     * @return [type]
+     */
+    public function fetchObject() {
+      $query = $this->query();
+      return $query->fetch(PDO::FETCH_OBJ);
     }
 
     /**
