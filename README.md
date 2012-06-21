@@ -140,7 +140,7 @@ Methods
 *   [query](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodquery)
 *   [getQueryString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetQueryString)
 *   [getPlaceholderValues](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetPlaceholderValues)
-*   [__tostring](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#method__toString)
+*   [__toString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#method__toString)
 *   [mergeInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeInto)
 
 ### Utility
