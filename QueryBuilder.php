@@ -5,7 +5,7 @@
    * string concatenation necessary.
    *
    * @author    Justin Stayton <justin.stayton@gmail.com>
-   * @copyright Copyright 2011 by Justin Stayton
+   * @copyright Copyright 2011-2012 by Justin Stayton
    * @license   http://en.wikipedia.org/wiki/MIT_License MIT License
    * @package   QueryBuilder
    * @version   3.0.0
