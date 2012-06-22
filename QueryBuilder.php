@@ -159,6 +159,13 @@
     private $select;
 
     /**
+     * Tables to DELETE from, or true if deleting from the FROM table.
+     *
+     * @var array|true
+     */
+    private $delete;
+
+    /**
      * Table to select FROM.
      *
      * @var array
@@ -230,6 +237,7 @@
     public function __construct(PDO $PdoConnection = null) {
       $this->option = array();
       $this->select = array();
+      $this->delete = array();
       $this->from = array();
       $this->join = array();
       $this->where = array();
@@ -302,6 +310,40 @@
     }
 
     /**
+     * Get the execution options portion of the query as a string.
+     *
+     * @param  bool $includeTrailingSpace optional include space after options
+     * @return string execution options portion of the query
+     */
+    public function getOptionsString($includeTrailingSpace = false) {
+      $options = "";
+
+      if (!empty($this->option)) {
+        $options .= implode(' ', $this->option);
+
+        if ($includeTrailingSpace) {
+          $options .= " ";
+        }
+      }
+
+      return $options;
+    }
+
+    /**
+     * Merge this QueryBuilder's execution options into the given QueryBuilder.
+     *
+     * @param  QueryBuilder $QueryBuilder to merge into
+     * @return QueryBuilder
+     */
+    public function mergeOptionsInto(QueryBuilder $QueryBuilder) {
+      foreach ($this->option as $currentOption) {
+        $QueryBuilder->option($currentOption);
+      }
+
+      return $QueryBuilder;
+    }
+
+    /**
      * Add SQL_CALC_FOUND_ROWS execution option.
      *
      * @return QueryBuilder
@@ -339,9 +381,7 @@
      * @return QueryBuilder
      */
     public function mergeSelectInto(QueryBuilder $QueryBuilder) {
-      foreach ($this->option as $currentOption) {
-        $QueryBuilder->option($currentOption);
-      }
+      $this->mergeOptionsInto($QueryBuilder);
 
       foreach ($this->select as $currentColumn => $currentAlias) {
         $QueryBuilder->select($currentColumn, $currentAlias);
@@ -359,10 +399,7 @@
     public function getSelectString($includeText = true) {
       $select = "";
 
-      // Add any execution options.
-      if (!empty($this->option)) {
-        $select .= implode(' ', $this->option) . " ";
-      }
+      $select .= $this->getOptionsString(true);
 
       foreach ($this->select as $currentColumn => $currentAlias) {
         $select .= $currentColumn;
@@ -384,6 +421,84 @@
     }
 
     /**
+     * Add a table to DELETE from, or false if deleting from the FROM table.
+     *
+     * @param  string|false $table optional table name, default false
+     * @return QueryBuilder
+     */
+    public function delete($table = false) {
+      if ($table === false) {
+        $this->delete = true;
+      }
+      else {
+        // Reset the array in case the class variable was previously set to a
+        // boolean value.
+        if (!is_array($this->delete)) {
+          $this->delete = array();
+        }
+
+        $this->delete[] = $table;
+      }
+
+      return $this;
+    }
+
+    /**
+     * Merge this QueryBuilder's DELETE into the given QueryBuilder.
+     *
+     * @param  QueryBuilder $QueryBuilder to merge into
+     * @return QueryBuilder
+     */
+    public function mergeDeleteInto(QueryBuilder $QueryBuilder) {
+      $this->mergeOptionsInto($QueryBuilder);
+
+      if ($this->isDeleteTableFrom()) {
+        $QueryBuilder->delete();
+      }
+      else {
+        foreach ($this->delete as $currentTable) {
+          $QueryBuilder->delete($currentTable);
+        }
+      }
+
+      return $QueryBuilder;
+    }
+
+    /**
+     * Get the DELETE portion of the query as a string.
+     *
+     * @param  bool $includeText optional include 'DELETE' text, default true
+     * @return string DELETE portion of the query
+     */
+    public function getDeleteString($includeText = true) {
+      $delete = "";
+
+      $delete .= $this->getOptionsString(true);
+
+      if (is_array($this->delete)) {
+        $delete .= implode(', ', $this->delete);
+      }
+
+      if ($includeText && (!empty($delete) || $this->isDeleteTableFrom())) {
+        $delete = "DELETE " . $delete;
+
+        // Trim in case the table is specified in FROM.
+        $delete = trim($delete);
+      }
+
+      return $delete;
+    }
+
+    /**
+     * Whether the FROM table is the single table to delete from.
+     *
+     * @return bool whether the delete table is FROM
+     */
+    public function isDeleteTableFrom() {
+      return $this->delete === true;
+    }
+
+    /**
      * Set the FROM table with optional alias.
      *
      * @param  string $table table name
@@ -395,6 +510,20 @@
       $this->from['alias'] = $alias;
 
       return $this;
+    }
+
+    /**
+     * Merge this QueryBuilder's FROM into the given QueryBuilder.
+     *
+     * @param  QueryBuilder $QueryBuilder to merge into
+     * @return QueryBuilder
+     */
+    public function mergeFromInto(QueryBuilder $QueryBuilder) {
+      if (!empty($this->from)) {
+        $QueryBuilder->from($this->getFrom(), $this->getFromAlias());
+      }
+
+      return $QueryBuilder;
     }
 
     /**
@@ -1234,6 +1363,20 @@
     }
 
     /**
+     * Merge this QueryBuilder's LIMIT into the given QueryBuilder.
+     *
+     * @param  QueryBuilder $QueryBuilder to merge into
+     * @return QueryBuilder
+     */
+    public function mergeLimitInto(QueryBuilder $QueryBuilder) {
+      if (!empty($this->limit)) {
+        $QueryBuilder->limit($this->getLimit(), $this->getLimitOffset());
+      }
+
+      return $QueryBuilder;
+    }
+
+    /**
      * Get the LIMIT on number of rows to return.
      *
      * @return int|string LIMIT on number of rows to return
@@ -1261,7 +1404,11 @@
       $limit = "";
 
       if (!empty($this->limit)) {
-        $limit .= $this->limit['offset'] . ", " . $this->limit['limit'];
+        if ($this->limit['offset'] !== 0) {
+          $limit .= $this->limit['offset'] . ", ";
+        }
+
+        $limit .= $this->limit['limit'];
       }
 
       if ($includeText && !empty($limit)) {
@@ -1272,6 +1419,24 @@
     }
 
     /**
+     * Whether this is a SELECT query.
+     *
+     * @return bool whether this is a SELECT query
+     */
+    public function isSelect() {
+      return !empty($this->select);
+    }
+
+    /**
+     * Whether this is a DELETE query.
+     *
+     * @return bool whether this is a DELETE query
+     */
+    public function isDelete() {
+      return !empty($this->delete);
+    }
+
+    /**
      * Merge this QueryBuilder into the given QueryBuilder.
      *
      * @param  QueryBuilder $QueryBuilder to merge into
@@ -1279,31 +1444,49 @@
      * @return QueryBuilder
      */
     public function mergeInto(QueryBuilder $QueryBuilder, $overwriteLimit = true) {
-      $this->mergeSelectInto($QueryBuilder);
-      $this->mergeJoinInto($QueryBuilder);
-      $this->mergeWhereInto($QueryBuilder);
-      $this->mergeGroupByInto($QueryBuilder);
-      $this->mergeHavingInto($QueryBuilder);
-      $this->mergeOrderByInto($QueryBuilder);
+      if ($this->isSelect()) {
+        $this->mergeSelectInto($QueryBuilder);
+        $this->mergeFromInto($QueryBuilder);
+        $this->mergeJoinInto($QueryBuilder);
+        $this->mergeWhereInto($QueryBuilder);
+        $this->mergeGroupByInto($QueryBuilder);
+        $this->mergeHavingInto($QueryBuilder);
+        $this->mergeOrderByInto($QueryBuilder);
 
-      if ($overwriteLimit && !empty($this->limit)) {
-        $QueryBuilder->limit($this->getLimit(), $this->getLimitOffset());
+        if ($overwriteLimit) {
+          $this->mergeLimitInto($QueryBuilder);
+        }
+      }
+      elseif ($this->isDelete()) {
+        $this->mergeDeleteInto($QueryBuilder);
+        $this->mergeFromInto($QueryBuilder);
+        $this->mergeJoinInto($QueryBuilder);
+        $this->mergeWhereInto($QueryBuilder);
+
+        // ORDER BY and LIMIT are only applicable when deleting from a single
+        // table.
+        if ($this->isDeleteTableFrom()) {
+          $this->mergeOrderByInto($QueryBuilder);
+
+          if ($overwriteLimit) {
+            $this->mergeLimitInto($QueryBuilder);
+          }
+        }
       }
 
       return $QueryBuilder;
     }
 
     /**
-     * Get the full query string.
+     * Get the full SELECT query string.
      *
      * @param  bool $usePlaceholders optional use ? placeholders, default true
-     * @return string full query string
+     * @return string full SELECT query string
      */
-    public function getQueryString($usePlaceholders = true) {
+    private function getSelectQueryString($usePlaceholders = true) {
       $query = "";
 
-      // Only return the full query string if a SELECT value is set.
-      if (!empty($this->select)) {
+      if ($this->isSelect()) {
         $query .= $this->getSelectString();
 
         if (!empty($this->from)) {
@@ -1329,6 +1512,61 @@
         if (!empty($this->limit)) {
           $query .= " " . $this->getLimitString();
         }
+      }
+
+      return $query;
+    }
+
+    /**
+     * Get the full DELETE query string.
+     *
+     * @param  bool $usePlaceholders optional use ? placeholders, default true
+     * @return string full DELETE query string
+     */
+    private function getDeleteQueryString($usePlaceholders = true) {
+      $query = "";
+
+      if ($this->isDelete()) {
+        $query .= $this->getDeleteString();
+
+        if (!empty($this->from)) {
+          $query .= " " . $this->getFromString();
+        }
+
+        if (!empty($this->where)) {
+          $query .= " " . $this->getWhereString($usePlaceholders);
+        }
+
+        // ORDER BY and LIMIT are only applicable when deleting from a single
+        // table.
+        if ($this->isDeleteTableFrom()) {
+          if (!empty($this->orderBy)) {
+            $query .= " " . $this->getOrderByString();
+          }
+
+          if (!empty($this->limit)) {
+            $query .= " " . $this->getLimitString();
+          }
+        }
+      }
+
+      return $query;
+    }
+
+    /**
+     * Get the full query string.
+     *
+     * @param  bool $usePlaceholders optional use ? placeholders, default true
+     * @return string full query string
+     */
+    public function getQueryString($usePlaceholders = true) {
+      $query = "";
+
+      if ($this->isSelect()) {
+        $query = $this->getSelectQueryString($usePlaceholders);
+      }
+      elseif ($this->isDelete()) {
+        $query = $this->getDeleteQueryString($usePlaceholders);
       }
 
       return $query;
