@@ -191,6 +191,10 @@
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetPlaceholderValues">QueryBuilder::getPlaceholderValues()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get all placeholder values when <a href="QueryBuilder/QueryBuilder.html#methodgetQueryString">QueryBuilder::getQueryString()</a>  is called with the parameter to use placeholder values.</dd>
 							<dt><b>getQueryString</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetQueryString">QueryBuilder::getQueryString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the full query string.</dd>
+							<dt><b>getReplace</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetReplace">QueryBuilder::getReplace()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the REPLACE table.</dd>
+							<dt><b>getReplaceString</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetReplaceString">QueryBuilder::getReplaceString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the REPLACE portion of the query as a string.</dd>
 							<dt><b>getSelectString</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetSelectString">QueryBuilder::getSelectString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the SELECT portion of the query as a string.</dd>
 							<dt><b>getSetPlaceholderValues</b></dt>
@@ -251,6 +255,8 @@
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodisDelete">QueryBuilder::isDelete()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Whether this is a DELETE query.</dd>
 							<dt><b>isInsert</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodisInsert">QueryBuilder::isInsert()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Whether this is an INSERT query.</dd>
+							<dt><b>isReplace</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodisReplace">QueryBuilder::isReplace()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Whether this is a REPLACE query.</dd>
 							<dt><b>isSelect</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodisSelect">QueryBuilder::isSelect()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Whether this is a SELECT query.</dd>
 							<dt><b>isUpdate</b></dt>
@@ -319,6 +325,8 @@
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeOptionsInto">QueryBuilder::mergeOptionsInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's execution options into the given QueryBuilder.</dd>
 							<dt><b>mergeOrderByInto</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeOrderByInto">QueryBuilder::mergeOrderByInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's ORDER BY into the given QueryBuilder.</dd>
+							<dt><b>mergeReplaceInto</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeReplaceInto">QueryBuilder::mergeReplaceInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's REPLACE into the given QueryBuilder.</dd>
 							<dt><b>mergeSelectInto</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeSelectInto">QueryBuilder::mergeSelectInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's SELECT into the given QueryBuilder.</dd>
 							<dt><b>mergeSetInto</b></dt>
@@ -395,6 +403,8 @@
 		<dl>
 							<dt><b>REGEX</b></dt>
 				<dd>in file QueryBuilder.php, class constant <a href="QueryBuilder/QueryBuilder.html#constREGEX">QueryBuilder::REGEX</a><br>&nbsp;&nbsp;&nbsp;&nbsp;REGEXP comparison operator.</dd>
+							<dt><b>replace</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodreplace">QueryBuilder::replace()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the REPLACE table.</dd>
 							<dt><b>rightJoin</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodrightJoin">QueryBuilder::rightJoin()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add a RIGHT JOIN table with optional ON criteria.</dd>
 							<dt><b>RIGHT_JOIN</b></dt>
@@ -446,7 +456,7 @@
 	<a href="elementindex_QueryBuilder.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Mon, 25 Jun 2012 16:08:10 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Mon, 25 Jun 2012 20:19:26 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>
