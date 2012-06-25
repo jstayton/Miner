@@ -159,11 +159,32 @@
     private $select;
 
     /**
+     * Table to INSERT into.
+     *
+     * @var string
+     */
+    private $insert;
+
+    /**
+     * Table to UPDATE.
+     *
+     * @var string
+     */
+    private $update;
+
+    /**
      * Tables to DELETE from, or true if deleting from the FROM table.
      *
      * @var array|true
      */
     private $delete;
+
+    /**
+     * Column values to INSERT or UPDATE.
+     *
+     * @var array
+     */
+    private $set;
 
     /**
      * Table to select FROM.
@@ -215,6 +236,13 @@
     private $limit;
 
     /**
+     * SET placeholder values.
+     *
+     * @var array
+     */
+    private $setPlaceholderValues;
+
+    /**
      * WHERE placeholder values.
      *
      * @var array
@@ -238,6 +266,7 @@
       $this->option = array();
       $this->select = array();
       $this->delete = array();
+      $this->set = array();
       $this->from = array();
       $this->join = array();
       $this->where = array();
@@ -397,7 +426,7 @@
      * @return string SELECT portion of the query
      */
     public function getSelectString($includeText = true) {
-      $select = "";
+      $select  = "";
 
       $select .= $this->getOptionsString(true);
 
@@ -418,6 +447,129 @@
       }
 
       return $select;
+    }
+
+    /**
+     * Set the INSERT table.
+     *
+     * @param  string $table INSERT table
+     * @return QueryBuilder
+     */
+    public function insert($table) {
+      $this->insert = $table;
+
+      return $this;
+    }
+
+    /**
+     * Merge this QueryBuilder's INSERT into the given QueryBuilder.
+     *
+     * @param  QueryBuilder $QueryBuilder to merge into
+     * @return QueryBuilder
+     */
+    public function mergeInsertInto(QueryBuilder $QueryBuilder) {
+      $this->mergeOptionsInto($QueryBuilder);
+
+      if (!empty($this->insert)) {
+        $QueryBuilder->insert($this->getInsert());
+      }
+
+      return $QueryBuilder;
+    }
+
+    /**
+     * Get the INSERT table.
+     *
+     * @return string INSERT table
+     */
+    public function getInsert() {
+      return $this->insert;
+    }
+
+    /**
+     * Get the INSERT portion of the query as a string.
+     *
+     * @param  bool $includeText optional include 'INSERT' text, default true
+     * @return string INSERT portion of the query
+     */
+    public function getInsertString($includeText = true) {
+      $insert = "";
+
+      if (!empty($this->insert)) {
+        $insert .= $this->getOptionsString(true);
+
+        $insert .= $this->getInsert();
+      }
+
+      if ($includeText && !empty($insert)) {
+        $insert = "INSERT " . $insert;
+      }
+
+      return $insert;
+    }
+
+    /**
+     * Set the UPDATE table.
+     *
+     * @param  string $table UPDATE table
+     * @return QueryBuilder
+     */
+    public function update($table) {
+      $this->update = $table;
+
+      return $this;
+    }
+
+    /**
+     * Merge this QueryBuilder's UPDATE into the given QueryBuilder.
+     *
+     * @param  QueryBuilder $QueryBuilder to merge into
+     * @return QueryBuilder
+     */
+    public function mergeUpdateInto(QueryBuilder $QueryBuilder) {
+      $this->mergeOptionsInto($QueryBuilder);
+
+      if (!empty($this->update)) {
+        $QueryBuilder->update($this->getUpdate());
+      }
+
+      return $QueryBuilder;
+    }
+
+    /**
+     * Get the UPDATE table.
+     *
+     * @return string UPDATE table
+     */
+    public function getUpdate() {
+      return $this->update;
+    }
+
+    /**
+     * Get the UPDATE portion of the query as a string.
+     *
+     * @param  bool $includeText optional include 'UPDATE' text, default true
+     * @return string UPDATE portion of the query
+     */
+    public function getUpdateString($includeText = true) {
+      $update = "";
+
+      if (!empty($this->update)) {
+        $update .= $this->getOptionsString(true);
+
+        $update .= $this->getUpdate();
+
+        // Add any JOINs.
+        $update .= " " . $this->getJoinString();
+
+        $update  = rtrim($update);
+      }
+
+      if ($includeText && !empty($update)) {
+        $update = "UPDATE " . $update;
+      }
+
+      return $update;
     }
 
     /**
@@ -471,7 +623,7 @@
      * @return string DELETE portion of the query
      */
     public function getDeleteString($includeText = true) {
-      $delete = "";
+      $delete  = "";
 
       $delete .= $this->getOptionsString(true);
 
@@ -496,6 +648,75 @@
      */
     public function isDeleteTableFrom() {
       return $this->delete === true;
+    }
+
+    /**
+     * Add a column value to INSERT or UPDATE.
+     *
+     * @param  string $column column name
+     * @param  mixed $value value
+     * @return QueryBuilder
+     */
+    public function set($column, $value) {
+      $this->set[] = array('column' => $column,
+                           'value'  => $value);
+
+      return $this;
+    }
+
+    /**
+     * Merge this QueryBuilder's SET into the given QueryBuilder.
+     *
+     * @param  QueryBuilder $QueryBuilder to merge into
+     * @return QueryBuilder
+     */
+    public function mergeSetInto(QueryBuilder $QueryBuilder) {
+      foreach ($this->set as $currentSet) {
+        $QueryBuilder->set($currentSet['column'], $currentSet['value']);
+      }
+
+      return $QueryBuilder;
+    }
+
+    /**
+     * Get the SET portion of the query as a string.
+     *
+     * @param  bool $usePlaceholders optional use ? placeholders, default true
+     * @param  bool $includeText optional include 'SET' text, default true
+     * @return string SET portion of the query
+     */
+    private function getSetString($usePlaceholders = true, $includeText = true) {
+      $set = "";
+      $this->setPlaceholderValues = array();
+
+      foreach ($this->set as $currentSet) {
+        if ($usePlaceholders) {
+          $set .= $currentSet['column'] . " " . self::EQUALS . " ?, ";
+
+          $this->setPlaceholderValues[] = $currentSet['value'];
+        }
+        else {
+          $set .= $currentSet['column'] . " " . self::EQUALS . " " . $this->quote($currentSet['value']) . ", ";
+        }
+      }
+
+      $set = substr($set, 0, -2);
+
+      if ($includeText && !empty($set)) {
+        $set = "SET " . $set;
+      }
+
+      return $set;
+    }
+
+    /**
+     * Get the SET placeholder values when {@link QueryBuilder::getSetString()}
+     * is called with the parameter to use placeholder values.
+     *
+     * @return array SET placeholder values
+     */
+    public function getSetPlaceholderValues() {
+      return $this->setPlaceholderValues;
     }
 
     /**
@@ -627,6 +848,7 @@
      * @return string ON join criteria
      */
     private function getJoinCriteriaUsingPreviousTable($joinIndex, $table, $column) {
+      $joinCriteria = "";
       $previousJoinIndex = $joinIndex - 1;
 
       // If the previous table is from a JOIN, use that. Otherwise, use the
@@ -634,11 +856,24 @@
       if (array_key_exists($previousJoinIndex, $this->join)) {
         $previousTable = $this->join[$previousJoinIndex]['table'];
       }
-      else {
+      elseif ($this->isSelect()) {
         $previousTable = $this->getFrom();
       }
+      elseif ($this->isUpdate()) {
+        $previousTable = $this->getUpdate();
+      }
+      else {
+        $previousTable = false;
+      }
 
-      return $previousTable . "." . $column . " = " . $table . "." . $column;
+      // In the off chance there is no previous table.
+      if ($previousTable) {
+        $joinCriteria .= $previousTable . ".";
+      }
+
+      $joinCriteria .= $column . " " . self::EQUALS . " " . $table . "." . $column;
+
+      return $joinCriteria;
     }
 
     /**
@@ -1428,6 +1663,24 @@
     }
 
     /**
+     * Whether this is an INSERT query.
+     *
+     * @return bool whether this is an INSERT query
+     */
+    public function isInsert() {
+      return !empty($this->insert);
+    }
+
+    /**
+     * Whether this is an UPDATE query.
+     *
+     * @return bool whether this is an UPDATE query
+     */
+    public function isUpdate() {
+      return !empty($this->update);
+    }
+
+    /**
      * Whether this is a DELETE query.
      *
      * @return bool whether this is a DELETE query
@@ -1455,6 +1708,25 @@
 
         if ($overwriteLimit) {
           $this->mergeLimitInto($QueryBuilder);
+        }
+      }
+      elseif ($this->isInsert()) {
+        $this->mergeInsertInto($QueryBuilder);
+        $this->mergeSetInto($QueryBuilder);
+      }
+      elseif ($this->isUpdate()) {
+        $this->mergeUpdateInto($QueryBuilder);
+        $this->mergeJoinInto($QueryBuilder);
+        $this->mergeSetInto($QueryBuilder);
+        $this->mergeWhereInto($QueryBuilder);
+
+        // ORDER BY and LIMIT are only applicable when updating a single table.
+        if (empty($this->join)) {
+          $this->mergeOrderByInto($QueryBuilder);
+
+          if ($overwriteLimit) {
+            $this->mergeLimitInto($QueryBuilder);
+          }
         }
       }
       elseif ($this->isDelete()) {
@@ -1518,6 +1790,61 @@
     }
 
     /**
+     * Get the full INSERT query string.
+     *
+     * @param  bool $usePlaceholders optional use ? placeholders, default true
+     * @return string full INSERT query string
+     */
+    private function getInsertQueryString($usePlaceholders = true) {
+      $query = "";
+
+      if ($this->isInsert()) {
+        $query .= $this->getInsertString();
+
+        if (!empty($this->set)) {
+          $query .= " " . $this->getSetString($usePlaceholders);
+        }
+      }
+
+      return $query;
+    }
+
+    /**
+     * Get the full UPDATE query string.
+     *
+     * @param  bool $usePlaceholders optional use ? placeholders, default true
+     * @return string full UPDATE query string
+     */
+    private function getUpdateQueryString($usePlaceholders = true) {
+      $query = "";
+
+      if ($this->isUpdate()) {
+        $query .= $this->getUpdateString();
+
+        if (!empty($this->set)) {
+          $query .= " " . $this->getSetString($usePlaceholders);
+        }
+
+        if (!empty($this->where)) {
+          $query .= " " . $this->getWhereString($usePlaceholders);
+        }
+
+        // ORDER BY and LIMIT are only applicable when updating a single table.
+        if (empty($this->join)) {
+          if (!empty($this->orderBy)) {
+            $query .= " " . $this->getOrderByString();
+          }
+
+          if (!empty($this->limit)) {
+            $query .= " " . $this->getLimitString();
+          }
+        }
+      }
+
+      return $query;
+    }
+
+    /**
      * Get the full DELETE query string.
      *
      * @param  bool $usePlaceholders optional use ? placeholders, default true
@@ -1565,6 +1892,12 @@
       if ($this->isSelect()) {
         $query = $this->getSelectQueryString($usePlaceholders);
       }
+      elseif ($this->isInsert()) {
+        $query = $this->getInsertQueryString($usePlaceholders);
+      }
+      elseif ($this->isUpdate()) {
+        $query = $this->getUpdateQueryString($usePlaceholders);
+      }
       elseif ($this->isDelete()) {
         $query = $this->getDeleteQueryString($usePlaceholders);
       }
@@ -1579,7 +1912,9 @@
      * @return array all placeholder values
      */
     public function getPlaceholderValues() {
-      return array_merge($this->getWherePlaceholderValues(), $this->getHavingPlaceholderValues());
+      return array_merge($this->getSetPlaceholderValues(),
+                         $this->getWherePlaceholderValues(),
+                         $this->getHavingPlaceholderValues());
     }
 
     /**
