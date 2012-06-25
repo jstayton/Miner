@@ -8,7 +8,7 @@
    * @copyright Copyright 2011-2012 by Justin Stayton
    * @license   http://en.wikipedia.org/wiki/MIT_License MIT License
    * @package   QueryBuilder
-   * @version   3.0.0
+   * @version   4.0.0
    */
   class QueryBuilder {
 
@@ -646,7 +646,7 @@
      *
      * @return bool whether the delete table is FROM
      */
-    public function isDeleteTableFrom() {
+    private function isDeleteTableFrom() {
       return $this->delete === true;
     }
 
@@ -685,7 +685,7 @@
      * @param  bool $includeText optional include 'SET' text, default true
      * @return string SET portion of the query
      */
-    private function getSetString($usePlaceholders = true, $includeText = true) {
+    public function getSetString($usePlaceholders = true, $includeText = true) {
       $set = "";
       $this->setPlaceholderValues = array();
 
