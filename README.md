@@ -77,6 +77,13 @@ Methods
 *   [getInsertString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetInsertString)
 *   [mergeInsertInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeInsertInto)
 
+### REPLACE
+
+*   [replace](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodreplace)
+*   [getReplace](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetReplace)
+*   [getReplaceString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetReplaceString)
+*   [mergeReplaceInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeReplaceInto)
+
 ### UPDATE
 
 *   [update](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodupdate)
