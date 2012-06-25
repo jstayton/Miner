@@ -62,6 +62,7 @@
 	[ <a href="elementindex_QueryBuilder.html#q">q</a> ]
 	[ <a href="elementindex_QueryBuilder.html#r">r</a> ]
 	[ <a href="elementindex_QueryBuilder.html#s">s</a> ]
+	[ <a href="elementindex_QueryBuilder.html#u">u</a> ]
 	[ <a href="elementindex_QueryBuilder.html#w">w</a> ]
 	[ <a href="elementindex_QueryBuilder.html#_">_</a> ]
 
@@ -122,6 +123,8 @@
 	<div>
 		<h2>d</h2>
 		<dl>
+							<dt><b>delete</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methoddelete">QueryBuilder::delete()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add a table to DELETE from, or false if deleting from the FROM table.</dd>
 							<dt><b>distinct</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methoddistinct">QueryBuilder::distinct()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add DISTINCT execution option.</dd>
 					</dl>
@@ -152,6 +155,8 @@
 	<div>
 		<h2>g</h2>
 		<dl>
+							<dt><b>getDeleteString</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetDeleteString">QueryBuilder::getDeleteString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the DELETE portion of the query as a string.</dd>
 							<dt><b>getFrom</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetFrom">QueryBuilder::getFrom()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the FROM table.</dd>
 							<dt><b>getFromAlias</b></dt>
@@ -164,6 +169,10 @@
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetHavingPlaceholderValues">QueryBuilder::getHavingPlaceholderValues()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the HAVING placeholder values when  <a href="QueryBuilder/QueryBuilder.html#methodgetHavingString">QueryBuilder::getHavingString()</a> is called with the parameter to  use placeholder values.</dd>
 							<dt><b>getHavingString</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetHavingString">QueryBuilder::getHavingString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the HAVING portion of the query as a string.</dd>
+							<dt><b>getInsert</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetInsert">QueryBuilder::getInsert()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the INSERT table.</dd>
+							<dt><b>getInsertString</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetInsertString">QueryBuilder::getInsertString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the INSERT portion of the query as a string.</dd>
 							<dt><b>getJoinString</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetJoinString">QueryBuilder::getJoinString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the JOIN portion of the query as a string.</dd>
 							<dt><b>getLimit</b></dt>
@@ -172,6 +181,8 @@
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetLimitOffset">QueryBuilder::getLimitOffset()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the LIMIT row number to start at.</dd>
 							<dt><b>getLimitString</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetLimitString">QueryBuilder::getLimitString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the LIMIT portion of the query as a string.</dd>
+							<dt><b>getOptionsString</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetOptionsString">QueryBuilder::getOptionsString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the execution options portion of the query as a string.</dd>
 							<dt><b>getOrderByString</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetOrderByString">QueryBuilder::getOrderByString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the ORDER BY portion of the query as a string.</dd>
 							<dt><b>getPdoConnection</b></dt>
@@ -182,6 +193,12 @@
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetQueryString">QueryBuilder::getQueryString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the full query string.</dd>
 							<dt><b>getSelectString</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetSelectString">QueryBuilder::getSelectString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the SELECT portion of the query as a string.</dd>
+							<dt><b>getSetPlaceholderValues</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetSetPlaceholderValues">QueryBuilder::getSetPlaceholderValues()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the SET placeholder values when QueryBuilder::getSetString()  is called with the parameter to use placeholder values.</dd>
+							<dt><b>getUpdate</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetUpdate">QueryBuilder::getUpdate()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the UPDATE table.</dd>
+							<dt><b>getUpdateString</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetUpdateString">QueryBuilder::getUpdateString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the UPDATE portion of the query as a string.</dd>
 							<dt><b>getWherePlaceholderValues</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetWherePlaceholderValues">QueryBuilder::getWherePlaceholderValues()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the WHERE placeholder values when  <a href="QueryBuilder/QueryBuilder.html#methodgetWhereString">QueryBuilder::getWhereString()</a> is called with the parameter to  use placeholder values.</dd>
 							<dt><b>getWhereString</b></dt>
@@ -224,8 +241,20 @@
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodinnerJoin">QueryBuilder::innerJoin()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add an INNER JOIN table with optional ON criteria.</dd>
 							<dt><b>INNER_JOIN</b></dt>
 				<dd>in file QueryBuilder.php, class constant <a href="QueryBuilder/QueryBuilder.html#constINNER_JOIN">QueryBuilder::INNER_JOIN</a><br>&nbsp;&nbsp;&nbsp;&nbsp;INNER JOIN type.</dd>
+							<dt><b>insert</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodinsert">QueryBuilder::insert()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the INSERT table.</dd>
 							<dt><b>IS</b></dt>
 				<dd>in file QueryBuilder.php, class constant <a href="QueryBuilder/QueryBuilder.html#constIS">QueryBuilder::IS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;IS comparison operator.</dd>
+							<dt><b>isDelete</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodisDelete">QueryBuilder::isDelete()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Whether this is a DELETE query.</dd>
+							<dt><b>isDeleteTableFrom</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodisDeleteTableFrom">QueryBuilder::isDeleteTableFrom()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Whether the FROM table is the single table to delete from.</dd>
+							<dt><b>isInsert</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodisInsert">QueryBuilder::isInsert()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Whether this is an INSERT query.</dd>
+							<dt><b>isSelect</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodisSelect">QueryBuilder::isSelect()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Whether this is a SELECT query.</dd>
+							<dt><b>isUpdate</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodisUpdate">QueryBuilder::isUpdate()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Whether this is an UPDATE query.</dd>
 							<dt><b>IS_NOT</b></dt>
 				<dd>in file QueryBuilder.php, class constant <a href="QueryBuilder/QueryBuilder.html#constIS_NOT">QueryBuilder::IS_NOT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;IS NOT comparison operator.</dd>
 					</dl>
@@ -270,18 +299,32 @@
 	<div>
 		<h2>m</h2>
 		<dl>
+							<dt><b>mergeDeleteInto</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeDeleteInto">QueryBuilder::mergeDeleteInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's DELETE into the given QueryBuilder.</dd>
+							<dt><b>mergeFromInto</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeFromInto">QueryBuilder::mergeFromInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's FROM into the given QueryBuilder.</dd>
 							<dt><b>mergeGroupByInto</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeGroupByInto">QueryBuilder::mergeGroupByInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's GROUP BY into the given QueryBuilder.</dd>
 							<dt><b>mergeHavingInto</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeHavingInto">QueryBuilder::mergeHavingInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's HAVING into the given QueryBuilder.</dd>
+							<dt><b>mergeInsertInto</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeInsertInto">QueryBuilder::mergeInsertInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's INSERT into the given QueryBuilder.</dd>
 							<dt><b>mergeInto</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeInto">QueryBuilder::mergeInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder into the given QueryBuilder.</dd>
 							<dt><b>mergeJoinInto</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeJoinInto">QueryBuilder::mergeJoinInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's JOINs into the given QueryBuilder.</dd>
+							<dt><b>mergeLimitInto</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeLimitInto">QueryBuilder::mergeLimitInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's LIMIT into the given QueryBuilder.</dd>
+							<dt><b>mergeOptionsInto</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeOptionsInto">QueryBuilder::mergeOptionsInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's execution options into the given QueryBuilder.</dd>
 							<dt><b>mergeOrderByInto</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeOrderByInto">QueryBuilder::mergeOrderByInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's ORDER BY into the given QueryBuilder.</dd>
 							<dt><b>mergeSelectInto</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeSelectInto">QueryBuilder::mergeSelectInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's SELECT into the given QueryBuilder.</dd>
+							<dt><b>mergeSetInto</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeSetInto">QueryBuilder::mergeSetInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's SET into the given QueryBuilder.</dd>
+							<dt><b>mergeUpdateInto</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeUpdateInto">QueryBuilder::mergeUpdateInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's UPDATE into the given QueryBuilder.</dd>
 							<dt><b>mergeWhereInto</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodmergeWhereInto">QueryBuilder::mergeWhereInto()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Merge this QueryBuilder's WHERE into the given QueryBuilder.</dd>
 					</dl>
@@ -366,8 +409,20 @@
 		<dl>
 							<dt><b>select</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodselect">QueryBuilder::select()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add a SELECT column, table, or expression with optional alias.</dd>
+							<dt><b>set</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodset">QueryBuilder::set()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add a column value to INSERT or UPDATE.</dd>
 							<dt><b>setPdoConnection</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodsetPdoConnection">QueryBuilder::setPdoConnection()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the PDO database connection to use in executing this query.</dd>
+					</dl>
+	</div>
+	<a href="elementindex_QueryBuilder.html#top">top</a><br>
+  <hr />
+	<a name="u"></a>
+	<div>
+		<h2>u</h2>
+		<dl>
+							<dt><b>update</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodupdate">QueryBuilder::update()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the UPDATE table.</dd>
 					</dl>
 	</div>
 	<a href="elementindex_QueryBuilder.html#top">top</a><br>
@@ -391,7 +446,7 @@
 	<a href="elementindex_QueryBuilder.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Wed, 16 Nov 2011 19:20:06 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Mon, 25 Jun 2012 13:34:21 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>
