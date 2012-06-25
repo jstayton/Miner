@@ -166,6 +166,13 @@
     private $insert;
 
     /**
+     * Table to REPLACE into.
+     *
+     * @var string
+     */
+    private $replace;
+
+    /**
      * Table to UPDATE.
      *
      * @var string
@@ -506,6 +513,65 @@
       }
 
       return $insert;
+    }
+
+    /**
+     * Set the REPLACE table.
+     *
+     * @param  string $table REPLACE table
+     * @return QueryBuilder
+     */
+    public function replace($table) {
+      $this->replace = $table;
+
+      return $this;
+    }
+
+    /**
+     * Merge this QueryBuilder's REPLACE into the given QueryBuilder.
+     *
+     * @param  QueryBuilder $QueryBuilder to merge into
+     * @return QueryBuilder
+     */
+    public function mergeReplaceInto(QueryBuilder $QueryBuilder) {
+      $this->mergeOptionsInto($QueryBuilder);
+
+      if (!empty($this->replace)) {
+        $QueryBuilder->replace($this->getReplace());
+      }
+
+      return $QueryBuilder;
+    }
+
+    /**
+     * Get the REPLACE table.
+     *
+     * @return string REPLACE table
+     */
+    public function getReplace() {
+      return $this->replace;
+    }
+
+    /**
+     * Get the REPLACE portion of the query as a string.
+     *
+     * @param  bool $includeText optional include 'REPLACE' text, default true
+     * @return string REPLACE portion of the query
+     */
+    public function getReplaceString($includeText = true) {
+      $replace = "";
+
+      if (!empty($this->replace)) {
+        $replace .= $this->getOptionsString(true);
+
+        $replace .= $this->getReplace();
+      }
+
+      if ($includeText && !empty($replace)) {
+        $replace = "REPLACE " . $replace;
+      }
+
+      return $replace;
     }
 
     /**
@@ -1672,6 +1738,15 @@
     }
 
     /**
+     * Whether this is a REPLACE query.
+     *
+     * @return bool whether this is a REPLACE query
+     */
+    public function isReplace() {
+      return !empty($this->replace);
+    }
+
+    /**
      * Whether this is an UPDATE query.
      *
      * @return bool whether this is an UPDATE query
@@ -1712,6 +1787,10 @@
       }
       elseif ($this->isInsert()) {
         $this->mergeInsertInto($QueryBuilder);
+        $this->mergeSetInto($QueryBuilder);
+      }
+      elseif ($this->isReplace()) {
+        $this->mergeReplaceInto($QueryBuilder);
         $this->mergeSetInto($QueryBuilder);
       }
       elseif ($this->isUpdate()) {
@@ -1810,6 +1889,26 @@
     }
 
     /**
+     * Get the full REPLACE query string.
+     *
+     * @param  bool $usePlaceholders optional use ? placeholders, default true
+     * @return string full REPLACE query string
+     */
+    private function getReplaceQueryString($usePlaceholders = true) {
+      $query = "";
+
+      if ($this->isReplace()) {
+        $query .= $this->getReplaceString();
+
+        if (!empty($this->set)) {
+          $query .= " " . $this->getSetString($usePlaceholders);
+        }
+      }
+
+      return $query;
+    }
+
+    /**
      * Get the full UPDATE query string.
      *
      * @param  bool $usePlaceholders optional use ? placeholders, default true
@@ -1894,6 +1993,9 @@
       }
       elseif ($this->isInsert()) {
         $query = $this->getInsertQueryString($usePlaceholders);
+      }
+      elseif ($this->isReplace()) {
+        $query = $this->getReplaceQueryString($usePlaceholders);
       }
       elseif ($this->isUpdate()) {
         $query = $this->getUpdateQueryString($usePlaceholders);
