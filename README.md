@@ -67,11 +67,43 @@ Methods
 ### SELECT
 
 *   [select](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodselect)
-*   [calcFoundRows](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodcalcFoundRows)
-*   [distinct](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methoddistinct)
-*   [option](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodoption)
 *   [getSelectString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetSelectString)
 *   [mergeSelectInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeSelectInto)
+
+### INSERT
+
+*   [insert](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodinsert)
+*   [getInsert](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetInsert)
+*   [getInsertString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetInsertString)
+*   [mergeInsertInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeInsertInto)
+
+### UPDATE
+
+*   [update](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodupdate)
+*   [getUpdate](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetUpdate)
+*   [getUpdateString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetUpdateString)
+*   [mergeUpdateInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeUpdateInto)
+
+### DELETE
+
+*   [delete](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methoddelete)
+*   [getDeleteString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetDeleteString)
+*   [mergeDeleteInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeDeleteInto)
+
+### OPTIONS
+
+*   [option](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodoption)
+*   [calcFoundRows](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodcalcFoundRows)
+*   [distinct](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methoddistinct)
+*   [getOptionsString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetOptionsString)
+*   [mergeOptionsInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeOptionsInto)
+
+### SET
+
+*   [set](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodset)
+*   [getSetPlaceholderValues](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetSetPlaceholderValues)
+*   [getSetString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetSetString)
+*   [mergeSetInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeSetInto)
 
 ### FROM
 
@@ -84,6 +116,7 @@ Methods
 *   [getFromAlias](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetFromAlias)
 *   [getFromString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetFromString)
 *   [getJoinString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetJoinString)
+*   [mergeFromInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeFromInto)
 *   [mergeJoinInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeJoinInto)
 
 ### WHERE
@@ -140,6 +173,10 @@ Methods
 *   [query](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodquery)
 *   [getQueryString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetQueryString)
 *   [getPlaceholderValues](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetPlaceholderValues)
+*   [isSelect](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodisSelect)
+*   [isInsert](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodisInsert)
+*   [isUpdate](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodisUpdate)
+*   [isDelete](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodisDelete)
 *   [__toString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#method__toString)
 *   [mergeInto](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodmergeInto)
 
