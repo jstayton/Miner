@@ -182,6 +182,7 @@ Methods
 *   [getPlaceholderValues](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetPlaceholderValues)
 *   [isSelect](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodisSelect)
 *   [isInsert](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodisInsert)
+*   [isReplace](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodisReplace)
 *   [isUpdate](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodisUpdate)
 *   [isDelete](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodisDelete)
 *   [__toString](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#method__toString)
