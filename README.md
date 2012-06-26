@@ -61,6 +61,79 @@ or after
 
     $QueryBuilder->setPdoConnection($PDO);
 
+Examples
+--------
+
+### SELECT
+
+    SELECT *
+    FROM shows
+    INNER JOIN episodes
+      ON shows.show_id = episodes.show_id
+    WHERE shows.network_id = 12
+    ORDER BY episodes.aired_on DESC
+    LIMIT 20
+
+    $QueryBuilder->select('*')
+                 ->from('shows')
+                 ->innerJoin('episodes', 'show_id')
+                 ->where('shows.network_id', $networkId)
+                 ->orderBy('episodes.aired_on', QueryBuilder::ORDER_BY_DESC)
+                 ->limit(20);
+
+### INSERT
+
+    INSERT HIGH_PRIORITY shows
+    SET network_id = 13,
+        name = 'Freaks & Geeks',
+        air_day = 'Tuesday'
+
+    $QueryBuilder->insert('shows')
+                 ->option('HIGH_PRIORITY')
+                 ->set('network_id', 13)
+                 ->set('name', 'Freaks & Geeks')
+                 ->set('air_day', 'Tuesday');
+
+### REPLACE
+
+    REPLACE shows
+    SET network_id = 13,
+        name = 'Freaks & Geeks',
+        air_day = 'Monday'
+
+    $QueryBuilder->replace('shows')
+                 ->set('network_id', 13)
+                 ->set('name', 'Freaks & Geeks')
+                 ->set('air_day', 'Monday');
+
+### UPDATE
+
+    UPDATE episodes
+    SET aired_on = '2012-06-25'
+    WHERE show_id = 12
+      OR (name = 'Girlfriends and Boyfriends'
+            AND air_day != 'Monday')
+
+    $QueryBuilder->update('episodes')
+                 ->set('aired_on', '2012-06-25')
+                 ->where('show_id', 12)
+                 ->openWhere(QueryBuilder::LOGICAL_OR)
+                 ->where('name', 'Girlfriends and Boyfriends')
+                 ->where('air_day', 'Monday', QueryBuilder::NOT_EQUALS)
+                 ->closeWhere();
+
+### DELETE
+
+    DELETE
+    FROM shows
+    WHERE show_id IN (12, 15, 20)
+    LIMIT 3
+
+    $QueryBuilder->delete()
+                 ->from('shows')
+                 ->whereIn('show_id', array(12, 15, 20))
+                 ->limit(3);
+
 Methods
 -------
 
