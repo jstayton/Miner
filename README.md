@@ -74,6 +74,8 @@ Examples
     ORDER BY episodes.aired_on DESC
     LIMIT 20
 
+As a QueryBuilder:
+
     $QueryBuilder->select('*')
                  ->from('shows')
                  ->innerJoin('episodes', 'show_id')
@@ -88,6 +90,8 @@ Examples
         name = 'Freaks & Geeks',
         air_day = 'Tuesday'
 
+As a QueryBuilder:
+
     $QueryBuilder->insert('shows')
                  ->option('HIGH_PRIORITY')
                  ->set('network_id', 13)
@@ -101,6 +105,8 @@ Examples
         name = 'Freaks & Geeks',
         air_day = 'Monday'
 
+As a QueryBuilder:
+
     $QueryBuilder->replace('shows')
                  ->set('network_id', 13)
                  ->set('name', 'Freaks & Geeks')
@@ -113,6 +119,8 @@ Examples
     WHERE show_id = 12
       OR (name = 'Girlfriends and Boyfriends'
             AND air_day != 'Monday')
+
+As a QueryBuilder:
 
     $QueryBuilder->update('episodes')
                  ->set('aired_on', '2012-06-25')
@@ -128,6 +136,8 @@ Examples
     FROM shows
     WHERE show_id IN (12, 15, 20)
     LIMIT 3
+
+As a QueryBuilder:
 
     $QueryBuilder->delete()
                  ->from('shows')
