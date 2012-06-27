@@ -320,7 +320,7 @@
 
       // If a PDO database connection is set, use it to quote the value using
       // the underlying database. Otherwise, quote it manually.
-      if (isset($PdoConnection)) {
+      if ($PdoConnection) {
         return $PdoConnection->quote($value);
       }
       else {
@@ -354,12 +354,14 @@
     public function getOptionsString($includeTrailingSpace = false) {
       $options = "";
 
-      if (!empty($this->option)) {
-        $options .= implode(' ', $this->option);
+      if (!$this->option) {
+        return $options;
+      }
 
-        if ($includeTrailingSpace) {
-          $options .= " ";
-        }
+      $options .= implode(' ', $this->option);
+
+      if ($includeTrailingSpace) {
+        $options .= " ";
       }
 
       return $options;
@@ -435,12 +437,16 @@
     public function getSelectString($includeText = true) {
       $select  = "";
 
+      if (!$this->select) {
+        return $select;
+      }
+
       $select .= $this->getOptionsString(true);
 
       foreach ($this->select as $currentColumn => $currentAlias) {
         $select .= $currentColumn;
 
-        if (isset($currentAlias)) {
+        if ($currentAlias) {
           $select .= " AS " . $currentAlias;
         }
 
@@ -449,7 +455,7 @@
 
       $select = substr($select, 0, -2);
 
-      if ($includeText && !empty($select)) {
+      if ($includeText && $select) {
         $select = "SELECT " . $select;
       }
 
@@ -477,7 +483,7 @@
     public function mergeInsertInto(QueryBuilder $QueryBuilder) {
       $this->mergeOptionsInto($QueryBuilder);
 
-      if (!empty($this->insert)) {
+      if ($this->insert) {
         $QueryBuilder->insert($this->getInsert());
       }
 
@@ -502,13 +508,15 @@
     public function getInsertString($includeText = true) {
       $insert = "";
 
-      if (!empty($this->insert)) {
-        $insert .= $this->getOptionsString(true);
-
-        $insert .= $this->getInsert();
+      if (!$this->insert) {
+        return $insert;
       }
 
-      if ($includeText && !empty($insert)) {
+      $insert .= $this->getOptionsString(true);
+
+      $insert .= $this->getInsert();
+
+      if ($includeText && $insert) {
         $insert = "INSERT " . $insert;
       }
 
@@ -536,7 +544,7 @@
     public function mergeReplaceInto(QueryBuilder $QueryBuilder) {
       $this->mergeOptionsInto($QueryBuilder);
 
-      if (!empty($this->replace)) {
+      if ($this->replace) {
         $QueryBuilder->replace($this->getReplace());
       }
 
@@ -561,13 +569,15 @@
     public function getReplaceString($includeText = true) {
       $replace = "";
 
-      if (!empty($this->replace)) {
-        $replace .= $this->getOptionsString(true);
-
-        $replace .= $this->getReplace();
+      if (!$this->replace) {
+        return $replace;
       }
 
-      if ($includeText && !empty($replace)) {
+      $replace .= $this->getOptionsString(true);
+
+      $replace .= $this->getReplace();
+
+      if ($includeText && $replace) {
         $replace = "REPLACE " . $replace;
       }
 
@@ -595,7 +605,7 @@
     public function mergeUpdateInto(QueryBuilder $QueryBuilder) {
       $this->mergeOptionsInto($QueryBuilder);
 
-      if (!empty($this->update)) {
+      if ($this->update) {
         $QueryBuilder->update($this->getUpdate());
       }
 
@@ -620,18 +630,20 @@
     public function getUpdateString($includeText = true) {
       $update = "";
 
-      if (!empty($this->update)) {
-        $update .= $this->getOptionsString(true);
-
-        $update .= $this->getUpdate();
-
-        // Add any JOINs.
-        $update .= " " . $this->getJoinString();
-
-        $update  = rtrim($update);
+      if (!$this->update) {
+        return $update;
       }
 
-      if ($includeText && !empty($update)) {
+      $update .= $this->getOptionsString(true);
+
+      $update .= $this->getUpdate();
+
+      // Add any JOINs.
+      $update .= " " . $this->getJoinString();
+
+      $update  = rtrim($update);
+
+      if ($includeText && $update) {
         $update = "UPDATE " . $update;
       }
 
@@ -691,13 +703,17 @@
     public function getDeleteString($includeText = true) {
       $delete  = "";
 
+      if (!$this->delete && !$this->isDeleteTableFrom()) {
+        return $delete;
+      }
+
       $delete .= $this->getOptionsString(true);
 
       if (is_array($this->delete)) {
         $delete .= implode(', ', $this->delete);
       }
 
-      if ($includeText && (!empty($delete) || $this->isDeleteTableFrom())) {
+      if ($includeText && ($delete || $this->isDeleteTableFrom())) {
         $delete = "DELETE " . $delete;
 
         // Trim in case the table is specified in FROM.
@@ -768,7 +784,7 @@
 
       $set = substr($set, 0, -2);
 
-      if ($includeText && !empty($set)) {
+      if ($includeText && $set) {
         $set = "SET " . $set;
       }
 
@@ -806,7 +822,7 @@
      * @return QueryBuilder
      */
     public function mergeFromInto(QueryBuilder $QueryBuilder) {
-      if (!empty($this->from)) {
+      if ($this->from) {
         $QueryBuilder->from($this->getFrom(), $this->getFromAlias());
       }
 
@@ -953,12 +969,12 @@
       foreach ($this->join as $i => $currentJoin) {
         $join .= " " . $currentJoin['type'] . " " . $currentJoin['table'];
 
-        if (isset($currentJoin['alias'])) {
+        if ($currentJoin['alias']) {
           $join .= " AS " . $currentJoin['alias'];
         }
 
         // Add ON criteria if specified.
-        if (isset($currentJoin['criteria'])) {
+        if ($currentJoin['criteria']) {
           $join .= " ON ";
 
           foreach ($currentJoin['criteria'] as $x => $criterion) {
@@ -994,20 +1010,22 @@
     public function getFromString($includeText = true) {
       $from = "";
 
-      if (!empty($this->from)) {
-        $from .= $this->from['table'];
-
-        if (isset($this->from['alias'])) {
-          $from .= " AS " . $this->from['alias'];
-        }
-
-        // Add any JOINs.
-        $from .= " " . $this->getJoinString();
+      if (!$this->from) {
+        return $from;
       }
 
-      $from = rtrim($from);
+      $from .= $this->getFrom();
 
-      if ($includeText && !empty($from)) {
+      if ($this->getFromAlias()) {
+        $from .= " AS " . $this->getFromAlias();
+      }
+
+      // Add any JOINs.
+      $from .= " " . $this->getJoinString();
+
+      $from  = rtrim($from);
+
+      if ($includeText && $from) {
         $from = "FROM " . $from;
       }
 
@@ -1371,7 +1389,7 @@
     public function getWhereString($usePlaceholders = true, $includeText = true) {
       $where = $this->getCriteriaString($this->where, $usePlaceholders, $this->wherePlaceholderValues);
 
-      if ($includeText && !empty($where)) {
+      if ($includeText && $where) {
         $where = "WHERE " . $where;
       }
 
@@ -1432,7 +1450,7 @@
 
       $groupBy = substr($groupBy, 0, -2);
 
-      if ($includeText && !empty($groupBy)) {
+      if ($includeText && $groupBy) {
         $groupBy = "GROUP BY " . $groupBy;
       }
 
@@ -1581,7 +1599,7 @@
     public function getHavingString($usePlaceholders = true, $includeText = true) {
       $having = $this->getCriteriaString($this->having, $usePlaceholders, $this->havingPlaceholderValues);
 
-      if ($includeText && !empty($having)) {
+      if ($includeText && $having) {
         $having = "HAVING " . $having;
       }
 
@@ -1642,7 +1660,7 @@
 
       $orderBy = substr($orderBy, 0, -2);
 
-      if ($includeText && !empty($orderBy)) {
+      if ($includeText && $orderBy) {
         $orderBy = "ORDER BY " . $orderBy;
       }
 
@@ -1670,7 +1688,7 @@
      * @return QueryBuilder
      */
     public function mergeLimitInto(QueryBuilder $QueryBuilder) {
-      if (!empty($this->limit)) {
+      if ($this->limit) {
         $QueryBuilder->limit($this->getLimit(), $this->getLimitOffset());
       }
 
@@ -1704,15 +1722,17 @@
     public function getLimitString($includeText = true) {
       $limit = "";
 
-      if (!empty($this->limit)) {
-        if ($this->limit['offset'] !== 0) {
-          $limit .= $this->limit['offset'] . ", ";
-        }
-
-        $limit .= $this->limit['limit'];
+      if (!$this->limit) {
+        return $limit;
       }
 
-      if ($includeText && !empty($limit)) {
+      if ($this->limit['offset'] !== 0) {
+        $limit .= $this->limit['offset'] . ", ";
+      }
+
+      $limit .= $this->limit['limit'];
+
+      if ($includeText && $limit) {
         $limit = "LIMIT " . $limit;
       }
 
@@ -1800,7 +1820,7 @@
         $this->mergeWhereInto($QueryBuilder);
 
         // ORDER BY and LIMIT are only applicable when updating a single table.
-        if (empty($this->join)) {
+        if (!$this->join) {
           $this->mergeOrderByInto($QueryBuilder);
 
           if ($overwriteLimit) {
@@ -1837,32 +1857,34 @@
     private function getSelectQueryString($usePlaceholders = true) {
       $query = "";
 
-      if ($this->isSelect()) {
-        $query .= $this->getSelectString();
+      if (!$this->isSelect()) {
+        return $query;
+      }
 
-        if (!empty($this->from)) {
-          $query .= " " . $this->getFromString();
-        }
+      $query .= $this->getSelectString();
 
-        if (!empty($this->where)) {
-          $query .= " " . $this->getWhereString($usePlaceholders);
-        }
+      if ($this->from) {
+        $query .= " " . $this->getFromString();
+      }
 
-        if (!empty($this->groupBy)) {
-          $query .= " " . $this->getGroupByString();
-        }
+      if ($this->where) {
+        $query .= " " . $this->getWhereString($usePlaceholders);
+      }
 
-        if (!empty($this->having)) {
-          $query .= " " . $this->getHavingString($usePlaceholders);
-        }
+      if ($this->groupBy) {
+        $query .= " " . $this->getGroupByString();
+      }
 
-        if (!empty($this->orderBy)) {
-          $query .= " " . $this->getOrderByString();
-        }
+      if ($this->having) {
+        $query .= " " . $this->getHavingString($usePlaceholders);
+      }
 
-        if (!empty($this->limit)) {
-          $query .= " " . $this->getLimitString();
-        }
+      if ($this->orderBy) {
+        $query .= " " . $this->getOrderByString();
+      }
+
+      if ($this->limit) {
+        $query .= " " . $this->getLimitString();
       }
 
       return $query;
@@ -1877,12 +1899,14 @@
     private function getInsertQueryString($usePlaceholders = true) {
       $query = "";
 
-      if ($this->isInsert()) {
-        $query .= $this->getInsertString();
+      if (!$this->isInsert()) {
+        return $query;
+      }
 
-        if (!empty($this->set)) {
-          $query .= " " . $this->getSetString($usePlaceholders);
-        }
+      $query .= $this->getInsertString();
+
+      if ($this->set) {
+        $query .= " " . $this->getSetString($usePlaceholders);
       }
 
       return $query;
@@ -1897,12 +1921,14 @@
     private function getReplaceQueryString($usePlaceholders = true) {
       $query = "";
 
-      if ($this->isReplace()) {
-        $query .= $this->getReplaceString();
+      if (!$this->isReplace()) {
+        return $query;
+      }
 
-        if (!empty($this->set)) {
-          $query .= " " . $this->getSetString($usePlaceholders);
-        }
+      $query .= $this->getReplaceString();
+
+      if ($this->set) {
+        $query .= " " . $this->getSetString($usePlaceholders);
       }
 
       return $query;
@@ -1917,26 +1943,28 @@
     private function getUpdateQueryString($usePlaceholders = true) {
       $query = "";
 
-      if ($this->isUpdate()) {
-        $query .= $this->getUpdateString();
+      if (!$this->isUpdate()) {
+        return $query;
+      }
 
-        if (!empty($this->set)) {
-          $query .= " " . $this->getSetString($usePlaceholders);
+      $query .= $this->getUpdateString();
+
+      if ($this->set) {
+        $query .= " " . $this->getSetString($usePlaceholders);
+      }
+
+      if ($this->where) {
+        $query .= " " . $this->getWhereString($usePlaceholders);
+      }
+
+      // ORDER BY and LIMIT are only applicable when updating a single table.
+      if (!$this->join) {
+        if ($this->orderBy) {
+          $query .= " " . $this->getOrderByString();
         }
 
-        if (!empty($this->where)) {
-          $query .= " " . $this->getWhereString($usePlaceholders);
-        }
-
-        // ORDER BY and LIMIT are only applicable when updating a single table.
-        if (empty($this->join)) {
-          if (!empty($this->orderBy)) {
-            $query .= " " . $this->getOrderByString();
-          }
-
-          if (!empty($this->limit)) {
-            $query .= " " . $this->getLimitString();
-          }
+        if ($this->limit) {
+          $query .= " " . $this->getLimitString();
         }
       }
 
@@ -1952,27 +1980,29 @@
     private function getDeleteQueryString($usePlaceholders = true) {
       $query = "";
 
-      if ($this->isDelete()) {
-        $query .= $this->getDeleteString();
+      if (!$this->isDelete()) {
+        return $query;
+      }
 
-        if (!empty($this->from)) {
-          $query .= " " . $this->getFromString();
+      $query .= $this->getDeleteString();
+
+      if ($this->from) {
+        $query .= " " . $this->getFromString();
+      }
+
+      if ($this->where) {
+        $query .= " " . $this->getWhereString($usePlaceholders);
+      }
+
+      // ORDER BY and LIMIT are only applicable when deleting from a single
+      // table.
+      if ($this->isDeleteTableFrom()) {
+        if ($this->orderBy) {
+          $query .= " " . $this->getOrderByString();
         }
 
-        if (!empty($this->where)) {
-          $query .= " " . $this->getWhereString($usePlaceholders);
-        }
-
-        // ORDER BY and LIMIT are only applicable when deleting from a single
-        // table.
-        if ($this->isDeleteTableFrom()) {
-          if (!empty($this->orderBy)) {
-            $query .= " " . $this->getOrderByString();
-          }
-
-          if (!empty($this->limit)) {
-            $query .= " " . $this->getLimitString();
-          }
+        if ($this->limit) {
+          $query .= " " . $this->getLimitString();
         }
       }
 
@@ -2022,20 +2052,20 @@
     /**
      * Execute the query using the PDO database connection.
      *
-     * @return PDOStatement|false executed query or false is failed
+     * @return PDOStatement|false executed query or false if failed
      */
     public function query() {
       $PdoConnection = $this->getPdoConnection();
 
       // If no PDO database connection is set, the query cannot be executed.
-      if (!isset($PdoConnection)) {
+      if (!$PdoConnection) {
         return false;
       }
 
       $queryString = $this->getQueryString();
 
       // Only execute if a query is set.
-      if (!empty($queryString)) {
+      if ($queryString) {
         $PdoStatement = $PdoConnection->prepare($queryString);
         $PdoStatement->execute($this->getPlaceholderValues());
 
