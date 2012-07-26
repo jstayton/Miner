@@ -8,7 +8,7 @@
    * @copyright Copyright 2011-2012 by Justin Stayton
    * @license   http://en.wikipedia.org/wiki/MIT_License MIT License
    * @package   QueryBuilder
-   * @version   4.0.0
+   * @version   4.0.1
    */
   class QueryBuilder {
 
@@ -86,6 +86,11 @@
      * NOT LIKE comparison operator.
      */
     const NOT_LIKE = "NOT LIKE";
+
+    /**
+     * ILIKE comparison operator.
+     */
+    const ILIKE = "ILIKE";
 
     /**
      * REGEXP comparison operator.
@@ -1726,11 +1731,11 @@
         return $limit;
       }
 
-      if ($this->limit['offset'] !== 0) {
-        $limit .= $this->limit['offset'] . ", ";
-      }
-
       $limit .= $this->limit['limit'];
+
+      if ($this->limit['offset'] !== 0) {
+        $limit .= " OFFSET " . $this->limit['offset'];
+      }
 
       if ($includeText && $limit) {
         $limit = "LIMIT " . $limit;
