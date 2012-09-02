@@ -8,7 +8,7 @@
    * @copyright Copyright 2011-2012 by Justin Stayton
    * @license   http://en.wikipedia.org/wiki/MIT_License MIT License
    * @package   QueryBuilder
-   * @version   4.0.1
+   * @version   4.1.0
    */
   class QueryBuilder {
 
@@ -145,9 +145,16 @@
     /**
      * PDO database connection to use in executing the query.
      *
-     * @var PDO
+     * @var PDO|null
      */
     private $PdoConnection;
+
+    /**
+     * Whether to automatically escape values.
+     *
+     * @var bool|null
+     */
+    private $autoQuote;
 
     /**
      * Execution options like DISTINCT and SQL_CALC_FOUND_ROWS.
@@ -272,9 +279,10 @@
      * Constructor.
      *
      * @param  PDO|null $PdoConnection optional PDO database connection
+     * @param  bool $autoQuote optional auto-escape values, default true
      * @return QueryBuilder
      */
-    public function __construct(PDO $PdoConnection = null) {
+    public function __construct(PDO $PdoConnection = null, $autoQuote = true) {
       $this->option = array();
       $this->select = array();
       $this->delete = array();
@@ -290,7 +298,8 @@
       $this->wherePlaceholderValues = array();
       $this->havingPlaceholderValues = array();
 
-      $this->setPdoConnection($PdoConnection);
+      $this->setPdoConnection($PdoConnection)
+           ->setAutoQuote($autoQuote);
     }
 
     /**
@@ -315,10 +324,52 @@
     }
 
     /**
+     * Set whether to automatically escape values.
+     *
+     * @param  bool|null $autoQuote whether to automatically escape values
+     * @return QueryBuilder
+     */
+    public function setAutoQuote($autoQuote) {
+      $this->autoQuote = $autoQuote;
+
+      return $this;
+    }
+
+    /**
+     * Get whether values will be automatically escaped.
+     *
+     * The $override parameter is for convenience in checking if a specific
+     * value should be quoted differently than the rest. 'null' defers to the
+     * global setting.
+     *
+     * @param  bool|null $override value-specific override for convenience
+     * @return bool
+     */
+    public function getAutoQuote($override = null) {
+      return $override === null ? $this->autoQuote : $override;
+    }
+
+    /**
+     * Safely escape a value if auto-quoting is enabled, or do nothing if
+     * disabled.
+     *
+     * The $override parameter is for convenience in checking if a specific
+     * value should be quoted differently than the rest. 'null' defers to the
+     * global setting.
+     *
+     * @param  mixed $value value to escape (or not)
+     * @param  bool|null $override value-specific override for convenience
+     * @return mixed|false value (escaped or original) or false if failed
+     */
+    public function autoQuote($value, $override = null) {
+      return $this->getAutoQuote($override) ? $this->quote($value) : $value;
+    }
+
+    /**
      * Safely escape a value for use in a query.
      *
-     * @param  string $value value to escape
-     * @return string|false escaped value or false if failed
+     * @param  mixed $value value to escape
+     * @return mixed|false escaped value or false if failed
      */
     public function quote($value) {
       $PdoConnection = $this->getPdoConnection();
@@ -742,11 +793,13 @@
      *
      * @param  string $column column name
      * @param  mixed $value value
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function set($column, $value) {
+    public function set($column, $value, $quote = null) {
       $this->set[] = array('column' => $column,
-                           'value'  => $value);
+                           'value'  => $value,
+                           'quote'  => $quote);
 
       return $this;
     }
@@ -759,7 +812,7 @@
      */
     public function mergeSetInto(QueryBuilder $QueryBuilder) {
       foreach ($this->set as $currentSet) {
-        $QueryBuilder->set($currentSet['column'], $currentSet['value']);
+        $QueryBuilder->set($currentSet['column'], $currentSet['value'], $currentSet['quote']);
       }
 
       return $QueryBuilder;
@@ -777,13 +830,16 @@
       $this->setPlaceholderValues = array();
 
       foreach ($this->set as $currentSet) {
-        if ($usePlaceholders) {
+        $autoQuote = $this->getAutoQuote($currentSet['quote']);
+
+        if ($usePlaceholders && $autoQuote) {
           $set .= $currentSet['column'] . " " . self::EQUALS . " ?, ";
 
           $this->setPlaceholderValues[] = $currentSet['value'];
         }
         else {
-          $set .= $currentSet['column'] . " " . self::EQUALS . " " . $this->quote($currentSet['value']) . ", ";
+          $set .= $currentSet['column'] . " " . self::EQUALS . " " .
+                  $this->autoQuote($currentSet['value'], $autoQuote) . ", ";
         }
       }
 
@@ -1074,13 +1130,15 @@
      * @param  mixed $value value
      * @param  string $operator optional comparison operator, default =
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    private function criteria(array &$criteria, $column, $value, $operator = self::EQUALS, $connector = self::LOGICAL_AND) {
+    private function criteria(array &$criteria, $column, $value, $operator = self::EQUALS, $connector = self::LOGICAL_AND, $quote = null) {
       $criteria[] = array('column'    => $column,
                           'value'     => $value,
                           'operator'  => $operator,
-                          'connector' => $connector);
+                          'connector' => $connector,
+                          'quote'     => $quote);
 
       return $this;
     }
@@ -1092,10 +1150,11 @@
      * @param  string $column column name
      * @param  mixed $value value
      * @param  string $operator optional comparison operator, default =
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    private function orCriteria(array &$criteria, $column, $value, $operator = self::EQUALS) {
-      return $this->criteria($criteria, $column, $value, $operator, self::LOGICAL_OR);
+    private function orCriteria(array &$criteria, $column, $value, $operator = self::EQUALS, $quote = null) {
+      return $this->criteria($criteria, $column, $value, $operator, self::LOGICAL_OR, $quote);
     }
 
     /**
@@ -1105,10 +1164,11 @@
      * @param  string $column column name
      * @param  array $values values
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    private function criteriaIn(array &$criteria, $column, array $values, $connector = self::LOGICAL_AND) {
-      return $this->criteria($criteria, $column, $values, self::IN, $connector);
+    private function criteriaIn(array &$criteria, $column, array $values, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteria($criteria, $column, $values, self::IN, $connector, $quote);
     }
 
     /**
@@ -1118,10 +1178,11 @@
      * @param  string $column column name
      * @param  array $values values
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    private function criteriaNotIn(array &$criteria, $column, array $values, $connector = self::LOGICAL_AND) {
-      return $this->criteria($criteria, $column, $values, self::NOT_IN, $connector);
+    private function criteriaNotIn(array &$criteria, $column, array $values, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteria($criteria, $column, $values, self::NOT_IN, $connector, $quote);
     }
 
     /**
@@ -1132,10 +1193,11 @@
      * @param  mixed $min minimum value
      * @param  mixed $max maximum value
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    private function criteriaBetween(array &$criteria, $column, $min, $max, $connector = self::LOGICAL_AND) {
-      return $this->criteria($criteria, $column, array($min, $max), self::BETWEEN, $connector);
+    private function criteriaBetween(array &$criteria, $column, $min, $max, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteria($criteria, $column, array($min, $max), self::BETWEEN, $connector, $quote);
     }
 
     /**
@@ -1146,10 +1208,11 @@
      * @param  mixed $min minimum value
      * @param  mixed $max maximum value
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    private function criteriaNotBetween(array &$criteria, $column, $min, $max, $connector = self::LOGICAL_AND) {
-      return $this->criteria($criteria, $column, array($min, $max), self::NOT_BETWEEN, $connector);
+    private function criteriaNotBetween(array &$criteria, $column, $min, $max, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteria($criteria, $column, array($min, $max), self::NOT_BETWEEN, $connector, $quote);
     }
 
     /**
@@ -1188,26 +1251,27 @@
           }
 
           $useConnector = true;
+          $autoQuote = $this->getAutoQuote($currentCriterion['quote']);
 
           switch ($currentCriterion['operator']) {
             case self::BETWEEN:
             case self::NOT_BETWEEN:
-              if ($usePlaceholders) {
+              if ($usePlaceholders && $autoQuote) {
                 $value = "? " . self::LOGICAL_AND . " ?";
 
                 $placeholderValues[] = $currentCriterion['value'][0];
                 $placeholderValues[] = $currentCriterion['value'][1];
               }
               else {
-                $value = $this->quote($currentCriterion['value'][0]) . " " . self::LOGICAL_AND . " " .
-                         $this->quote($currentCriterion['value'][1]);
+                $value = $this->autoQuote($currentCriterion['value'][0], $autoQuote) . " " . self::LOGICAL_AND . " " .
+                         $this->autoQuote($currentCriterion['value'][1], $autoQuote);
               }
 
               break;
 
             case self::IN:
             case self::NOT_IN:
-              if ($usePlaceholders) {
+              if ($usePlaceholders && $autoQuote) {
                 $value = self::BRACKET_OPEN . substr(str_repeat('?, ', count($currentCriterion['value'])), 0, -2) .
                          self::BRACKET_CLOSE;
 
@@ -1217,7 +1281,7 @@
                 $value = self::BRACKET_OPEN;
 
                 foreach ($currentCriterion['value'] as $currentValue) {
-                  $value .= $this->quote($currentValue) . ", ";
+                  $value .= $this->autoQuote($currentValue, $autoQuote) . ", ";
                 }
 
                 $value  = substr($value, 0, -2);
@@ -1233,13 +1297,13 @@
               break;
 
             default:
-              if ($usePlaceholders) {
+              if ($usePlaceholders && $autoQuote) {
                 $value = "?";
 
                 $placeholderValues[] = $currentCriterion['value'];
               }
               else {
-                $value = $this->quote($currentCriterion['value']);
+                $value = $this->autoQuote($currentCriterion['value'], $autoQuote);
               }
 
               break;
@@ -1278,10 +1342,11 @@
      * @param  mixed $value value
      * @param  string $operator optional comparison operator, default =
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function where($column, $value, $operator = self::EQUALS, $connector = self::LOGICAL_AND) {
-      return $this->criteria($this->where, $column, $value, $operator, $connector);
+    public function where($column, $value, $operator = self::EQUALS, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteria($this->where, $column, $value, $operator, $connector, $quote);
     }
 
   	/**
@@ -1290,10 +1355,11 @@
      * @param  string $column colum name
      * @param  mixed $value value
      * @param  string $operator optional comparison operator, default =
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function andWhere($column, $value, $operator = self::EQUALS) {
-      return $this->criteria($this->where, $column, $value, $operator, self::LOGICAL_AND);
+    public function andWhere($column, $value, $operator = self::EQUALS, $quote = null) {
+      return $this->criteria($this->where, $column, $value, $operator, self::LOGICAL_AND, $quote);
     }
 
     /**
@@ -1302,10 +1368,11 @@
      * @param  string $column colum name
      * @param  mixed $value value
      * @param  string $operator optional comparison operator, default =
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function orWhere($column, $value, $operator = self::EQUALS) {
-      return $this->orCriteria($this->where, $column, $value, $operator, self::LOGICAL_OR);
+    public function orWhere($column, $value, $operator = self::EQUALS, $quote = null) {
+      return $this->orCriteria($this->where, $column, $value, $operator, self::LOGICAL_OR, $quote);
     }
 
     /**
@@ -1314,10 +1381,11 @@
      * @param  string $column column name
      * @param  array $values values
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function whereIn($column, array $values, $connector = self::LOGICAL_AND) {
-      return $this->criteriaIn($this->where, $column, $values, $connector);
+    public function whereIn($column, array $values, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteriaIn($this->where, $column, $values, $connector, $quote);
     }
 
     /**
@@ -1326,10 +1394,11 @@
      * @param  string $column column name
      * @param  array $values values
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function whereNotIn($column, array $values, $connector = self::LOGICAL_AND) {
-      return $this->criteriaNotIn($this->where, $column, $values, $connector);
+    public function whereNotIn($column, array $values, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteriaNotIn($this->where, $column, $values, $connector, $quote);
     }
 
     /**
@@ -1339,10 +1408,11 @@
      * @param  mixed $min minimum value
      * @param  mixed $max maximum value
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function whereBetween($column, $min, $max, $connector = self::LOGICAL_AND) {
-      return $this->criteriaBetween($this->where, $column, $min, $max, $connector);
+    public function whereBetween($column, $min, $max, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteriaBetween($this->where, $column, $min, $max, $connector, $quote);
     }
 
     /**
@@ -1352,10 +1422,11 @@
      * @param  mixed $min minimum value
      * @param  mixed $max maximum value
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function whereNotBetween($column, $min, $max, $connector = self::LOGICAL_AND) {
-      return $this->criteriaNotBetween($this->where, $column, $min, $max, $connector);
+    public function whereNotBetween($column, $min, $max, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteriaNotBetween($this->where, $column, $min, $max, $connector, $quote);
     }
 
     /**
@@ -1376,8 +1447,8 @@
           }
         }
         else {
-          $QueryBuilder->where($currentWhere['column'], $currentWhere['value'],
-                               $currentWhere['operator'], $currentWhere['connector']);
+          $QueryBuilder->where($currentWhere['column'], $currentWhere['value'], $currentWhere['operator'],
+                               $currentWhere['connector'], $currentWhere['quote']);
         }
       }
 
@@ -1488,10 +1559,11 @@
      * @param  mixed $value value
      * @param  string $operator optional comparison operator, default =
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function having($column, $value, $operator = self::EQUALS, $connector = self::LOGICAL_AND) {
-      return $this->criteria($this->having, $column, $value, $operator, $connector);
+    public function having($column, $value, $operator = self::EQUALS, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteria($this->having, $column, $value, $operator, $connector, $quote);
     }
 
   	/**
@@ -1500,10 +1572,11 @@
      * @param  string $column colum name
      * @param  mixed $value value
      * @param  string $operator optional comparison operator, default =
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function andHaving($column, $value, $operator = self::EQUALS) {
-      return $this->criteria($this->having, $column, $value, $operator, self::LOGICAL_AND);
+    public function andHaving($column, $value, $operator = self::EQUALS, $quote = null) {
+      return $this->criteria($this->having, $column, $value, $operator, self::LOGICAL_AND, $quote);
     }
 
     /**
@@ -1512,10 +1585,11 @@
      * @param  string $column colum name
      * @param  mixed $value value
      * @param  string $operator optional comparison operator, default =
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function orHaving($column, $value, $operator = self::EQUALS) {
-      return $this->orCriteria($this->having, $column, $value, $operator, self::LOGICAL_OR);
+    public function orHaving($column, $value, $operator = self::EQUALS, $quote = null) {
+      return $this->orCriteria($this->having, $column, $value, $operator, self::LOGICAL_OR, $quote);
     }
 
     /**
@@ -1524,10 +1598,11 @@
      * @param  string $column column name
      * @param  array $values values
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function havingIn($column, array $values, $connector = self::LOGICAL_AND) {
-      return $this->criteriaIn($this->having, $column, $values, $connector);
+    public function havingIn($column, array $values, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteriaIn($this->having, $column, $values, $connector, $quote);
     }
 
     /**
@@ -1536,10 +1611,11 @@
      * @param  string $column column name
      * @param  array $values values
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function havingNotIn($column, array $values, $connector = self::LOGICAL_AND) {
-      return $this->criteriaNotIn($this->having, $column, $values, $connector);
+    public function havingNotIn($column, array $values, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteriaNotIn($this->having, $column, $values, $connector, $quote);
     }
 
     /**
@@ -1549,10 +1625,11 @@
      * @param  mixed $min minimum value
      * @param  mixed $max maximum value
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function havingBetween($column, $min, $max, $connector = self::LOGICAL_AND) {
-      return $this->criteriaBetween($this->having, $column, $min, $max, $connector);
+    public function havingBetween($column, $min, $max, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteriaBetween($this->having, $column, $min, $max, $connector, $quote);
     }
 
     /**
@@ -1562,10 +1639,11 @@
      * @param  mixed $min minimum value
      * @param  mixed $max maximum value
      * @param  string $connector optional logical connector, default AND
+     * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    public function havingNotBetween($column, $min, $max, $connector = self::LOGICAL_AND) {
-      return $this->criteriaNotBetween($this->having, $column, $min, $max, $connector);
+    public function havingNotBetween($column, $min, $max, $connector = self::LOGICAL_AND, $quote = null) {
+      return $this->criteriaNotBetween($this->having, $column, $min, $max, $connector, $quote);
     }
 
     /**
@@ -1586,8 +1664,8 @@
           }
         }
         else {
-          $QueryBuilder->having($currentHaving['column'], $currentHaving['value'],
-                                $currentHaving['operator'], $currentHaving['connector']);
+          $QueryBuilder->having($currentHaving['column'], $currentHaving['value'], $currentHaving['operator'],
+                                $currentHaving['connector'], $currentHaving['quote']);
         }
       }
 
