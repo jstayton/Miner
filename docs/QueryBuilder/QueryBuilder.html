@@ -66,7 +66,7 @@ Source Location: /QueryBuilder.php<br /><br />
       
 <h4>Version:</h4>
 <ul>
-  <li>4.0.1</li>
+  <li>4.1.0</li>
 </ul>
 
 <h4>Copyright:</h4>
@@ -112,15 +112,17 @@ Source Location: /QueryBuilder.php<br /><br />
 <td valign="top">
 <h3><a href="#class_methods">Methods</a></h3>
 <ul>
+    <li><a href="../QueryBuilder/QueryBuilder.html#method__construct">__construct</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodandHaving">andHaving</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodandWhere">andWhere</a></li>
-    <li><a href="../QueryBuilder/QueryBuilder.html#method__construct">__construct</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodautoQuote">autoQuote</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodcalcFoundRows">calcFoundRows</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodcloseHaving">closeHaving</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodcloseWhere">closeWhere</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methoddelete">delete</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methoddistinct">distinct</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodfrom">from</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodgetAutoQuote">getAutoQuote</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodgetDeleteString">getDeleteString</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodgetFrom">getFrom</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodgetFromAlias">getFromAlias</a></li>
@@ -191,6 +193,7 @@ Source Location: /QueryBuilder.php<br /><br />
     <li><a href="../QueryBuilder/QueryBuilder.html#methodrightJoin">rightJoin</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodselect">select</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodset">set</a></li>
+    <li><a href="../QueryBuilder/QueryBuilder.html#methodsetAutoQuote">setAutoQuote</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodsetPdoConnection">setPdoConnection</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodupdate">update</a></li>
     <li><a href="../QueryBuilder/QueryBuilder.html#methodwhere">where</a></li>
@@ -227,7 +230,7 @@ A dead simple PHP 5 OO interface for building SQL queries. No manual  string con
     <td><b>author:</b>&nbsp;&nbsp;</td><td>Justin Stayton &lt;<a href="mailto:justin.stayton@gmail.com">justin.stayton@gmail.com</a>&gt;</td>
   </tr>
   <tr>
-    <td><b>version:</b>&nbsp;&nbsp;</td><td>4.0.1</td>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>4.1.0</td>
   </tr>
   <tr>
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright 2011-2012 by Justin Stayton</td>
@@ -247,8 +250,50 @@ A dead simple PHP 5 OO interface for building SQL queries. No manual  string con
 <div class="tags">
 
   <hr />
+	<a name="method__construct"></a>
+	<h3>constructor __construct <span class="smalllinenumber">[line 285]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> __construct(
+[
+$PdoConnection = null], [bool
+$autoQuote = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Constructor.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">PDO|null&nbsp;&nbsp;</td>
+        <td><b>$PdoConnection</b>&nbsp;&nbsp;</td>
+        <td>optional PDO database connection</td>
+      </tr>
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$autoQuote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape values, default true</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
 	<a name="methodandHaving"></a>
-	<h3>method andHaving <span class="smalllinenumber">[line 1505]</span></h3>
+	<h3>method andHaving <span class="smalllinenumber">[line 1580]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -256,7 +301,8 @@ A dead simple PHP 5 OO interface for building SQL queries. No manual  string con
 string
 $column, mixed
 $value, [string
-$operator = self::EQUALS])</code>
+$operator = self::EQUALS], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -290,13 +336,18 @@ $operator = self::EQUALS])</code>
         <td><b>$operator</b>&nbsp;&nbsp;</td>
         <td>optional comparison operator, default =</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodandWhere"></a>
-	<h3>method andWhere <span class="smalllinenumber">[line 1295]</span></h3>
+	<h3>method andWhere <span class="smalllinenumber">[line 1363]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -304,7 +355,8 @@ $operator = self::EQUALS])</code>
 string
 $column, mixed
 $value, [string
-$operator = self::EQUALS])</code>
+$operator = self::EQUALS], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -338,26 +390,35 @@ $operator = self::EQUALS])</code>
         <td><b>$operator</b>&nbsp;&nbsp;</td>
         <td>optional comparison operator, default =</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
-	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 277]</span></h3>
+	<a name="methodautoQuote"></a>
+	<h3>method autoQuote <span class="smalllinenumber">[line 364]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> __construct(
-[
-$PdoConnection = null])</code>
+		<code>mixed|false autoQuote(
+mixed
+$value, [bool|null
+$override = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		Constructor.<br /><br /><br /><br />
+		Safely escape a value if auto-quoting is enabled, or do nothing if  disabled.<br /><br /><p>The $override parameter is for convenience in checking if a specific  value should be quoted differently than the rest. 'null' defers to the  global setting.</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>value (escaped or original) or false if failed</td>
+  </tr>
   <tr>
     <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
   </tr>
@@ -370,9 +431,14 @@ $PdoConnection = null])</code>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
           <tr>
-        <td class="type">PDO|null&nbsp;&nbsp;</td>
-        <td><b>$PdoConnection</b>&nbsp;&nbsp;</td>
-        <td>optional PDO database connection</td>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td>value to escape (or not)</td>
+      </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$override</b>&nbsp;&nbsp;</td>
+        <td>value-specific override for convenience</td>
       </tr>
         </table>
     </div><br />
@@ -380,7 +446,7 @@ $PdoConnection = null])</code>
   </div>
   <hr />
 	<a name="methodcalcFoundRows"></a>
-	<h3>method calcFoundRows <span class="smalllinenumber">[line 394]</span></h3>
+	<h3>method calcFoundRows <span class="smalllinenumber">[line 443]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -405,7 +471,7 @@ $PdoConnection = null])</code>
   </div>
   <hr />
 	<a name="methodcloseHaving"></a>
-	<h3>method closeHaving <span class="smalllinenumber">[line 1480]</span></h3>
+	<h3>method closeHaving <span class="smalllinenumber">[line 1553]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -430,7 +496,7 @@ $PdoConnection = null])</code>
   </div>
   <hr />
 	<a name="methodcloseWhere"></a>
-	<h3>method closeWhere <span class="smalllinenumber">[line 1270]</span></h3>
+	<h3>method closeWhere <span class="smalllinenumber">[line 1336]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -455,7 +521,7 @@ $PdoConnection = null])</code>
   </div>
   <hr />
 	<a name="methoddelete"></a>
-	<h3>method delete <span class="smalllinenumber">[line 664]</span></h3>
+	<h3>method delete <span class="smalllinenumber">[line 713]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -491,7 +557,7 @@ $table = false])</code>
   </div>
   <hr />
 	<a name="methoddistinct"></a>
-	<h3>method distinct <span class="smalllinenumber">[line 403]</span></h3>
+	<h3>method distinct <span class="smalllinenumber">[line 452]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -516,7 +582,7 @@ $table = false])</code>
   </div>
   <hr />
 	<a name="methodfrom"></a>
-	<h3>method from <span class="smalllinenumber">[line 816]</span></h3>
+	<h3>method from <span class="smalllinenumber">[line 869]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -557,8 +623,44 @@ $alias = null])</code>
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
+	<a name="methodgetAutoQuote"></a>
+	<h3>method getAutoQuote <span class="smalllinenumber">[line 348]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>bool getAutoQuote(
+[bool|null
+$override = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get whether values will be automatically escaped.<br /><br /><p>The $override parameter is for convenience in checking if a specific  value should be quoted differently than the rest. 'null' defers to the  global setting.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$override</b>&nbsp;&nbsp;</td>
+        <td>value-specific override for convenience</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
 	<a name="methodgetDeleteString"></a>
-	<h3>method getDeleteString <span class="smalllinenumber">[line 708]</span></h3>
+	<h3>method getDeleteString <span class="smalllinenumber">[line 757]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -597,7 +699,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetFrom"></a>
-	<h3>method getFrom <span class="smalllinenumber">[line 842]</span></h3>
+	<h3>method getFrom <span class="smalllinenumber">[line 895]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -625,7 +727,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetFromAlias"></a>
-	<h3>method getFromAlias <span class="smalllinenumber">[line 851]</span></h3>
+	<h3>method getFromAlias <span class="smalllinenumber">[line 904]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -653,7 +755,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetFromString"></a>
-	<h3>method getFromString <span class="smalllinenumber">[line 1015]</span></h3>
+	<h3>method getFromString <span class="smalllinenumber">[line 1067]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -692,7 +794,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetGroupByString"></a>
-	<h3>method getGroupByString <span class="smalllinenumber">[line 1449]</span></h3>
+	<h3>method getGroupByString <span class="smalllinenumber">[line 1522]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -731,7 +833,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetHavingPlaceholderValues"></a>
-	<h3>method getHavingPlaceholderValues <span class="smalllinenumber">[line 1621]</span></h3>
+	<h3>method getHavingPlaceholderValues <span class="smalllinenumber">[line 1701]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -759,7 +861,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetHavingString"></a>
-	<h3>method getHavingString <span class="smalllinenumber">[line 1604]</span></h3>
+	<h3>method getHavingString <span class="smalllinenumber">[line 1684]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -804,7 +906,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetInsert"></a>
-	<h3>method getInsert <span class="smalllinenumber">[line 503]</span></h3>
+	<h3>method getInsert <span class="smalllinenumber">[line 552]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -832,7 +934,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetInsertString"></a>
-	<h3>method getInsertString <span class="smalllinenumber">[line 513]</span></h3>
+	<h3>method getInsertString <span class="smalllinenumber">[line 562]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -871,7 +973,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetJoinString"></a>
-	<h3>method getJoinString <span class="smalllinenumber">[line 971]</span></h3>
+	<h3>method getJoinString <span class="smalllinenumber">[line 1023]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -899,7 +1001,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetLimit"></a>
-	<h3>method getLimit <span class="smalllinenumber">[line 1708]</span></h3>
+	<h3>method getLimit <span class="smalllinenumber">[line 1788]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -927,7 +1029,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetLimitOffset"></a>
-	<h3>method getLimitOffset <span class="smalllinenumber">[line 1717]</span></h3>
+	<h3>method getLimitOffset <span class="smalllinenumber">[line 1797]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -955,7 +1057,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetLimitString"></a>
-	<h3>method getLimitString <span class="smalllinenumber">[line 1727]</span></h3>
+	<h3>method getLimitString <span class="smalllinenumber">[line 1807]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -994,7 +1096,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetOptionsString"></a>
-	<h3>method getOptionsString <span class="smalllinenumber">[line 359]</span></h3>
+	<h3>method getOptionsString <span class="smalllinenumber">[line 408]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1033,7 +1135,7 @@ $includeTrailingSpace = false])</code>
   </div>
   <hr />
 	<a name="methodgetOrderByString"></a>
-	<h3>method getOrderByString <span class="smalllinenumber">[line 1659]</span></h3>
+	<h3>method getOrderByString <span class="smalllinenumber">[line 1739]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1072,7 +1174,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetPdoConnection"></a>
-	<h3>method getPdoConnection <span class="smalllinenumber">[line 313]</span></h3>
+	<h3>method getPdoConnection <span class="smalllinenumber">[line 322]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1097,7 +1199,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetPlaceholderValues"></a>
-	<h3>method getPlaceholderValues <span class="smalllinenumber">[line 2051]</span></h3>
+	<h3>method getPlaceholderValues <span class="smalllinenumber">[line 2131]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1125,7 +1227,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetQueryString"></a>
-	<h3>method getQueryString <span class="smalllinenumber">[line 2023]</span></h3>
+	<h3>method getQueryString <span class="smalllinenumber">[line 2103]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1164,7 +1266,7 @@ $usePlaceholders = true])</code>
   </div>
   <hr />
 	<a name="methodgetReplace"></a>
-	<h3>method getReplace <span class="smalllinenumber">[line 564]</span></h3>
+	<h3>method getReplace <span class="smalllinenumber">[line 613]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1192,7 +1294,7 @@ $usePlaceholders = true])</code>
   </div>
   <hr />
 	<a name="methodgetReplaceString"></a>
-	<h3>method getReplaceString <span class="smalllinenumber">[line 574]</span></h3>
+	<h3>method getReplaceString <span class="smalllinenumber">[line 623]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1231,7 +1333,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetSelectString"></a>
-	<h3>method getSelectString <span class="smalllinenumber">[line 442]</span></h3>
+	<h3>method getSelectString <span class="smalllinenumber">[line 491]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1270,7 +1372,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetSetPlaceholderValues"></a>
-	<h3>method getSetPlaceholderValues <span class="smalllinenumber">[line 805]</span></h3>
+	<h3>method getSetPlaceholderValues <span class="smalllinenumber">[line 858]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1298,7 +1400,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetSetString"></a>
-	<h3>method getSetString <span class="smalllinenumber">[line 775]</span></h3>
+	<h3>method getSetString <span class="smalllinenumber">[line 826]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1343,7 +1445,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetUpdate"></a>
-	<h3>method getUpdate <span class="smalllinenumber">[line 625]</span></h3>
+	<h3>method getUpdate <span class="smalllinenumber">[line 674]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1371,7 +1473,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetUpdateString"></a>
-	<h3>method getUpdateString <span class="smalllinenumber">[line 635]</span></h3>
+	<h3>method getUpdateString <span class="smalllinenumber">[line 684]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1410,7 +1512,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetWherePlaceholderValues"></a>
-	<h3>method getWherePlaceholderValues <span class="smalllinenumber">[line 1411]</span></h3>
+	<h3>method getWherePlaceholderValues <span class="smalllinenumber">[line 1484]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1438,7 +1540,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgetWhereString"></a>
-	<h3>method getWhereString <span class="smalllinenumber">[line 1394]</span></h3>
+	<h3>method getWhereString <span class="smalllinenumber">[line 1467]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1483,7 +1585,7 @@ $includeText = true])</code>
   </div>
   <hr />
 	<a name="methodgroupBy"></a>
-	<h3>method groupBy <span class="smalllinenumber">[line 1422]</span></h3>
+	<h3>method groupBy <span class="smalllinenumber">[line 1495]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1525,7 +1627,7 @@ $order = self::ORDER_BY_ASC])</code>
   </div>
   <hr />
 	<a name="methodhaving"></a>
-	<h3>method having <span class="smalllinenumber">[line 1493]</span></h3>
+	<h3>method having <span class="smalllinenumber">[line 1567]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1534,7 +1636,8 @@ string
 $column, mixed
 $value, [string
 $operator = self::EQUALS], [string
-$connector = self::LOGICAL_AND])</code>
+$connector = self::LOGICAL_AND], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -1573,13 +1676,18 @@ $connector = self::LOGICAL_AND])</code>
         <td><b>$connector</b>&nbsp;&nbsp;</td>
         <td>optional logical connector, default AND</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodhavingBetween"></a>
-	<h3>method havingBetween <span class="smalllinenumber">[line 1554]</span></h3>
+	<h3>method havingBetween <span class="smalllinenumber">[line 1633]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1588,7 +1696,8 @@ string
 $column, mixed
 $min, mixed
 $max, [string
-$connector = self::LOGICAL_AND])</code>
+$connector = self::LOGICAL_AND], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -1627,13 +1736,18 @@ $connector = self::LOGICAL_AND])</code>
         <td><b>$connector</b>&nbsp;&nbsp;</td>
         <td>optional logical connector, default AND</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodhavingIn"></a>
-	<h3>method havingIn <span class="smalllinenumber">[line 1529]</span></h3>
+	<h3>method havingIn <span class="smalllinenumber">[line 1606]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1641,7 +1755,8 @@ $connector = self::LOGICAL_AND])</code>
 string
 $column, 
 $values, [string
-$connector = self::LOGICAL_AND])</code>
+$connector = self::LOGICAL_AND], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -1675,13 +1790,18 @@ $connector = self::LOGICAL_AND])</code>
         <td><b>$connector</b>&nbsp;&nbsp;</td>
         <td>optional logical connector, default AND</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodhavingNotBetween"></a>
-	<h3>method havingNotBetween <span class="smalllinenumber">[line 1567]</span></h3>
+	<h3>method havingNotBetween <span class="smalllinenumber">[line 1647]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1690,7 +1810,8 @@ string
 $column, mixed
 $min, mixed
 $max, [string
-$connector = self::LOGICAL_AND])</code>
+$connector = self::LOGICAL_AND], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -1729,13 +1850,18 @@ $connector = self::LOGICAL_AND])</code>
         <td><b>$connector</b>&nbsp;&nbsp;</td>
         <td>optional logical connector, default AND</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodhavingNotIn"></a>
-	<h3>method havingNotIn <span class="smalllinenumber">[line 1541]</span></h3>
+	<h3>method havingNotIn <span class="smalllinenumber">[line 1619]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1743,7 +1869,8 @@ $connector = self::LOGICAL_AND])</code>
 string
 $column, 
 $values, [string
-$connector = self::LOGICAL_AND])</code>
+$connector = self::LOGICAL_AND], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -1777,13 +1904,18 @@ $connector = self::LOGICAL_AND])</code>
         <td><b>$connector</b>&nbsp;&nbsp;</td>
         <td>optional logical connector, default AND</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodinnerJoin"></a>
-	<h3>method innerJoin <span class="smalllinenumber">[line 885]</span></h3>
+	<h3>method innerJoin <span class="smalllinenumber">[line 938]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1831,7 +1963,7 @@ $alias = null])</code>
   </div>
   <hr />
 	<a name="methodinsert"></a>
-	<h3>method insert <span class="smalllinenumber">[line 476]</span></h3>
+	<h3>method insert <span class="smalllinenumber">[line 525]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1867,7 +1999,7 @@ $table)</code>
   </div>
   <hr />
 	<a name="methodisDelete"></a>
-	<h3>method isDelete <span class="smalllinenumber">[line 1788]</span></h3>
+	<h3>method isDelete <span class="smalllinenumber">[line 1868]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1895,7 +2027,7 @@ $table)</code>
   </div>
   <hr />
 	<a name="methodisInsert"></a>
-	<h3>method isInsert <span class="smalllinenumber">[line 1761]</span></h3>
+	<h3>method isInsert <span class="smalllinenumber">[line 1841]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1923,7 +2055,7 @@ $table)</code>
   </div>
   <hr />
 	<a name="methodisReplace"></a>
-	<h3>method isReplace <span class="smalllinenumber">[line 1770]</span></h3>
+	<h3>method isReplace <span class="smalllinenumber">[line 1850]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1951,7 +2083,7 @@ $table)</code>
   </div>
   <hr />
 	<a name="methodisSelect"></a>
-	<h3>method isSelect <span class="smalllinenumber">[line 1752]</span></h3>
+	<h3>method isSelect <span class="smalllinenumber">[line 1832]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1979,7 +2111,7 @@ $table)</code>
   </div>
   <hr />
 	<a name="methodisUpdate"></a>
-	<h3>method isUpdate <span class="smalllinenumber">[line 1779]</span></h3>
+	<h3>method isUpdate <span class="smalllinenumber">[line 1859]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2007,7 +2139,7 @@ $table)</code>
   </div>
   <hr />
 	<a name="methodjoin"></a>
-	<h3>method join <span class="smalllinenumber">[line 864]</span></h3>
+	<h3>method join <span class="smalllinenumber">[line 917]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2061,7 +2193,7 @@ $alias = null])</code>
   </div>
   <hr />
 	<a name="methodleftJoin"></a>
-	<h3>method leftJoin <span class="smalllinenumber">[line 897]</span></h3>
+	<h3>method leftJoin <span class="smalllinenumber">[line 950]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2109,7 +2241,7 @@ $alias = null])</code>
   </div>
   <hr />
 	<a name="methodlimit"></a>
-	<h3>method limit <span class="smalllinenumber">[line 1682]</span></h3>
+	<h3>method limit <span class="smalllinenumber">[line 1762]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2151,7 +2283,7 @@ $offset = 0])</code>
   </div>
   <hr />
 	<a name="methodmergeDeleteInto"></a>
-	<h3>method mergeDeleteInto <span class="smalllinenumber">[line 687]</span></h3>
+	<h3>method mergeDeleteInto <span class="smalllinenumber">[line 736]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2187,7 +2319,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodmergeFromInto"></a>
-	<h3>method mergeFromInto <span class="smalllinenumber">[line 829]</span></h3>
+	<h3>method mergeFromInto <span class="smalllinenumber">[line 882]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2223,7 +2355,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodmergeGroupByInto"></a>
-	<h3>method mergeGroupByInto <span class="smalllinenumber">[line 1435]</span></h3>
+	<h3>method mergeGroupByInto <span class="smalllinenumber">[line 1508]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2259,7 +2391,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodmergeHavingInto"></a>
-	<h3>method mergeHavingInto <span class="smalllinenumber">[line 1577]</span></h3>
+	<h3>method mergeHavingInto <span class="smalllinenumber">[line 1657]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2295,7 +2427,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodmergeInsertInto"></a>
-	<h3>method mergeInsertInto <span class="smalllinenumber">[line 488]</span></h3>
+	<h3>method mergeInsertInto <span class="smalllinenumber">[line 537]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2331,7 +2463,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodmergeInto"></a>
-	<h3>method mergeInto <span class="smalllinenumber">[line 1799]</span></h3>
+	<h3>method mergeInto <span class="smalllinenumber">[line 1879]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2373,7 +2505,7 @@ $overwriteLimit = true])</code>
   </div>
   <hr />
 	<a name="methodmergeJoinInto"></a>
-	<h3>method mergeJoinInto <span class="smalllinenumber">[line 919]</span></h3>
+	<h3>method mergeJoinInto <span class="smalllinenumber">[line 972]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2409,7 +2541,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodmergeLimitInto"></a>
-	<h3>method mergeLimitInto <span class="smalllinenumber">[line 1695]</span></h3>
+	<h3>method mergeLimitInto <span class="smalllinenumber">[line 1775]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2445,7 +2577,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodmergeOptionsInto"></a>
-	<h3>method mergeOptionsInto <span class="smalllinenumber">[line 381]</span></h3>
+	<h3>method mergeOptionsInto <span class="smalllinenumber">[line 430]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2481,7 +2613,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodmergeOrderByInto"></a>
-	<h3>method mergeOrderByInto <span class="smalllinenumber">[line 1645]</span></h3>
+	<h3>method mergeOrderByInto <span class="smalllinenumber">[line 1725]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2517,7 +2649,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodmergeReplaceInto"></a>
-	<h3>method mergeReplaceInto <span class="smalllinenumber">[line 549]</span></h3>
+	<h3>method mergeReplaceInto <span class="smalllinenumber">[line 598]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2553,7 +2685,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodmergeSelectInto"></a>
-	<h3>method mergeSelectInto <span class="smalllinenumber">[line 426]</span></h3>
+	<h3>method mergeSelectInto <span class="smalllinenumber">[line 475]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2589,7 +2721,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodmergeSetInto"></a>
-	<h3>method mergeSetInto <span class="smalllinenumber">[line 760]</span></h3>
+	<h3>method mergeSetInto <span class="smalllinenumber">[line 811]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2625,7 +2757,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodmergeUpdateInto"></a>
-	<h3>method mergeUpdateInto <span class="smalllinenumber">[line 610]</span></h3>
+	<h3>method mergeUpdateInto <span class="smalllinenumber">[line 659]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2661,7 +2793,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodmergeWhereInto"></a>
-	<h3>method mergeWhereInto <span class="smalllinenumber">[line 1367]</span></h3>
+	<h3>method mergeWhereInto <span class="smalllinenumber">[line 1440]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2697,7 +2829,7 @@ $QueryBuilder)</code>
   </div>
   <hr />
 	<a name="methodopenHaving"></a>
-	<h3>method openHaving <span class="smalllinenumber">[line 1471]</span></h3>
+	<h3>method openHaving <span class="smalllinenumber">[line 1544]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2733,7 +2865,7 @@ $connector = self::LOGICAL_AND])</code>
   </div>
   <hr />
 	<a name="methodopenWhere"></a>
-	<h3>method openWhere <span class="smalllinenumber">[line 1261]</span></h3>
+	<h3>method openWhere <span class="smalllinenumber">[line 1327]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2769,7 +2901,7 @@ $connector = self::LOGICAL_AND])</code>
   </div>
   <hr />
 	<a name="methodoption"></a>
-	<h3>method option <span class="smalllinenumber">[line 347]</span></h3>
+	<h3>method option <span class="smalllinenumber">[line 396]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2805,7 +2937,7 @@ $option)</code>
   </div>
   <hr />
 	<a name="methodorderBy"></a>
-	<h3>method orderBy <span class="smalllinenumber">[line 1632]</span></h3>
+	<h3>method orderBy <span class="smalllinenumber">[line 1712]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2847,7 +2979,7 @@ $order = self::ORDER_BY_ASC])</code>
   </div>
   <hr />
 	<a name="methodorHaving"></a>
-	<h3>method orHaving <span class="smalllinenumber">[line 1517]</span></h3>
+	<h3>method orHaving <span class="smalllinenumber">[line 1593]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2855,7 +2987,8 @@ $order = self::ORDER_BY_ASC])</code>
 string
 $column, mixed
 $value, [string
-$operator = self::EQUALS])</code>
+$operator = self::EQUALS], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -2889,13 +3022,18 @@ $operator = self::EQUALS])</code>
         <td><b>$operator</b>&nbsp;&nbsp;</td>
         <td>optional comparison operator, default =</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodorWhere"></a>
-	<h3>method orWhere <span class="smalllinenumber">[line 1307]</span></h3>
+	<h3>method orWhere <span class="smalllinenumber">[line 1376]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2903,7 +3041,8 @@ $operator = self::EQUALS])</code>
 string
 $column, mixed
 $value, [string
-$operator = self::EQUALS])</code>
+$operator = self::EQUALS], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -2937,13 +3076,18 @@ $operator = self::EQUALS])</code>
         <td><b>$operator</b>&nbsp;&nbsp;</td>
         <td>optional comparison operator, default =</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodquery"></a>
-	<h3>method query <span class="smalllinenumber">[line 2062]</span></h3>
+	<h3>method query <span class="smalllinenumber">[line 2142]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2971,12 +3115,12 @@ $operator = self::EQUALS])</code>
   </div>
   <hr />
 	<a name="methodquote"></a>
-	<h3>method quote <span class="smalllinenumber">[line 323]</span></h3>
+	<h3>method quote <span class="smalllinenumber">[line 374]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>string|false quote(
-string
+		<code>mixed|false quote(
+mixed
 $value)</code>
     </td></tr></table>
     </td></tr></table><br />
@@ -3000,7 +3144,7 @@ $value)</code>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
           <tr>
-        <td class="type">string&nbsp;&nbsp;</td>
+        <td class="type">mixed&nbsp;&nbsp;</td>
         <td><b>$value</b>&nbsp;&nbsp;</td>
         <td>value to escape</td>
       </tr>
@@ -3010,7 +3154,7 @@ $value)</code>
   </div>
   <hr />
 	<a name="methodreplace"></a>
-	<h3>method replace <span class="smalllinenumber">[line 537]</span></h3>
+	<h3>method replace <span class="smalllinenumber">[line 586]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3046,7 +3190,7 @@ $table)</code>
   </div>
   <hr />
 	<a name="methodrightJoin"></a>
-	<h3>method rightJoin <span class="smalllinenumber">[line 909]</span></h3>
+	<h3>method rightJoin <span class="smalllinenumber">[line 962]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3094,7 +3238,7 @@ $alias = null])</code>
   </div>
   <hr />
 	<a name="methodselect"></a>
-	<h3>method select <span class="smalllinenumber">[line 414]</span></h3>
+	<h3>method select <span class="smalllinenumber">[line 463]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3136,14 +3280,15 @@ $alias = null])</code>
   </div>
   <hr />
 	<a name="methodset"></a>
-	<h3>method set <span class="smalllinenumber">[line 747]</span></h3>
+	<h3>method set <span class="smalllinenumber">[line 797]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> set(
 string
 $column, mixed
-$value)</code>
+$value, [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -3172,13 +3317,54 @@ $value)</code>
         <td><b>$value</b>&nbsp;&nbsp;</td>
         <td>value</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetAutoQuote"></a>
+	<h3>method setAutoQuote <span class="smalllinenumber">[line 332]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../QueryBuilder/QueryBuilder.html">QueryBuilder</a> setAutoQuote(
+bool|null
+$autoQuote)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set whether to automatically escape values.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$autoQuote</b>&nbsp;&nbsp;</td>
+        <td>whether to automatically escape values</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodsetPdoConnection"></a>
-	<h3>method setPdoConnection <span class="smalllinenumber">[line 302]</span></h3>
+	<h3>method setPdoConnection <span class="smalllinenumber">[line 311]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3214,7 +3400,7 @@ $PdoConnection = null])</code>
   </div>
   <hr />
 	<a name="methodupdate"></a>
-	<h3>method update <span class="smalllinenumber">[line 598]</span></h3>
+	<h3>method update <span class="smalllinenumber">[line 647]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3250,7 +3436,7 @@ $table)</code>
   </div>
   <hr />
 	<a name="methodwhere"></a>
-	<h3>method where <span class="smalllinenumber">[line 1283]</span></h3>
+	<h3>method where <span class="smalllinenumber">[line 1350]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3259,7 +3445,8 @@ string
 $column, mixed
 $value, [string
 $operator = self::EQUALS], [string
-$connector = self::LOGICAL_AND])</code>
+$connector = self::LOGICAL_AND], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -3298,13 +3485,18 @@ $connector = self::LOGICAL_AND])</code>
         <td><b>$connector</b>&nbsp;&nbsp;</td>
         <td>optional logical connector, default AND</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodwhereBetween"></a>
-	<h3>method whereBetween <span class="smalllinenumber">[line 1344]</span></h3>
+	<h3>method whereBetween <span class="smalllinenumber">[line 1416]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3313,7 +3505,8 @@ string
 $column, mixed
 $min, mixed
 $max, [string
-$connector = self::LOGICAL_AND])</code>
+$connector = self::LOGICAL_AND], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -3352,13 +3545,18 @@ $connector = self::LOGICAL_AND])</code>
         <td><b>$connector</b>&nbsp;&nbsp;</td>
         <td>optional logical connector, default AND</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodwhereIn"></a>
-	<h3>method whereIn <span class="smalllinenumber">[line 1319]</span></h3>
+	<h3>method whereIn <span class="smalllinenumber">[line 1389]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3366,7 +3564,8 @@ $connector = self::LOGICAL_AND])</code>
 string
 $column, 
 $values, [string
-$connector = self::LOGICAL_AND])</code>
+$connector = self::LOGICAL_AND], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -3400,13 +3599,18 @@ $connector = self::LOGICAL_AND])</code>
         <td><b>$connector</b>&nbsp;&nbsp;</td>
         <td>optional logical connector, default AND</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodwhereNotBetween"></a>
-	<h3>method whereNotBetween <span class="smalllinenumber">[line 1357]</span></h3>
+	<h3>method whereNotBetween <span class="smalllinenumber">[line 1430]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3415,7 +3619,8 @@ string
 $column, mixed
 $min, mixed
 $max, [string
-$connector = self::LOGICAL_AND])</code>
+$connector = self::LOGICAL_AND], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -3454,13 +3659,18 @@ $connector = self::LOGICAL_AND])</code>
         <td><b>$connector</b>&nbsp;&nbsp;</td>
         <td>optional logical connector, default AND</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodwhereNotIn"></a>
-	<h3>method whereNotIn <span class="smalllinenumber">[line 1331]</span></h3>
+	<h3>method whereNotIn <span class="smalllinenumber">[line 1402]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3468,7 +3678,8 @@ $connector = self::LOGICAL_AND])</code>
 string
 $column, 
 $values, [string
-$connector = self::LOGICAL_AND])</code>
+$connector = self::LOGICAL_AND], [bool|null
+$quote = null])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -3502,13 +3713,18 @@ $connector = self::LOGICAL_AND])</code>
         <td><b>$connector</b>&nbsp;&nbsp;</td>
         <td>optional logical connector, default AND</td>
       </tr>
+          <tr>
+        <td class="type">bool|null&nbsp;&nbsp;</td>
+        <td><b>$quote</b>&nbsp;&nbsp;</td>
+        <td>optional auto-escape value, default to global</td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="method__toString"></a>
-	<h3>method __toString <span class="smalllinenumber">[line 2089]</span></h3>
+	<h3>method __toString <span class="smalllinenumber">[line 2169]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3726,7 +3942,7 @@ $connector = self::LOGICAL_AND])</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Thu, 26 Jul 2012 18:47:01 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Mon, 03 Sep 2012 00:05:13 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

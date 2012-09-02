@@ -275,6 +275,9 @@ Methods
 
 *   [setPdoConnection](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodsetPdoConnection)
 *   [getPdoConnection](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetPdoConnection)
+*   [setAutoQuote](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodsetAutoQuote)
+*   [getAutoQuote](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodgetAutoQuote)
+*   [autoQuote](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodautoQuote)
 *   [quote](http://jstayton.github.com/QueryBuilder/QueryBuilder/QueryBuilder.html#methodquote)
 
 Feedback
