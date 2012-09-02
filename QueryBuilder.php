@@ -379,13 +379,11 @@
       if ($PdoConnection) {
         return $PdoConnection->quote($value);
       }
+      elseif (is_numeric($value)) {
+        return $value;
+      }
       else {
-        if (is_numeric($value)) {
-          return $value;
-        }
-        else {
-          return "'" . addslashes($value) . "'";
-        }
+        return "'" . addslashes($value) . "'";
       }
     }
 
@@ -408,19 +406,19 @@
      * @return string execution options portion of the query
      */
     public function getOptionsString($includeTrailingSpace = false) {
-      $options = "";
+      $query = "";
 
       if (!$this->option) {
-        return $options;
+        return $query;
       }
 
-      $options .= implode(' ', $this->option);
+      $query .= implode(' ', $this->option);
 
       if ($includeTrailingSpace) {
-        $options .= " ";
+        $query .= " ";
       }
 
-      return $options;
+      return $query;
     }
 
     /**
@@ -430,8 +428,8 @@
      * @return QueryBuilder
      */
     public function mergeOptionsInto(QueryBuilder $QueryBuilder) {
-      foreach ($this->option as $currentOption) {
-        $QueryBuilder->option($currentOption);
+      foreach ($this->option as $option) {
+        $QueryBuilder->option($option);
       }
 
       return $QueryBuilder;
@@ -477,8 +475,8 @@
     public function mergeSelectInto(QueryBuilder $QueryBuilder) {
       $this->mergeOptionsInto($QueryBuilder);
 
-      foreach ($this->select as $currentColumn => $currentAlias) {
-        $QueryBuilder->select($currentColumn, $currentAlias);
+      foreach ($this->select as $column => $alias) {
+        $QueryBuilder->select($column, $alias);
       }
 
       return $QueryBuilder;
@@ -491,31 +489,31 @@
      * @return string SELECT portion of the query
      */
     public function getSelectString($includeText = true) {
-      $select  = "";
+      $query = "";
 
       if (!$this->select) {
-        return $select;
+        return $query;
       }
 
-      $select .= $this->getOptionsString(true);
+      $query .= $this->getOptionsString(true);
 
-      foreach ($this->select as $currentColumn => $currentAlias) {
-        $select .= $currentColumn;
+      foreach ($this->select as $column => $alias) {
+        $query .= $column;
 
-        if ($currentAlias) {
-          $select .= " AS " . $currentAlias;
+        if ($alias) {
+          $query .= " AS " . $alias;
         }
 
-        $select .= ", ";
+        $query .= ", ";
       }
 
-      $select = substr($select, 0, -2);
+      $query = substr($query, 0, -2);
 
-      if ($includeText && $select) {
-        $select = "SELECT " . $select;
+      if ($includeText && $query) {
+        $query = "SELECT " . $query;
       }
 
-      return $select;
+      return $query;
     }
 
     /**
@@ -562,21 +560,21 @@
      * @return string INSERT portion of the query
      */
     public function getInsertString($includeText = true) {
-      $insert = "";
+      $query = "";
 
       if (!$this->insert) {
-        return $insert;
+        return $query;
       }
 
-      $insert .= $this->getOptionsString(true);
+      $query .= $this->getOptionsString(true);
 
-      $insert .= $this->getInsert();
+      $query .= $this->getInsert();
 
-      if ($includeText && $insert) {
-        $insert = "INSERT " . $insert;
+      if ($includeText && $query) {
+        $query = "INSERT " . $query;
       }
 
-      return $insert;
+      return $query;
     }
 
     /**
@@ -623,21 +621,21 @@
      * @return string REPLACE portion of the query
      */
     public function getReplaceString($includeText = true) {
-      $replace = "";
+      $query = "";
 
       if (!$this->replace) {
-        return $replace;
+        return $query;
       }
 
-      $replace .= $this->getOptionsString(true);
+      $query .= $this->getOptionsString(true);
 
-      $replace .= $this->getReplace();
+      $query .= $this->getReplace();
 
-      if ($includeText && $replace) {
-        $replace = "REPLACE " . $replace;
+      if ($includeText && $query) {
+        $query = "REPLACE " . $query;
       }
 
-      return $replace;
+      return $query;
     }
 
     /**
@@ -684,26 +682,26 @@
      * @return string UPDATE portion of the query
      */
     public function getUpdateString($includeText = true) {
-      $update = "";
+      $query = "";
 
       if (!$this->update) {
-        return $update;
+        return $query;
       }
 
-      $update .= $this->getOptionsString(true);
+      $query .= $this->getOptionsString(true);
 
-      $update .= $this->getUpdate();
+      $query .= $this->getUpdate();
 
       // Add any JOINs.
-      $update .= " " . $this->getJoinString();
+      $query .= " " . $this->getJoinString();
 
-      $update  = rtrim($update);
+      $query  = rtrim($query);
 
-      if ($includeText && $update) {
-        $update = "UPDATE " . $update;
+      if ($includeText && $query) {
+        $query = "UPDATE " . $query;
       }
 
-      return $update;
+      return $query;
     }
 
     /**
@@ -742,8 +740,8 @@
         $QueryBuilder->delete();
       }
       else {
-        foreach ($this->delete as $currentTable) {
-          $QueryBuilder->delete($currentTable);
+        foreach ($this->delete as $delete) {
+          $QueryBuilder->delete($delete);
         }
       }
 
@@ -757,26 +755,26 @@
      * @return string DELETE portion of the query
      */
     public function getDeleteString($includeText = true) {
-      $delete  = "";
+      $query = "";
 
       if (!$this->delete && !$this->isDeleteTableFrom()) {
-        return $delete;
+        return $query;
       }
 
-      $delete .= $this->getOptionsString(true);
+      $query .= $this->getOptionsString(true);
 
       if (is_array($this->delete)) {
-        $delete .= implode(', ', $this->delete);
+        $query .= implode(', ', $this->delete);
       }
 
-      if ($includeText && ($delete || $this->isDeleteTableFrom())) {
-        $delete = "DELETE " . $delete;
+      if ($includeText && ($query || $this->isDeleteTableFrom())) {
+        $query = "DELETE " . $query;
 
         // Trim in case the table is specified in FROM.
-        $delete = trim($delete);
+        $query = trim($query);
       }
 
-      return $delete;
+      return $query;
     }
 
     /**
@@ -811,8 +809,8 @@
      * @return QueryBuilder
      */
     public function mergeSetInto(QueryBuilder $QueryBuilder) {
-      foreach ($this->set as $currentSet) {
-        $QueryBuilder->set($currentSet['column'], $currentSet['value'], $currentSet['quote']);
+      foreach ($this->set as $set) {
+        $QueryBuilder->set($set['column'], $set['value'], $set['quote']);
       }
 
       return $QueryBuilder;
@@ -826,30 +824,29 @@
      * @return string SET portion of the query
      */
     public function getSetString($usePlaceholders = true, $includeText = true) {
-      $set = "";
+      $query = "";
       $this->setPlaceholderValues = array();
 
-      foreach ($this->set as $currentSet) {
-        $autoQuote = $this->getAutoQuote($currentSet['quote']);
+      foreach ($this->set as $set) {
+        $autoQuote = $this->getAutoQuote($set['quote']);
 
         if ($usePlaceholders && $autoQuote) {
-          $set .= $currentSet['column'] . " " . self::EQUALS . " ?, ";
+          $query .= $set['column'] . " " . self::EQUALS . " ?, ";
 
-          $this->setPlaceholderValues[] = $currentSet['value'];
+          $this->setPlaceholderValues[] = $set['value'];
         }
         else {
-          $set .= $currentSet['column'] . " " . self::EQUALS . " " .
-                  $this->autoQuote($currentSet['value'], $autoQuote) . ", ";
+          $query .= $set['column'] . " " . self::EQUALS . " " . $this->autoQuote($set['value'], $autoQuote) . ", ";
         }
       }
 
-      $set = substr($set, 0, -2);
+      $query = substr($query, 0, -2);
 
-      if ($includeText && $set) {
-        $set = "SET " . $set;
+      if ($includeText && $query) {
+        $query = "SET " . $query;
       }
 
-      return $set;
+      return $query;
     }
 
     /**
@@ -973,9 +970,8 @@
      * @return QueryBuilder
      */
     public function mergeJoinInto(QueryBuilder $QueryBuilder) {
-      foreach ($this->join as $currentJoin) {
-        $QueryBuilder->join($currentJoin['table'], $currentJoin['criteria'], $currentJoin['type'],
-                            $currentJoin['alias']);
+      foreach ($this->join as $join) {
+        $QueryBuilder->join($join['table'], $join['criteria'], $join['type'], $join['alias']);
       }
 
       return $QueryBuilder;
@@ -1025,41 +1021,41 @@
      * @return string JOIN portion of the query
      */
     public function getJoinString() {
-      $join = "";
+      $query = "";
 
-      foreach ($this->join as $i => $currentJoin) {
-        $join .= " " . $currentJoin['type'] . " " . $currentJoin['table'];
+      foreach ($this->join as $i => $join) {
+        $query .= " " . $join['type'] . " " . $join['table'];
 
-        if ($currentJoin['alias']) {
-          $join .= " AS " . $currentJoin['alias'];
+        if ($join['alias']) {
+          $query .= " AS " . $join['alias'];
         }
 
         // Add ON criteria if specified.
-        if ($currentJoin['criteria']) {
-          $join .= " ON ";
+        if ($join['criteria']) {
+          $query .= " ON ";
 
-          foreach ($currentJoin['criteria'] as $x => $criterion) {
+          foreach ($join['criteria'] as $x => $criterion) {
             // Logically join each criterion with AND.
             if ($x != 0) {
-              $join .= " " . self::LOGICAL_AND . " ";
+              $query .= " " . self::LOGICAL_AND . " ";
             }
 
             // If the criterion does not include an equals sign, assume a
             // column name and join against the same column from the previous
             // table.
             if (strpos($criterion, '=') === false) {
-              $join .= $this->getJoinCriteriaUsingPreviousTable($i, $currentJoin['table'], $criterion);
+              $query .= $this->getJoinCriteriaUsingPreviousTable($i, $join['table'], $criterion);
             }
             else {
-              $join .= $criterion;
+              $query .= $criterion;
             }
           }
         }
       }
 
-      $join = trim($join);
+      $query = trim($query);
 
-      return $join;
+      return $query;
     }
 
     /**
@@ -1069,28 +1065,28 @@
      * @return string FROM portion of the query
      */
     public function getFromString($includeText = true) {
-      $from = "";
+      $query = "";
 
       if (!$this->from) {
-        return $from;
+        return $query;
       }
 
-      $from .= $this->getFrom();
+      $query .= $this->getFrom();
 
       if ($this->getFromAlias()) {
-        $from .= " AS " . $this->getFromAlias();
+        $query .= " AS " . $this->getFromAlias();
       }
 
       // Add any JOINs.
-      $from .= " " . $this->getJoinString();
+      $query .= " " . $this->getJoinString();
 
-      $from  = rtrim($from);
+      $query  = rtrim($query);
 
-      if ($includeText && $from) {
-        $from = "FROM " . $from;
+      if ($includeText && $query) {
+        $query = "FROM " . $query;
       }
 
-      return $from;
+      return $query;
     }
 
     /**
@@ -1133,7 +1129,8 @@
      * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    private function criteria(array &$criteria, $column, $value, $operator = self::EQUALS, $connector = self::LOGICAL_AND, $quote = null) {
+    private function criteria(array &$criteria, $column, $value, $operator = self::EQUALS,
+                              $connector = self::LOGICAL_AND, $quote = null) {
       $criteria[] = array('column'    => $column,
                           'value'     => $value,
                           'operator'  => $operator,
@@ -1167,7 +1164,8 @@
      * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    private function criteriaIn(array &$criteria, $column, array $values, $connector = self::LOGICAL_AND, $quote = null) {
+    private function criteriaIn(array &$criteria, $column, array $values, $connector = self::LOGICAL_AND,
+                                $quote = null) {
       return $this->criteria($criteria, $column, $values, self::IN, $connector, $quote);
     }
 
@@ -1181,7 +1179,8 @@
      * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    private function criteriaNotIn(array &$criteria, $column, array $values, $connector = self::LOGICAL_AND, $quote = null) {
+    private function criteriaNotIn(array &$criteria, $column, array $values, $connector = self::LOGICAL_AND,
+                                   $quote = null) {
       return $this->criteria($criteria, $column, $values, self::NOT_IN, $connector, $quote);
     }
 
@@ -1196,7 +1195,8 @@
      * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    private function criteriaBetween(array &$criteria, $column, $min, $max, $connector = self::LOGICAL_AND, $quote = null) {
+    private function criteriaBetween(array &$criteria, $column, $min, $max, $connector = self::LOGICAL_AND,
+                                     $quote = null) {
       return $this->criteria($criteria, $column, array($min, $max), self::BETWEEN, $connector, $quote);
     }
 
@@ -1211,7 +1211,8 @@
      * @param  bool|null $quote optional auto-escape value, default to global
      * @return QueryBuilder
      */
-    private function criteriaNotBetween(array &$criteria, $column, $min, $max, $connector = self::LOGICAL_AND, $quote = null) {
+    private function criteriaNotBetween(array &$criteria, $column, $min, $max, $connector = self::LOGICAL_AND,
+                                        $quote = null) {
       return $this->criteria($criteria, $column, array($min, $max), self::NOT_BETWEEN, $connector, $quote);
     }
 
@@ -1223,18 +1224,19 @@
      * @param  array $placeholderValues optional placeholder values array
      * @return string WHERE or HAVING portion of the query
      */
-    private function getCriteriaString(array &$criteria, $usePlaceholders = true, array &$placeholderValues = array()) {
-      $string = "";
+    private function getCriteriaString(array &$criteria, $usePlaceholders = true,
+                                       array &$placeholderValues = array()) {
+      $query = "";
       $placeholderValues = array();
 
       $useConnector = false;
 
-      foreach ($criteria as $i => $currentCriterion) {
-        if (array_key_exists('bracket', $currentCriterion)) {
+      foreach ($criteria as $i => $criterion) {
+        if (array_key_exists('bracket', $criterion)) {
           // If an open bracket, include the logical connector.
-          if (strcmp($currentCriterion['bracket'], self::BRACKET_OPEN) == 0) {
+          if (strcmp($criterion['bracket'], self::BRACKET_OPEN) == 0) {
             if ($useConnector) {
-              $string .= " " . $currentCriterion['connector'] . " ";
+              $query .= " " . $criterion['connector'] . " ";
             }
 
             $useConnector = false;
@@ -1243,28 +1245,28 @@
             $useConnector = true;
           }
 
-          $string .= $currentCriterion['bracket'];
+          $query .= $criterion['bracket'];
         }
         else {
           if ($useConnector) {
-            $string .= " " . $currentCriterion['connector'] . " ";
+            $query .= " " . $criterion['connector'] . " ";
           }
 
           $useConnector = true;
-          $autoQuote = $this->getAutoQuote($currentCriterion['quote']);
+          $autoQuote = $this->getAutoQuote($criterion['quote']);
 
-          switch ($currentCriterion['operator']) {
+          switch ($criterion['operator']) {
             case self::BETWEEN:
             case self::NOT_BETWEEN:
               if ($usePlaceholders && $autoQuote) {
                 $value = "? " . self::LOGICAL_AND . " ?";
 
-                $placeholderValues[] = $currentCriterion['value'][0];
-                $placeholderValues[] = $currentCriterion['value'][1];
+                $placeholderValues[] = $criterion['value'][0];
+                $placeholderValues[] = $criterion['value'][1];
               }
               else {
-                $value = $this->autoQuote($currentCriterion['value'][0], $autoQuote) . " " . self::LOGICAL_AND . " " .
-                         $this->autoQuote($currentCriterion['value'][1], $autoQuote);
+                $value = $this->autoQuote($criterion['value'][0], $autoQuote) . " " . self::LOGICAL_AND . " " .
+                         $this->autoQuote($criterion['value'][1], $autoQuote);
               }
 
               break;
@@ -1272,16 +1274,16 @@
             case self::IN:
             case self::NOT_IN:
               if ($usePlaceholders && $autoQuote) {
-                $value = self::BRACKET_OPEN . substr(str_repeat('?, ', count($currentCriterion['value'])), 0, -2) .
+                $value = self::BRACKET_OPEN . substr(str_repeat('?, ', count($criterion['value'])), 0, -2) .
                          self::BRACKET_CLOSE;
 
-                $placeholderValues = array_merge($placeholderValues, $currentCriterion['value']);
+                $placeholderValues = array_merge($placeholderValues, $criterion['value']);
               }
               else {
                 $value = self::BRACKET_OPEN;
 
-                foreach ($currentCriterion['value'] as $currentValue) {
-                  $value .= $this->autoQuote($currentValue, $autoQuote) . ", ";
+                foreach ($criterion['value'] as $criterionValue) {
+                  $value .= $this->autoQuote($criterionValue, $autoQuote) . ", ";
                 }
 
                 $value  = substr($value, 0, -2);
@@ -1292,7 +1294,7 @@
 
             case self::IS:
             case self::IS_NOT:
-              $value = $currentCriterion['value'];
+              $value = $criterion['value'];
 
               break;
 
@@ -1300,20 +1302,20 @@
               if ($usePlaceholders && $autoQuote) {
                 $value = "?";
 
-                $placeholderValues[] = $currentCriterion['value'];
+                $placeholderValues[] = $criterion['value'];
               }
               else {
-                $value = $this->autoQuote($currentCriterion['value'], $autoQuote);
+                $value = $this->autoQuote($criterion['value'], $autoQuote);
               }
 
               break;
           }
 
-          $string .= $currentCriterion['column'] . " " . $currentCriterion['operator'] . " " . $value;
+          $query .= $criterion['column'] . " " . $criterion['operator'] . " " . $value;
         }
       }
 
-      return $string;
+      return $query;
     }
 
     /**
@@ -1436,19 +1438,19 @@
      * @return QueryBuilder
      */
     public function mergeWhereInto(QueryBuilder $QueryBuilder) {
-      foreach ($this->where as $currentWhere) {
+      foreach ($this->where as $where) {
         // Handle open/close brackets differently than other criteria.
-        if (array_key_exists('bracket', $currentWhere)) {
-          if (strcmp($currentWhere['bracket'], self::BRACKET_OPEN) == 0) {
-            $QueryBuilder->openWhere($currentWhere['connector']);
+        if (array_key_exists('bracket', $where)) {
+          if (strcmp($where['bracket'], self::BRACKET_OPEN) == 0) {
+            $QueryBuilder->openWhere($where['connector']);
           }
           else {
             $QueryBuilder->closeWhere();
           }
         }
         else {
-          $QueryBuilder->where($currentWhere['column'], $currentWhere['value'], $currentWhere['operator'],
-                               $currentWhere['connector'], $currentWhere['quote']);
+          $QueryBuilder->where($where['column'], $where['value'], $where['operator'],
+                               $where['connector'], $where['quote']);
         }
       }
 
@@ -1463,13 +1465,13 @@
      * @return string WHERE portion of the query
      */
     public function getWhereString($usePlaceholders = true, $includeText = true) {
-      $where = $this->getCriteriaString($this->where, $usePlaceholders, $this->wherePlaceholderValues);
+      $query = $this->getCriteriaString($this->where, $usePlaceholders, $this->wherePlaceholderValues);
 
-      if ($includeText && $where) {
-        $where = "WHERE " . $where;
+      if ($includeText && $query) {
+        $query = "WHERE " . $query;
       }
 
-      return $where;
+      return $query;
     }
 
     /**
@@ -1504,8 +1506,8 @@
      * @return QueryBuilder
      */
     public function mergeGroupByInto(QueryBuilder $QueryBuilder) {
-      foreach ($this->groupBy as $currentGroupBy) {
-        $QueryBuilder->groupBy($currentGroupBy['column'], $currentGroupBy['order']);
+      foreach ($this->groupBy as $groupBy) {
+        $QueryBuilder->groupBy($groupBy['column'], $groupBy['order']);
       }
 
       return $QueryBuilder;
@@ -1518,19 +1520,19 @@
      * @return string GROUP BY portion of the query
      */
     public function getGroupByString($includeText = true) {
-      $groupBy = "";
+      $query = "";
 
-      foreach ($this->groupBy as $currentGroupBy) {
-        $groupBy .= $currentGroupBy['column'] . " " . $currentGroupBy['order'] . ", ";
+      foreach ($this->groupBy as $groupBy) {
+        $query .= $groupBy['column'] . " " . $groupBy['order'] . ", ";
       }
 
-      $groupBy = substr($groupBy, 0, -2);
+      $query = substr($query, 0, -2);
 
-      if ($includeText && $groupBy) {
-        $groupBy = "GROUP BY " . $groupBy;
+      if ($includeText && $query) {
+        $query = "GROUP BY " . $query;
       }
 
-      return $groupBy;
+      return $query;
     }
 
     /**
@@ -1653,19 +1655,19 @@
      * @return QueryBuilder
      */
     public function mergeHavingInto(QueryBuilder $QueryBuilder) {
-      foreach ($this->having as $currentHaving) {
+      foreach ($this->having as $having) {
         // Handle open/close brackets differently than other criteria.
-        if (array_key_exists('bracket', $currentHaving)) {
-          if (strcmp($currentHaving['bracket'], self::BRACKET_OPEN) == 0) {
-            $QueryBuilder->openHaving($currentHaving['connector']);
+        if (array_key_exists('bracket', $having)) {
+          if (strcmp($having['bracket'], self::BRACKET_OPEN) == 0) {
+            $QueryBuilder->openHaving($having['connector']);
           }
           else {
             $QueryBuilder->closeHaving();
           }
         }
         else {
-          $QueryBuilder->having($currentHaving['column'], $currentHaving['value'], $currentHaving['operator'],
-                                $currentHaving['connector'], $currentHaving['quote']);
+          $QueryBuilder->having($having['column'], $having['value'], $having['operator'],
+                                $having['connector'], $having['quote']);
         }
       }
 
@@ -1680,13 +1682,13 @@
      * @return string HAVING portion of the query
      */
     public function getHavingString($usePlaceholders = true, $includeText = true) {
-      $having = $this->getCriteriaString($this->having, $usePlaceholders, $this->havingPlaceholderValues);
+      $query = $this->getCriteriaString($this->having, $usePlaceholders, $this->havingPlaceholderValues);
 
-      if ($includeText && $having) {
-        $having = "HAVING " . $having;
+      if ($includeText && $query) {
+        $query = "HAVING " . $query;
       }
 
-      return $having;
+      return $query;
     }
 
     /**
@@ -1721,8 +1723,8 @@
      * @return QueryBuilder
      */
     public function mergeOrderByInto(QueryBuilder $QueryBuilder) {
-      foreach ($this->orderBy as $currentOrderBy) {
-        $QueryBuilder->orderBy($currentOrderBy['column'], $currentOrderBy['order']);
+      foreach ($this->orderBy as $orderBy) {
+        $QueryBuilder->orderBy($orderBy['column'], $orderBy['order']);
       }
 
       return $QueryBuilder;
@@ -1735,19 +1737,19 @@
      * @return string ORDER BY portion of the query
      */
     public function getOrderByString($includeText = true) {
-      $orderBy = "";
+      $query = "";
 
-      foreach ($this->orderBy as $currentOrderBy) {
-        $orderBy .= $currentOrderBy['column'] . " " . $currentOrderBy['order'] . ", ";
+      foreach ($this->orderBy as $orderBy) {
+        $query .= $orderBy['column'] . " " . $orderBy['order'] . ", ";
       }
 
-      $orderBy = substr($orderBy, 0, -2);
+      $query = substr($query, 0, -2);
 
-      if ($includeText && $orderBy) {
-        $orderBy = "ORDER BY " . $orderBy;
+      if ($includeText && $query) {
+        $query = "ORDER BY " . $query;
       }
 
-      return $orderBy;
+      return $query;
     }
 
     /**
@@ -1803,23 +1805,23 @@
      * @return string LIMIT portion of the query
      */
     public function getLimitString($includeText = true) {
-      $limit = "";
+      $query = "";
 
       if (!$this->limit) {
-        return $limit;
+        return $query;
       }
 
-      $limit .= $this->limit['limit'];
+      $query .= $this->limit['limit'];
 
       if ($this->limit['offset'] !== 0) {
-        $limit .= " OFFSET " . $this->limit['offset'];
+        $query .= " OFFSET " . $this->limit['offset'];
       }
 
-      if ($includeText && $limit) {
-        $limit = "LIMIT " . $limit;
+      if ($includeText && $query) {
+        $query = "LIMIT " . $query;
       }
 
-      return $limit;
+      return $query;
     }
 
     /**
