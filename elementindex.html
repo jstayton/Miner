@@ -61,6 +61,8 @@
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodandHaving">QueryBuilder::andHaving()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add an AND HAVING condition.</dd>
 							<dt><b>andWhere</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodandWhere">QueryBuilder::andWhere()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add an AND WHERE condition.</dd>
+							<dt><b>autoQuote</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodautoQuote">QueryBuilder::autoQuote()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Safely escape a value if auto-quoting is enabled, or do nothing if  disabled.</dd>
 					</dl>
 	</div>
 	<a href="elementindex.html#top">top</a><br>
@@ -129,6 +131,8 @@
 	<div>
 		<h2>g</h2>
 		<dl>
+							<dt><b>getAutoQuote</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetAutoQuote">QueryBuilder::getAutoQuote()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get whether values will be automatically escaped.</dd>
 							<dt><b>getDeleteString</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodgetDeleteString">QueryBuilder::getDeleteString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the DELETE portion of the query as a string.</dd>
 							<dt><b>getFrom</b></dt>
@@ -397,6 +401,8 @@
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodselect">QueryBuilder::select()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add a SELECT column, table, or expression with optional alias.</dd>
 							<dt><b>set</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodset">QueryBuilder::set()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add a column value to INSERT or UPDATE.</dd>
+							<dt><b>setAutoQuote</b></dt>
+				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodsetAutoQuote">QueryBuilder::setAutoQuote()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set whether to automatically escape values.</dd>
 							<dt><b>setPdoConnection</b></dt>
 				<dd>in file QueryBuilder.php, method <a href="QueryBuilder/QueryBuilder.html#methodsetPdoConnection">QueryBuilder::setPdoConnection()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the PDO database connection to use in executing this query.</dd>
 					</dl>
@@ -444,7 +450,7 @@
 	<a href="elementindex.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Thu, 26 Jul 2012 18:47:01 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Mon, 03 Sep 2012 00:05:13 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>
