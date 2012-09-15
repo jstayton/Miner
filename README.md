@@ -15,12 +15,16 @@ Requirements
 
 *   PHP >= 5.1.0
 
+Installation
+------------
+
+1.  Copy `QueryBuilder.php` to your codebase, perhaps to the `vendor`
+    directory.
+2.  Add the `QueryBuilder` class to your autoloader or `require` the file
+    directly.
+
 Getting Started
 ---------------
-
-To start, make sure to add the class to your autoloader or require it directly:
-
-    require "QueryBuilder.php";
 
 Composing a query with QueryBuilder is very similar to writing the SQL by hand,
 as many of the directives map directly to methods:
@@ -288,3 +292,12 @@ Feedback
 Please open an issue to request a feature or submit a bug report. Or even if
 you just want to provide some feedback, I'd love to hear. I'm also available on
 Twitter as [@jstayton](http://twitter.com/jstayton).
+
+Contributing
+------------
+
+1.  Fork it.
+2.  Create your feature branch (`git checkout -b my-new-feature`).
+3.  Commit your changes (`git commit -am 'Added some feature'`).
+4.  Push to the branch (`git push origin my-new-feature`).
+5.  Create a new Pull Request.
