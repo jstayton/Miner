@@ -850,8 +850,7 @@
     }
 
     /**
-     * Get the SET placeholder values when {@link QueryBuilder::getSetString()}
-     * is called with the parameter to use placeholder values.
+     * Get the SET placeholder values.
      *
      * @return array SET placeholder values
      */
@@ -1475,9 +1474,7 @@
     }
 
     /**
-     * Get the WHERE placeholder values when
-     * {@link QueryBuilder::getWhereString()} is called with the parameter to
-     * use placeholder values.
+     * Get the WHERE placeholder values.
      *
      * @return array WHERE placeholder values
      */
@@ -1698,9 +1695,7 @@
     }
 
     /**
-     * Get the HAVING placeholder values when
-     * {@link QueryBuilder::getHavingString()} is called with the parameter to
-     * use placeholder values.
+     * Get the HAVING placeholder values.
      *
      * @return array HAVING placeholder values
      */
@@ -1879,10 +1874,10 @@
      * Merge this QueryBuilder into the given QueryBuilder.
      *
      * @param  QueryBuilder $QueryBuilder to merge into
-     * @param  bool $overwriteLimit optional overwrite limit, default true
+     * @param  bool $overrideLimit optional override limit, default true
      * @return QueryBuilder
      */
-    public function mergeInto(QueryBuilder $QueryBuilder, $overwriteLimit = true) {
+    public function mergeInto(QueryBuilder $QueryBuilder, $overrideLimit = true) {
       if ($this->isSelect()) {
         $this->mergeSelectInto($QueryBuilder);
         $this->mergeFromInto($QueryBuilder);
@@ -1892,7 +1887,7 @@
         $this->mergeHavingInto($QueryBuilder);
         $this->mergeOrderByInto($QueryBuilder);
 
-        if ($overwriteLimit) {
+        if ($overrideLimit) {
           $this->mergeLimitInto($QueryBuilder);
         }
       }
@@ -1914,7 +1909,7 @@
         if (!$this->join) {
           $this->mergeOrderByInto($QueryBuilder);
 
-          if ($overwriteLimit) {
+          if ($overrideLimit) {
             $this->mergeLimitInto($QueryBuilder);
           }
         }
@@ -1930,7 +1925,7 @@
         if ($this->isDeleteTableFrom()) {
           $this->mergeOrderByInto($QueryBuilder);
 
-          if ($overwriteLimit) {
+          if ($overrideLimit) {
             $this->mergeLimitInto($QueryBuilder);
           }
         }
@@ -2129,8 +2124,7 @@
     }
 
     /**
-     * Get all placeholder values when {@link QueryBuilder::getQueryString()}
-     * is called with the parameter to use placeholder values.
+     * Get all placeholder values (SET, WHERE, and HAVING).
      *
      * @return array all placeholder values
      */
