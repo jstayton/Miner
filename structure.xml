@@ -1,0 +1,3153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a10" title="">
+  <file path="QueryBuilder.php" hash="19b7ae2be540202cae46a4841c7bc8cc" package="Default">
+    <class final="false" abstract="false" namespace="global" line="13" package="QueryBuilder">
+      <extends/>
+      <name>QueryBuilder</name>
+      <full_name>\QueryBuilder</full_name>
+      <docblock line="3">
+        <description><![CDATA[A dead simple PHP 5 OO interface for building SQL queries.]]></description>
+        <long-description><![CDATA[<p>No manual
+string concatenation necessary.</p>]]></long-description>
+        <tag line="3" name="author" description="Justin Stayton &lt;justin.stayton@gmail.com&gt;"/>
+        <tag line="3" name="copyright" description="Copyright 2011-2012 by Justin Stayton"/>
+        <tag line="3" name="license" description="http://en.wikipedia.org/wiki/MIT_License MIT License"/>
+        <tag line="3" name="package" description="QueryBuilder"/>
+        <tag line="3" name="version" description="4.1.1"/>
+      </docblock>
+      <constant namespace="global" line="18" package="QueryBuilder">
+        <name>INNER_JOIN</name>
+        <full_name>INNER_JOIN</full_name>
+        <value><![CDATA["INNER JOIN"]]></value>
+        <docblock line="15">
+          <description><![CDATA[INNER JOIN type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="23" package="QueryBuilder">
+        <name>LEFT_JOIN</name>
+        <full_name>LEFT_JOIN</full_name>
+        <value><![CDATA["LEFT JOIN"]]></value>
+        <docblock line="20">
+          <description><![CDATA[LEFT JOIN type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="28" package="QueryBuilder">
+        <name>RIGHT_JOIN</name>
+        <full_name>RIGHT_JOIN</full_name>
+        <value><![CDATA["RIGHT JOIN"]]></value>
+        <docblock line="25">
+          <description><![CDATA[RIGHT JOIN type.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="33" package="QueryBuilder">
+        <name>LOGICAL_AND</name>
+        <full_name>LOGICAL_AND</full_name>
+        <value><![CDATA["AND"]]></value>
+        <docblock line="30">
+          <description><![CDATA[AND logical operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="38" package="QueryBuilder">
+        <name>LOGICAL_OR</name>
+        <full_name>LOGICAL_OR</full_name>
+        <value><![CDATA["OR"]]></value>
+        <docblock line="35">
+          <description><![CDATA[OR logical operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="43" package="QueryBuilder">
+        <name>EQUALS</name>
+        <full_name>EQUALS</full_name>
+        <value><![CDATA["="]]></value>
+        <docblock line="40">
+          <description><![CDATA[Equals comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="48" package="QueryBuilder">
+        <name>NOT_EQUALS</name>
+        <full_name>NOT_EQUALS</full_name>
+        <value><![CDATA["!="]]></value>
+        <docblock line="45">
+          <description><![CDATA[Not equals comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="53" package="QueryBuilder">
+        <name>LESS_THAN</name>
+        <full_name>LESS_THAN</full_name>
+        <value><![CDATA["<"]]></value>
+        <docblock line="50">
+          <description><![CDATA[Less than comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="58" package="QueryBuilder">
+        <name>LESS_THAN_OR_EQUAL</name>
+        <full_name>LESS_THAN_OR_EQUAL</full_name>
+        <value><![CDATA["<="]]></value>
+        <docblock line="55">
+          <description><![CDATA[Less than or equal to comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="63" package="QueryBuilder">
+        <name>GREATER_THAN</name>
+        <full_name>GREATER_THAN</full_name>
+        <value><![CDATA[">"]]></value>
+        <docblock line="60">
+          <description><![CDATA[Greater than comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="68" package="QueryBuilder">
+        <name>GREATER_THAN_OR_EQUAL</name>
+        <full_name>GREATER_THAN_OR_EQUAL</full_name>
+        <value><![CDATA[">="]]></value>
+        <docblock line="65">
+          <description><![CDATA[Greater than or equal to comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="73" package="QueryBuilder">
+        <name>IN</name>
+        <full_name>IN</full_name>
+        <value><![CDATA["IN"]]></value>
+        <docblock line="70">
+          <description><![CDATA[IN comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="78" package="QueryBuilder">
+        <name>NOT_IN</name>
+        <full_name>NOT_IN</full_name>
+        <value><![CDATA["NOT IN"]]></value>
+        <docblock line="75">
+          <description><![CDATA[NOT IN comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="83" package="QueryBuilder">
+        <name>LIKE</name>
+        <full_name>LIKE</full_name>
+        <value><![CDATA["LIKE"]]></value>
+        <docblock line="80">
+          <description><![CDATA[LIKE comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="88" package="QueryBuilder">
+        <name>NOT_LIKE</name>
+        <full_name>NOT_LIKE</full_name>
+        <value><![CDATA["NOT LIKE"]]></value>
+        <docblock line="85">
+          <description><![CDATA[NOT LIKE comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="93" package="QueryBuilder">
+        <name>ILIKE</name>
+        <full_name>ILIKE</full_name>
+        <value><![CDATA["ILIKE"]]></value>
+        <docblock line="90">
+          <description><![CDATA[ILIKE comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="98" package="QueryBuilder">
+        <name>REGEX</name>
+        <full_name>REGEX</full_name>
+        <value><![CDATA["REGEXP"]]></value>
+        <docblock line="95">
+          <description><![CDATA[REGEXP comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="103" package="QueryBuilder">
+        <name>NOT_REGEX</name>
+        <full_name>NOT_REGEX</full_name>
+        <value><![CDATA["NOT REGEXP"]]></value>
+        <docblock line="100">
+          <description><![CDATA[NOT REGEXP comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="108" package="QueryBuilder">
+        <name>BETWEEN</name>
+        <full_name>BETWEEN</full_name>
+        <value><![CDATA["BETWEEN"]]></value>
+        <docblock line="105">
+          <description><![CDATA[BETWEEN comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="113" package="QueryBuilder">
+        <name>NOT_BETWEEN</name>
+        <full_name>NOT_BETWEEN</full_name>
+        <value><![CDATA["NOT BETWEEN"]]></value>
+        <docblock line="110">
+          <description><![CDATA[NOT BETWEEN comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="118" package="QueryBuilder">
+        <name>IS</name>
+        <full_name>IS</full_name>
+        <value><![CDATA["IS"]]></value>
+        <docblock line="115">
+          <description><![CDATA[IS comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="123" package="QueryBuilder">
+        <name>IS_NOT</name>
+        <full_name>IS_NOT</full_name>
+        <value><![CDATA["IS NOT"]]></value>
+        <docblock line="120">
+          <description><![CDATA[IS NOT comparison operator.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="128" package="QueryBuilder">
+        <name>ORDER_BY_ASC</name>
+        <full_name>ORDER_BY_ASC</full_name>
+        <value><![CDATA["ASC"]]></value>
+        <docblock line="125">
+          <description><![CDATA[Ascending ORDER BY direction.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="133" package="QueryBuilder">
+        <name>ORDER_BY_DESC</name>
+        <full_name>ORDER_BY_DESC</full_name>
+        <value><![CDATA["DESC"]]></value>
+        <docblock line="130">
+          <description><![CDATA[Descending ORDER BY direction.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="138" package="QueryBuilder">
+        <name>BRACKET_OPEN</name>
+        <full_name>BRACKET_OPEN</full_name>
+        <value><![CDATA["("]]></value>
+        <docblock line="135">
+          <description><![CDATA[Open bracket for grouping criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="global" line="143" package="QueryBuilder">
+        <name>BRACKET_CLOSE</name>
+        <full_name>BRACKET_CLOSE</full_name>
+        <value><![CDATA[")"]]></value>
+        <docblock line="140">
+          <description><![CDATA[Closing bracket for grouping criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </constant>
+      <property final="false" static="false" visibility="private" line="150" namespace="global" package="Default">
+        <name>$PdoConnection</name>
+        <default><![CDATA[]]></default>
+        <docblock line="145">
+          <description><![CDATA[PDO database connection to use in executing the query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="145" name="var" description="" type="\PDO|null">
+            <type by_reference="false">\PDO</type>
+            <type by_reference="false">null</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="157" namespace="global" package="Default">
+        <name>$autoQuote</name>
+        <default><![CDATA[]]></default>
+        <docblock line="152">
+          <description><![CDATA[Whether to automatically escape values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="152" name="var" description="" type="bool|null">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="164" namespace="global" package="Default">
+        <name>$option</name>
+        <default><![CDATA[]]></default>
+        <docblock line="159">
+          <description><![CDATA[Execution options like DISTINCT and SQL_CALC_FOUND_ROWS.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="159" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="171" namespace="global" package="Default">
+        <name>$select</name>
+        <default><![CDATA[]]></default>
+        <docblock line="166">
+          <description><![CDATA[Columns, tables, and expressions to SELECT from.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="166" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="178" namespace="global" package="Default">
+        <name>$insert</name>
+        <default><![CDATA[]]></default>
+        <docblock line="173">
+          <description><![CDATA[Table to INSERT into.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="173" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="185" namespace="global" package="Default">
+        <name>$replace</name>
+        <default><![CDATA[]]></default>
+        <docblock line="180">
+          <description><![CDATA[Table to REPLACE into.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="180" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="192" namespace="global" package="Default">
+        <name>$update</name>
+        <default><![CDATA[]]></default>
+        <docblock line="187">
+          <description><![CDATA[Table to UPDATE.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="187" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="199" namespace="global" package="Default">
+        <name>$delete</name>
+        <default><![CDATA[]]></default>
+        <docblock line="194">
+          <description><![CDATA[Tables to DELETE from, or true if deleting from the FROM table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="194" name="var" description="" type="array|true">
+            <type by_reference="false">array</type>
+            <type by_reference="false">true</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="206" namespace="global" package="Default">
+        <name>$set</name>
+        <default><![CDATA[]]></default>
+        <docblock line="201">
+          <description><![CDATA[Column values to INSERT or UPDATE.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="201" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="213" namespace="global" package="Default">
+        <name>$from</name>
+        <default><![CDATA[]]></default>
+        <docblock line="208">
+          <description><![CDATA[Table to select FROM.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="208" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="220" namespace="global" package="Default">
+        <name>$join</name>
+        <default><![CDATA[]]></default>
+        <docblock line="215">
+          <description><![CDATA[JOIN tables and ON criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="215" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="227" namespace="global" package="Default">
+        <name>$where</name>
+        <default><![CDATA[]]></default>
+        <docblock line="222">
+          <description><![CDATA[WHERE criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="222" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="234" namespace="global" package="Default">
+        <name>$groupBy</name>
+        <default><![CDATA[]]></default>
+        <docblock line="229">
+          <description><![CDATA[Columns to GROUP BY.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="229" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="241" namespace="global" package="Default">
+        <name>$having</name>
+        <default><![CDATA[]]></default>
+        <docblock line="236">
+          <description><![CDATA[HAVING criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="236" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="248" namespace="global" package="Default">
+        <name>$orderBy</name>
+        <default><![CDATA[]]></default>
+        <docblock line="243">
+          <description><![CDATA[Columns to ORDER BY.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="243" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="255" namespace="global" package="Default">
+        <name>$limit</name>
+        <default><![CDATA[]]></default>
+        <docblock line="250">
+          <description><![CDATA[Number of rows to return from offset.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="250" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="262" namespace="global" package="Default">
+        <name>$setPlaceholderValues</name>
+        <default><![CDATA[]]></default>
+        <docblock line="257">
+          <description><![CDATA[SET placeholder values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="257" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="269" namespace="global" package="Default">
+        <name>$wherePlaceholderValues</name>
+        <default><![CDATA[]]></default>
+        <docblock line="264">
+          <description><![CDATA[WHERE placeholder values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="264" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="276" namespace="global" package="Default">
+        <name>$havingPlaceholderValues</name>
+        <default><![CDATA[]]></default>
+        <docblock line="271">
+          <description><![CDATA[HAVING placeholder values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="271" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="285" package="QueryBuilder">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="278">
+          <description><![CDATA[Constructor.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="278" name="param" description="optional PDO database connection" type="\PDO|null" variable="$PdoConnection">
+            <type by_reference="false">\PDO</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="278" name="param" description="optional auto-escape values, default true" type="bool" variable="$autoQuote">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="278" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="285">
+          <name>$PdoConnection</name>
+          <default><![CDATA[null]]></default>
+          <type>\PDO</type>
+        </argument>
+        <argument line="285">
+          <name>$autoQuote</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="311" package="QueryBuilder">
+        <name>setPdoConnection</name>
+        <full_name>setPdoConnection</full_name>
+        <docblock line="305">
+          <description><![CDATA[Set the PDO database connection to use in executing this query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="305" name="param" description="optional PDO database connection" type="\PDO|null" variable="$PdoConnection">
+            <type by_reference="false">\PDO</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="305" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="311">
+          <name>$PdoConnection</name>
+          <default><![CDATA[null]]></default>
+          <type>\PDO</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="322" package="QueryBuilder">
+        <name>getPdoConnection</name>
+        <full_name>getPdoConnection</full_name>
+        <docblock line="317">
+          <description><![CDATA[Get the PDO database connection to use in executing this query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="317" name="return" description="" type="\PDO|null">
+            <type by_reference="false">\PDO</type>
+            <type by_reference="false">null</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="332" package="QueryBuilder">
+        <name>setAutoQuote</name>
+        <full_name>setAutoQuote</full_name>
+        <docblock line="326">
+          <description><![CDATA[Set whether to automatically escape values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="326" name="param" description="whether to automatically escape values" type="bool|null" variable="$autoQuote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="326" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="332">
+          <name>$autoQuote</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="348" package="QueryBuilder">
+        <name>getAutoQuote</name>
+        <full_name>getAutoQuote</full_name>
+        <docblock line="338">
+          <description><![CDATA[Get whether values will be automatically escaped.]]></description>
+          <long-description><![CDATA[<p>The $override parameter is for convenience in checking if a specific
+value should be quoted differently than the rest. 'null' defers to the
+global setting.</p>]]></long-description>
+          <tag line="338" name="param" description="value-specific override for convenience" type="bool|null" variable="$override">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="338" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="348">
+          <name>$override</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="364" package="QueryBuilder">
+        <name>autoQuote</name>
+        <full_name>autoQuote</full_name>
+        <docblock line="352">
+          <description><![CDATA[Safely escape a value if auto-quoting is enabled, or do nothing if
+disabled.]]></description>
+          <long-description><![CDATA[<p>The $override parameter is for convenience in checking if a specific
+value should be quoted differently than the rest. 'null' defers to the
+global setting.</p>]]></long-description>
+          <tag line="352" name="param" description="value to escape (or not)" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="352" name="param" description="value-specific override for convenience" type="bool|null" variable="$override">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="352" name="return" description="value (escaped or original) or false if failed" type="mixed|false">
+            <type by_reference="false">mixed</type>
+            <type by_reference="false">false</type>
+          </tag>
+        </docblock>
+        <argument line="364">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="364">
+          <name>$override</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="374" package="QueryBuilder">
+        <name>quote</name>
+        <full_name>quote</full_name>
+        <docblock line="368">
+          <description><![CDATA[Safely escape a value for use in a query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="368" name="param" description="value to escape" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="368" name="return" description="escaped value or false if failed" type="mixed|false">
+            <type by_reference="false">mixed</type>
+            <type by_reference="false">false</type>
+          </tag>
+        </docblock>
+        <argument line="374">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="396" package="QueryBuilder">
+        <name>option</name>
+        <full_name>option</full_name>
+        <docblock line="390">
+          <description><![CDATA[Add an execution option like DISTINCT or SQL_CALC_FOUND_ROWS.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="390" name="param" description="execution option to add" type="string" variable="$option">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="390" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="396">
+          <name>$option</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="408" package="QueryBuilder">
+        <name>getOptionsString</name>
+        <full_name>getOptionsString</full_name>
+        <docblock line="402">
+          <description><![CDATA[Get the execution options portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="402" name="param" description="optional include space after options" type="bool" variable="$includeTrailingSpace">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="402" name="return" description="execution options portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="408">
+          <name>$includeTrailingSpace</name>
+          <default><![CDATA[false]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="430" package="QueryBuilder">
+        <name>mergeOptionsInto</name>
+        <full_name>mergeOptionsInto</full_name>
+        <docblock line="424">
+          <description><![CDATA[Merge this QueryBuilder's execution options into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="424" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="424" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="430">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="443" package="QueryBuilder">
+        <name>calcFoundRows</name>
+        <full_name>calcFoundRows</full_name>
+        <docblock line="438">
+          <description><![CDATA[Add SQL_CALC_FOUND_ROWS execution option.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="438" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="452" package="QueryBuilder">
+        <name>distinct</name>
+        <full_name>distinct</full_name>
+        <docblock line="447">
+          <description><![CDATA[Add DISTINCT execution option.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="447" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="463" package="QueryBuilder">
+        <name>select</name>
+        <full_name>select</full_name>
+        <docblock line="456">
+          <description><![CDATA[Add a SELECT column, table, or expression with optional alias.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="456" name="param" description="column name, table name, or expression" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="456" name="param" description="optional alias" type="string" variable="$alias">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="456" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="463">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="463">
+          <name>$alias</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="475" package="QueryBuilder">
+        <name>mergeSelectInto</name>
+        <full_name>mergeSelectInto</full_name>
+        <docblock line="469">
+          <description><![CDATA[Merge this QueryBuilder's SELECT into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="469" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="469" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="475">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="491" package="QueryBuilder">
+        <name>getSelectString</name>
+        <full_name>getSelectString</full_name>
+        <docblock line="485">
+          <description><![CDATA[Get the SELECT portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="485" name="param" description="optional include 'SELECT' text, default true" type="bool" variable="$includeText">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="485" name="return" description="SELECT portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="491">
+          <name>$includeText</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="525" package="QueryBuilder">
+        <name>insert</name>
+        <full_name>insert</full_name>
+        <docblock line="519">
+          <description><![CDATA[Set the INSERT table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="519" name="param" description="INSERT table" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="519" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="525">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="537" package="QueryBuilder">
+        <name>mergeInsertInto</name>
+        <full_name>mergeInsertInto</full_name>
+        <docblock line="531">
+          <description><![CDATA[Merge this QueryBuilder's INSERT into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="531" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="531" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="537">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="552" package="QueryBuilder">
+        <name>getInsert</name>
+        <full_name>getInsert</full_name>
+        <docblock line="547">
+          <description><![CDATA[Get the INSERT table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="547" name="return" description="INSERT table" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="562" package="QueryBuilder">
+        <name>getInsertString</name>
+        <full_name>getInsertString</full_name>
+        <docblock line="556">
+          <description><![CDATA[Get the INSERT portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="556" name="param" description="optional include 'INSERT' text, default true" type="bool" variable="$includeText">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="556" name="return" description="INSERT portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="562">
+          <name>$includeText</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="586" package="QueryBuilder">
+        <name>replace</name>
+        <full_name>replace</full_name>
+        <docblock line="580">
+          <description><![CDATA[Set the REPLACE table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="580" name="param" description="REPLACE table" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="580" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="586">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="598" package="QueryBuilder">
+        <name>mergeReplaceInto</name>
+        <full_name>mergeReplaceInto</full_name>
+        <docblock line="592">
+          <description><![CDATA[Merge this QueryBuilder's REPLACE into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="592" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="592" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="598">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="613" package="QueryBuilder">
+        <name>getReplace</name>
+        <full_name>getReplace</full_name>
+        <docblock line="608">
+          <description><![CDATA[Get the REPLACE table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="608" name="return" description="REPLACE table" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="623" package="QueryBuilder">
+        <name>getReplaceString</name>
+        <full_name>getReplaceString</full_name>
+        <docblock line="617">
+          <description><![CDATA[Get the REPLACE portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="617" name="param" description="optional include 'REPLACE' text, default true" type="bool" variable="$includeText">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="617" name="return" description="REPLACE portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="623">
+          <name>$includeText</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="647" package="QueryBuilder">
+        <name>update</name>
+        <full_name>update</full_name>
+        <docblock line="641">
+          <description><![CDATA[Set the UPDATE table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="641" name="param" description="UPDATE table" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="641" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="647">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="659" package="QueryBuilder">
+        <name>mergeUpdateInto</name>
+        <full_name>mergeUpdateInto</full_name>
+        <docblock line="653">
+          <description><![CDATA[Merge this QueryBuilder's UPDATE into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="653" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="653" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="659">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="674" package="QueryBuilder">
+        <name>getUpdate</name>
+        <full_name>getUpdate</full_name>
+        <docblock line="669">
+          <description><![CDATA[Get the UPDATE table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="669" name="return" description="UPDATE table" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="684" package="QueryBuilder">
+        <name>getUpdateString</name>
+        <full_name>getUpdateString</full_name>
+        <docblock line="678">
+          <description><![CDATA[Get the UPDATE portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="678" name="param" description="optional include 'UPDATE' text, default true" type="bool" variable="$includeText">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="678" name="return" description="UPDATE portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="684">
+          <name>$includeText</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="713" package="QueryBuilder">
+        <name>delete</name>
+        <full_name>delete</full_name>
+        <docblock line="707">
+          <description><![CDATA[Add a table to DELETE from, or false if deleting from the FROM table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="707" name="param" description="optional table name, default false" type="string|false" variable="$table">
+            <type by_reference="false">string</type>
+            <type by_reference="false">false</type>
+          </tag>
+          <tag line="707" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="713">
+          <name>$table</name>
+          <default><![CDATA[false]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="736" package="QueryBuilder">
+        <name>mergeDeleteInto</name>
+        <full_name>mergeDeleteInto</full_name>
+        <docblock line="730">
+          <description><![CDATA[Merge this QueryBuilder's DELETE into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="730" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="730" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="736">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="757" package="QueryBuilder">
+        <name>getDeleteString</name>
+        <full_name>getDeleteString</full_name>
+        <docblock line="751">
+          <description><![CDATA[Get the DELETE portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="751" name="param" description="optional include 'DELETE' text, default true" type="bool" variable="$includeText">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="751" name="return" description="DELETE portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="757">
+          <name>$includeText</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="785" package="QueryBuilder">
+        <name>isDeleteTableFrom</name>
+        <full_name>isDeleteTableFrom</full_name>
+        <docblock line="780">
+          <description><![CDATA[Whether the FROM table is the single table to delete from.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="780" name="return" description="whether the delete table is FROM" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="797" package="QueryBuilder">
+        <name>set</name>
+        <full_name>set</full_name>
+        <docblock line="789">
+          <description><![CDATA[Add a column value to INSERT or UPDATE.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="789" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="789" name="param" description="value" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="789" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="789" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="797">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="797">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="797">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="811" package="QueryBuilder">
+        <name>mergeSetInto</name>
+        <full_name>mergeSetInto</full_name>
+        <docblock line="805">
+          <description><![CDATA[Merge this QueryBuilder's SET into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="805" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="805" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="811">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="826" package="QueryBuilder">
+        <name>getSetString</name>
+        <full_name>getSetString</full_name>
+        <docblock line="819">
+          <description><![CDATA[Get the SET portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="819" name="param" description="optional use ? placeholders, default true" type="bool" variable="$usePlaceholders">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="819" name="param" description="optional include 'SET' text, default true" type="bool" variable="$includeText">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="819" name="return" description="SET portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="826">
+          <name>$usePlaceholders</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+        <argument line="826">
+          <name>$includeText</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="857" package="QueryBuilder">
+        <name>getSetPlaceholderValues</name>
+        <full_name>getSetPlaceholderValues</full_name>
+        <docblock line="852">
+          <description><![CDATA[Get the SET placeholder values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="852" name="return" description="SET placeholder values" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="868" package="QueryBuilder">
+        <name>from</name>
+        <full_name>from</full_name>
+        <docblock line="861">
+          <description><![CDATA[Set the FROM table with optional alias.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="861" name="param" description="table name" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="861" name="param" description="optional alias" type="string" variable="$alias">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="861" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="868">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="868">
+          <name>$alias</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="881" package="QueryBuilder">
+        <name>mergeFromInto</name>
+        <full_name>mergeFromInto</full_name>
+        <docblock line="875">
+          <description><![CDATA[Merge this QueryBuilder's FROM into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="875" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="875" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="881">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="894" package="QueryBuilder">
+        <name>getFrom</name>
+        <full_name>getFrom</full_name>
+        <docblock line="889">
+          <description><![CDATA[Get the FROM table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="889" name="return" description="FROM table" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="903" package="QueryBuilder">
+        <name>getFromAlias</name>
+        <full_name>getFromAlias</full_name>
+        <docblock line="898">
+          <description><![CDATA[Get the FROM table alias.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="898" name="return" description="FROM table alias" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="916" package="QueryBuilder">
+        <name>join</name>
+        <full_name>join</full_name>
+        <docblock line="907">
+          <description><![CDATA[Add a JOIN table with optional ON criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="907" name="param" description="table name" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="907" name="param" description="optional ON criteria" type="string|array" variable="$criteria">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="907" name="param" description="optional type of join, default INNER JOIN" type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="907" name="param" description="optional alias" type="string" variable="$alias">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="907" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="916">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="916">
+          <name>$criteria</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="916">
+          <name>$type</name>
+          <default><![CDATA[self::INNER_JOIN]]></default>
+          <type/>
+        </argument>
+        <argument line="916">
+          <name>$alias</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="937" package="QueryBuilder">
+        <name>innerJoin</name>
+        <full_name>innerJoin</full_name>
+        <docblock line="929">
+          <description><![CDATA[Add an INNER JOIN table with optional ON criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="929" name="param" description="table name" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="929" name="param" description="optional ON criteria" type="string|array" variable="$criteria">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="929" name="param" description="optional alias" type="string" variable="$alias">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="929" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="937">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="937">
+          <name>$criteria</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="937">
+          <name>$alias</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="949" package="QueryBuilder">
+        <name>leftJoin</name>
+        <full_name>leftJoin</full_name>
+        <docblock line="941">
+          <description><![CDATA[Add a LEFT JOIN table with optional ON criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="941" name="param" description="table name" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="941" name="param" description="optional ON criteria" type="string|array" variable="$criteria">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="941" name="param" description="optional alias" type="string" variable="$alias">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="941" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="949">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="949">
+          <name>$criteria</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="949">
+          <name>$alias</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="961" package="QueryBuilder">
+        <name>rightJoin</name>
+        <full_name>rightJoin</full_name>
+        <docblock line="953">
+          <description><![CDATA[Add a RIGHT JOIN table with optional ON criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="953" name="param" description="table name" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="953" name="param" description="optional ON criteria" type="string|array" variable="$criteria">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="953" name="param" description="optional alias" type="string" variable="$alias">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="953" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="961">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="961">
+          <name>$criteria</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="961">
+          <name>$alias</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="971" package="QueryBuilder">
+        <name>mergeJoinInto</name>
+        <full_name>mergeJoinInto</full_name>
+        <docblock line="965">
+          <description><![CDATA[Merge this QueryBuilder's JOINs into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="965" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="965" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="971">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="988" package="QueryBuilder">
+        <name>getJoinCriteriaUsingPreviousTable</name>
+        <full_name>getJoinCriteriaUsingPreviousTable</full_name>
+        <docblock line="979">
+          <description><![CDATA[Get an ON criteria string joining the specified table and column to the
+same column of the previous JOIN or FROM table.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="979" name="param" description="index of current join" type="int" variable="$joinIndex">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="979" name="param" description="current table name" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="979" name="param" description="current column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="979" name="return" description="ON join criteria" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="988">
+          <name>$joinIndex</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="988">
+          <name>$table</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="988">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1022" package="QueryBuilder">
+        <name>getJoinString</name>
+        <full_name>getJoinString</full_name>
+        <docblock line="1017">
+          <description><![CDATA[Get the JOIN portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1017" name="return" description="JOIN portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1066" package="QueryBuilder">
+        <name>getFromString</name>
+        <full_name>getFromString</full_name>
+        <docblock line="1060">
+          <description><![CDATA[Get the FROM portion of the query, including all JOINs, as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1060" name="param" description="optional include 'FROM' text, default true" type="bool" variable="$includeText">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="1060" name="return" description="FROM portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="1066">
+          <name>$includeText</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="1099" package="QueryBuilder">
+        <name>openCriteria</name>
+        <full_name>openCriteria</full_name>
+        <docblock line="1091">
+          <description><![CDATA[Add an open bracket for nesting conditions to the specified WHERE or
+HAVING criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1091" name="param" description="WHERE or HAVING criteria" type="array" variable="$criteria">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1091" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1091" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1099">
+          <name>$criteria</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1099">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="1113" package="QueryBuilder">
+        <name>closeCriteria</name>
+        <full_name>closeCriteria</full_name>
+        <docblock line="1106">
+          <description><![CDATA[Add a closing bracket for nesting conditions to the specified WHERE or
+HAVING criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1106" name="param" description="WHERE or HAVING criteria" type="array" variable="$criteria">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1106" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1113">
+          <name>$criteria</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="1131" package="QueryBuilder">
+        <name>criteria</name>
+        <full_name>criteria</full_name>
+        <docblock line="1120">
+          <description><![CDATA[Add a condition to the specified WHERE or HAVING criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1120" name="param" description="WHERE or HAVING criteria" type="array" variable="$criteria">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1120" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1120" name="param" description="value" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1120" name="param" description="optional comparison operator, default =" type="string" variable="$operator">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1120" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1120" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1120" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1131">
+          <name>$criteria</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1131">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1131">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1131">
+          <name>$operator</name>
+          <default><![CDATA[self::EQUALS]]></default>
+          <type/>
+        </argument>
+        <argument line="1132">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1132">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="1152" package="QueryBuilder">
+        <name>orCriteria</name>
+        <full_name>orCriteria</full_name>
+        <docblock line="1142">
+          <description><![CDATA[Add an OR condition to the specified WHERE or HAVING criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1142" name="param" description="WHERE or HAVING criteria" type="array" variable="$criteria">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1142" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1142" name="param" description="value" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1142" name="param" description="optional comparison operator, default =" type="string" variable="$operator">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1142" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1142" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1152">
+          <name>$criteria</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1152">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1152">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1152">
+          <name>$operator</name>
+          <default><![CDATA[self::EQUALS]]></default>
+          <type/>
+        </argument>
+        <argument line="1152">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="1166" package="QueryBuilder">
+        <name>criteriaIn</name>
+        <full_name>criteriaIn</full_name>
+        <docblock line="1156">
+          <description><![CDATA[Add an IN condition to the specified WHERE or HAVING criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1156" name="param" description="WHERE or HAVING criteria" type="array" variable="$criteria">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1156" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1156" name="param" description="values" type="array" variable="$values">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1156" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1156" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1156" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1166">
+          <name>$criteria</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1166">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1166">
+          <name>$values</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1166">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1167">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="1181" package="QueryBuilder">
+        <name>criteriaNotIn</name>
+        <full_name>criteriaNotIn</full_name>
+        <docblock line="1171">
+          <description><![CDATA[Add a NOT IN condition to the specified WHERE or HAVING criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1171" name="param" description="WHERE or HAVING criteria" type="array" variable="$criteria">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1171" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1171" name="param" description="values" type="array" variable="$values">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1171" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1171" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1171" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1181">
+          <name>$criteria</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1181">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1181">
+          <name>$values</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1181">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1182">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="1197" package="QueryBuilder">
+        <name>criteriaBetween</name>
+        <full_name>criteriaBetween</full_name>
+        <docblock line="1186">
+          <description><![CDATA[Add a BETWEEN condition to the specified WHERE or HAVING criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1186" name="param" description="WHERE or HAVING criteria" type="array" variable="$criteria">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1186" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1186" name="param" description="minimum value" type="mixed" variable="$min">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1186" name="param" description="maximum value" type="mixed" variable="$max">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1186" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1186" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1186" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1197">
+          <name>$criteria</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1197">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1197">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1197">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1197">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1198">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="1213" package="QueryBuilder">
+        <name>criteriaNotBetween</name>
+        <full_name>criteriaNotBetween</full_name>
+        <docblock line="1202">
+          <description><![CDATA[Add a NOT BETWEEN condition to the specified WHERE or HAVING criteria.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1202" name="param" description="WHERE or HAVING criteria" type="array" variable="$criteria">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1202" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1202" name="param" description="minimum value" type="mixed" variable="$min">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1202" name="param" description="maximum value" type="mixed" variable="$max">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1202" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1202" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1202" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1213">
+          <name>$criteria</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1213">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1213">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1213">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1213">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1214">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="1226" package="QueryBuilder">
+        <name>getCriteriaString</name>
+        <full_name>getCriteriaString</full_name>
+        <docblock line="1218">
+          <description><![CDATA[Get the WHERE or HAVING portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1218" name="param" description="WHERE or HAVING criteria" type="array" variable="$criteria">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1218" name="param" description="optional use ? placeholders, default true" type="bool" variable="$usePlaceholders">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="1218" name="param" description="optional placeholder values array" type="array" variable="$placeholderValues">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1218" name="return" description="WHERE or HAVING portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="1226">
+          <name>$criteria</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1226">
+          <name>$usePlaceholders</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+        <argument line="1227">
+          <name>$placeholderValues</name>
+          <default><![CDATA[array()]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1326" package="QueryBuilder">
+        <name>openWhere</name>
+        <full_name>openWhere</full_name>
+        <docblock line="1320">
+          <description><![CDATA[Add an open bracket for nesting WHERE conditions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1320" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1320" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1326">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1335" package="QueryBuilder">
+        <name>closeWhere</name>
+        <full_name>closeWhere</full_name>
+        <docblock line="1330">
+          <description><![CDATA[Add a closing bracket for nesting WHERE conditions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1330" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1349" package="QueryBuilder">
+        <name>where</name>
+        <full_name>where</full_name>
+        <docblock line="1339">
+          <description><![CDATA[Add a WHERE condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1339" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1339" name="param" description="value" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1339" name="param" description="optional comparison operator, default =" type="string" variable="$operator">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1339" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1339" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1339" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1349">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1349">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1349">
+          <name>$operator</name>
+          <default><![CDATA[self::EQUALS]]></default>
+          <type/>
+        </argument>
+        <argument line="1349">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1349">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1362" package="QueryBuilder">
+        <name>andWhere</name>
+        <full_name>andWhere</full_name>
+        <docblock line="1353">
+          <description><![CDATA[Add an AND WHERE condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1353" name="param" description="colum name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1353" name="param" description="value" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1353" name="param" description="optional comparison operator, default =" type="string" variable="$operator">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1353" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1353" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1362">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1362">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1362">
+          <name>$operator</name>
+          <default><![CDATA[self::EQUALS]]></default>
+          <type/>
+        </argument>
+        <argument line="1362">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1375" package="QueryBuilder">
+        <name>orWhere</name>
+        <full_name>orWhere</full_name>
+        <docblock line="1366">
+          <description><![CDATA[Add an OR WHERE condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1366" name="param" description="colum name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1366" name="param" description="value" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1366" name="param" description="optional comparison operator, default =" type="string" variable="$operator">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1366" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1366" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1375">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1375">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1375">
+          <name>$operator</name>
+          <default><![CDATA[self::EQUALS]]></default>
+          <type/>
+        </argument>
+        <argument line="1375">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1388" package="QueryBuilder">
+        <name>whereIn</name>
+        <full_name>whereIn</full_name>
+        <docblock line="1379">
+          <description><![CDATA[Add an IN WHERE condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1379" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1379" name="param" description="values" type="array" variable="$values">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1379" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1379" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1379" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1388">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1388">
+          <name>$values</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1388">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1388">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1401" package="QueryBuilder">
+        <name>whereNotIn</name>
+        <full_name>whereNotIn</full_name>
+        <docblock line="1392">
+          <description><![CDATA[Add a NOT IN WHERE condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1392" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1392" name="param" description="values" type="array" variable="$values">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1392" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1392" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1392" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1401">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1401">
+          <name>$values</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1401">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1401">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1415" package="QueryBuilder">
+        <name>whereBetween</name>
+        <full_name>whereBetween</full_name>
+        <docblock line="1405">
+          <description><![CDATA[Add a BETWEEN WHERE condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1405" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1405" name="param" description="minimum value" type="mixed" variable="$min">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1405" name="param" description="maximum value" type="mixed" variable="$max">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1405" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1405" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1405" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1415">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1415">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1415">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1415">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1415">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1429" package="QueryBuilder">
+        <name>whereNotBetween</name>
+        <full_name>whereNotBetween</full_name>
+        <docblock line="1419">
+          <description><![CDATA[Add a NOT BETWEEN WHERE condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1419" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1419" name="param" description="minimum value" type="mixed" variable="$min">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1419" name="param" description="maximum value" type="mixed" variable="$max">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1419" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1419" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1419" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1429">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1429">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1429">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1429">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1429">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1439" package="QueryBuilder">
+        <name>mergeWhereInto</name>
+        <full_name>mergeWhereInto</full_name>
+        <docblock line="1433">
+          <description><![CDATA[Merge this QueryBuilder's WHERE into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1433" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="1433" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1439">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1466" package="QueryBuilder">
+        <name>getWhereString</name>
+        <full_name>getWhereString</full_name>
+        <docblock line="1459">
+          <description><![CDATA[Get the WHERE portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1459" name="param" description="optional use ? placeholders, default true" type="bool" variable="$usePlaceholders">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="1459" name="param" description="optional include 'WHERE' text, default true" type="bool" variable="$includeText">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="1459" name="return" description="WHERE portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="1466">
+          <name>$usePlaceholders</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+        <argument line="1466">
+          <name>$includeText</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1481" package="QueryBuilder">
+        <name>getWherePlaceholderValues</name>
+        <full_name>getWherePlaceholderValues</full_name>
+        <docblock line="1476">
+          <description><![CDATA[Get the WHERE placeholder values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1476" name="return" description="WHERE placeholder values" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1492" package="QueryBuilder">
+        <name>groupBy</name>
+        <full_name>groupBy</full_name>
+        <docblock line="1485">
+          <description><![CDATA[Add a GROUP BY column.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1485" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1485" name="param" description="optional order direction, default none" type="string|null" variable="$order">
+            <type by_reference="false">string</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1485" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1492">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1492">
+          <name>$order</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1505" package="QueryBuilder">
+        <name>mergeGroupByInto</name>
+        <full_name>mergeGroupByInto</full_name>
+        <docblock line="1499">
+          <description><![CDATA[Merge this QueryBuilder's GROUP BY into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1499" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="1499" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1505">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1519" package="QueryBuilder">
+        <name>getGroupByString</name>
+        <full_name>getGroupByString</full_name>
+        <docblock line="1513">
+          <description><![CDATA[Get the GROUP BY portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1513" name="param" description="optional include 'GROUP BY' text, default true" type="bool" variable="$includeText">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="1513" name="return" description="GROUP BY portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="1519">
+          <name>$includeText</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1547" package="QueryBuilder">
+        <name>openHaving</name>
+        <full_name>openHaving</full_name>
+        <docblock line="1541">
+          <description><![CDATA[Add an open bracket for nesting HAVING conditions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1541" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1541" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1547">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1556" package="QueryBuilder">
+        <name>closeHaving</name>
+        <full_name>closeHaving</full_name>
+        <docblock line="1551">
+          <description><![CDATA[Add a closing bracket for nesting HAVING conditions.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1551" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1570" package="QueryBuilder">
+        <name>having</name>
+        <full_name>having</full_name>
+        <docblock line="1560">
+          <description><![CDATA[Add a HAVING condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1560" name="param" description="colum name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1560" name="param" description="value" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1560" name="param" description="optional comparison operator, default =" type="string" variable="$operator">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1560" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1560" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1560" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1570">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1570">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1570">
+          <name>$operator</name>
+          <default><![CDATA[self::EQUALS]]></default>
+          <type/>
+        </argument>
+        <argument line="1570">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1570">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1583" package="QueryBuilder">
+        <name>andHaving</name>
+        <full_name>andHaving</full_name>
+        <docblock line="1574">
+          <description><![CDATA[Add an AND HAVING condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1574" name="param" description="colum name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1574" name="param" description="value" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1574" name="param" description="optional comparison operator, default =" type="string" variable="$operator">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1574" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1574" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1583">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1583">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1583">
+          <name>$operator</name>
+          <default><![CDATA[self::EQUALS]]></default>
+          <type/>
+        </argument>
+        <argument line="1583">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1596" package="QueryBuilder">
+        <name>orHaving</name>
+        <full_name>orHaving</full_name>
+        <docblock line="1587">
+          <description><![CDATA[Add an OR HAVING condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1587" name="param" description="colum name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1587" name="param" description="value" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1587" name="param" description="optional comparison operator, default =" type="string" variable="$operator">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1587" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1587" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1596">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1596">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1596">
+          <name>$operator</name>
+          <default><![CDATA[self::EQUALS]]></default>
+          <type/>
+        </argument>
+        <argument line="1596">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1609" package="QueryBuilder">
+        <name>havingIn</name>
+        <full_name>havingIn</full_name>
+        <docblock line="1600">
+          <description><![CDATA[Add an IN WHERE condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1600" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1600" name="param" description="values" type="array" variable="$values">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1600" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1600" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1600" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1609">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1609">
+          <name>$values</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1609">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1609">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1622" package="QueryBuilder">
+        <name>havingNotIn</name>
+        <full_name>havingNotIn</full_name>
+        <docblock line="1613">
+          <description><![CDATA[Add a NOT IN HAVING condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1613" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1613" name="param" description="values" type="array" variable="$values">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="1613" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1613" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1613" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1622">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1622">
+          <name>$values</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="1622">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1622">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1636" package="QueryBuilder">
+        <name>havingBetween</name>
+        <full_name>havingBetween</full_name>
+        <docblock line="1626">
+          <description><![CDATA[Add a BETWEEN HAVING condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1626" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1626" name="param" description="minimum value" type="mixed" variable="$min">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1626" name="param" description="maximum value" type="mixed" variable="$max">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1626" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1626" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1626" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1636">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1636">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1636">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1636">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1636">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1650" package="QueryBuilder">
+        <name>havingNotBetween</name>
+        <full_name>havingNotBetween</full_name>
+        <docblock line="1640">
+          <description><![CDATA[Add a NOT BETWEEN HAVING condition.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1640" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1640" name="param" description="minimum value" type="mixed" variable="$min">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1640" name="param" description="maximum value" type="mixed" variable="$max">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="1640" name="param" description="optional logical connector, default AND" type="string" variable="$connector">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1640" name="param" description="optional auto-escape value, default to global" type="bool|null" variable="$quote">
+            <type by_reference="false">bool</type>
+            <type by_reference="false">null</type>
+          </tag>
+          <tag line="1640" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1650">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1650">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1650">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1650">
+          <name>$connector</name>
+          <default><![CDATA[self::LOGICAL_AND]]></default>
+          <type/>
+        </argument>
+        <argument line="1650">
+          <name>$quote</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1660" package="QueryBuilder">
+        <name>mergeHavingInto</name>
+        <full_name>mergeHavingInto</full_name>
+        <docblock line="1654">
+          <description><![CDATA[Merge this QueryBuilder's HAVING into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1654" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="1654" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1660">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1687" package="QueryBuilder">
+        <name>getHavingString</name>
+        <full_name>getHavingString</full_name>
+        <docblock line="1680">
+          <description><![CDATA[Get the HAVING portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1680" name="param" description="optional use ? placeholders, default true" type="bool" variable="$usePlaceholders">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="1680" name="param" description="optional include 'HAVING' text, default true" type="bool" variable="$includeText">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="1680" name="return" description="HAVING portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="1687">
+          <name>$usePlaceholders</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+        <argument line="1687">
+          <name>$includeText</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1702" package="QueryBuilder">
+        <name>getHavingPlaceholderValues</name>
+        <full_name>getHavingPlaceholderValues</full_name>
+        <docblock line="1697">
+          <description><![CDATA[Get the HAVING placeholder values.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1697" name="return" description="HAVING placeholder values" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1713" package="QueryBuilder">
+        <name>orderBy</name>
+        <full_name>orderBy</full_name>
+        <docblock line="1706">
+          <description><![CDATA[Add a column to ORDER BY.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1706" name="param" description="column name" type="string" variable="$column">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1706" name="param" description="optional order direction, default ASC" type="string" variable="$order">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1706" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1713">
+          <name>$column</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1713">
+          <name>$order</name>
+          <default><![CDATA[self::ORDER_BY_ASC]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1726" package="QueryBuilder">
+        <name>mergeOrderByInto</name>
+        <full_name>mergeOrderByInto</full_name>
+        <docblock line="1720">
+          <description><![CDATA[Merge this QueryBuilder's ORDER BY into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1720" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="1720" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1726">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1740" package="QueryBuilder">
+        <name>getOrderByString</name>
+        <full_name>getOrderByString</full_name>
+        <docblock line="1734">
+          <description><![CDATA[Get the ORDER BY portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1734" name="param" description="optional include 'ORDER BY' text, default true" type="bool" variable="$includeText">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="1734" name="return" description="ORDER BY portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="1740">
+          <name>$includeText</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1763" package="QueryBuilder">
+        <name>limit</name>
+        <full_name>limit</full_name>
+        <docblock line="1756">
+          <description><![CDATA[Set the LIMIT on number of rows to return with optional offset.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1756" name="param" description="number of rows to return" type="int|string" variable="$limit">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1756" name="param" description="optional row number to start at, default 0" type="int|string" variable="$offset">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1756" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1763">
+          <name>$limit</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1763">
+          <name>$offset</name>
+          <default><![CDATA[0]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1776" package="QueryBuilder">
+        <name>mergeLimitInto</name>
+        <full_name>mergeLimitInto</full_name>
+        <docblock line="1770">
+          <description><![CDATA[Merge this QueryBuilder's LIMIT into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1770" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="1770" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1776">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1789" package="QueryBuilder">
+        <name>getLimit</name>
+        <full_name>getLimit</full_name>
+        <docblock line="1784">
+          <description><![CDATA[Get the LIMIT on number of rows to return.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1784" name="return" description="LIMIT on number of rows to return" type="int|string">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1798" package="QueryBuilder">
+        <name>getLimitOffset</name>
+        <full_name>getLimitOffset</full_name>
+        <docblock line="1793">
+          <description><![CDATA[Get the LIMIT row number to start at.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1793" name="return" description="LIMIT row number to start at" type="int|string">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1808" package="QueryBuilder">
+        <name>getLimitString</name>
+        <full_name>getLimitString</full_name>
+        <docblock line="1802">
+          <description><![CDATA[Get the LIMIT portion of the query as a string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1802" name="param" description="optional include 'LIMIT' text, default true" type="bool" variable="$includeText">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="1802" name="return" description="LIMIT portion of the query" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="1808">
+          <name>$includeText</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1833" package="QueryBuilder">
+        <name>isSelect</name>
+        <full_name>isSelect</full_name>
+        <docblock line="1828">
+          <description><![CDATA[Whether this is a SELECT query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1828" name="return" description="whether this is a SELECT query" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1842" package="QueryBuilder">
+        <name>isInsert</name>
+        <full_name>isInsert</full_name>
+        <docblock line="1837">
+          <description><![CDATA[Whether this is an INSERT query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1837" name="return" description="whether this is an INSERT query" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1851" package="QueryBuilder">
+        <name>isReplace</name>
+        <full_name>isReplace</full_name>
+        <docblock line="1846">
+          <description><![CDATA[Whether this is a REPLACE query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1846" name="return" description="whether this is a REPLACE query" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1860" package="QueryBuilder">
+        <name>isUpdate</name>
+        <full_name>isUpdate</full_name>
+        <docblock line="1855">
+          <description><![CDATA[Whether this is an UPDATE query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1855" name="return" description="whether this is an UPDATE query" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1869" package="QueryBuilder">
+        <name>isDelete</name>
+        <full_name>isDelete</full_name>
+        <docblock line="1864">
+          <description><![CDATA[Whether this is a DELETE query.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1864" name="return" description="whether this is a DELETE query" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1880" package="QueryBuilder">
+        <name>mergeInto</name>
+        <full_name>mergeInto</full_name>
+        <docblock line="1873">
+          <description><![CDATA[Merge this QueryBuilder into the given QueryBuilder.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1873" name="param" description="to merge into" type="\QueryBuilder" variable="$QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+          <tag line="1873" name="param" description="optional override limit, default true" type="bool" variable="$overrideLimit">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="1873" name="return" description="" type="\QueryBuilder">
+            <type by_reference="false">\QueryBuilder</type>
+          </tag>
+        </docblock>
+        <argument line="1880">
+          <name>$QueryBuilder</name>
+          <default><![CDATA[]]></default>
+          <type>\QueryBuilder</type>
+        </argument>
+        <argument line="1880">
+          <name>$overrideLimit</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="1943" package="QueryBuilder">
+        <name>getSelectQueryString</name>
+        <full_name>getSelectQueryString</full_name>
+        <docblock line="1937">
+          <description><![CDATA[Get the full SELECT query string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1937" name="param" description="optional use ? placeholders, default true" type="bool" variable="$usePlaceholders">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="1937" name="return" description="full SELECT query string" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="1943">
+          <name>$usePlaceholders</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="1985" package="QueryBuilder">
+        <name>getInsertQueryString</name>
+        <full_name>getInsertQueryString</full_name>
+        <docblock line="1979">
+          <description><![CDATA[Get the full INSERT query string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="1979" name="param" description="optional use ? placeholders, default true" type="bool" variable="$usePlaceholders">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="1979" name="return" description="full INSERT query string" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="1985">
+          <name>$usePlaceholders</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="2007" package="QueryBuilder">
+        <name>getReplaceQueryString</name>
+        <full_name>getReplaceQueryString</full_name>
+        <docblock line="2001">
+          <description><![CDATA[Get the full REPLACE query string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="2001" name="param" description="optional use ? placeholders, default true" type="bool" variable="$usePlaceholders">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="2001" name="return" description="full REPLACE query string" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="2007">
+          <name>$usePlaceholders</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="2029" package="QueryBuilder">
+        <name>getUpdateQueryString</name>
+        <full_name>getUpdateQueryString</full_name>
+        <docblock line="2023">
+          <description><![CDATA[Get the full UPDATE query string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="2023" name="param" description="optional use ? placeholders, default true" type="bool" variable="$usePlaceholders">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="2023" name="return" description="full UPDATE query string" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="2029">
+          <name>$usePlaceholders</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="2066" package="QueryBuilder">
+        <name>getDeleteQueryString</name>
+        <full_name>getDeleteQueryString</full_name>
+        <docblock line="2060">
+          <description><![CDATA[Get the full DELETE query string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="2060" name="param" description="optional use ? placeholders, default true" type="bool" variable="$usePlaceholders">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="2060" name="return" description="full DELETE query string" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="2066">
+          <name>$usePlaceholders</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="2104" package="QueryBuilder">
+        <name>getQueryString</name>
+        <full_name>getQueryString</full_name>
+        <docblock line="2098">
+          <description><![CDATA[Get the full query string.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="2098" name="param" description="optional use ? placeholders, default true" type="bool" variable="$usePlaceholders">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="2098" name="return" description="full query string" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="2104">
+          <name>$usePlaceholders</name>
+          <default><![CDATA[true]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="2131" package="QueryBuilder">
+        <name>getPlaceholderValues</name>
+        <full_name>getPlaceholderValues</full_name>
+        <docblock line="2126">
+          <description><![CDATA[Get all placeholder values (SET, WHERE, and HAVING).]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="2126" name="return" description="all placeholder values" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="2142" package="QueryBuilder">
+        <name>query</name>
+        <full_name>query</full_name>
+        <docblock line="2137">
+          <description><![CDATA[Execute the query using the PDO database connection.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="2137" name="return" description="executed query or false if failed" type="\PDOStatement|false">
+            <type by_reference="false">\PDOStatement</type>
+            <type by_reference="false">false</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="2169" package="QueryBuilder">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+        <docblock line="2164">
+          <description><![CDATA[Get the full query string without value placeholders.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="2164" name="return" description="full query string" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file QueryBuilder.php</error>
+    </parse_markers>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="QueryBuilder" full_name="QueryBuilder"/>
+  <namespace name="global" full_name="global"/>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>
