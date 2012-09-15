@@ -8,7 +8,7 @@
    * @copyright Copyright 2011-2012 by Justin Stayton
    * @license   http://en.wikipedia.org/wiki/MIT_License MIT License
    * @package   QueryBuilder
-   * @version   4.1.0
+   * @version   4.1.1
    */
   class QueryBuilder {
 
