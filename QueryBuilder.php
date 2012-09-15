@@ -1489,10 +1489,10 @@
      * Add a GROUP BY column.
      *
      * @param  string $column column name
-     * @param  string $order optional order direction, default ASC
+     * @param  string|null $order optional order direction, default none
      * @return QueryBuilder
      */
-    public function groupBy($column, $order = self::ORDER_BY_ASC) {
+    public function groupBy($column, $order = null) {
       $this->groupBy[] = array('column' => $column,
                                'order'  => $order);
 
@@ -1523,7 +1523,13 @@
       $query = "";
 
       foreach ($this->groupBy as $groupBy) {
-        $query .= $groupBy['column'] . " " . $groupBy['order'] . ", ";
+        $query .= $groupBy['column'];
+
+        if ($groupBy['order']) {
+          $query .= " " . $groupBy['order'];
+        }
+
+        $query .= ", ";
       }
 
       $query = substr($query, 0, -2);
