@@ -1,14 +1,14 @@
-QueryBuilder
-============
+Miner
+=====
 
-A dead simple PHP 5 OO interface for building SQL queries. No manual
-string concatenation necessary.
+A dead simple PHP class for building SQL statements. No manual string
+concatenation necessary.
 
 Developed by [Justin Stayton](http://twitter.com/jstayton) while at
 [Monk Development](http://monkdev.com).
 
-*   [Documentation](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html)
-*   [Release Notes](https://github.com/jstayton/QueryBuilder/wiki/Release-Notes)
+*   [Documentation](http://jstayton.github.com/Miner/classes/Miner.html)
+*   [Release Notes](https://github.com/jstayton/Miner/wiki/Release-Notes)
 
 Requirements
 ------------
@@ -18,55 +18,52 @@ Requirements
 Installation
 ------------
 
-1.  Copy `QueryBuilder.php` to your codebase, perhaps to the `vendor`
-    directory.
-2.  Add the `QueryBuilder` class to your autoloader or `require` the file
-    directly.
+1.  Copy `Miner.php` to your codebase, perhaps to the `vendor` directory.
+2.  Add the `Miner` class to your autoloader or `require` the file directly.
 
 Getting Started
 ---------------
 
-Composing a query with QueryBuilder is very similar to writing the SQL by hand,
-as many of the directives map directly to methods:
+Composing SQL with Miner is very similar to writing it by hand, as much of the
+syntax maps directly to methods:
 
-    $QueryBuilder = new QueryBuilder();
-    $QueryBuilder->select('*')
-                 ->from('shows')
-                 ->innerJoin('episodes', 'show_id')
-                 ->where('shows.network_id', $networkId)
-                 ->orderBy('episodes.aired_on', QueryBuilder::ORDER_BY_DESC)
-                 ->limit(20);
+    $Miner = new Miner();
+    $Miner->select('*')
+          ->from('shows')
+          ->innerJoin('episodes', 'show_id')
+          ->where('shows.network_id', $networkId)
+          ->orderBy('episodes.aired_on', Miner::ORDER_BY_DESC)
+          ->limit(20);
 
-Now that the query is built,
+Now that the statement is built,
 
-    $QueryBuilder->getQueryString();
+    $Miner->getStatement();
 
-returns the full SQL query string with placeholders (?), and
+returns the full SQL string with placeholders (?), and
 
-    $QueryBuilder->getPlaceholderValues();
+    $Miner->getPlaceholderValues();
 
 returns the array of placeholder values that can then be passed to your
 database connection or abstraction layer of choice. Or, if you'd prefer it all
-at once, you can get the query string with values already safely quoted:
+at once, you can get the SQL string with values already safely quoted:
 
-    $QueryBuilder->getQueryString(false);
+    $Miner->getStatement(false);
 
-If you're using PDO, however, QueryBuilder makes executing the query even
-easier:
+If you're using PDO, however, Miner makes executing the statement even easier:
 
-    $PDOStatement = $QueryBuilder->query();
+    $PDOStatement = $Miner->execute();
 
-QueryBuilder works directly with your PDO connection, which can be passed
-during creation of the QueryBuilder object
+Miner works directly with your PDO connection, which can be passed during
+creation of the Miner object
 
-    $QueryBuilder = new QueryBuilder($PDO);
+    $Miner = new Miner($PDO);
 
 or after
 
-    $QueryBuilder->setPdoConnection($PDO);
+    $Miner->setPdoConnection($PDO);
 
-Examples
---------
+Usage
+-----
 
 ### SELECT
 
@@ -78,14 +75,14 @@ Examples
     ORDER BY episodes.aired_on DESC
     LIMIT 20
 
-As a QueryBuilder:
+With Miner:
 
-    $QueryBuilder->select('*')
-                 ->from('shows')
-                 ->innerJoin('episodes', 'show_id')
-                 ->where('shows.network_id', $networkId)
-                 ->orderBy('episodes.aired_on', QueryBuilder::ORDER_BY_DESC)
-                 ->limit(20);
+    $Miner->select('*')
+          ->from('shows')
+          ->innerJoin('episodes', 'show_id')
+          ->where('shows.network_id', $networkId)
+          ->orderBy('episodes.aired_on', Miner::ORDER_BY_DESC)
+          ->limit(20);
 
 ### INSERT
 
@@ -94,13 +91,13 @@ As a QueryBuilder:
         name = 'Freaks & Geeks',
         air_day = 'Tuesday'
 
-As a QueryBuilder:
+With Miner:
 
-    $QueryBuilder->insert('shows')
-                 ->option('HIGH_PRIORITY')
-                 ->set('network_id', 13)
-                 ->set('name', 'Freaks & Geeks')
-                 ->set('air_day', 'Tuesday');
+    $Miner->insert('shows')
+          ->option('HIGH_PRIORITY')
+          ->set('network_id', 13)
+          ->set('name', 'Freaks & Geeks')
+          ->set('air_day', 'Tuesday');
 
 ### REPLACE
 
@@ -109,12 +106,12 @@ As a QueryBuilder:
         name = 'Freaks & Geeks',
         air_day = 'Monday'
 
-As a QueryBuilder:
+With Miner:
 
-    $QueryBuilder->replace('shows')
-                 ->set('network_id', 13)
-                 ->set('name', 'Freaks & Geeks')
-                 ->set('air_day', 'Monday');
+    $Miner->replace('shows')
+          ->set('network_id', 13)
+          ->set('name', 'Freaks & Geeks')
+          ->set('air_day', 'Monday');
 
 ### UPDATE
 
@@ -124,15 +121,15 @@ As a QueryBuilder:
       OR (name = 'Girlfriends and Boyfriends'
             AND air_day != 'Monday')
 
-As a QueryBuilder:
+With Miner:
 
-    $QueryBuilder->update('episodes')
-                 ->set('aired_on', '2012-06-25')
-                 ->where('show_id', 12)
-                 ->openWhere(QueryBuilder::LOGICAL_OR)
-                 ->where('name', 'Girlfriends and Boyfriends')
-                 ->where('air_day', 'Monday', QueryBuilder::NOT_EQUALS)
-                 ->closeWhere();
+    $Miner->update('episodes')
+          ->set('aired_on', '2012-06-25')
+          ->where('show_id', 12)
+          ->openWhere(Miner::LOGICAL_OR)
+          ->where('name', 'Girlfriends and Boyfriends')
+          ->where('air_day', 'Monday', Miner::NOT_EQUALS)
+          ->closeWhere();
 
 ### DELETE
 
@@ -141,150 +138,150 @@ As a QueryBuilder:
     WHERE show_id IN (12, 15, 20)
     LIMIT 3
 
-As a QueryBuilder:
+With Miner:
 
-    $QueryBuilder->delete()
-                 ->from('shows')
-                 ->whereIn('show_id', array(12, 15, 20))
-                 ->limit(3);
+    $Miner->delete()
+          ->from('shows')
+          ->whereIn('show_id', array(12, 15, 20))
+          ->limit(3);
 
 Methods
 -------
 
-*   [__construct](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#__construct)
+*   [__construct](http://jstayton.github.com/Miner/classes/Miner.html#__construct)
 
 ### SELECT
 
-*   [select](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#select)
-*   [getSelectString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getSelectString)
-*   [mergeSelectInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeSelectInto)
+*   [select](http://jstayton.github.com/Miner/classes/Miner.html#select)
+*   [getSelectString](http://jstayton.github.com/Miner/classes/Miner.html#getSelectString)
+*   [mergeSelectInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeSelectInto)
 
 ### INSERT
 
-*   [insert](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#insert)
-*   [getInsert](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getInsert)
-*   [getInsertString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getInsertString)
-*   [mergeInsertInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeInsertInto)
+*   [insert](http://jstayton.github.com/Miner/classes/Miner.html#insert)
+*   [getInsert](http://jstayton.github.com/Miner/classes/Miner.html#getInsert)
+*   [getInsertString](http://jstayton.github.com/Miner/classes/Miner.html#getInsertString)
+*   [mergeInsertInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeInsertInto)
 
 ### REPLACE
 
-*   [replace](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#replace)
-*   [getReplace](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getReplace)
-*   [getReplaceString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getReplaceString)
-*   [mergeReplaceInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeReplaceInto)
+*   [replace](http://jstayton.github.com/Miner/classes/Miner.html#replace)
+*   [getReplace](http://jstayton.github.com/Miner/classes/Miner.html#getReplace)
+*   [getReplaceString](http://jstayton.github.com/Miner/classes/Miner.html#getReplaceString)
+*   [mergeReplaceInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeReplaceInto)
 
 ### UPDATE
 
-*   [update](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#update)
-*   [getUpdate](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getUpdate)
-*   [getUpdateString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getUpdateString)
-*   [mergeUpdateInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeUpdateInto)
+*   [update](http://jstayton.github.com/Miner/classes/Miner.html#update)
+*   [getUpdate](http://jstayton.github.com/Miner/classes/Miner.html#getUpdate)
+*   [getUpdateString](http://jstayton.github.com/Miner/classes/Miner.html#getUpdateString)
+*   [mergeUpdateInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeUpdateInto)
 
 ### DELETE
 
-*   [delete](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#delete)
-*   [getDeleteString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getDeleteString)
-*   [mergeDeleteInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeDeleteInto)
+*   [delete](http://jstayton.github.com/Miner/classes/Miner.html#delete)
+*   [getDeleteString](http://jstayton.github.com/Miner/classes/Miner.html#getDeleteString)
+*   [mergeDeleteInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeDeleteInto)
 
 ### OPTIONS
 
-*   [option](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#option)
-*   [calcFoundRows](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#calcFoundRows)
-*   [distinct](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#distinct)
-*   [getOptionsString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getOptionsString)
-*   [mergeOptionsInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeOptionsInto)
+*   [option](http://jstayton.github.com/Miner/classes/Miner.html#option)
+*   [calcFoundRows](http://jstayton.github.com/Miner/classes/Miner.html#calcFoundRows)
+*   [distinct](http://jstayton.github.com/Miner/classes/Miner.html#distinct)
+*   [getOptionsString](http://jstayton.github.com/Miner/classes/Miner.html#getOptionsString)
+*   [mergeOptionsInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeOptionsInto)
 
 ### SET
 
-*   [set](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#set)
-*   [getSetPlaceholderValues](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getSetPlaceholderValues)
-*   [getSetString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getSetString)
-*   [mergeSetInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeSetInto)
+*   [set](http://jstayton.github.com/Miner/classes/Miner.html#set)
+*   [getSetPlaceholderValues](http://jstayton.github.com/Miner/classes/Miner.html#getSetPlaceholderValues)
+*   [getSetString](http://jstayton.github.com/Miner/classes/Miner.html#getSetString)
+*   [mergeSetInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeSetInto)
 
 ### FROM
 
-*   [from](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#from)
-*   [innerJoin](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#innerJoin)
-*   [leftJoin](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#leftJoin)
-*   [rightJoin](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#rightJoin)
-*   [join](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#join)
-*   [getFrom](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getFrom)
-*   [getFromAlias](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getFromAlias)
-*   [getFromString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getFromString)
-*   [getJoinString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getJoinString)
-*   [mergeFromInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeFromInto)
-*   [mergeJoinInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeJoinInto)
+*   [from](http://jstayton.github.com/Miner/classes/Miner.html#from)
+*   [innerJoin](http://jstayton.github.com/Miner/classes/Miner.html#innerJoin)
+*   [leftJoin](http://jstayton.github.com/Miner/classes/Miner.html#leftJoin)
+*   [rightJoin](http://jstayton.github.com/Miner/classes/Miner.html#rightJoin)
+*   [join](http://jstayton.github.com/Miner/classes/Miner.html#join)
+*   [getFrom](http://jstayton.github.com/Miner/classes/Miner.html#getFrom)
+*   [getFromAlias](http://jstayton.github.com/Miner/classes/Miner.html#getFromAlias)
+*   [getFromString](http://jstayton.github.com/Miner/classes/Miner.html#getFromString)
+*   [getJoinString](http://jstayton.github.com/Miner/classes/Miner.html#getJoinString)
+*   [mergeFromInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeFromInto)
+*   [mergeJoinInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeJoinInto)
 
 ### WHERE
 
-*   [where](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#where)
-*   [andWhere](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#andWhere)
-*   [orWhere](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#orWhere)
-*   [whereIn](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#whereIn)
-*   [whereNotIn](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#whereNotIn)
-*   [whereBetween](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#whereBetween)
-*   [whereNotBetween](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#whereNotBetween)
-*   [openWhere](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#openWhere)
-*   [closeWhere](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#closeWhere)
-*   [getWherePlaceholderValues](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getWherePlaceholderValues)
-*   [getWhereString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getWhereString)
-*   [mergeWhereInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeWhereInto)
+*   [where](http://jstayton.github.com/Miner/classes/Miner.html#where)
+*   [andWhere](http://jstayton.github.com/Miner/classes/Miner.html#andWhere)
+*   [orWhere](http://jstayton.github.com/Miner/classes/Miner.html#orWhere)
+*   [whereIn](http://jstayton.github.com/Miner/classes/Miner.html#whereIn)
+*   [whereNotIn](http://jstayton.github.com/Miner/classes/Miner.html#whereNotIn)
+*   [whereBetween](http://jstayton.github.com/Miner/classes/Miner.html#whereBetween)
+*   [whereNotBetween](http://jstayton.github.com/Miner/classes/Miner.html#whereNotBetween)
+*   [openWhere](http://jstayton.github.com/Miner/classes/Miner.html#openWhere)
+*   [closeWhere](http://jstayton.github.com/Miner/classes/Miner.html#closeWhere)
+*   [getWherePlaceholderValues](http://jstayton.github.com/Miner/classes/Miner.html#getWherePlaceholderValues)
+*   [getWhereString](http://jstayton.github.com/Miner/classes/Miner.html#getWhereString)
+*   [mergeWhereInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeWhereInto)
 
 ### GROUP BY
 
-*   [groupBy](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#groupBy)
-*   [getGroupByString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getGroupByString)
-*   [mergeGroupByInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeGroupByInto)
+*   [groupBy](http://jstayton.github.com/Miner/classes/Miner.html#groupBy)
+*   [getGroupByString](http://jstayton.github.com/Miner/classes/Miner.html#getGroupByString)
+*   [mergeGroupByInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeGroupByInto)
 
 ### HAVING
 
-*   [having](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#having)
-*   [andHaving](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#andHaving)
-*   [orHaving](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#orHaving)
-*   [havingIn](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#havingIn)
-*   [havingNotIn](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#havingNotIn)
-*   [havingBetween](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#havingBetween)
-*   [havingNotBetween](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#havingNotBetween)
-*   [openHaving](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#openHaving)
-*   [closeHaving](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#closeHaving)
-*   [getHavingPlaceholderValues](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getHavingPlaceholderValues)
-*   [getHavingString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getHavingString)
-*   [mergeHavingInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeHavingInto)
+*   [having](http://jstayton.github.com/Miner/classes/Miner.html#having)
+*   [andHaving](http://jstayton.github.com/Miner/classes/Miner.html#andHaving)
+*   [orHaving](http://jstayton.github.com/Miner/classes/Miner.html#orHaving)
+*   [havingIn](http://jstayton.github.com/Miner/classes/Miner.html#havingIn)
+*   [havingNotIn](http://jstayton.github.com/Miner/classes/Miner.html#havingNotIn)
+*   [havingBetween](http://jstayton.github.com/Miner/classes/Miner.html#havingBetween)
+*   [havingNotBetween](http://jstayton.github.com/Miner/classes/Miner.html#havingNotBetween)
+*   [openHaving](http://jstayton.github.com/Miner/classes/Miner.html#openHaving)
+*   [closeHaving](http://jstayton.github.com/Miner/classes/Miner.html#closeHaving)
+*   [getHavingPlaceholderValues](http://jstayton.github.com/Miner/classes/Miner.html#getHavingPlaceholderValues)
+*   [getHavingString](http://jstayton.github.com/Miner/classes/Miner.html#getHavingString)
+*   [mergeHavingInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeHavingInto)
 
 ### ORDER BY
 
-*   [orderBy](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#orderBy)
-*   [getOrderByString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getOrderByString)
-*   [mergeOrderByInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeOrderByInto)
+*   [orderBy](http://jstayton.github.com/Miner/classes/Miner.html#orderBy)
+*   [getOrderByString](http://jstayton.github.com/Miner/classes/Miner.html#getOrderByString)
+*   [mergeOrderByInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeOrderByInto)
 
 ### LIMIT
 
-*   [limit](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#limit)
-*   [getLimit](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getLimit)
-*   [getLimitOffset](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getLimitOffset)
-*   [getLimitString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getLimitString)
+*   [limit](http://jstayton.github.com/Miner/classes/Miner.html#limit)
+*   [getLimit](http://jstayton.github.com/Miner/classes/Miner.html#getLimit)
+*   [getLimitOffset](http://jstayton.github.com/Miner/classes/Miner.html#getLimitOffset)
+*   [getLimitString](http://jstayton.github.com/Miner/classes/Miner.html#getLimitString)
 
-### Query
+### Statement
 
-*   [query](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#query)
-*   [getQueryString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getQueryString)
-*   [getPlaceholderValues](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getPlaceholderValues)
-*   [isSelect](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#isSelect)
-*   [isInsert](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#isInsert)
-*   [isReplace](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#isReplace)
-*   [isUpdate](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#isUpdate)
-*   [isDelete](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#isDelete)
-*   [__toString](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#__toString)
-*   [mergeInto](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#mergeInto)
+*   [execute](http://jstayton.github.com/Miner/classes/Miner.html#execute)
+*   [getStatement](http://jstayton.github.com/Miner/classes/Miner.html#getStatement)
+*   [getPlaceholderValues](http://jstayton.github.com/Miner/classes/Miner.html#getPlaceholderValues)
+*   [isSelect](http://jstayton.github.com/Miner/classes/Miner.html#isSelect)
+*   [isInsert](http://jstayton.github.com/Miner/classes/Miner.html#isInsert)
+*   [isReplace](http://jstayton.github.com/Miner/classes/Miner.html#isReplace)
+*   [isUpdate](http://jstayton.github.com/Miner/classes/Miner.html#isUpdate)
+*   [isDelete](http://jstayton.github.com/Miner/classes/Miner.html#isDelete)
+*   [__toString](http://jstayton.github.com/Miner/classes/Miner.html#__toString)
+*   [mergeInto](http://jstayton.github.com/Miner/classes/Miner.html#mergeInto)
 
 ### Connection
 
-*   [setPdoConnection](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#setPdoConnection)
-*   [getPdoConnection](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getPdoConnection)
-*   [setAutoQuote](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#setAutoQuote)
-*   [getAutoQuote](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#getAutoQuote)
-*   [autoQuote](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#autoQuote)
-*   [quote](http://jstayton.github.com/QueryBuilder/classes/QueryBuilder.html#quote)
+*   [setPdoConnection](http://jstayton.github.com/Miner/classes/Miner.html#setPdoConnection)
+*   [getPdoConnection](http://jstayton.github.com/Miner/classes/Miner.html#getPdoConnection)
+*   [setAutoQuote](http://jstayton.github.com/Miner/classes/Miner.html#setAutoQuote)
+*   [getAutoQuote](http://jstayton.github.com/Miner/classes/Miner.html#getAutoQuote)
+*   [autoQuote](http://jstayton.github.com/Miner/classes/Miner.html#autoQuote)
+*   [quote](http://jstayton.github.com/Miner/classes/Miner.html#quote)
 
 Feedback
 --------

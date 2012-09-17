@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>phpDocumentor » \QueryBuilder</title>
+<title>phpDocumentor » \Miner</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -20,7 +20,7 @@
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
-<li><a href="../packages/QueryBuilder.html"><i class="icon-folder-open"></i> QueryBuilder</a></li>
+<li><a href="../packages/Miner.html"><i class="icon-folder-open"></i> Miner</a></li>
 </ul>
 </li>
 <li class="dropdown" id="charts-menu">
@@ -56,7 +56,7 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
 <li class="method public "><a href="#__construct" title="__construct :: Constructor."><span class="description">Constructor.</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#__toString" title="__toString :: Get the full query string without value placeholders."><span class="description">Get the full query string without value placeholders.</span><pre>__toString()</pre></a></li>
+<li class="method public "><a href="#__toString" title="__toString :: Get the full SQL statement without value placeholders."><span class="description">Get the full SQL statement without value placeholders.</span><pre>__toString()</pre></a></li>
 <li class="method public "><a href="#andHaving" title="andHaving :: Add an AND HAVING condition."><span class="description">Add an AND HAVING condition.</span><pre>andHaving()</pre></a></li>
 <li class="method public "><a href="#andWhere" title="andWhere :: Add an AND WHERE condition."><span class="description">Add an AND WHERE condition.</span><pre>andWhere()</pre></a></li>
 <li class="method public "><a href="#autoQuote" title="autoQuote :: Safely escape a value if auto-quoting is enabled, or do nothing if
@@ -67,35 +67,36 @@ disabled.</span><pre>autoQuote()</pre></a></li>
 <li class="method public "><a href="#closeWhere" title="closeWhere :: Add a closing bracket for nesting WHERE conditions."><span class="description">Add a closing bracket for nesting WHERE conditions.</span><pre>closeWhere()</pre></a></li>
 <li class="method public "><a href="#delete" title="delete :: Add a table to DELETE from, or false if deleting from the FROM table."><span class="description">Add a table to DELETE from, or false if deleting from the FROM table.</span><pre>delete()</pre></a></li>
 <li class="method public "><a href="#distinct" title="distinct :: Add DISTINCT execution option."><span class="description">Add DISTINCT execution option.</span><pre>distinct()</pre></a></li>
+<li class="method public "><a href="#execute" title="execute :: Execute the statement using the PDO database connection."><span class="description">Execute the statement using the PDO database connection.</span><pre>execute()</pre></a></li>
 <li class="method public "><a href="#from" title="from :: Set the FROM table with optional alias."><span class="description">Set the FROM table with optional alias.</span><pre>from()</pre></a></li>
 <li class="method public "><a href="#getAutoQuote" title="getAutoQuote :: Get whether values will be automatically escaped."><span class="description">Get whether values will be automatically escaped.</span><pre>getAutoQuote()</pre></a></li>
-<li class="method public "><a href="#getDeleteString" title="getDeleteString :: Get the DELETE portion of the query as a string."><span class="description">Get the DELETE portion of the query as a string.</span><pre>getDeleteString()</pre></a></li>
+<li class="method public "><a href="#getDeleteString" title="getDeleteString :: Get the DELETE portion of the statement as a string."><span class="description">Get the DELETE portion of the statement as a string.</span><pre>getDeleteString()</pre></a></li>
 <li class="method public "><a href="#getFrom" title="getFrom :: Get the FROM table."><span class="description">Get the FROM table.</span><pre>getFrom()</pre></a></li>
 <li class="method public "><a href="#getFromAlias" title="getFromAlias :: Get the FROM table alias."><span class="description">Get the FROM table alias.</span><pre>getFromAlias()</pre></a></li>
-<li class="method public "><a href="#getFromString" title="getFromString :: Get the FROM portion of the query, including all JOINs, as a string."><span class="description">Get the FROM portion of the query, including all JOINs, as a string.</span><pre>getFromString()</pre></a></li>
-<li class="method public "><a href="#getGroupByString" title="getGroupByString :: Get the GROUP BY portion of the query as a string."><span class="description">Get the GROUP BY portion of the query as a string.</span><pre>getGroupByString()</pre></a></li>
+<li class="method public "><a href="#getFromString" title="getFromString :: Get the FROM portion of the statement, including all JOINs, as a string."><span class="description">Get the FROM portion of the statement, including all JOINs, as a string.</span><pre>getFromString()</pre></a></li>
+<li class="method public "><a href="#getGroupByString" title="getGroupByString :: Get the GROUP BY portion of the statement as a string."><span class="description">Get the GROUP BY portion of the statement as a string.</span><pre>getGroupByString()</pre></a></li>
 <li class="method public "><a href="#getHavingPlaceholderValues" title="getHavingPlaceholderValues :: Get the HAVING placeholder values."><span class="description">Get the HAVING placeholder values.</span><pre>getHavingPlaceholderValues()</pre></a></li>
-<li class="method public "><a href="#getHavingString" title="getHavingString :: Get the HAVING portion of the query as a string."><span class="description">Get the HAVING portion of the query as a string.</span><pre>getHavingString()</pre></a></li>
+<li class="method public "><a href="#getHavingString" title="getHavingString :: Get the HAVING portion of the statement as a string."><span class="description">Get the HAVING portion of the statement as a string.</span><pre>getHavingString()</pre></a></li>
 <li class="method public "><a href="#getInsert" title="getInsert :: Get the INSERT table."><span class="description">Get the INSERT table.</span><pre>getInsert()</pre></a></li>
-<li class="method public "><a href="#getInsertString" title="getInsertString :: Get the INSERT portion of the query as a string."><span class="description">Get the INSERT portion of the query as a string.</span><pre>getInsertString()</pre></a></li>
-<li class="method public "><a href="#getJoinString" title="getJoinString :: Get the JOIN portion of the query as a string."><span class="description">Get the JOIN portion of the query as a string.</span><pre>getJoinString()</pre></a></li>
+<li class="method public "><a href="#getInsertString" title="getInsertString :: Get the INSERT portion of the statement as a string."><span class="description">Get the INSERT portion of the statement as a string.</span><pre>getInsertString()</pre></a></li>
+<li class="method public "><a href="#getJoinString" title="getJoinString :: Get the JOIN portion of the statement as a string."><span class="description">Get the JOIN portion of the statement as a string.</span><pre>getJoinString()</pre></a></li>
 <li class="method public "><a href="#getLimit" title="getLimit :: Get the LIMIT on number of rows to return."><span class="description">Get the LIMIT on number of rows to return.</span><pre>getLimit()</pre></a></li>
 <li class="method public "><a href="#getLimitOffset" title="getLimitOffset :: Get the LIMIT row number to start at."><span class="description">Get the LIMIT row number to start at.</span><pre>getLimitOffset()</pre></a></li>
-<li class="method public "><a href="#getLimitString" title="getLimitString :: Get the LIMIT portion of the query as a string."><span class="description">Get the LIMIT portion of the query as a string.</span><pre>getLimitString()</pre></a></li>
-<li class="method public "><a href="#getOptionsString" title="getOptionsString :: Get the execution options portion of the query as a string."><span class="description">Get the execution options portion of the query as a string.</span><pre>getOptionsString()</pre></a></li>
-<li class="method public "><a href="#getOrderByString" title="getOrderByString :: Get the ORDER BY portion of the query as a string."><span class="description">Get the ORDER BY portion of the query as a string.</span><pre>getOrderByString()</pre></a></li>
-<li class="method public "><a href="#getPdoConnection" title="getPdoConnection :: Get the PDO database connection to use in executing this query."><span class="description">Get the PDO database connection to use in executing this query.</span><pre>getPdoConnection()</pre></a></li>
+<li class="method public "><a href="#getLimitString" title="getLimitString :: Get the LIMIT portion of the statement as a string."><span class="description">Get the LIMIT portion of the statement as a string.</span><pre>getLimitString()</pre></a></li>
+<li class="method public "><a href="#getOptionsString" title="getOptionsString :: Get the execution options portion of the statement as a string."><span class="description">Get the execution options portion of the statement as a string.</span><pre>getOptionsString()</pre></a></li>
+<li class="method public "><a href="#getOrderByString" title="getOrderByString :: Get the ORDER BY portion of the statement as a string."><span class="description">Get the ORDER BY portion of the statement as a string.</span><pre>getOrderByString()</pre></a></li>
+<li class="method public "><a href="#getPdoConnection" title="getPdoConnection :: Get the PDO database connection to use in executing this statement."><span class="description">Get the PDO database connection to use in executing this statement.</span><pre>getPdoConnection()</pre></a></li>
 <li class="method public "><a href="#getPlaceholderValues" title="getPlaceholderValues :: Get all placeholder values (SET, WHERE, and HAVING)."><span class="description">Get all placeholder values (SET, WHERE, and HAVING).</span><pre>getPlaceholderValues()</pre></a></li>
-<li class="method public "><a href="#getQueryString" title="getQueryString :: Get the full query string."><span class="description">Get the full query string.</span><pre>getQueryString()</pre></a></li>
 <li class="method public "><a href="#getReplace" title="getReplace :: Get the REPLACE table."><span class="description">Get the REPLACE table.</span><pre>getReplace()</pre></a></li>
-<li class="method public "><a href="#getReplaceString" title="getReplaceString :: Get the REPLACE portion of the query as a string."><span class="description">Get the REPLACE portion of the query as a string.</span><pre>getReplaceString()</pre></a></li>
-<li class="method public "><a href="#getSelectString" title="getSelectString :: Get the SELECT portion of the query as a string."><span class="description">Get the SELECT portion of the query as a string.</span><pre>getSelectString()</pre></a></li>
+<li class="method public "><a href="#getReplaceString" title="getReplaceString :: Get the REPLACE portion of the statement as a string."><span class="description">Get the REPLACE portion of the statement as a string.</span><pre>getReplaceString()</pre></a></li>
+<li class="method public "><a href="#getSelectString" title="getSelectString :: Get the SELECT portion of the statement as a string."><span class="description">Get the SELECT portion of the statement as a string.</span><pre>getSelectString()</pre></a></li>
 <li class="method public "><a href="#getSetPlaceholderValues" title="getSetPlaceholderValues :: Get the SET placeholder values."><span class="description">Get the SET placeholder values.</span><pre>getSetPlaceholderValues()</pre></a></li>
-<li class="method public "><a href="#getSetString" title="getSetString :: Get the SET portion of the query as a string."><span class="description">Get the SET portion of the query as a string.</span><pre>getSetString()</pre></a></li>
+<li class="method public "><a href="#getSetString" title="getSetString :: Get the SET portion of the statement as a string."><span class="description">Get the SET portion of the statement as a string.</span><pre>getSetString()</pre></a></li>
+<li class="method public "><a href="#getStatement" title="getStatement :: Get the full SQL statement."><span class="description">Get the full SQL statement.</span><pre>getStatement()</pre></a></li>
 <li class="method public "><a href="#getUpdate" title="getUpdate :: Get the UPDATE table."><span class="description">Get the UPDATE table.</span><pre>getUpdate()</pre></a></li>
-<li class="method public "><a href="#getUpdateString" title="getUpdateString :: Get the UPDATE portion of the query as a string."><span class="description">Get the UPDATE portion of the query as a string.</span><pre>getUpdateString()</pre></a></li>
+<li class="method public "><a href="#getUpdateString" title="getUpdateString :: Get the UPDATE portion of the statement as a string."><span class="description">Get the UPDATE portion of the statement as a string.</span><pre>getUpdateString()</pre></a></li>
 <li class="method public "><a href="#getWherePlaceholderValues" title="getWherePlaceholderValues :: Get the WHERE placeholder values."><span class="description">Get the WHERE placeholder values.</span><pre>getWherePlaceholderValues()</pre></a></li>
-<li class="method public "><a href="#getWhereString" title="getWhereString :: Get the WHERE portion of the query as a string."><span class="description">Get the WHERE portion of the query as a string.</span><pre>getWhereString()</pre></a></li>
+<li class="method public "><a href="#getWhereString" title="getWhereString :: Get the WHERE portion of the statement as a string."><span class="description">Get the WHERE portion of the statement as a string.</span><pre>getWhereString()</pre></a></li>
 <li class="method public "><a href="#groupBy" title="groupBy :: Add a GROUP BY column."><span class="description">Add a GROUP BY column.</span><pre>groupBy()</pre></a></li>
 <li class="method public "><a href="#having" title="having :: Add a HAVING condition."><span class="description">Add a HAVING condition.</span><pre>having()</pre></a></li>
 <li class="method public "><a href="#havingBetween" title="havingBetween :: Add a BETWEEN HAVING condition."><span class="description">Add a BETWEEN HAVING condition.</span><pre>havingBetween()</pre></a></li>
@@ -104,43 +105,42 @@ disabled.</span><pre>autoQuote()</pre></a></li>
 <li class="method public "><a href="#havingNotIn" title="havingNotIn :: Add a NOT IN HAVING condition."><span class="description">Add a NOT IN HAVING condition.</span><pre>havingNotIn()</pre></a></li>
 <li class="method public "><a href="#innerJoin" title="innerJoin :: Add an INNER JOIN table with optional ON criteria."><span class="description">Add an INNER JOIN table with optional ON criteria.</span><pre>innerJoin()</pre></a></li>
 <li class="method public "><a href="#insert" title="insert :: Set the INSERT table."><span class="description">Set the INSERT table.</span><pre>insert()</pre></a></li>
-<li class="method public "><a href="#isDelete" title="isDelete :: Whether this is a DELETE query."><span class="description">Whether this is a DELETE query.</span><pre>isDelete()</pre></a></li>
-<li class="method public "><a href="#isInsert" title="isInsert :: Whether this is an INSERT query."><span class="description">Whether this is an INSERT query.</span><pre>isInsert()</pre></a></li>
-<li class="method public "><a href="#isReplace" title="isReplace :: Whether this is a REPLACE query."><span class="description">Whether this is a REPLACE query.</span><pre>isReplace()</pre></a></li>
-<li class="method public "><a href="#isSelect" title="isSelect :: Whether this is a SELECT query."><span class="description">Whether this is a SELECT query.</span><pre>isSelect()</pre></a></li>
-<li class="method public "><a href="#isUpdate" title="isUpdate :: Whether this is an UPDATE query."><span class="description">Whether this is an UPDATE query.</span><pre>isUpdate()</pre></a></li>
+<li class="method public "><a href="#isDelete" title="isDelete :: Whether this is a DELETE statement."><span class="description">Whether this is a DELETE statement.</span><pre>isDelete()</pre></a></li>
+<li class="method public "><a href="#isInsert" title="isInsert :: Whether this is an INSERT statement."><span class="description">Whether this is an INSERT statement.</span><pre>isInsert()</pre></a></li>
+<li class="method public "><a href="#isReplace" title="isReplace :: Whether this is a REPLACE statement."><span class="description">Whether this is a REPLACE statement.</span><pre>isReplace()</pre></a></li>
+<li class="method public "><a href="#isSelect" title="isSelect :: Whether this is a SELECT statement."><span class="description">Whether this is a SELECT statement.</span><pre>isSelect()</pre></a></li>
+<li class="method public "><a href="#isUpdate" title="isUpdate :: Whether this is an UPDATE statement."><span class="description">Whether this is an UPDATE statement.</span><pre>isUpdate()</pre></a></li>
 <li class="method public "><a href="#join" title="join :: Add a JOIN table with optional ON criteria."><span class="description">Add a JOIN table with optional ON criteria.</span><pre>join()</pre></a></li>
 <li class="method public "><a href="#leftJoin" title="leftJoin :: Add a LEFT JOIN table with optional ON criteria."><span class="description">Add a LEFT JOIN table with optional ON criteria.</span><pre>leftJoin()</pre></a></li>
 <li class="method public "><a href="#limit" title="limit :: Set the LIMIT on number of rows to return with optional offset."><span class="description">Set the LIMIT on number of rows to return with optional offset.</span><pre>limit()</pre></a></li>
-<li class="method public "><a href="#mergeDeleteInto" title="mergeDeleteInto :: Merge this QueryBuilder's DELETE into the given QueryBuilder."><span class="description">Merge this QueryBuilder's DELETE into the given QueryBuilder.</span><pre>mergeDeleteInto()</pre></a></li>
-<li class="method public "><a href="#mergeFromInto" title="mergeFromInto :: Merge this QueryBuilder's FROM into the given QueryBuilder."><span class="description">Merge this QueryBuilder's FROM into the given QueryBuilder.</span><pre>mergeFromInto()</pre></a></li>
-<li class="method public "><a href="#mergeGroupByInto" title="mergeGroupByInto :: Merge this QueryBuilder's GROUP BY into the given QueryBuilder."><span class="description">Merge this QueryBuilder's GROUP BY into the given QueryBuilder.</span><pre>mergeGroupByInto()</pre></a></li>
-<li class="method public "><a href="#mergeHavingInto" title="mergeHavingInto :: Merge this QueryBuilder's HAVING into the given QueryBuilder."><span class="description">Merge this QueryBuilder's HAVING into the given QueryBuilder.</span><pre>mergeHavingInto()</pre></a></li>
-<li class="method public "><a href="#mergeInsertInto" title="mergeInsertInto :: Merge this QueryBuilder's INSERT into the given QueryBuilder."><span class="description">Merge this QueryBuilder's INSERT into the given QueryBuilder.</span><pre>mergeInsertInto()</pre></a></li>
-<li class="method public "><a href="#mergeInto" title="mergeInto :: Merge this QueryBuilder into the given QueryBuilder."><span class="description">Merge this QueryBuilder into the given QueryBuilder.</span><pre>mergeInto()</pre></a></li>
-<li class="method public "><a href="#mergeJoinInto" title="mergeJoinInto :: Merge this QueryBuilder's JOINs into the given QueryBuilder."><span class="description">Merge this QueryBuilder's JOINs into the given QueryBuilder.</span><pre>mergeJoinInto()</pre></a></li>
-<li class="method public "><a href="#mergeLimitInto" title="mergeLimitInto :: Merge this QueryBuilder's LIMIT into the given QueryBuilder."><span class="description">Merge this QueryBuilder's LIMIT into the given QueryBuilder.</span><pre>mergeLimitInto()</pre></a></li>
-<li class="method public "><a href="#mergeOptionsInto" title="mergeOptionsInto :: Merge this QueryBuilder's execution options into the given QueryBuilder."><span class="description">Merge this QueryBuilder's execution options into the given QueryBuilder.</span><pre>mergeOptionsInto()</pre></a></li>
-<li class="method public "><a href="#mergeOrderByInto" title="mergeOrderByInto :: Merge this QueryBuilder's ORDER BY into the given QueryBuilder."><span class="description">Merge this QueryBuilder's ORDER BY into the given QueryBuilder.</span><pre>mergeOrderByInto()</pre></a></li>
-<li class="method public "><a href="#mergeReplaceInto" title="mergeReplaceInto :: Merge this QueryBuilder's REPLACE into the given QueryBuilder."><span class="description">Merge this QueryBuilder's REPLACE into the given QueryBuilder.</span><pre>mergeReplaceInto()</pre></a></li>
-<li class="method public "><a href="#mergeSelectInto" title="mergeSelectInto :: Merge this QueryBuilder's SELECT into the given QueryBuilder."><span class="description">Merge this QueryBuilder's SELECT into the given QueryBuilder.</span><pre>mergeSelectInto()</pre></a></li>
-<li class="method public "><a href="#mergeSetInto" title="mergeSetInto :: Merge this QueryBuilder's SET into the given QueryBuilder."><span class="description">Merge this QueryBuilder's SET into the given QueryBuilder.</span><pre>mergeSetInto()</pre></a></li>
-<li class="method public "><a href="#mergeUpdateInto" title="mergeUpdateInto :: Merge this QueryBuilder's UPDATE into the given QueryBuilder."><span class="description">Merge this QueryBuilder's UPDATE into the given QueryBuilder.</span><pre>mergeUpdateInto()</pre></a></li>
-<li class="method public "><a href="#mergeWhereInto" title="mergeWhereInto :: Merge this QueryBuilder's WHERE into the given QueryBuilder."><span class="description">Merge this QueryBuilder's WHERE into the given QueryBuilder.</span><pre>mergeWhereInto()</pre></a></li>
+<li class="method public "><a href="#mergeDeleteInto" title="mergeDeleteInto :: Merge this Miner's DELETE into the given Miner."><span class="description">Merge this Miner's DELETE into the given Miner.</span><pre>mergeDeleteInto()</pre></a></li>
+<li class="method public "><a href="#mergeFromInto" title="mergeFromInto :: Merge this Miner's FROM into the given Miner."><span class="description">Merge this Miner's FROM into the given Miner.</span><pre>mergeFromInto()</pre></a></li>
+<li class="method public "><a href="#mergeGroupByInto" title="mergeGroupByInto :: Merge this Miner's GROUP BY into the given Miner."><span class="description">Merge this Miner's GROUP BY into the given Miner.</span><pre>mergeGroupByInto()</pre></a></li>
+<li class="method public "><a href="#mergeHavingInto" title="mergeHavingInto :: Merge this Miner's HAVING into the given Miner."><span class="description">Merge this Miner's HAVING into the given Miner.</span><pre>mergeHavingInto()</pre></a></li>
+<li class="method public "><a href="#mergeInsertInto" title="mergeInsertInto :: Merge this Miner's INSERT into the given Miner."><span class="description">Merge this Miner's INSERT into the given Miner.</span><pre>mergeInsertInto()</pre></a></li>
+<li class="method public "><a href="#mergeInto" title="mergeInto :: Merge this Miner into the given Miner."><span class="description">Merge this Miner into the given Miner.</span><pre>mergeInto()</pre></a></li>
+<li class="method public "><a href="#mergeJoinInto" title="mergeJoinInto :: Merge this Miner's JOINs into the given Miner."><span class="description">Merge this Miner's JOINs into the given Miner.</span><pre>mergeJoinInto()</pre></a></li>
+<li class="method public "><a href="#mergeLimitInto" title="mergeLimitInto :: Merge this Miner's LIMIT into the given Miner."><span class="description">Merge this Miner's LIMIT into the given Miner.</span><pre>mergeLimitInto()</pre></a></li>
+<li class="method public "><a href="#mergeOptionsInto" title="mergeOptionsInto :: Merge this Miner's execution options into the given Miner."><span class="description">Merge this Miner's execution options into the given Miner.</span><pre>mergeOptionsInto()</pre></a></li>
+<li class="method public "><a href="#mergeOrderByInto" title="mergeOrderByInto :: Merge this Miner's ORDER BY into the given Miner."><span class="description">Merge this Miner's ORDER BY into the given Miner.</span><pre>mergeOrderByInto()</pre></a></li>
+<li class="method public "><a href="#mergeReplaceInto" title="mergeReplaceInto :: Merge this Miner's REPLACE into the given Miner."><span class="description">Merge this Miner's REPLACE into the given Miner.</span><pre>mergeReplaceInto()</pre></a></li>
+<li class="method public "><a href="#mergeSelectInto" title="mergeSelectInto :: Merge this Miner's SELECT into the given Miner."><span class="description">Merge this Miner's SELECT into the given Miner.</span><pre>mergeSelectInto()</pre></a></li>
+<li class="method public "><a href="#mergeSetInto" title="mergeSetInto :: Merge this Miner's SET into the given Miner."><span class="description">Merge this Miner's SET into the given Miner.</span><pre>mergeSetInto()</pre></a></li>
+<li class="method public "><a href="#mergeUpdateInto" title="mergeUpdateInto :: Merge this Miner's UPDATE into the given Miner."><span class="description">Merge this Miner's UPDATE into the given Miner.</span><pre>mergeUpdateInto()</pre></a></li>
+<li class="method public "><a href="#mergeWhereInto" title="mergeWhereInto :: Merge this Miner's WHERE into the given Miner."><span class="description">Merge this Miner's WHERE into the given Miner.</span><pre>mergeWhereInto()</pre></a></li>
 <li class="method public "><a href="#openHaving" title="openHaving :: Add an open bracket for nesting HAVING conditions."><span class="description">Add an open bracket for nesting HAVING conditions.</span><pre>openHaving()</pre></a></li>
 <li class="method public "><a href="#openWhere" title="openWhere :: Add an open bracket for nesting WHERE conditions."><span class="description">Add an open bracket for nesting WHERE conditions.</span><pre>openWhere()</pre></a></li>
 <li class="method public "><a href="#option" title="option :: Add an execution option like DISTINCT or SQL_CALC_FOUND_ROWS."><span class="description">Add an execution option like DISTINCT or SQL_CALC_FOUND_ROWS.</span><pre>option()</pre></a></li>
 <li class="method public "><a href="#orHaving" title="orHaving :: Add an OR HAVING condition."><span class="description">Add an OR HAVING condition.</span><pre>orHaving()</pre></a></li>
 <li class="method public "><a href="#orWhere" title="orWhere :: Add an OR WHERE condition."><span class="description">Add an OR WHERE condition.</span><pre>orWhere()</pre></a></li>
 <li class="method public "><a href="#orderBy" title="orderBy :: Add a column to ORDER BY."><span class="description">Add a column to ORDER BY.</span><pre>orderBy()</pre></a></li>
-<li class="method public "><a href="#query" title="query :: Execute the query using the PDO database connection."><span class="description">Execute the query using the PDO database connection.</span><pre>query()</pre></a></li>
-<li class="method public "><a href="#quote" title="quote :: Safely escape a value for use in a query."><span class="description">Safely escape a value for use in a query.</span><pre>quote()</pre></a></li>
+<li class="method public "><a href="#quote" title="quote :: Safely escape a value for use in a statement."><span class="description">Safely escape a value for use in a statement.</span><pre>quote()</pre></a></li>
 <li class="method public "><a href="#replace" title="replace :: Set the REPLACE table."><span class="description">Set the REPLACE table.</span><pre>replace()</pre></a></li>
 <li class="method public "><a href="#rightJoin" title="rightJoin :: Add a RIGHT JOIN table with optional ON criteria."><span class="description">Add a RIGHT JOIN table with optional ON criteria.</span><pre>rightJoin()</pre></a></li>
 <li class="method public "><a href="#select" title="select :: Add a SELECT column, table, or expression with optional alias."><span class="description">Add a SELECT column, table, or expression with optional alias.</span><pre>select()</pre></a></li>
 <li class="method public "><a href="#set" title="set :: Add a column value to INSERT or UPDATE."><span class="description">Add a column value to INSERT or UPDATE.</span><pre>set()</pre></a></li>
 <li class="method public "><a href="#setAutoQuote" title="setAutoQuote :: Set whether to automatically escape values."><span class="description">Set whether to automatically escape values.</span><pre>setAutoQuote()</pre></a></li>
-<li class="method public "><a href="#setPdoConnection" title="setPdoConnection :: Set the PDO database connection to use in executing this query."><span class="description">Set the PDO database connection to use in executing this query.</span><pre>setPdoConnection()</pre></a></li>
+<li class="method public "><a href="#setPdoConnection" title="setPdoConnection :: Set the PDO database connection to use in executing this statement."><span class="description">Set the PDO database connection to use in executing this statement.</span><pre>setPdoConnection()</pre></a></li>
 <li class="method public "><a href="#update" title="update :: Set the UPDATE table."><span class="description">Set the UPDATE table.</span><pre>update()</pre></a></li>
 <li class="method public "><a href="#where" title="where :: Add a WHERE condition."><span class="description">Add a WHERE condition.</span><pre>where()</pre></a></li>
 <li class="method public "><a href="#whereBetween" title="whereBetween :: Add a BETWEEN WHERE condition."><span class="description">Add a BETWEEN WHERE condition.</span><pre>whereBetween()</pre></a></li>
@@ -156,15 +156,15 @@ HAVING criteria.</span><pre>closeCriteria()</pre></a></li>
 <li class="method private "><a href="#criteriaIn" title="criteriaIn :: Add an IN condition to the specified WHERE or HAVING criteria."><span class="description">Add an IN condition to the specified WHERE or HAVING criteria.</span><pre>criteriaIn()</pre></a></li>
 <li class="method private "><a href="#criteriaNotBetween" title="criteriaNotBetween :: Add a NOT BETWEEN condition to the specified WHERE or HAVING criteria."><span class="description">Add a NOT BETWEEN condition to the specified WHERE or HAVING criteria.</span><pre>criteriaNotBetween()</pre></a></li>
 <li class="method private "><a href="#criteriaNotIn" title="criteriaNotIn :: Add a NOT IN condition to the specified WHERE or HAVING criteria."><span class="description">Add a NOT IN condition to the specified WHERE or HAVING criteria.</span><pre>criteriaNotIn()</pre></a></li>
-<li class="method private "><a href="#getCriteriaString" title="getCriteriaString :: Get the WHERE or HAVING portion of the query as a string."><span class="description">Get the WHERE or HAVING portion of the query as a string.</span><pre>getCriteriaString()</pre></a></li>
-<li class="method private "><a href="#getDeleteQueryString" title="getDeleteQueryString :: Get the full DELETE query string."><span class="description">Get the full DELETE query string.</span><pre>getDeleteQueryString()</pre></a></li>
-<li class="method private "><a href="#getInsertQueryString" title="getInsertQueryString :: Get the full INSERT query string."><span class="description">Get the full INSERT query string.</span><pre>getInsertQueryString()</pre></a></li>
+<li class="method private "><a href="#getCriteriaString" title="getCriteriaString :: Get the WHERE or HAVING portion of the statement as a string."><span class="description">Get the WHERE or HAVING portion of the statement as a string.</span><pre>getCriteriaString()</pre></a></li>
+<li class="method private "><a href="#getDeleteStatement" title="getDeleteStatement :: Get the full DELETE statement."><span class="description">Get the full DELETE statement.</span><pre>getDeleteStatement()</pre></a></li>
+<li class="method private "><a href="#getInsertStatement" title="getInsertStatement :: Get the full INSERT statement."><span class="description">Get the full INSERT statement.</span><pre>getInsertStatement()</pre></a></li>
 <li class="method private "><a href="#getJoinCriteriaUsingPreviousTable" title="getJoinCriteriaUsingPreviousTable :: Get an ON criteria string joining the specified table and column to the
 same column of the previous JOIN or FROM table."><span class="description">Get an ON criteria string joining the specified table and column to the
 same column of the previous JOIN or FROM table.</span><pre>getJoinCriteriaUsingPreviousTable()</pre></a></li>
-<li class="method private "><a href="#getReplaceQueryString" title="getReplaceQueryString :: Get the full REPLACE query string."><span class="description">Get the full REPLACE query string.</span><pre>getReplaceQueryString()</pre></a></li>
-<li class="method private "><a href="#getSelectQueryString" title="getSelectQueryString :: Get the full SELECT query string."><span class="description">Get the full SELECT query string.</span><pre>getSelectQueryString()</pre></a></li>
-<li class="method private "><a href="#getUpdateQueryString" title="getUpdateQueryString :: Get the full UPDATE query string."><span class="description">Get the full UPDATE query string.</span><pre>getUpdateQueryString()</pre></a></li>
+<li class="method private "><a href="#getReplaceStatement" title="getReplaceStatement :: Get the full REPLACE statement."><span class="description">Get the full REPLACE statement.</span><pre>getReplaceStatement()</pre></a></li>
+<li class="method private "><a href="#getSelectStatement" title="getSelectStatement :: Get the full SELECT statement."><span class="description">Get the full SELECT statement.</span><pre>getSelectStatement()</pre></a></li>
+<li class="method private "><a href="#getUpdateStatement" title="getUpdateStatement :: Get the full UPDATE statement."><span class="description">Get the full UPDATE statement.</span><pre>getUpdateStatement()</pre></a></li>
 <li class="method private "><a href="#isDeleteTableFrom" title="isDeleteTableFrom :: Whether the FROM table is the single table to delete from."><span class="description">Whether the FROM table is the single table to delete from.</span><pre>isDeleteTableFrom()</pre></a></li>
 <li class="method private "><a href="#openCriteria" title="openCriteria :: Add an open bracket for nesting conditions to the specified WHERE or
 HAVING criteria."><span class="description">Add an open bracket for nesting conditions to the specified WHERE or
@@ -173,7 +173,7 @@ HAVING criteria.</span><pre>openCriteria()</pre></a></li>
 <li class="nav-header">
 <i class="icon-custom icon-property"></i> Properties</li>
 <li class="nav-header private">» Private</li>
-<li class="property private "><a href="#%24PdoConnection" title="$PdoConnection :: PDO database connection to use in executing the query."><span class="description">PDO database connection to use in executing the query.</span><pre>$PdoConnection</pre></a></li>
+<li class="property private "><a href="#%24PdoConnection" title="$PdoConnection :: PDO database connection to use in executing the statement."><span class="description">PDO database connection to use in executing the statement.</span><pre>$PdoConnection</pre></a></li>
 <li class="property private "><a href="#%24autoQuote" title="$autoQuote :: Whether to automatically escape values."><span class="description">Whether to automatically escape values.</span><pre>$autoQuote</pre></a></li>
 <li class="property private "><a href="#%24delete" title="$delete :: Tables to DELETE from, or true if deleting from the FROM table."><span class="description">Tables to DELETE from, or true if deleting from the FROM table.</span><pre>$delete</pre></a></li>
 <li class="property private "><a href="#%24from" title="$from :: Table to select FROM."><span class="description">Table to select FROM.</span><pre>$from</pre></a></li>
@@ -223,20 +223,20 @@ HAVING criteria.</span><pre>openCriteria()</pre></a></li>
 </ul>
 </div>
 <div class="span8">
-<a name="%5CQueryBuilder" id="\QueryBuilder"></a><ul class="breadcrumb">
+<a name="%5CMiner" id="\Miner"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/global.html">global</a></li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/QueryBuilder.html">QueryBuilder</a>
+<span class="divider">\</span><a href="../classes/Miner.html">Miner</a>
 </li>
 </ul>
-<div href="../classes/QueryBuilder.html" class="element class">
-<p class="short_description">A dead simple PHP 5 OO interface for building SQL queries.</p>
+<div href="../classes/Miner.html" class="element class">
+<p class="short_description">A dead simple PHP class for building SQL statements.</p>
 <div class="details">
-<p class="long_description"><p>No manual
-string concatenation necessary.</p></p>
+<p class="long_description"><p>No manual string
+concatenation necessary.</p></p>
 <table class="table table-bordered">
 <tr>
 <th>author</th>
@@ -252,18 +252,18 @@ string concatenation necessary.</p></p>
 </tr>
 <tr>
 <th>package</th>
-<td><a href="../packages/QueryBuilder.html">QueryBuilder</a></td>
+<td><a href="../packages/Miner.html">Miner</a></td>
 </tr>
 <tr>
 <th>version</th>
-<td>4.1.1</td>
+<td>0.9.0</td>
 </tr>
 </table>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
 <h2>Constructor.</h2>
-<pre>__construct(\PDO $PdoConnection, bool $autoQuote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>__construct(\PDO $PdoConnection, bool $autoQuote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -276,23 +276,23 @@ string concatenation necessary.</p></p>
 <code>bool</code><p>optional auto-escape values, default true</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="__toString" id="__toString"></a><div class="element clickable method public __toString" data-toggle="collapse" data-target=".__toString .collapse">
-<h2>Get the full query string without value placeholders.</h2>
+<h2>Get the full SQL statement without value placeholders.</h2>
 <pre>__toString() : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>full query string</div>
+<code>string</code>full SQL statement</div>
 </div></div>
 </div>
 <a name="andHaving" id="andHaving"></a><div class="element clickable method public andHaving" data-toggle="collapse" data-target=".andHaving .collapse">
 <h2>Add an AND HAVING condition.</h2>
-<pre>andHaving(string $column, mixed $value, string $operator, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>andHaving(string $column, mixed $value, string $operator, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -312,12 +312,12 @@ string concatenation necessary.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="andWhere" id="andWhere"></a><div class="element clickable method public andWhere" data-toggle="collapse" data-target=".andWhere .collapse">
 <h2>Add an AND WHERE condition.</h2>
-<pre>andWhere(string $column, mixed $value, string $operator, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>andWhere(string $column, mixed $value, string $operator, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -337,7 +337,7 @@ string concatenation necessary.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="autoQuote" id="autoQuote"></a><div class="element clickable method public autoQuote" data-toggle="collapse" data-target=".autoQuote .collapse">
@@ -365,37 +365,37 @@ global setting.</p></p>
 </div>
 <a name="calcFoundRows" id="calcFoundRows"></a><div class="element clickable method public calcFoundRows" data-toggle="collapse" data-target=".calcFoundRows .collapse">
 <h2>Add SQL_CALC_FOUND_ROWS execution option.</h2>
-<pre>calcFoundRows() : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>calcFoundRows() : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="closeHaving" id="closeHaving"></a><div class="element clickable method public closeHaving" data-toggle="collapse" data-target=".closeHaving .collapse">
 <h2>Add a closing bracket for nesting HAVING conditions.</h2>
-<pre>closeHaving() : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>closeHaving() : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="closeWhere" id="closeWhere"></a><div class="element clickable method public closeWhere" data-toggle="collapse" data-target=".closeWhere .collapse">
 <h2>Add a closing bracket for nesting WHERE conditions.</h2>
-<pre>closeWhere() : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>closeWhere() : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="delete" id="delete"></a><div class="element clickable method public delete" data-toggle="collapse" data-target=".delete .collapse">
 <h2>Add a table to DELETE from, or false if deleting from the FROM table.</h2>
-<pre>delete(string | false $table) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>delete(string | false $table) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -404,22 +404,33 @@ global setting.</p></p>
 <h4>$table</h4>
 <code>string</code><code>false</code><p>optional table name, default false</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="distinct" id="distinct"></a><div class="element clickable method public distinct" data-toggle="collapse" data-target=".distinct .collapse">
 <h2>Add DISTINCT execution option.</h2>
-<pre>distinct() : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>distinct() : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+</div></div>
+</div>
+<a name="execute" id="execute"></a><div class="element clickable method public execute" data-toggle="collapse" data-target=".execute .collapse">
+<h2>Execute the statement using the PDO database connection.</h2>
+<pre>execute() : <a href="http://php.net/manual/en/class.pdostatement.php">\PDOStatement</a> | false</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="http://php.net/manual/en/class.pdostatement.php">\PDOStatement</a></code><code>false</code>executed statement or false if failed</div>
 </div></div>
 </div>
 <a name="from" id="from"></a><div class="element clickable method public from" data-toggle="collapse" data-target=".from .collapse">
 <h2>Set the FROM table with optional alias.</h2>
-<pre>from(string $table, string $alias) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>from(string $table, string $alias) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -431,7 +442,7 @@ global setting.</p></p>
 <h4>$alias</h4>
 <code>string</code><p>optional alias</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="getAutoQuote" id="getAutoQuote"></a><div class="element clickable method public getAutoQuote" data-toggle="collapse" data-target=".getAutoQuote .collapse">
@@ -452,7 +463,7 @@ global setting.</p></p>
 </div></div>
 </div>
 <a name="getDeleteString" id="getDeleteString"></a><div class="element clickable method public getDeleteString" data-toggle="collapse" data-target=".getDeleteString .collapse">
-<h2>Get the DELETE portion of the query as a string.</h2>
+<h2>Get the DELETE portion of the statement as a string.</h2>
 <pre>getDeleteString(bool $includeText) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -464,7 +475,7 @@ global setting.</p></p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>DELETE portion of the query</div>
+<code>string</code>DELETE portion of the statement</div>
 </div></div>
 </div>
 <a name="getFrom" id="getFrom"></a><div class="element clickable method public getFrom" data-toggle="collapse" data-target=".getFrom .collapse">
@@ -490,7 +501,7 @@ global setting.</p></p>
 </div></div>
 </div>
 <a name="getFromString" id="getFromString"></a><div class="element clickable method public getFromString" data-toggle="collapse" data-target=".getFromString .collapse">
-<h2>Get the FROM portion of the query, including all JOINs, as a string.</h2>
+<h2>Get the FROM portion of the statement, including all JOINs, as a string.</h2>
 <pre>getFromString(bool $includeText) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -502,11 +513,11 @@ global setting.</p></p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>FROM portion of the query</div>
+<code>string</code>FROM portion of the statement</div>
 </div></div>
 </div>
 <a name="getGroupByString" id="getGroupByString"></a><div class="element clickable method public getGroupByString" data-toggle="collapse" data-target=".getGroupByString .collapse">
-<h2>Get the GROUP BY portion of the query as a string.</h2>
+<h2>Get the GROUP BY portion of the statement as a string.</h2>
 <pre>getGroupByString(bool $includeText) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -518,7 +529,7 @@ global setting.</p></p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>GROUP BY portion of the query</div>
+<code>string</code>GROUP BY portion of the statement</div>
 </div></div>
 </div>
 <a name="getHavingPlaceholderValues" id="getHavingPlaceholderValues"></a><div class="element clickable method public getHavingPlaceholderValues" data-toggle="collapse" data-target=".getHavingPlaceholderValues .collapse">
@@ -533,7 +544,7 @@ global setting.</p></p>
 </div></div>
 </div>
 <a name="getHavingString" id="getHavingString"></a><div class="element clickable method public getHavingString" data-toggle="collapse" data-target=".getHavingString .collapse">
-<h2>Get the HAVING portion of the query as a string.</h2>
+<h2>Get the HAVING portion of the statement as a string.</h2>
 <pre>getHavingString(bool $usePlaceholders, bool $includeText) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -549,7 +560,7 @@ global setting.</p></p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>HAVING portion of the query</div>
+<code>string</code>HAVING portion of the statement</div>
 </div></div>
 </div>
 <a name="getInsert" id="getInsert"></a><div class="element clickable method public getInsert" data-toggle="collapse" data-target=".getInsert .collapse">
@@ -564,7 +575,7 @@ global setting.</p></p>
 </div></div>
 </div>
 <a name="getInsertString" id="getInsertString"></a><div class="element clickable method public getInsertString" data-toggle="collapse" data-target=".getInsertString .collapse">
-<h2>Get the INSERT portion of the query as a string.</h2>
+<h2>Get the INSERT portion of the statement as a string.</h2>
 <pre>getInsertString(bool $includeText) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -576,18 +587,18 @@ global setting.</p></p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>INSERT portion of the query</div>
+<code>string</code>INSERT portion of the statement</div>
 </div></div>
 </div>
 <a name="getJoinString" id="getJoinString"></a><div class="element clickable method public getJoinString" data-toggle="collapse" data-target=".getJoinString .collapse">
-<h2>Get the JOIN portion of the query as a string.</h2>
+<h2>Get the JOIN portion of the statement as a string.</h2>
 <pre>getJoinString() : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>JOIN portion of the query</div>
+<code>string</code>JOIN portion of the statement</div>
 </div></div>
 </div>
 <a name="getLimit" id="getLimit"></a><div class="element clickable method public getLimit" data-toggle="collapse" data-target=".getLimit .collapse">
@@ -613,7 +624,7 @@ global setting.</p></p>
 </div></div>
 </div>
 <a name="getLimitString" id="getLimitString"></a><div class="element clickable method public getLimitString" data-toggle="collapse" data-target=".getLimitString .collapse">
-<h2>Get the LIMIT portion of the query as a string.</h2>
+<h2>Get the LIMIT portion of the statement as a string.</h2>
 <pre>getLimitString(bool $includeText) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -625,11 +636,11 @@ global setting.</p></p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>LIMIT portion of the query</div>
+<code>string</code>LIMIT portion of the statement</div>
 </div></div>
 </div>
 <a name="getOptionsString" id="getOptionsString"></a><div class="element clickable method public getOptionsString" data-toggle="collapse" data-target=".getOptionsString .collapse">
-<h2>Get the execution options portion of the query as a string.</h2>
+<h2>Get the execution options portion of the statement as a string.</h2>
 <pre>getOptionsString(bool $includeTrailingSpace) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -640,11 +651,11 @@ global setting.</p></p>
 <code>bool</code><p>optional include space after options</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>execution options portion of the query</div>
+<code>string</code>execution options portion of the statement</div>
 </div></div>
 </div>
 <a name="getOrderByString" id="getOrderByString"></a><div class="element clickable method public getOrderByString" data-toggle="collapse" data-target=".getOrderByString .collapse">
-<h2>Get the ORDER BY portion of the query as a string.</h2>
+<h2>Get the ORDER BY portion of the statement as a string.</h2>
 <pre>getOrderByString(bool $includeText) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -656,11 +667,11 @@ global setting.</p></p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>ORDER BY portion of the query</div>
+<code>string</code>ORDER BY portion of the statement</div>
 </div></div>
 </div>
 <a name="getPdoConnection" id="getPdoConnection"></a><div class="element clickable method public getPdoConnection" data-toggle="collapse" data-target=".getPdoConnection .collapse">
-<h2>Get the PDO database connection to use in executing this query.</h2>
+<h2>Get the PDO database connection to use in executing this statement.</h2>
 <pre>getPdoConnection() : <a href="http://php.net/manual/en/class.pdo.php">\PDO</a> | null</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -682,22 +693,6 @@ global setting.</p></p>
 <code>array</code>all placeholder values</div>
 </div></div>
 </div>
-<a name="getQueryString" id="getQueryString"></a><div class="element clickable method public getQueryString" data-toggle="collapse" data-target=".getQueryString .collapse">
-<h2>Get the full query string.</h2>
-<pre>getQueryString(bool $usePlaceholders) : string</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"></p>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$usePlaceholders</h4>
-<code>bool</code><p>optional use ? placeholders, default true</p>
-</div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>string</code>full query string</div>
-</div></div>
-</div>
 <a name="getReplace" id="getReplace"></a><div class="element clickable method public getReplace" data-toggle="collapse" data-target=".getReplace .collapse">
 <h2>Get the REPLACE table.</h2>
 <pre>getReplace() : string</pre>
@@ -710,7 +705,7 @@ global setting.</p></p>
 </div></div>
 </div>
 <a name="getReplaceString" id="getReplaceString"></a><div class="element clickable method public getReplaceString" data-toggle="collapse" data-target=".getReplaceString .collapse">
-<h2>Get the REPLACE portion of the query as a string.</h2>
+<h2>Get the REPLACE portion of the statement as a string.</h2>
 <pre>getReplaceString(bool $includeText) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -722,11 +717,11 @@ global setting.</p></p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>REPLACE portion of the query</div>
+<code>string</code>REPLACE portion of the statement</div>
 </div></div>
 </div>
 <a name="getSelectString" id="getSelectString"></a><div class="element clickable method public getSelectString" data-toggle="collapse" data-target=".getSelectString .collapse">
-<h2>Get the SELECT portion of the query as a string.</h2>
+<h2>Get the SELECT portion of the statement as a string.</h2>
 <pre>getSelectString(bool $includeText) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -738,7 +733,7 @@ global setting.</p></p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>SELECT portion of the query</div>
+<code>string</code>SELECT portion of the statement</div>
 </div></div>
 </div>
 <a name="getSetPlaceholderValues" id="getSetPlaceholderValues"></a><div class="element clickable method public getSetPlaceholderValues" data-toggle="collapse" data-target=".getSetPlaceholderValues .collapse">
@@ -753,7 +748,7 @@ global setting.</p></p>
 </div></div>
 </div>
 <a name="getSetString" id="getSetString"></a><div class="element clickable method public getSetString" data-toggle="collapse" data-target=".getSetString .collapse">
-<h2>Get the SET portion of the query as a string.</h2>
+<h2>Get the SET portion of the statement as a string.</h2>
 <pre>getSetString(bool $usePlaceholders, bool $includeText) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -769,7 +764,23 @@ global setting.</p></p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>SET portion of the query</div>
+<code>string</code>SET portion of the statement</div>
+</div></div>
+</div>
+<a name="getStatement" id="getStatement"></a><div class="element clickable method public getStatement" data-toggle="collapse" data-target=".getStatement .collapse">
+<h2>Get the full SQL statement.</h2>
+<pre>getStatement(bool $usePlaceholders) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$usePlaceholders</h4>
+<code>bool</code><p>optional use ? placeholders, default true</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>full SQL statement</div>
 </div></div>
 </div>
 <a name="getUpdate" id="getUpdate"></a><div class="element clickable method public getUpdate" data-toggle="collapse" data-target=".getUpdate .collapse">
@@ -784,7 +795,7 @@ global setting.</p></p>
 </div></div>
 </div>
 <a name="getUpdateString" id="getUpdateString"></a><div class="element clickable method public getUpdateString" data-toggle="collapse" data-target=".getUpdateString .collapse">
-<h2>Get the UPDATE portion of the query as a string.</h2>
+<h2>Get the UPDATE portion of the statement as a string.</h2>
 <pre>getUpdateString(bool $includeText) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -796,7 +807,7 @@ global setting.</p></p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>UPDATE portion of the query</div>
+<code>string</code>UPDATE portion of the statement</div>
 </div></div>
 </div>
 <a name="getWherePlaceholderValues" id="getWherePlaceholderValues"></a><div class="element clickable method public getWherePlaceholderValues" data-toggle="collapse" data-target=".getWherePlaceholderValues .collapse">
@@ -811,7 +822,7 @@ global setting.</p></p>
 </div></div>
 </div>
 <a name="getWhereString" id="getWhereString"></a><div class="element clickable method public getWhereString" data-toggle="collapse" data-target=".getWhereString .collapse">
-<h2>Get the WHERE portion of the query as a string.</h2>
+<h2>Get the WHERE portion of the statement as a string.</h2>
 <pre>getWhereString(bool $usePlaceholders, bool $includeText) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -827,12 +838,12 @@ global setting.</p></p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>WHERE portion of the query</div>
+<code>string</code>WHERE portion of the statement</div>
 </div></div>
 </div>
 <a name="groupBy" id="groupBy"></a><div class="element clickable method public groupBy" data-toggle="collapse" data-target=".groupBy .collapse">
 <h2>Add a GROUP BY column.</h2>
-<pre>groupBy(string $column, string | null $order) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>groupBy(string $column, string | null $order) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -844,12 +855,12 @@ global setting.</p></p>
 <h4>$order</h4>
 <code>string</code><code>null</code><p>optional order direction, default none</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="having" id="having"></a><div class="element clickable method public having" data-toggle="collapse" data-target=".having .collapse">
 <h2>Add a HAVING condition.</h2>
-<pre>having(string $column, mixed $value, string $operator, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>having(string $column, mixed $value, string $operator, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -872,12 +883,12 @@ global setting.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="havingBetween" id="havingBetween"></a><div class="element clickable method public havingBetween" data-toggle="collapse" data-target=".havingBetween .collapse">
 <h2>Add a BETWEEN HAVING condition.</h2>
-<pre>havingBetween(string $column, mixed $min, mixed $max, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>havingBetween(string $column, mixed $min, mixed $max, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -899,12 +910,12 @@ global setting.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="havingIn" id="havingIn"></a><div class="element clickable method public havingIn" data-toggle="collapse" data-target=".havingIn .collapse">
 <h2>Add an IN WHERE condition.</h2>
-<pre>havingIn(string $column, array $values, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>havingIn(string $column, array $values, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -923,12 +934,12 @@ global setting.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="havingNotBetween" id="havingNotBetween"></a><div class="element clickable method public havingNotBetween" data-toggle="collapse" data-target=".havingNotBetween .collapse">
 <h2>Add a NOT BETWEEN HAVING condition.</h2>
-<pre>havingNotBetween(string $column, mixed $min, mixed $max, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>havingNotBetween(string $column, mixed $min, mixed $max, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -950,12 +961,12 @@ global setting.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="havingNotIn" id="havingNotIn"></a><div class="element clickable method public havingNotIn" data-toggle="collapse" data-target=".havingNotIn .collapse">
 <h2>Add a NOT IN HAVING condition.</h2>
-<pre>havingNotIn(string $column, array $values, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>havingNotIn(string $column, array $values, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -974,12 +985,12 @@ global setting.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="innerJoin" id="innerJoin"></a><div class="element clickable method public innerJoin" data-toggle="collapse" data-target=".innerJoin .collapse">
 <h2>Add an INNER JOIN table with optional ON criteria.</h2>
-<pre>innerJoin(string $table, string | array $criteria, string $alias) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>innerJoin(string $table, string | array $criteria, string $alias) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -994,12 +1005,12 @@ global setting.</p></p>
 <h4>$alias</h4>
 <code>string</code><p>optional alias</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="insert" id="insert"></a><div class="element clickable method public insert" data-toggle="collapse" data-target=".insert .collapse">
 <h2>Set the INSERT table.</h2>
-<pre>insert(string $table) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>insert(string $table) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1008,67 +1019,67 @@ global setting.</p></p>
 <h4>$table</h4>
 <code>string</code><p>INSERT table</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="isDelete" id="isDelete"></a><div class="element clickable method public isDelete" data-toggle="collapse" data-target=".isDelete .collapse">
-<h2>Whether this is a DELETE query.</h2>
+<h2>Whether this is a DELETE statement.</h2>
 <pre>isDelete() : bool</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>bool</code>whether this is a DELETE query</div>
+<code>bool</code>whether this is a DELETE statement</div>
 </div></div>
 </div>
 <a name="isInsert" id="isInsert"></a><div class="element clickable method public isInsert" data-toggle="collapse" data-target=".isInsert .collapse">
-<h2>Whether this is an INSERT query.</h2>
+<h2>Whether this is an INSERT statement.</h2>
 <pre>isInsert() : bool</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>bool</code>whether this is an INSERT query</div>
+<code>bool</code>whether this is an INSERT statement</div>
 </div></div>
 </div>
 <a name="isReplace" id="isReplace"></a><div class="element clickable method public isReplace" data-toggle="collapse" data-target=".isReplace .collapse">
-<h2>Whether this is a REPLACE query.</h2>
+<h2>Whether this is a REPLACE statement.</h2>
 <pre>isReplace() : bool</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>bool</code>whether this is a REPLACE query</div>
+<code>bool</code>whether this is a REPLACE statement</div>
 </div></div>
 </div>
 <a name="isSelect" id="isSelect"></a><div class="element clickable method public isSelect" data-toggle="collapse" data-target=".isSelect .collapse">
-<h2>Whether this is a SELECT query.</h2>
+<h2>Whether this is a SELECT statement.</h2>
 <pre>isSelect() : bool</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>bool</code>whether this is a SELECT query</div>
+<code>bool</code>whether this is a SELECT statement</div>
 </div></div>
 </div>
 <a name="isUpdate" id="isUpdate"></a><div class="element clickable method public isUpdate" data-toggle="collapse" data-target=".isUpdate .collapse">
-<h2>Whether this is an UPDATE query.</h2>
+<h2>Whether this is an UPDATE statement.</h2>
 <pre>isUpdate() : bool</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>bool</code>whether this is an UPDATE query</div>
+<code>bool</code>whether this is an UPDATE statement</div>
 </div></div>
 </div>
 <a name="join" id="join"></a><div class="element clickable method public join" data-toggle="collapse" data-target=".join .collapse">
 <h2>Add a JOIN table with optional ON criteria.</h2>
-<pre>join(string $table, string | array $criteria, string $type, string $alias) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>join(string $table, string | array $criteria, string $type, string $alias) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1086,12 +1097,12 @@ global setting.</p></p>
 <h4>$alias</h4>
 <code>string</code><p>optional alias</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="leftJoin" id="leftJoin"></a><div class="element clickable method public leftJoin" data-toggle="collapse" data-target=".leftJoin .collapse">
 <h2>Add a LEFT JOIN table with optional ON criteria.</h2>
-<pre>leftJoin(string $table, string | array $criteria, string $alias) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>leftJoin(string $table, string | array $criteria, string $alias) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1106,12 +1117,12 @@ global setting.</p></p>
 <h4>$alias</h4>
 <code>string</code><p>optional alias</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="limit" id="limit"></a><div class="element clickable method public limit" data-toggle="collapse" data-target=".limit .collapse">
 <h2>Set the LIMIT on number of rows to return with optional offset.</h2>
-<pre>limit(int | string $limit, int | string $offset) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>limit(int | string $limit, int | string $offset) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1123,225 +1134,225 @@ global setting.</p></p>
 <h4>$offset</h4>
 <code>int</code><code>string</code><p>optional row number to start at, default 0</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeDeleteInto" id="mergeDeleteInto"></a><div class="element clickable method public mergeDeleteInto" data-toggle="collapse" data-target=".mergeDeleteInto .collapse">
-<h2>Merge this QueryBuilder's DELETE into the given QueryBuilder.</h2>
-<pre>mergeDeleteInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's DELETE into the given Miner.</h2>
+<pre>mergeDeleteInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeFromInto" id="mergeFromInto"></a><div class="element clickable method public mergeFromInto" data-toggle="collapse" data-target=".mergeFromInto .collapse">
-<h2>Merge this QueryBuilder's FROM into the given QueryBuilder.</h2>
-<pre>mergeFromInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's FROM into the given Miner.</h2>
+<pre>mergeFromInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeGroupByInto" id="mergeGroupByInto"></a><div class="element clickable method public mergeGroupByInto" data-toggle="collapse" data-target=".mergeGroupByInto .collapse">
-<h2>Merge this QueryBuilder's GROUP BY into the given QueryBuilder.</h2>
-<pre>mergeGroupByInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's GROUP BY into the given Miner.</h2>
+<pre>mergeGroupByInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeHavingInto" id="mergeHavingInto"></a><div class="element clickable method public mergeHavingInto" data-toggle="collapse" data-target=".mergeHavingInto .collapse">
-<h2>Merge this QueryBuilder's HAVING into the given QueryBuilder.</h2>
-<pre>mergeHavingInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's HAVING into the given Miner.</h2>
+<pre>mergeHavingInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeInsertInto" id="mergeInsertInto"></a><div class="element clickable method public mergeInsertInto" data-toggle="collapse" data-target=".mergeInsertInto .collapse">
-<h2>Merge this QueryBuilder's INSERT into the given QueryBuilder.</h2>
-<pre>mergeInsertInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's INSERT into the given Miner.</h2>
+<pre>mergeInsertInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeInto" id="mergeInto"></a><div class="element clickable method public mergeInto" data-toggle="collapse" data-target=".mergeInto .collapse">
-<h2>Merge this QueryBuilder into the given QueryBuilder.</h2>
-<pre>mergeInto(\QueryBuilder $QueryBuilder, bool $overrideLimit) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner into the given Miner.</h2>
+<pre>mergeInto(\Miner $Miner, bool $overrideLimit) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <div class="subelement argument">
 <h4>$overrideLimit</h4>
 <code>bool</code><p>optional override limit, default true</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeJoinInto" id="mergeJoinInto"></a><div class="element clickable method public mergeJoinInto" data-toggle="collapse" data-target=".mergeJoinInto .collapse">
-<h2>Merge this QueryBuilder's JOINs into the given QueryBuilder.</h2>
-<pre>mergeJoinInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's JOINs into the given Miner.</h2>
+<pre>mergeJoinInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeLimitInto" id="mergeLimitInto"></a><div class="element clickable method public mergeLimitInto" data-toggle="collapse" data-target=".mergeLimitInto .collapse">
-<h2>Merge this QueryBuilder's LIMIT into the given QueryBuilder.</h2>
-<pre>mergeLimitInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's LIMIT into the given Miner.</h2>
+<pre>mergeLimitInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeOptionsInto" id="mergeOptionsInto"></a><div class="element clickable method public mergeOptionsInto" data-toggle="collapse" data-target=".mergeOptionsInto .collapse">
-<h2>Merge this QueryBuilder's execution options into the given QueryBuilder.</h2>
-<pre>mergeOptionsInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's execution options into the given Miner.</h2>
+<pre>mergeOptionsInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeOrderByInto" id="mergeOrderByInto"></a><div class="element clickable method public mergeOrderByInto" data-toggle="collapse" data-target=".mergeOrderByInto .collapse">
-<h2>Merge this QueryBuilder's ORDER BY into the given QueryBuilder.</h2>
-<pre>mergeOrderByInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's ORDER BY into the given Miner.</h2>
+<pre>mergeOrderByInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeReplaceInto" id="mergeReplaceInto"></a><div class="element clickable method public mergeReplaceInto" data-toggle="collapse" data-target=".mergeReplaceInto .collapse">
-<h2>Merge this QueryBuilder's REPLACE into the given QueryBuilder.</h2>
-<pre>mergeReplaceInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's REPLACE into the given Miner.</h2>
+<pre>mergeReplaceInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeSelectInto" id="mergeSelectInto"></a><div class="element clickable method public mergeSelectInto" data-toggle="collapse" data-target=".mergeSelectInto .collapse">
-<h2>Merge this QueryBuilder's SELECT into the given QueryBuilder.</h2>
-<pre>mergeSelectInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's SELECT into the given Miner.</h2>
+<pre>mergeSelectInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeSetInto" id="mergeSetInto"></a><div class="element clickable method public mergeSetInto" data-toggle="collapse" data-target=".mergeSetInto .collapse">
-<h2>Merge this QueryBuilder's SET into the given QueryBuilder.</h2>
-<pre>mergeSetInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's SET into the given Miner.</h2>
+<pre>mergeSetInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeUpdateInto" id="mergeUpdateInto"></a><div class="element clickable method public mergeUpdateInto" data-toggle="collapse" data-target=".mergeUpdateInto .collapse">
-<h2>Merge this QueryBuilder's UPDATE into the given QueryBuilder.</h2>
-<pre>mergeUpdateInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's UPDATE into the given Miner.</h2>
+<pre>mergeUpdateInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="mergeWhereInto" id="mergeWhereInto"></a><div class="element clickable method public mergeWhereInto" data-toggle="collapse" data-target=".mergeWhereInto .collapse">
-<h2>Merge this QueryBuilder's WHERE into the given QueryBuilder.</h2>
-<pre>mergeWhereInto(\QueryBuilder $QueryBuilder) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Merge this Miner's WHERE into the given Miner.</h2>
+<pre>mergeWhereInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$QueryBuilder</h4>
-<code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code><p>to merge into</p></div>
+<h4>$Miner</h4>
+<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="openHaving" id="openHaving"></a><div class="element clickable method public openHaving" data-toggle="collapse" data-target=".openHaving .collapse">
 <h2>Add an open bracket for nesting HAVING conditions.</h2>
-<pre>openHaving(string $connector) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>openHaving(string $connector) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1350,12 +1361,12 @@ global setting.</p></p>
 <h4>$connector</h4>
 <code>string</code><p>optional logical connector, default AND</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="openWhere" id="openWhere"></a><div class="element clickable method public openWhere" data-toggle="collapse" data-target=".openWhere .collapse">
 <h2>Add an open bracket for nesting WHERE conditions.</h2>
-<pre>openWhere(string $connector) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>openWhere(string $connector) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1364,12 +1375,12 @@ global setting.</p></p>
 <h4>$connector</h4>
 <code>string</code><p>optional logical connector, default AND</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="option" id="option"></a><div class="element clickable method public option" data-toggle="collapse" data-target=".option .collapse">
 <h2>Add an execution option like DISTINCT or SQL_CALC_FOUND_ROWS.</h2>
-<pre>option(string $option) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>option(string $option) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1378,12 +1389,12 @@ global setting.</p></p>
 <h4>$option</h4>
 <code>string</code><p>execution option to add</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="orHaving" id="orHaving"></a><div class="element clickable method public orHaving" data-toggle="collapse" data-target=".orHaving .collapse">
 <h2>Add an OR HAVING condition.</h2>
-<pre>orHaving(string $column, mixed $value, string $operator, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>orHaving(string $column, mixed $value, string $operator, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1403,12 +1414,12 @@ global setting.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="orWhere" id="orWhere"></a><div class="element clickable method public orWhere" data-toggle="collapse" data-target=".orWhere .collapse">
 <h2>Add an OR WHERE condition.</h2>
-<pre>orWhere(string $column, mixed $value, string $operator, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>orWhere(string $column, mixed $value, string $operator, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1428,12 +1439,12 @@ global setting.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="orderBy" id="orderBy"></a><div class="element clickable method public orderBy" data-toggle="collapse" data-target=".orderBy .collapse">
 <h2>Add a column to ORDER BY.</h2>
-<pre>orderBy(string $column, string $order) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>orderBy(string $column, string $order) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1445,22 +1456,11 @@ global setting.</p></p>
 <h4>$order</h4>
 <code>string</code><p>optional order direction, default ASC</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
-</div></div>
-</div>
-<a name="query" id="query"></a><div class="element clickable method public query" data-toggle="collapse" data-target=".query .collapse">
-<h2>Execute the query using the PDO database connection.</h2>
-<pre>query() : <a href="http://php.net/manual/en/class.pdostatement.php">\PDOStatement</a> | false</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"></p>
-<h3>Returns</h3>
-<div class="subelement response">
-<code><a href="http://php.net/manual/en/class.pdostatement.php">\PDOStatement</a></code><code>false</code>executed query or false if failed</div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="quote" id="quote"></a><div class="element clickable method public quote" data-toggle="collapse" data-target=".quote .collapse">
-<h2>Safely escape a value for use in a query.</h2>
+<h2>Safely escape a value for use in a statement.</h2>
 <pre>quote(mixed $value) : mixed | false</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -1476,7 +1476,7 @@ global setting.</p></p>
 </div>
 <a name="replace" id="replace"></a><div class="element clickable method public replace" data-toggle="collapse" data-target=".replace .collapse">
 <h2>Set the REPLACE table.</h2>
-<pre>replace(string $table) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>replace(string $table) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1485,12 +1485,12 @@ global setting.</p></p>
 <h4>$table</h4>
 <code>string</code><p>REPLACE table</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="rightJoin" id="rightJoin"></a><div class="element clickable method public rightJoin" data-toggle="collapse" data-target=".rightJoin .collapse">
 <h2>Add a RIGHT JOIN table with optional ON criteria.</h2>
-<pre>rightJoin(string $table, string | array $criteria, string $alias) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>rightJoin(string $table, string | array $criteria, string $alias) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1505,12 +1505,12 @@ global setting.</p></p>
 <h4>$alias</h4>
 <code>string</code><p>optional alias</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="select" id="select"></a><div class="element clickable method public select" data-toggle="collapse" data-target=".select .collapse">
 <h2>Add a SELECT column, table, or expression with optional alias.</h2>
-<pre>select(string $column, string $alias) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>select(string $column, string $alias) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1522,12 +1522,12 @@ global setting.</p></p>
 <h4>$alias</h4>
 <code>string</code><p>optional alias</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="set" id="set"></a><div class="element clickable method public set" data-toggle="collapse" data-target=".set .collapse">
 <h2>Add a column value to INSERT or UPDATE.</h2>
-<pre>set(string $column, mixed $value, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>set(string $column, mixed $value, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1543,12 +1543,12 @@ global setting.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="setAutoQuote" id="setAutoQuote"></a><div class="element clickable method public setAutoQuote" data-toggle="collapse" data-target=".setAutoQuote .collapse">
 <h2>Set whether to automatically escape values.</h2>
-<pre>setAutoQuote(bool | null $autoQuote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>setAutoQuote(bool | null $autoQuote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1557,12 +1557,12 @@ global setting.</p></p>
 <h4>$autoQuote</h4>
 <code>bool</code><code>null</code><p>whether to automatically escape values</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="setPdoConnection" id="setPdoConnection"></a><div class="element clickable method public setPdoConnection" data-toggle="collapse" data-target=".setPdoConnection .collapse">
-<h2>Set the PDO database connection to use in executing this query.</h2>
-<pre>setPdoConnection(\PDO $PdoConnection) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<h2>Set the PDO database connection to use in executing this statement.</h2>
+<pre>setPdoConnection(\PDO $PdoConnection) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1571,12 +1571,12 @@ global setting.</p></p>
 <h4>$PdoConnection</h4>
 <code><a href="http://php.net/manual/en/class.pdo.php">\PDO</a></code><code>null</code><p>optional PDO database connection</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="update" id="update"></a><div class="element clickable method public update" data-toggle="collapse" data-target=".update .collapse">
 <h2>Set the UPDATE table.</h2>
-<pre>update(string $table) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>update(string $table) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1585,12 +1585,12 @@ global setting.</p></p>
 <h4>$table</h4>
 <code>string</code><p>UPDATE table</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="where" id="where"></a><div class="element clickable method public where" data-toggle="collapse" data-target=".where .collapse">
 <h2>Add a WHERE condition.</h2>
-<pre>where(string $column, mixed $value, string $operator, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>where(string $column, mixed $value, string $operator, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1613,12 +1613,12 @@ global setting.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="whereBetween" id="whereBetween"></a><div class="element clickable method public whereBetween" data-toggle="collapse" data-target=".whereBetween .collapse">
 <h2>Add a BETWEEN WHERE condition.</h2>
-<pre>whereBetween(string $column, mixed $min, mixed $max, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>whereBetween(string $column, mixed $min, mixed $max, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1640,12 +1640,12 @@ global setting.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="whereIn" id="whereIn"></a><div class="element clickable method public whereIn" data-toggle="collapse" data-target=".whereIn .collapse">
 <h2>Add an IN WHERE condition.</h2>
-<pre>whereIn(string $column, array $values, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>whereIn(string $column, array $values, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1664,12 +1664,12 @@ global setting.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="whereNotBetween" id="whereNotBetween"></a><div class="element clickable method public whereNotBetween" data-toggle="collapse" data-target=".whereNotBetween .collapse">
 <h2>Add a NOT BETWEEN WHERE condition.</h2>
-<pre>whereNotBetween(string $column, mixed $min, mixed $max, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>whereNotBetween(string $column, mixed $min, mixed $max, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1691,12 +1691,12 @@ global setting.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="whereNotIn" id="whereNotIn"></a><div class="element clickable method public whereNotIn" data-toggle="collapse" data-target=".whereNotIn .collapse">
 <h2>Add a NOT IN WHERE condition.</h2>
-<pre>whereNotIn(string $column, array $values, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>whereNotIn(string $column, array $values, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1715,13 +1715,13 @@ global setting.</p></p>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="closeCriteria" id="closeCriteria"></a><div class="element clickable method private closeCriteria" data-toggle="collapse" data-target=".closeCriteria .collapse">
 <h2>Add a closing bracket for nesting conditions to the specified WHERE or
 HAVING criteria.</h2>
-<pre>closeCriteria(array $criteria) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>closeCriteria(array $criteria) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1730,12 +1730,12 @@ HAVING criteria.</h2>
 <h4>$criteria</h4>
 <code>array</code><p>WHERE or HAVING criteria</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="criteria" id="criteria"></a><div class="element clickable method private criteria" data-toggle="collapse" data-target=".criteria .collapse">
 <h2>Add a condition to the specified WHERE or HAVING criteria.</h2>
-<pre>criteria(array $criteria, string $column, mixed $value, string $operator, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>criteria(array $criteria, string $column, mixed $value, string $operator, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1761,12 +1761,12 @@ HAVING criteria.</h2>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="criteriaBetween" id="criteriaBetween"></a><div class="element clickable method private criteriaBetween" data-toggle="collapse" data-target=".criteriaBetween .collapse">
 <h2>Add a BETWEEN condition to the specified WHERE or HAVING criteria.</h2>
-<pre>criteriaBetween(array $criteria, string $column, mixed $min, mixed $max, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>criteriaBetween(array $criteria, string $column, mixed $min, mixed $max, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1791,12 +1791,12 @@ HAVING criteria.</h2>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="criteriaIn" id="criteriaIn"></a><div class="element clickable method private criteriaIn" data-toggle="collapse" data-target=".criteriaIn .collapse">
 <h2>Add an IN condition to the specified WHERE or HAVING criteria.</h2>
-<pre>criteriaIn(array $criteria, string $column, array $values, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>criteriaIn(array $criteria, string $column, array $values, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1818,12 +1818,12 @@ HAVING criteria.</h2>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="criteriaNotBetween" id="criteriaNotBetween"></a><div class="element clickable method private criteriaNotBetween" data-toggle="collapse" data-target=".criteriaNotBetween .collapse">
 <h2>Add a NOT BETWEEN condition to the specified WHERE or HAVING criteria.</h2>
-<pre>criteriaNotBetween(array $criteria, string $column, mixed $min, mixed $max, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>criteriaNotBetween(array $criteria, string $column, mixed $min, mixed $max, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1848,12 +1848,12 @@ HAVING criteria.</h2>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="criteriaNotIn" id="criteriaNotIn"></a><div class="element clickable method private criteriaNotIn" data-toggle="collapse" data-target=".criteriaNotIn .collapse">
 <h2>Add a NOT IN condition to the specified WHERE or HAVING criteria.</h2>
-<pre>criteriaNotIn(array $criteria, string $column, array $values, string $connector, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>criteriaNotIn(array $criteria, string $column, array $values, string $connector, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1875,11 +1875,11 @@ HAVING criteria.</h2>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="getCriteriaString" id="getCriteriaString"></a><div class="element clickable method private getCriteriaString" data-toggle="collapse" data-target=".getCriteriaString .collapse">
-<h2>Get the WHERE or HAVING portion of the query as a string.</h2>
+<h2>Get the WHERE or HAVING portion of the statement as a string.</h2>
 <pre>getCriteriaString(array $criteria, bool $usePlaceholders, array $placeholderValues) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -1897,12 +1897,12 @@ HAVING criteria.</h2>
 <code>array</code><p>optional placeholder values array</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>WHERE or HAVING portion of the query</div>
+<code>string</code>WHERE or HAVING portion of the statement</div>
 </div></div>
 </div>
-<a name="getDeleteQueryString" id="getDeleteQueryString"></a><div class="element clickable method private getDeleteQueryString" data-toggle="collapse" data-target=".getDeleteQueryString .collapse">
-<h2>Get the full DELETE query string.</h2>
-<pre>getDeleteQueryString(bool $usePlaceholders) : string</pre>
+<a name="getDeleteStatement" id="getDeleteStatement"></a><div class="element clickable method private getDeleteStatement" data-toggle="collapse" data-target=".getDeleteStatement .collapse">
+<h2>Get the full DELETE statement.</h2>
+<pre>getDeleteStatement(bool $usePlaceholders) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1913,12 +1913,12 @@ HAVING criteria.</h2>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>full DELETE query string</div>
+<code>string</code>full DELETE statement</div>
 </div></div>
 </div>
-<a name="getInsertQueryString" id="getInsertQueryString"></a><div class="element clickable method private getInsertQueryString" data-toggle="collapse" data-target=".getInsertQueryString .collapse">
-<h2>Get the full INSERT query string.</h2>
-<pre>getInsertQueryString(bool $usePlaceholders) : string</pre>
+<a name="getInsertStatement" id="getInsertStatement"></a><div class="element clickable method private getInsertStatement" data-toggle="collapse" data-target=".getInsertStatement .collapse">
+<h2>Get the full INSERT statement.</h2>
+<pre>getInsertStatement(bool $usePlaceholders) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1929,7 +1929,7 @@ HAVING criteria.</h2>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>full INSERT query string</div>
+<code>string</code>full INSERT statement</div>
 </div></div>
 </div>
 <a name="getJoinCriteriaUsingPreviousTable" id="getJoinCriteriaUsingPreviousTable"></a><div class="element clickable method private getJoinCriteriaUsingPreviousTable" data-toggle="collapse" data-target=".getJoinCriteriaUsingPreviousTable .collapse">
@@ -1954,9 +1954,9 @@ same column of the previous JOIN or FROM table.</h2>
 <code>string</code>ON join criteria</div>
 </div></div>
 </div>
-<a name="getReplaceQueryString" id="getReplaceQueryString"></a><div class="element clickable method private getReplaceQueryString" data-toggle="collapse" data-target=".getReplaceQueryString .collapse">
-<h2>Get the full REPLACE query string.</h2>
-<pre>getReplaceQueryString(bool $usePlaceholders) : string</pre>
+<a name="getReplaceStatement" id="getReplaceStatement"></a><div class="element clickable method private getReplaceStatement" data-toggle="collapse" data-target=".getReplaceStatement .collapse">
+<h2>Get the full REPLACE statement.</h2>
+<pre>getReplaceStatement(bool $usePlaceholders) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1967,12 +1967,12 @@ same column of the previous JOIN or FROM table.</h2>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>full REPLACE query string</div>
+<code>string</code>full REPLACE statement</div>
 </div></div>
 </div>
-<a name="getSelectQueryString" id="getSelectQueryString"></a><div class="element clickable method private getSelectQueryString" data-toggle="collapse" data-target=".getSelectQueryString .collapse">
-<h2>Get the full SELECT query string.</h2>
-<pre>getSelectQueryString(bool $usePlaceholders) : string</pre>
+<a name="getSelectStatement" id="getSelectStatement"></a><div class="element clickable method private getSelectStatement" data-toggle="collapse" data-target=".getSelectStatement .collapse">
+<h2>Get the full SELECT statement.</h2>
+<pre>getSelectStatement(bool $usePlaceholders) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1983,12 +1983,12 @@ same column of the previous JOIN or FROM table.</h2>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>full SELECT query string</div>
+<code>string</code>full SELECT statement</div>
 </div></div>
 </div>
-<a name="getUpdateQueryString" id="getUpdateQueryString"></a><div class="element clickable method private getUpdateQueryString" data-toggle="collapse" data-target=".getUpdateQueryString .collapse">
-<h2>Get the full UPDATE query string.</h2>
-<pre>getUpdateQueryString(bool $usePlaceholders) : string</pre>
+<a name="getUpdateStatement" id="getUpdateStatement"></a><div class="element clickable method private getUpdateStatement" data-toggle="collapse" data-target=".getUpdateStatement .collapse">
+<h2>Get the full UPDATE statement.</h2>
+<pre>getUpdateStatement(bool $usePlaceholders) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -1999,7 +1999,7 @@ same column of the previous JOIN or FROM table.</h2>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>string</code>full UPDATE query string</div>
+<code>string</code>full UPDATE statement</div>
 </div></div>
 </div>
 <a name="isDeleteTableFrom" id="isDeleteTableFrom"></a><div class="element clickable method private isDeleteTableFrom" data-toggle="collapse" data-target=".isDeleteTableFrom .collapse">
@@ -2016,7 +2016,7 @@ same column of the previous JOIN or FROM table.</h2>
 <a name="openCriteria" id="openCriteria"></a><div class="element clickable method private openCriteria" data-toggle="collapse" data-target=".openCriteria .collapse">
 <h2>Add an open bracket for nesting conditions to the specified WHERE or
 HAVING criteria.</h2>
-<pre>openCriteria(array $criteria, string $connector) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>openCriteria(array $criteria, string $connector) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -2028,12 +2028,12 @@ HAVING criteria.</h2>
 <h4>$connector</h4>
 <code>string</code><p>optional logical connector, default AND</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <a name="orCriteria" id="orCriteria"></a><div class="element clickable method private orCriteria" data-toggle="collapse" data-target=".orCriteria .collapse">
 <h2>Add an OR condition to the specified WHERE or HAVING criteria.</h2>
-<pre>orCriteria(array $criteria, string $column, mixed $value, string $operator, bool | null $quote) : <a href="../classes/QueryBuilder.html">\QueryBuilder</a></pre>
+<pre>orCriteria(array $criteria, string $column, mixed $value, string $operator, bool | null $quote) : <a href="../classes/Miner.html">\Miner</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
@@ -2056,13 +2056,13 @@ HAVING criteria.</h2>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p>
 </div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/QueryBuilder.html">\QueryBuilder</a></code></div>
+<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
 </div></div>
 </div>
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
 <a name="%24PdoConnection" id="$PdoConnection"> </a><div class="element clickable property private $PdoConnection" data-toggle="collapse" data-target=".$PdoConnection .collapse">
-<h2>PDO database connection to use in executing the query.</h2>
+<h2>PDO database connection to use in executing the statement.</h2>
 <pre>$PdoConnection : <a href="http://php.net/manual/en/class.pdo.php">\PDO</a> | null</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
@@ -2340,7 +2340,7 @@ HAVING criteria.</h2>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
-            generated on 2012-09-15T13:29:56-05:00.<br></footer></div>
+            generated on 2012-09-17T06:12:38-05:00.<br></footer></div>
 </div>
 </body>
 </html>
