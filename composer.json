@@ -1,0 +1,20 @@
+{
+    "name": "jstayton/miner",
+    "type": "library",
+    "description": "A dead simple PHP class for building SQL statements. No manual string concatenation necessary.",
+    "keywords": ["sql", "sequel", "mysql", "postgresql", "sqlite", "statement", "statements", "query", "queries",
+                 "querybuilder", "pdo", "crud", "insert", "select", "update", "delete"],
+    "homepage": "https://github.com/jstayton/Miner",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Justin Stayton",
+            "email": "justin.stayton@gmail.com",
+            "homepage": "http://justinstayton.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.1.0"
+    }
+}
