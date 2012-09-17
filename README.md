@@ -18,6 +18,23 @@ Requirements
 Installation
 ------------
 
+### Composer
+
+The recommended installation method is through
+[Composer](http://getcomposer.org/), a dependency manager for PHP. Just add
+`jstayton/miner` to your project's `composer.json` file:
+
+    {
+        "require": {
+            "jstayton/miner": "*"
+        }
+    }
+
+[More details](http://packagist.org/packages/jstayton/miner) can be found over
+at [Packagist](http://packagist.org).
+
+### Manually
+
 1.  Copy `Miner.php` to your codebase, perhaps to the `vendor` directory.
 2.  Add the `Miner` class to your autoloader or `require` the file directly.
 
