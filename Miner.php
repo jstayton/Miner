@@ -297,6 +297,7 @@
 
       $this->wherePlaceholderValues = array();
       $this->havingPlaceholderValues = array();
+      $this->setPlaceholderValues = array();
 
       $this->setPdoConnection($PdoConnection)
            ->setAutoQuote($autoQuote);
@@ -825,7 +826,6 @@
      */
     public function getSetString($usePlaceholders = true, $includeText = true) {
       $statement = "";
-      $this->setPlaceholderValues = array();
 
       foreach ($this->set as $set) {
         $autoQuote = $this->getAutoQuote($set['quote']);
