@@ -295,6 +295,7 @@
       $this->orderBy = array();
       $this->limit = array();
 
+      $this->setPlaceholderValues = array();
       $this->wherePlaceholderValues = array();
       $this->havingPlaceholderValues = array();
 
