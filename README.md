@@ -35,7 +35,7 @@ at [Packagist](http://packagist.org).
 
 ### Manually
 
-1.  Copy `Miner.php` to your codebase, perhaps to the `vendor` directory.
+1.  Copy `src/Miner.php` to your codebase, perhaps to the `vendor` directory.
 2.  Add the `Miner` class to your autoloader or `require` the file directly.
 
 Getting Started

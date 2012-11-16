@@ -4,9 +4,9 @@
    * A dead simple PHP class for building SQL statements. No manual string
    * concatenation necessary.
    *
-   * @author    Justin Stayton <justin.stayton@gmail.com>
+   * @author    Justin Stayton
    * @copyright Copyright 2011-2012 by Justin Stayton
-   * @license   http://en.wikipedia.org/wiki/MIT_License MIT License
+   * @license   https://github.com/jstayton/Miner/blob/master/LICENSE-MIT MIT
    * @package   Miner
    * @version   0.9.0
    */
