@@ -48,7 +48,7 @@ syntax maps directly to methods:
     $Miner->select('*')
           ->from('shows')
           ->innerJoin('episodes', 'show_id')
-          ->where('shows.network_id', $networkId)
+          ->where('shows.network_id', 12)
           ->orderBy('episodes.aired_on', Miner::ORDER_BY_DESC)
           ->limit(20);
 
@@ -97,7 +97,7 @@ With Miner:
     $Miner->select('*')
           ->from('shows')
           ->innerJoin('episodes', 'show_id')
-          ->where('shows.network_id', $networkId)
+          ->where('shows.network_id', 12)
           ->orderBy('episodes.aired_on', Miner::ORDER_BY_DESC)
           ->limit(20);
 
