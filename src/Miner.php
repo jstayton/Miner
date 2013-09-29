@@ -8,7 +8,7 @@
    * @copyright Copyright 2013 by Justin Stayton
    * @license   https://github.com/jstayton/Miner/blob/master/LICENSE-MIT MIT
    * @package   Miner
-   * @version   0.9.1
+   * @version   0.9.w
    */
   class Miner {
 
