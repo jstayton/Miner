@@ -381,7 +381,10 @@
         return $PdoConnection->quote($value);
       }
       elseif (is_numeric($value)) {
-        return $value;
+        return $value;        
+      }
+      elseif (is_null($value)) {
+        return "NULL";
       }
       else {
         return "'" . addslashes($value) . "'";
