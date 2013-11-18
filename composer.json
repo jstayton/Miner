@@ -13,6 +13,11 @@
             "role": "Developer"
         }
     ],
+    "autoload": {
+        "psr-0": {
+            "Miner": "src/"
+        }
+    },
     "require": {
         "php": ">=5.1.0"
     }
