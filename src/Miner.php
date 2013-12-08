@@ -301,8 +301,6 @@
 
       $this->setPdoConnection($PdoConnection)
            ->setAutoQuote($autoQuote);
-           
-      return $this;
     }
 
     /**
