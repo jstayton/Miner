@@ -909,6 +909,23 @@
     }
 
     /**
+     * Whether the join table and alias is unique (hasn't already been joined).
+     *
+     * @param  string $table table name
+     * @param  string $alias table alias
+     * @return bool whether the join table and alias is unique
+     */
+    private function isJoinUnique($table, $alias) {
+      foreach ($this->join as $join) {
+        if ($join['table'] == $table && $join['alias'] == $alias) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    /**
      * Add a JOIN table with optional ON criteria.
      *
      * @param  string $table table name
@@ -918,24 +935,18 @@
      * @return Miner
      */
     public function join($table, $criteria = null, $type = self::INNER_JOIN, $alias = null) {
-	    $found = false;
-	    foreach ($this->join as $join) {
-	      if ($join['table']==$table and $join['alias']==$alias) {
-	    	  $found = true;
-			    break;
-	      }
-	    }	
-	  
-	    if (!$found) {
-        if (is_string($criteria)) {
-          $criteria = array($criteria);
-        }
+      if (!$this->isJoinUnique($table, $alias)) {
+        return $this;
+      }
 
-        $this->join[] = array('table'    => $table,
-                              'criteria' => $criteria,
-                              'type'     => $type,
-                              'alias'    => $alias);
-	    }
+      if (is_string($criteria)) {
+        $criteria = array($criteria);
+      }
+
+      $this->join[] = array('table'    => $table,
+                            'criteria' => $criteria,
+                            'type'     => $type,
+                            'alias'    => $alias);
 
       return $this;
     }
