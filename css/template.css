@@ -2,7 +2,7 @@
 @import url(bootstrap-responsive.css);
 @import url(prettify.css);
 @import url(jquery.iviewer.css);
-@import url(http://fonts.googleapis.com/css?family=Crimson+Text|Philosopher|Forum);
+@import url(http://fonts.googleapis.com/css?family=Forum);
 
 body
 {
@@ -14,6 +14,10 @@ body
 a
 {
     color: #55A72F;
+}
+
+td p:last-of-type {
+    margin: 0;
 }
 
 li.l0, li.l1, li.l2, li.l3, li.l5, li.l6, li.l7, li.l8
@@ -120,11 +124,10 @@ h2:first-of-type
 
 .hero-unit h1
 {
-    text-align: center;
     font-weight: normal;
     text-align:  center;
     color:       white;
-    text-shadow: black 0px 0px 15px;
+    text-shadow: black 0 0 15px;
 }
 
 .hero-unit h2
@@ -250,6 +253,10 @@ div.detail-description
     padding-left: 30px;
 }
 
+div.detail-description table th {
+    vertical-align: top;
+}
+
 body.invert
 {
     background: white;
@@ -312,7 +319,7 @@ ul.side-nav li.view-simple pre
 
 ul.side-nav li.view-simple a
 {
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 
 i.icon-custom
@@ -331,12 +338,6 @@ i.icon-custom
 .btn-group.visibility, .btn-group.view, .btn-group.type-filter
 {
     display: none;
-}
-
-.btn-group.view
-{
-    margin-left: 20px;
-    margin-bottom: 20px;
 }
 
 .visibility button
@@ -362,10 +363,6 @@ i.icon-interface { background-image: url('../img/icons/interface.png'); }
 div.element.property h1,
 i.icon-property  { background-image: url('../img/icons/property.png'); }
 
-i.icon-show-public    { background-image: url('../img/icons/visibility_public.png'); }
-i.icon-show-protected { background-image: url('../img/icons/visibility_protected.png'); }
-i.icon-show-private   { background-image: url('../img/icons/visibility_private.png'); }
-
 span.empty-namespace
 {
     color: silver;
@@ -389,6 +386,7 @@ div.element div.subelement
 {
     margin-left:    10px;
     padding-bottom: 5px;
+    clear: both;
 }
 
 pre code
@@ -408,7 +406,7 @@ div.element div.subelement  > code
 div.element div.subelement  > p
 {
     margin-left: 20px;
-    margin-right: 40px;
+    margin-right: 50px;
 }
 
 div.element div.subelement h4
@@ -420,6 +418,7 @@ div.element div.subelement h4
 div.element div.subelement.response
 {
     padding-bottom: 15px;
+    margin-right: 50px;
 }
 
 div.labels
@@ -430,6 +429,20 @@ div.labels
 .nav-list .nav-header
 {
     font-size: 13px;
+}
+
+.nav-list .nav-header .side-nav-header
+{
+    font-weight: bold;
+    line-height: 18px;
+    color: #999999;
+    text-transform: uppercase;
+}
+
+.detail-description code {
+    white-space: pre;
+    display:     inline-block;
+    padding:     10px;
 }
 
 .go_to_top
@@ -490,7 +503,7 @@ div.labels
     {
         font-size: 0.80em;
         margin-bottom: 7px;
-        display: block;
+        display: inline-block;
         float: right;
     }
 }
