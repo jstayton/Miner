@@ -1,6 +1,9 @@
 Miner
 =====
 
+[![Latest Stable Version](https://poser.pugx.org/jstayton/miner/v/stable.png)](https://packagist.org/packages/jstayton/miner)
+[![Total Downloads](https://poser.pugx.org/jstayton/miner/downloads.png)](https://packagist.org/packages/jstayton/miner)
+
 A dead simple PHP class for building SQL statements. No manual string
 concatenation necessary.
 
