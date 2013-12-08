@@ -204,140 +204,140 @@ $Miner->delete()
 Methods
 -------
 
-*   [__construct](http://jstayton.github.io/Miner/classes/Miner.html#__construct)
+*   [__construct](http://jstayton.github.io/Miner/classes/Miner.html#method___construct)
 
 ### SELECT
 
-*   [select](http://jstayton.github.io/Miner/classes/Miner.html#select)
-*   [getSelectString](http://jstayton.github.io/Miner/classes/Miner.html#getSelectString)
-*   [mergeSelectInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeSelectInto)
+*   [select](http://jstayton.github.io/Miner/classes/Miner.html#method_select)
+*   [getSelectString](http://jstayton.github.io/Miner/classes/Miner.html#method_getSelectString)
+*   [mergeSelectInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeSelectInto)
 
 ### INSERT
 
-*   [insert](http://jstayton.github.io/Miner/classes/Miner.html#insert)
-*   [getInsert](http://jstayton.github.io/Miner/classes/Miner.html#getInsert)
-*   [getInsertString](http://jstayton.github.io/Miner/classes/Miner.html#getInsertString)
-*   [mergeInsertInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeInsertInto)
+*   [insert](http://jstayton.github.io/Miner/classes/Miner.html#method_insert)
+*   [getInsert](http://jstayton.github.io/Miner/classes/Miner.html#method_getInsert)
+*   [getInsertString](http://jstayton.github.io/Miner/classes/Miner.html#method_getInsertString)
+*   [mergeInsertInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeInsertInto)
 
 ### REPLACE
 
-*   [replace](http://jstayton.github.io/Miner/classes/Miner.html#replace)
-*   [getReplace](http://jstayton.github.io/Miner/classes/Miner.html#getReplace)
-*   [getReplaceString](http://jstayton.github.io/Miner/classes/Miner.html#getReplaceString)
-*   [mergeReplaceInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeReplaceInto)
+*   [replace](http://jstayton.github.io/Miner/classes/Miner.html#method_replace)
+*   [getReplace](http://jstayton.github.io/Miner/classes/Miner.html#method_getReplace)
+*   [getReplaceString](http://jstayton.github.io/Miner/classes/Miner.html#method_getReplaceString)
+*   [mergeReplaceInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeReplaceInto)
 
 ### UPDATE
 
-*   [update](http://jstayton.github.io/Miner/classes/Miner.html#update)
-*   [getUpdate](http://jstayton.github.io/Miner/classes/Miner.html#getUpdate)
-*   [getUpdateString](http://jstayton.github.io/Miner/classes/Miner.html#getUpdateString)
-*   [mergeUpdateInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeUpdateInto)
+*   [update](http://jstayton.github.io/Miner/classes/Miner.html#method_update)
+*   [getUpdate](http://jstayton.github.io/Miner/classes/Miner.html#method_getUpdate)
+*   [getUpdateString](http://jstayton.github.io/Miner/classes/Miner.html#method_getUpdateString)
+*   [mergeUpdateInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeUpdateInto)
 
 ### DELETE
 
-*   [delete](http://jstayton.github.io/Miner/classes/Miner.html#delete)
-*   [getDeleteString](http://jstayton.github.io/Miner/classes/Miner.html#getDeleteString)
-*   [mergeDeleteInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeDeleteInto)
+*   [delete](http://jstayton.github.io/Miner/classes/Miner.html#method_delete)
+*   [getDeleteString](http://jstayton.github.io/Miner/classes/Miner.html#method_getDeleteString)
+*   [mergeDeleteInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeDeleteInto)
 
 ### OPTIONS
 
-*   [option](http://jstayton.github.io/Miner/classes/Miner.html#option)
-*   [calcFoundRows](http://jstayton.github.io/Miner/classes/Miner.html#calcFoundRows)
-*   [distinct](http://jstayton.github.io/Miner/classes/Miner.html#distinct)
-*   [getOptionsString](http://jstayton.github.io/Miner/classes/Miner.html#getOptionsString)
-*   [mergeOptionsInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeOptionsInto)
+*   [option](http://jstayton.github.io/Miner/classes/Miner.html#method_option)
+*   [calcFoundRows](http://jstayton.github.io/Miner/classes/Miner.html#method_calcFoundRows)
+*   [distinct](http://jstayton.github.io/Miner/classes/Miner.html#method_distinct)
+*   [getOptionsString](http://jstayton.github.io/Miner/classes/Miner.html#method_getOptionsString)
+*   [mergeOptionsInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeOptionsInto)
 
 ### SET
 
-*   [set](http://jstayton.github.io/Miner/classes/Miner.html#set)
-*   [getSetPlaceholderValues](http://jstayton.github.io/Miner/classes/Miner.html#getSetPlaceholderValues)
-*   [getSetString](http://jstayton.github.io/Miner/classes/Miner.html#getSetString)
-*   [mergeSetInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeSetInto)
+*   [set](http://jstayton.github.io/Miner/classes/Miner.html#method_set)
+*   [getSetPlaceholderValues](http://jstayton.github.io/Miner/classes/Miner.html#method_getSetPlaceholderValues)
+*   [getSetString](http://jstayton.github.io/Miner/classes/Miner.html#method_getSetString)
+*   [mergeSetInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeSetInto)
 
 ### FROM
 
-*   [from](http://jstayton.github.io/Miner/classes/Miner.html#from)
-*   [innerJoin](http://jstayton.github.io/Miner/classes/Miner.html#innerJoin)
-*   [leftJoin](http://jstayton.github.io/Miner/classes/Miner.html#leftJoin)
-*   [rightJoin](http://jstayton.github.io/Miner/classes/Miner.html#rightJoin)
-*   [join](http://jstayton.github.io/Miner/classes/Miner.html#join)
-*   [getFrom](http://jstayton.github.io/Miner/classes/Miner.html#getFrom)
-*   [getFromAlias](http://jstayton.github.io/Miner/classes/Miner.html#getFromAlias)
-*   [getFromString](http://jstayton.github.io/Miner/classes/Miner.html#getFromString)
-*   [getJoinString](http://jstayton.github.io/Miner/classes/Miner.html#getJoinString)
-*   [mergeFromInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeFromInto)
-*   [mergeJoinInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeJoinInto)
+*   [from](http://jstayton.github.io/Miner/classes/Miner.html#method_from)
+*   [innerJoin](http://jstayton.github.io/Miner/classes/Miner.html#method_innerJoin)
+*   [leftJoin](http://jstayton.github.io/Miner/classes/Miner.html#method_leftJoin)
+*   [rightJoin](http://jstayton.github.io/Miner/classes/Miner.html#method_rightJoin)
+*   [join](http://jstayton.github.io/Miner/classes/Miner.html#method_join)
+*   [getFrom](http://jstayton.github.io/Miner/classes/Miner.html#method_getFrom)
+*   [getFromAlias](http://jstayton.github.io/Miner/classes/Miner.html#method_getFromAlias)
+*   [getFromString](http://jstayton.github.io/Miner/classes/Miner.html#method_getFromString)
+*   [getJoinString](http://jstayton.github.io/Miner/classes/Miner.html#method_getJoinString)
+*   [mergeFromInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeFromInto)
+*   [mergeJoinInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeJoinInto)
 
 ### WHERE
 
-*   [where](http://jstayton.github.io/Miner/classes/Miner.html#where)
-*   [andWhere](http://jstayton.github.io/Miner/classes/Miner.html#andWhere)
-*   [orWhere](http://jstayton.github.io/Miner/classes/Miner.html#orWhere)
-*   [whereIn](http://jstayton.github.io/Miner/classes/Miner.html#whereIn)
-*   [whereNotIn](http://jstayton.github.io/Miner/classes/Miner.html#whereNotIn)
-*   [whereBetween](http://jstayton.github.io/Miner/classes/Miner.html#whereBetween)
-*   [whereNotBetween](http://jstayton.github.io/Miner/classes/Miner.html#whereNotBetween)
-*   [openWhere](http://jstayton.github.io/Miner/classes/Miner.html#openWhere)
-*   [closeWhere](http://jstayton.github.io/Miner/classes/Miner.html#closeWhere)
-*   [getWherePlaceholderValues](http://jstayton.github.io/Miner/classes/Miner.html#getWherePlaceholderValues)
-*   [getWhereString](http://jstayton.github.io/Miner/classes/Miner.html#getWhereString)
-*   [mergeWhereInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeWhereInto)
+*   [where](http://jstayton.github.io/Miner/classes/Miner.html#method_where)
+*   [andWhere](http://jstayton.github.io/Miner/classes/Miner.html#method_andWhere)
+*   [orWhere](http://jstayton.github.io/Miner/classes/Miner.html#method_orWhere)
+*   [whereIn](http://jstayton.github.io/Miner/classes/Miner.html#method_whereIn)
+*   [whereNotIn](http://jstayton.github.io/Miner/classes/Miner.html#method_whereNotIn)
+*   [whereBetween](http://jstayton.github.io/Miner/classes/Miner.html#method_whereBetween)
+*   [whereNotBetween](http://jstayton.github.io/Miner/classes/Miner.html#method_whereNotBetween)
+*   [openWhere](http://jstayton.github.io/Miner/classes/Miner.html#method_openWhere)
+*   [closeWhere](http://jstayton.github.io/Miner/classes/Miner.html#method_closeWhere)
+*   [getWherePlaceholderValues](http://jstayton.github.io/Miner/classes/Miner.html#method_getWherePlaceholderValues)
+*   [getWhereString](http://jstayton.github.io/Miner/classes/Miner.html#method_getWhereString)
+*   [mergeWhereInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeWhereInto)
 
 ### GROUP BY
 
-*   [groupBy](http://jstayton.github.io/Miner/classes/Miner.html#groupBy)
-*   [getGroupByString](http://jstayton.github.io/Miner/classes/Miner.html#getGroupByString)
-*   [mergeGroupByInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeGroupByInto)
+*   [groupBy](http://jstayton.github.io/Miner/classes/Miner.html#method_groupBy)
+*   [getGroupByString](http://jstayton.github.io/Miner/classes/Miner.html#method_getGroupByString)
+*   [mergeGroupByInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeGroupByInto)
 
 ### HAVING
 
-*   [having](http://jstayton.github.io/Miner/classes/Miner.html#having)
-*   [andHaving](http://jstayton.github.io/Miner/classes/Miner.html#andHaving)
-*   [orHaving](http://jstayton.github.io/Miner/classes/Miner.html#orHaving)
-*   [havingIn](http://jstayton.github.io/Miner/classes/Miner.html#havingIn)
-*   [havingNotIn](http://jstayton.github.io/Miner/classes/Miner.html#havingNotIn)
-*   [havingBetween](http://jstayton.github.io/Miner/classes/Miner.html#havingBetween)
-*   [havingNotBetween](http://jstayton.github.io/Miner/classes/Miner.html#havingNotBetween)
-*   [openHaving](http://jstayton.github.io/Miner/classes/Miner.html#openHaving)
-*   [closeHaving](http://jstayton.github.io/Miner/classes/Miner.html#closeHaving)
-*   [getHavingPlaceholderValues](http://jstayton.github.io/Miner/classes/Miner.html#getHavingPlaceholderValues)
-*   [getHavingString](http://jstayton.github.io/Miner/classes/Miner.html#getHavingString)
-*   [mergeHavingInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeHavingInto)
+*   [having](http://jstayton.github.io/Miner/classes/Miner.html#method_having)
+*   [andHaving](http://jstayton.github.io/Miner/classes/Miner.html#method_andHaving)
+*   [orHaving](http://jstayton.github.io/Miner/classes/Miner.html#method_orHaving)
+*   [havingIn](http://jstayton.github.io/Miner/classes/Miner.html#method_havingIn)
+*   [havingNotIn](http://jstayton.github.io/Miner/classes/Miner.html#method_havingNotIn)
+*   [havingBetween](http://jstayton.github.io/Miner/classes/Miner.html#method_havingBetween)
+*   [havingNotBetween](http://jstayton.github.io/Miner/classes/Miner.html#method_havingNotBetween)
+*   [openHaving](http://jstayton.github.io/Miner/classes/Miner.html#method_openHaving)
+*   [closeHaving](http://jstayton.github.io/Miner/classes/Miner.html#method_closeHaving)
+*   [getHavingPlaceholderValues](http://jstayton.github.io/Miner/classes/Miner.html#method_getHavingPlaceholderValues)
+*   [getHavingString](http://jstayton.github.io/Miner/classes/Miner.html#method_getHavingString)
+*   [mergeHavingInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeHavingInto)
 
 ### ORDER BY
 
-*   [orderBy](http://jstayton.github.io/Miner/classes/Miner.html#orderBy)
-*   [getOrderByString](http://jstayton.github.io/Miner/classes/Miner.html#getOrderByString)
-*   [mergeOrderByInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeOrderByInto)
+*   [orderBy](http://jstayton.github.io/Miner/classes/Miner.html#method_orderBy)
+*   [getOrderByString](http://jstayton.github.io/Miner/classes/Miner.html#method_getOrderByString)
+*   [mergeOrderByInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeOrderByInto)
 
 ### LIMIT
 
-*   [limit](http://jstayton.github.io/Miner/classes/Miner.html#limit)
-*   [getLimit](http://jstayton.github.io/Miner/classes/Miner.html#getLimit)
-*   [getLimitOffset](http://jstayton.github.io/Miner/classes/Miner.html#getLimitOffset)
-*   [getLimitString](http://jstayton.github.io/Miner/classes/Miner.html#getLimitString)
+*   [limit](http://jstayton.github.io/Miner/classes/Miner.html#method_limit)
+*   [getLimit](http://jstayton.github.io/Miner/classes/Miner.html#method_getLimit)
+*   [getLimitOffset](http://jstayton.github.io/Miner/classes/Miner.html#method_getLimitOffset)
+*   [getLimitString](http://jstayton.github.io/Miner/classes/Miner.html#method_getLimitString)
 
 ### Statement
 
-*   [execute](http://jstayton.github.io/Miner/classes/Miner.html#execute)
-*   [getStatement](http://jstayton.github.io/Miner/classes/Miner.html#getStatement)
-*   [getPlaceholderValues](http://jstayton.github.io/Miner/classes/Miner.html#getPlaceholderValues)
-*   [isSelect](http://jstayton.github.io/Miner/classes/Miner.html#isSelect)
-*   [isInsert](http://jstayton.github.io/Miner/classes/Miner.html#isInsert)
-*   [isReplace](http://jstayton.github.io/Miner/classes/Miner.html#isReplace)
-*   [isUpdate](http://jstayton.github.io/Miner/classes/Miner.html#isUpdate)
-*   [isDelete](http://jstayton.github.io/Miner/classes/Miner.html#isDelete)
-*   [__toString](http://jstayton.github.io/Miner/classes/Miner.html#__toString)
-*   [mergeInto](http://jstayton.github.io/Miner/classes/Miner.html#mergeInto)
+*   [execute](http://jstayton.github.io/Miner/classes/Miner.html#method_execute)
+*   [getStatement](http://jstayton.github.io/Miner/classes/Miner.html#method_getStatement)
+*   [getPlaceholderValues](http://jstayton.github.io/Miner/classes/Miner.html#method_getPlaceholderValues)
+*   [isSelect](http://jstayton.github.io/Miner/classes/Miner.html#method_isSelect)
+*   [isInsert](http://jstayton.github.io/Miner/classes/Miner.html#method_isInsert)
+*   [isReplace](http://jstayton.github.io/Miner/classes/Miner.html#method_isReplace)
+*   [isUpdate](http://jstayton.github.io/Miner/classes/Miner.html#method_isUpdate)
+*   [isDelete](http://jstayton.github.io/Miner/classes/Miner.html#method_isDelete)
+*   [__toString](http://jstayton.github.io/Miner/classes/Miner.html#method___toString)
+*   [mergeInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeInto)
 
 ### Connection
 
-*   [setPdoConnection](http://jstayton.github.io/Miner/classes/Miner.html#setPdoConnection)
-*   [getPdoConnection](http://jstayton.github.io/Miner/classes/Miner.html#getPdoConnection)
-*   [setAutoQuote](http://jstayton.github.io/Miner/classes/Miner.html#setAutoQuote)
-*   [getAutoQuote](http://jstayton.github.io/Miner/classes/Miner.html#getAutoQuote)
-*   [autoQuote](http://jstayton.github.io/Miner/classes/Miner.html#autoQuote)
-*   [quote](http://jstayton.github.io/Miner/classes/Miner.html#quote)
+*   [setPdoConnection](http://jstayton.github.io/Miner/classes/Miner.html#method_setPdoConnection)
+*   [getPdoConnection](http://jstayton.github.io/Miner/classes/Miner.html#method_getPdoConnection)
+*   [setAutoQuote](http://jstayton.github.io/Miner/classes/Miner.html#method_setAutoQuote)
+*   [getAutoQuote](http://jstayton.github.io/Miner/classes/Miner.html#method_getAutoQuote)
+*   [autoQuote](http://jstayton.github.io/Miner/classes/Miner.html#method_autoQuote)
+*   [quote](http://jstayton.github.io/Miner/classes/Miner.html#method_quote)
 
 Feedback
 --------
