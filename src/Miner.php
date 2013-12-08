@@ -301,6 +301,8 @@
 
       $this->setPdoConnection($PdoConnection)
            ->setAutoQuote($autoQuote);
+           
+      return $this;
     }
 
     /**
@@ -918,14 +920,24 @@
      * @return Miner
      */
     public function join($table, $criteria = null, $type = self::INNER_JOIN, $alias = null) {
-      if (is_string($criteria)) {
-        $criteria = array($criteria);
-      }
+	    $found = false;
+	    foreach ($this->join as $join) {
+	      if ($join['table']==$table and $join['alias']==$alias) {
+	    	  $found = true;
+			    break;
+	      }
+	    }	
+	  
+	    if (!$found) {
+        if (is_string($criteria)) {
+          $criteria = array($criteria);
+        }
 
-      $this->join[] = array('table'    => $table,
-                            'criteria' => $criteria,
-                            'type'     => $type,
-                            'alias'    => $alias);
+        $this->join[] = array('table'    => $table,
+                              'criteria' => $criteria,
+                              'type'     => $type,
+                              'alias'    => $alias);
+	    }
 
       return $this;
     }
