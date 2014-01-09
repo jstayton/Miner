@@ -807,6 +807,73 @@
     }
 
     /**
+     * Add column values to INSERT or UPDATE.
+     *
+     * Same as <u>Miner::set()</u> but takes an array.<br/>
+     * <b>NOTE:</b> invalid elements are silently ignored.
+     *
+     * @param  array $values with elements like
+     *  <br/><br/>
+     *  <code>'column' => 'value',
+     *  'column' => array('value' => 'data', 'quote' => true),
+     *  array('column' => 'column name, 'value' => 'data', 'quote' => false),
+     *  array('column', 'value', 'quote')</code>
+     *  <br/><br/>
+     *  <u>quote</u> is always optional.
+     *
+     * @return Miner
+     */
+    public function setArray($values){
+        foreach ($values as $column => $value) {
+            if (!is_array($value)) {
+                $value = array('value' => $value);
+            }
+
+            if (is_integer($column)) {
+                if (array_key_exists('column', $value)) {
+                    $column = $value['column'];
+                    unset($value['column']);
+                } else if(!empty($value)) {
+                    $column = array_shift($value);
+                } else {
+                    continue;
+                }
+            }
+
+            if (array_key_exists('value', $value)) {
+                $data = $value['value'];
+                unset($value['value']);
+            } else if (!empty($value)) {
+                $data = array_shift($value);
+            } else {
+                $data = null;
+            }
+
+            if (array_key_exists('quote', $value)) {
+                $quote = $value['quote'];
+            } else if (!empty($value)) {
+                $quote = array_shift($value);
+            } else {
+                $quote = null;
+            }
+
+            $this->set($column, $data, $quote);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Alias for setArray
+     *
+     * @param array column values
+     * @return Miner
+     */
+    public function values($values){
+        return $this->setArray($values);
+    }
+
+    /**
      * Merge this Miner's SET into the given Miner.
      *
      * @param  Miner $Miner to merge into
