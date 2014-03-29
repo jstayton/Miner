@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project title="Miner" version="2.2.0&#10;">
+<project title="Miner" version="2.3.2&#10;">
   <partials/>
-  <file path="Miner.php" generated-path="Miner.html" hash="7f0b66774ccef9e045af0b1e43957c7c" package="Default">
+  <file path="Miner.php" generated-path="Miner.html" hash="aa4d541ca1f6bdeca5f9abf8a7d35e06" package="">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -15,10 +15,10 @@
 concatenation necessary.</description>
         <long-description></long-description>
         <tag name="author" line="13" description="Justin Stayton"/>
-        <tag name="copyright" line="13" description="Copyright 2013 by Justin Stayton"/>
+        <tag name="copyright" line="13" description="Copyright 2014 by Justin Stayton"/>
         <tag name="license" line="13" description="MIT" link="https://github.com/jstayton/Miner/blob/master/LICENSE-MIT"/>
         <tag name="package" line="13" description="Miner"/>
-        <tag name="version" line="13" description="0.9.4"/>
+        <tag name="version" line="13" description="0.10.0"/>
       </docblock>
       <constant namespace="" line="18" package="Miner">
         <name>INNER_JOIN</name>
@@ -254,20 +254,22 @@ concatenation necessary.</description>
           <long-description></long-description>
         </docblock>
       </constant>
-      <property static="false" visibility="private" line="150" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="150" package="Miner">
         <name>$PdoConnection</name>
+        <full_name>\Miner::PdoConnection</full_name>
         <default></default>
         <docblock line="150">
           <description>PDO database connection to use in executing the statement.</description>
           <long-description></long-description>
           <tag name="var" line="150" description="" type="\PDO|null" variable="">
-            <type link="PDO.html">\PDO</type>
+            <type>\PDO</type>
             <type>null</type>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="157" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="157" package="Miner">
         <name>$autoQuote</name>
+        <full_name>\Miner::autoQuote</full_name>
         <default></default>
         <docblock line="157">
           <description>Whether to automatically escape values.</description>
@@ -278,8 +280,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="164" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="164" package="Miner">
         <name>$option</name>
+        <full_name>\Miner::option</full_name>
         <default></default>
         <docblock line="164">
           <description>Execution options like DISTINCT and SQL_CALC_FOUND_ROWS.</description>
@@ -289,8 +292,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="171" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="171" package="Miner">
         <name>$select</name>
+        <full_name>\Miner::select</full_name>
         <default></default>
         <docblock line="171">
           <description>Columns, tables, and expressions to SELECT from.</description>
@@ -300,8 +304,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="178" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="178" package="Miner">
         <name>$insert</name>
+        <full_name>\Miner::insert</full_name>
         <default></default>
         <docblock line="178">
           <description>Table to INSERT into.</description>
@@ -311,8 +316,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="185" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="185" package="Miner">
         <name>$replace</name>
+        <full_name>\Miner::replace</full_name>
         <default></default>
         <docblock line="185">
           <description>Table to REPLACE into.</description>
@@ -322,8 +328,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="192" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="192" package="Miner">
         <name>$update</name>
+        <full_name>\Miner::update</full_name>
         <default></default>
         <docblock line="192">
           <description>Table to UPDATE.</description>
@@ -333,8 +340,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="199" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="199" package="Miner">
         <name>$delete</name>
+        <full_name>\Miner::delete</full_name>
         <default></default>
         <docblock line="199">
           <description>Tables to DELETE from, or true if deleting from the FROM table.</description>
@@ -345,19 +353,21 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="206" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="206" package="Miner">
         <name>$set</name>
+        <full_name>\Miner::set</full_name>
         <default></default>
         <docblock line="206">
-          <description>Column values to INSERT or UPDATE.</description>
+          <description>Column values to INSERT, UPDATE, or REPLACE.</description>
           <long-description></long-description>
           <tag name="var" line="206" description="" type="array" variable="">
             <type>array</type>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="213" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="213" package="Miner">
         <name>$from</name>
+        <full_name>\Miner::from</full_name>
         <default></default>
         <docblock line="213">
           <description>Table to select FROM.</description>
@@ -367,8 +377,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="220" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="220" package="Miner">
         <name>$join</name>
+        <full_name>\Miner::join</full_name>
         <default></default>
         <docblock line="220">
           <description>JOIN tables and ON criteria.</description>
@@ -378,8 +389,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="227" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="227" package="Miner">
         <name>$where</name>
+        <full_name>\Miner::where</full_name>
         <default></default>
         <docblock line="227">
           <description>WHERE criteria.</description>
@@ -389,8 +401,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="234" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="234" package="Miner">
         <name>$groupBy</name>
+        <full_name>\Miner::groupBy</full_name>
         <default></default>
         <docblock line="234">
           <description>Columns to GROUP BY.</description>
@@ -400,8 +413,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="241" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="241" package="Miner">
         <name>$having</name>
+        <full_name>\Miner::having</full_name>
         <default></default>
         <docblock line="241">
           <description>HAVING criteria.</description>
@@ -411,8 +425,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="248" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="248" package="Miner">
         <name>$orderBy</name>
+        <full_name>\Miner::orderBy</full_name>
         <default></default>
         <docblock line="248">
           <description>Columns to ORDER BY.</description>
@@ -422,8 +437,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="255" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="255" package="Miner">
         <name>$limit</name>
+        <full_name>\Miner::limit</full_name>
         <default></default>
         <docblock line="255">
           <description>Number of rows to return from offset.</description>
@@ -433,8 +449,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="262" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="262" package="Miner">
         <name>$setPlaceholderValues</name>
+        <full_name>\Miner::setPlaceholderValues</full_name>
         <default></default>
         <docblock line="262">
           <description>SET placeholder values.</description>
@@ -444,8 +461,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="269" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="269" package="Miner">
         <name>$wherePlaceholderValues</name>
+        <full_name>\Miner::wherePlaceholderValues</full_name>
         <default></default>
         <docblock line="269">
           <description>WHERE placeholder values.</description>
@@ -455,8 +473,9 @@ concatenation necessary.</description>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="276" namespace="" package="Miner">
+      <property static="false" visibility="private" namespace="" line="276" package="Miner">
         <name>$havingPlaceholderValues</name>
+        <full_name>\Miner::havingPlaceholderValues</full_name>
         <default></default>
         <docblock line="276">
           <description>HAVING placeholder values.</description>
@@ -473,14 +492,14 @@ concatenation necessary.</description>
           <description>Constructor.</description>
           <long-description></long-description>
           <tag name="param" line="285" description="&lt;p&gt;optional PDO database connection&lt;/p&gt;" type="\PDO|null" variable="$PdoConnection">
-            <type link="PDO.html">\PDO</type>
+            <type>\PDO</type>
             <type>null</type>
           </tag>
           <tag name="param" line="285" description="&lt;p&gt;optional auto-escape values, default true&lt;/p&gt;" type="bool" variable="$autoQuote">
             <type>bool</type>
           </tag>
           <tag name="return" line="285" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -501,11 +520,11 @@ concatenation necessary.</description>
           <description>Set the PDO database connection to use in executing this statement.</description>
           <long-description></long-description>
           <tag name="param" line="312" description="&lt;p&gt;optional PDO database connection&lt;/p&gt;" type="\PDO|null" variable="$PdoConnection">
-            <type link="PDO.html">\PDO</type>
+            <type>\PDO</type>
             <type>null</type>
           </tag>
           <tag name="return" line="312" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -521,7 +540,7 @@ concatenation necessary.</description>
           <description>Get the PDO database connection to use in executing this statement.</description>
           <long-description></long-description>
           <tag name="return" line="323" description="" type="\PDO|null">
-            <type link="PDO.html">\PDO</type>
+            <type>\PDO</type>
             <type>null</type>
           </tag>
         </docblock>
@@ -537,7 +556,7 @@ concatenation necessary.</description>
             <type>null</type>
           </tag>
           <tag name="return" line="333" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -630,7 +649,7 @@ global setting.</long-description>
             <type>string</type>
           </tag>
           <tag name="return" line="400" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -665,10 +684,10 @@ global setting.</long-description>
           <description>Merge this Miner's execution options into the given Miner.</description>
           <long-description></long-description>
           <tag name="param" line="434" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
           <tag name="return" line="434" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -684,7 +703,7 @@ global setting.</long-description>
           <description>Add SQL_CALC_FOUND_ROWS execution option.</description>
           <long-description></long-description>
           <tag name="return" line="447" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
       </method>
@@ -695,7 +714,7 @@ global setting.</long-description>
           <description>Add DISTINCT execution option.</description>
           <long-description></long-description>
           <tag name="return" line="456" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
       </method>
@@ -712,7 +731,7 @@ global setting.</long-description>
             <type>string</type>
           </tag>
           <tag name="return" line="467" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -733,10 +752,10 @@ global setting.</long-description>
           <description>Merge this Miner's SELECT into the given Miner.</description>
           <long-description></long-description>
           <tag name="param" line="479" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
           <tag name="return" line="479" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -774,7 +793,7 @@ global setting.</long-description>
             <type>string</type>
           </tag>
           <tag name="return" line="529" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -790,10 +809,10 @@ global setting.</long-description>
           <description>Merge this Miner's INSERT into the given Miner.</description>
           <long-description></long-description>
           <tag name="param" line="541" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
           <tag name="return" line="541" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -842,7 +861,7 @@ global setting.</long-description>
             <type>string</type>
           </tag>
           <tag name="return" line="590" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -858,10 +877,10 @@ global setting.</long-description>
           <description>Merge this Miner's REPLACE into the given Miner.</description>
           <long-description></long-description>
           <tag name="param" line="602" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
           <tag name="return" line="602" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -910,7 +929,7 @@ global setting.</long-description>
             <type>string</type>
           </tag>
           <tag name="return" line="651" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -926,10 +945,10 @@ global setting.</long-description>
           <description>Merge this Miner's UPDATE into the given Miner.</description>
           <long-description></long-description>
           <tag name="param" line="663" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
           <tag name="return" line="663" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -979,7 +998,7 @@ global setting.</long-description>
             <type>false</type>
           </tag>
           <tag name="return" line="717" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -995,10 +1014,10 @@ global setting.</long-description>
           <description>Merge this Miner's DELETE into the given Miner.</description>
           <long-description></long-description>
           <tag name="param" line="740" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
           <tag name="return" line="740" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -1041,31 +1060,33 @@ global setting.</long-description>
         <name>set</name>
         <full_name>\Miner::set()</full_name>
         <docblock line="801">
-          <description>Add a column value to INSERT or UPDATE.</description>
+          <description>Add one or more column values to INSERT, UPDATE, or REPLACE.</description>
           <long-description></long-description>
-          <tag name="param" line="801" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="801" description="&lt;p&gt;column name or array of columns =&gt; values&lt;/p&gt;" type="string|array" variable="$column">
             <type>string</type>
+            <type>array</type>
           </tag>
-          <tag name="param" line="801" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
+          <tag name="param" line="801" description="&lt;p&gt;optional value for single column&lt;/p&gt;" type="mixed|null" variable="$value">
             <type>mixed</type>
+            <type>null</type>
           </tag>
           <tag name="param" line="801" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
           <tag name="return" line="801" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$column</name>
           <default></default>
-          <type>string</type>
+          <type>string|array</type>
         </argument>
         <argument line="0" by_reference="false">
           <name>$value</name>
-          <default></default>
-          <type>mixed</type>
+          <default>null</default>
+          <type>mixed|null</type>
         </argument>
         <argument line="0" by_reference="false">
           <name>$quote</name>
@@ -1073,17 +1094,36 @@ global setting.</long-description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="815" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="822" package="Miner">
+        <name>values</name>
+        <full_name>\Miner::values()</full_name>
+        <docblock line="822">
+          <description>Add an array of columns =&gt; values to INSERT, UPDATE, or REPLACE.</description>
+          <long-description></long-description>
+          <tag name="param" line="822" description="&lt;p&gt;columns =&gt; values&lt;/p&gt;" type="array" variable="$values">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="822" description="" type="\Miner">
+            <type>\Miner</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$values</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="832" package="Miner">
         <name>mergeSetInto</name>
         <full_name>\Miner::mergeSetInto()</full_name>
-        <docblock line="815">
+        <docblock line="832">
           <description>Merge this Miner's SET into the given Miner.</description>
           <long-description></long-description>
-          <tag name="param" line="815" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="param" line="832" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
+            <type>\Miner</type>
           </tag>
-          <tag name="return" line="815" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="832" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -1092,19 +1132,19 @@ global setting.</long-description>
           <type>\Miner</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="830" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="847" package="Miner">
         <name>getSetString</name>
         <full_name>\Miner::getSetString()</full_name>
-        <docblock line="830">
+        <docblock line="847">
           <description>Get the SET portion of the statement as a string.</description>
           <long-description></long-description>
-          <tag name="param" line="830" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
+          <tag name="param" line="847" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
             <type>bool</type>
           </tag>
-          <tag name="param" line="830" description="&lt;p&gt;optional include 'SET' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
+          <tag name="param" line="847" description="&lt;p&gt;optional include 'SET' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
             <type>bool</type>
           </tag>
-          <tag name="return" line="830" description="SET portion of the statement" type="string">
+          <tag name="return" line="847" description="SET portion of the statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -1119,31 +1159,31 @@ global setting.</long-description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="861" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="878" package="Miner">
         <name>getSetPlaceholderValues</name>
         <full_name>\Miner::getSetPlaceholderValues()</full_name>
-        <docblock line="861">
+        <docblock line="878">
           <description>Get the SET placeholder values.</description>
           <long-description></long-description>
-          <tag name="return" line="861" description="SET placeholder values" type="array">
+          <tag name="return" line="878" description="SET placeholder values" type="array">
             <type>array</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="872" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="889" package="Miner">
         <name>from</name>
         <full_name>\Miner::from()</full_name>
-        <docblock line="872">
+        <docblock line="889">
           <description>Set the FROM table with optional alias.</description>
           <long-description></long-description>
-          <tag name="param" line="872" description="&lt;p&gt;table name&lt;/p&gt;" type="string" variable="$table">
+          <tag name="param" line="889" description="&lt;p&gt;table name&lt;/p&gt;" type="string" variable="$table">
             <type>string</type>
           </tag>
-          <tag name="param" line="872" description="&lt;p&gt;optional alias&lt;/p&gt;" type="string" variable="$alias">
+          <tag name="param" line="889" description="&lt;p&gt;optional alias&lt;/p&gt;" type="string" variable="$alias">
             <type>string</type>
           </tag>
-          <tag name="return" line="872" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="889" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -1157,17 +1197,17 @@ global setting.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="885" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="902" package="Miner">
         <name>mergeFromInto</name>
         <full_name>\Miner::mergeFromInto()</full_name>
-        <docblock line="885">
+        <docblock line="902">
           <description>Merge this Miner's FROM into the given Miner.</description>
           <long-description></long-description>
-          <tag name="param" line="885" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="param" line="902" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
+            <type>\Miner</type>
           </tag>
-          <tag name="return" line="885" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="902" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -1176,41 +1216,41 @@ global setting.</long-description>
           <type>\Miner</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="898" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="915" package="Miner">
         <name>getFrom</name>
         <full_name>\Miner::getFrom()</full_name>
-        <docblock line="898">
+        <docblock line="915">
           <description>Get the FROM table.</description>
           <long-description></long-description>
-          <tag name="return" line="898" description="FROM table" type="string">
+          <tag name="return" line="915" description="FROM table" type="string">
             <type>string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="907" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="924" package="Miner">
         <name>getFromAlias</name>
         <full_name>\Miner::getFromAlias()</full_name>
-        <docblock line="907">
+        <docblock line="924">
           <description>Get the FROM table alias.</description>
           <long-description></long-description>
-          <tag name="return" line="907" description="FROM table alias" type="string">
+          <tag name="return" line="924" description="FROM table alias" type="string">
             <type>string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="918" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="935" package="Miner">
         <name>isJoinUnique</name>
         <full_name>\Miner::isJoinUnique()</full_name>
-        <docblock line="918">
+        <docblock line="935">
           <description>Whether the join table and alias is unique (hasn't already been joined).</description>
           <long-description></long-description>
-          <tag name="param" line="918" description="&lt;p&gt;table name&lt;/p&gt;" type="string" variable="$table">
+          <tag name="param" line="935" description="&lt;p&gt;table name&lt;/p&gt;" type="string" variable="$table">
             <type>string</type>
           </tag>
-          <tag name="param" line="918" description="&lt;p&gt;table alias&lt;/p&gt;" type="string" variable="$alias">
+          <tag name="param" line="935" description="&lt;p&gt;table alias&lt;/p&gt;" type="string" variable="$alias">
             <type>string</type>
           </tag>
-          <tag name="return" line="918" description="whether the join table and alias is unique" type="bool">
+          <tag name="return" line="935" description="whether the join table and alias is unique" type="bool">
             <type>bool</type>
           </tag>
         </docblock>
@@ -1225,27 +1265,27 @@ global setting.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="937" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="954" package="Miner">
         <name>join</name>
         <full_name>\Miner::join()</full_name>
-        <docblock line="937">
+        <docblock line="954">
           <description>Add a JOIN table with optional ON criteria.</description>
           <long-description></long-description>
-          <tag name="param" line="937" description="&lt;p&gt;table name&lt;/p&gt;" type="string" variable="$table">
+          <tag name="param" line="954" description="&lt;p&gt;table name&lt;/p&gt;" type="string" variable="$table">
             <type>string</type>
           </tag>
-          <tag name="param" line="937" description="&lt;p&gt;optional ON criteria&lt;/p&gt;" type="string|array" variable="$criteria">
+          <tag name="param" line="954" description="&lt;p&gt;optional ON criteria&lt;/p&gt;" type="string|array" variable="$criteria">
             <type>string</type>
             <type>array</type>
           </tag>
-          <tag name="param" line="937" description="&lt;p&gt;optional type of join, default INNER JOIN&lt;/p&gt;" type="string" variable="$type">
+          <tag name="param" line="954" description="&lt;p&gt;optional type of join, default INNER JOIN&lt;/p&gt;" type="string" variable="$type">
             <type>string</type>
           </tag>
-          <tag name="param" line="937" description="&lt;p&gt;optional alias&lt;/p&gt;" type="string" variable="$alias">
+          <tag name="param" line="954" description="&lt;p&gt;optional alias&lt;/p&gt;" type="string" variable="$alias">
             <type>string</type>
           </tag>
-          <tag name="return" line="937" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="954" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -1269,24 +1309,24 @@ global setting.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="962" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="979" package="Miner">
         <name>innerJoin</name>
         <full_name>\Miner::innerJoin()</full_name>
-        <docblock line="962">
+        <docblock line="979">
           <description>Add an INNER JOIN table with optional ON criteria.</description>
           <long-description></long-description>
-          <tag name="param" line="962" description="&lt;p&gt;table name&lt;/p&gt;" type="string" variable="$table">
+          <tag name="param" line="979" description="&lt;p&gt;table name&lt;/p&gt;" type="string" variable="$table">
             <type>string</type>
           </tag>
-          <tag name="param" line="962" description="&lt;p&gt;optional ON criteria&lt;/p&gt;" type="string|array" variable="$criteria">
+          <tag name="param" line="979" description="&lt;p&gt;optional ON criteria&lt;/p&gt;" type="string|array" variable="$criteria">
             <type>string</type>
             <type>array</type>
           </tag>
-          <tag name="param" line="962" description="&lt;p&gt;optional alias&lt;/p&gt;" type="string" variable="$alias">
+          <tag name="param" line="979" description="&lt;p&gt;optional alias&lt;/p&gt;" type="string" variable="$alias">
             <type>string</type>
           </tag>
-          <tag name="return" line="962" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="979" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -1305,24 +1345,24 @@ global setting.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="974" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="991" package="Miner">
         <name>leftJoin</name>
         <full_name>\Miner::leftJoin()</full_name>
-        <docblock line="974">
+        <docblock line="991">
           <description>Add a LEFT JOIN table with optional ON criteria.</description>
           <long-description></long-description>
-          <tag name="param" line="974" description="&lt;p&gt;table name&lt;/p&gt;" type="string" variable="$table">
+          <tag name="param" line="991" description="&lt;p&gt;table name&lt;/p&gt;" type="string" variable="$table">
             <type>string</type>
           </tag>
-          <tag name="param" line="974" description="&lt;p&gt;optional ON criteria&lt;/p&gt;" type="string|array" variable="$criteria">
+          <tag name="param" line="991" description="&lt;p&gt;optional ON criteria&lt;/p&gt;" type="string|array" variable="$criteria">
             <type>string</type>
             <type>array</type>
           </tag>
-          <tag name="param" line="974" description="&lt;p&gt;optional alias&lt;/p&gt;" type="string" variable="$alias">
+          <tag name="param" line="991" description="&lt;p&gt;optional alias&lt;/p&gt;" type="string" variable="$alias">
             <type>string</type>
           </tag>
-          <tag name="return" line="974" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="991" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -1341,24 +1381,24 @@ global setting.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="986" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1003" package="Miner">
         <name>rightJoin</name>
         <full_name>\Miner::rightJoin()</full_name>
-        <docblock line="986">
+        <docblock line="1003">
           <description>Add a RIGHT JOIN table with optional ON criteria.</description>
           <long-description></long-description>
-          <tag name="param" line="986" description="&lt;p&gt;table name&lt;/p&gt;" type="string" variable="$table">
+          <tag name="param" line="1003" description="&lt;p&gt;table name&lt;/p&gt;" type="string" variable="$table">
             <type>string</type>
           </tag>
-          <tag name="param" line="986" description="&lt;p&gt;optional ON criteria&lt;/p&gt;" type="string|array" variable="$criteria">
+          <tag name="param" line="1003" description="&lt;p&gt;optional ON criteria&lt;/p&gt;" type="string|array" variable="$criteria">
             <type>string</type>
             <type>array</type>
           </tag>
-          <tag name="param" line="986" description="&lt;p&gt;optional alias&lt;/p&gt;" type="string" variable="$alias">
+          <tag name="param" line="1003" description="&lt;p&gt;optional alias&lt;/p&gt;" type="string" variable="$alias">
             <type>string</type>
           </tag>
-          <tag name="return" line="986" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1003" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -1377,17 +1417,17 @@ global setting.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="996" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1013" package="Miner">
         <name>mergeJoinInto</name>
         <full_name>\Miner::mergeJoinInto()</full_name>
-        <docblock line="996">
+        <docblock line="1013">
           <description>Merge this Miner's JOINs into the given Miner.</description>
           <long-description></long-description>
-          <tag name="param" line="996" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="param" line="1013" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
+            <type>\Miner</type>
           </tag>
-          <tag name="return" line="996" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1013" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -1396,23 +1436,23 @@ global setting.</long-description>
           <type>\Miner</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1013" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1030" package="Miner">
         <name>getJoinCriteriaUsingPreviousTable</name>
         <full_name>\Miner::getJoinCriteriaUsingPreviousTable()</full_name>
-        <docblock line="1013">
+        <docblock line="1030">
           <description>Get an ON criteria string joining the specified table and column to the
 same column of the previous JOIN or FROM table.</description>
           <long-description></long-description>
-          <tag name="param" line="1013" description="&lt;p&gt;index of current join&lt;/p&gt;" type="int" variable="$joinIndex">
+          <tag name="param" line="1030" description="&lt;p&gt;index of current join&lt;/p&gt;" type="int" variable="$joinIndex">
             <type>int</type>
           </tag>
-          <tag name="param" line="1013" description="&lt;p&gt;current table name&lt;/p&gt;" type="string" variable="$table">
+          <tag name="param" line="1030" description="&lt;p&gt;current table name&lt;/p&gt;" type="string" variable="$table">
             <type>string</type>
           </tag>
-          <tag name="param" line="1013" description="&lt;p&gt;current column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1030" description="&lt;p&gt;current column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="return" line="1013" description="ON join criteria" type="string">
+          <tag name="return" line="1030" description="ON join criteria" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -1432,27 +1472,27 @@ same column of the previous JOIN or FROM table.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1047" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1064" package="Miner">
         <name>getJoinString</name>
         <full_name>\Miner::getJoinString()</full_name>
-        <docblock line="1047">
+        <docblock line="1064">
           <description>Get the JOIN portion of the statement as a string.</description>
           <long-description></long-description>
-          <tag name="return" line="1047" description="JOIN portion of the statement" type="string">
+          <tag name="return" line="1064" description="JOIN portion of the statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1091" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1108" package="Miner">
         <name>getFromString</name>
         <full_name>\Miner::getFromString()</full_name>
-        <docblock line="1091">
+        <docblock line="1108">
           <description>Get the FROM portion of the statement, including all JOINs, as a string.</description>
           <long-description></long-description>
-          <tag name="param" line="1091" description="&lt;p&gt;optional include 'FROM' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
+          <tag name="param" line="1108" description="&lt;p&gt;optional include 'FROM' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
             <type>bool</type>
           </tag>
-          <tag name="return" line="1091" description="FROM portion of the statement" type="string">
+          <tag name="return" line="1108" description="FROM portion of the statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -1462,21 +1502,21 @@ same column of the previous JOIN or FROM table.</description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1124" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1141" package="Miner">
         <name>openCriteria</name>
         <full_name>\Miner::openCriteria()</full_name>
-        <docblock line="1124">
+        <docblock line="1141">
           <description>Add an open bracket for nesting conditions to the specified WHERE or
 HAVING criteria.</description>
           <long-description></long-description>
-          <tag name="param" line="1124" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
+          <tag name="param" line="1141" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
             <type>array</type>
           </tag>
-          <tag name="param" line="1124" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1141" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="return" line="1124" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1141" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="true">
@@ -1490,18 +1530,18 @@ HAVING criteria.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1138" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1155" package="Miner">
         <name>closeCriteria</name>
         <full_name>\Miner::closeCriteria()</full_name>
-        <docblock line="1138">
+        <docblock line="1155">
           <description>Add a closing bracket for nesting conditions to the specified WHERE or
 HAVING criteria.</description>
           <long-description></long-description>
-          <tag name="param" line="1138" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
+          <tag name="param" line="1155" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
             <type>array</type>
           </tag>
-          <tag name="return" line="1138" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1155" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="true">
@@ -1510,33 +1550,33 @@ HAVING criteria.</description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1156" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1173" package="Miner">
         <name>criteria</name>
         <full_name>\Miner::criteria()</full_name>
-        <docblock line="1156">
+        <docblock line="1173">
           <description>Add a condition to the specified WHERE or HAVING criteria.</description>
           <long-description></long-description>
-          <tag name="param" line="1156" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
+          <tag name="param" line="1173" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
             <type>array</type>
           </tag>
-          <tag name="param" line="1156" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1173" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1156" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
+          <tag name="param" line="1173" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1156" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
+          <tag name="param" line="1173" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
             <type>string</type>
           </tag>
-          <tag name="param" line="1156" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1173" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1156" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1173" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1156" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1173" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="true">
@@ -1570,30 +1610,30 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1177" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1194" package="Miner">
         <name>orCriteria</name>
         <full_name>\Miner::orCriteria()</full_name>
-        <docblock line="1177">
+        <docblock line="1194">
           <description>Add an OR condition to the specified WHERE or HAVING criteria.</description>
           <long-description></long-description>
-          <tag name="param" line="1177" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
+          <tag name="param" line="1194" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
             <type>array</type>
           </tag>
-          <tag name="param" line="1177" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1194" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1177" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
+          <tag name="param" line="1194" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1177" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
+          <tag name="param" line="1194" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
             <type>string</type>
           </tag>
-          <tag name="param" line="1177" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1194" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1177" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1194" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="true">
@@ -1622,30 +1662,30 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1191" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1208" package="Miner">
         <name>criteriaIn</name>
         <full_name>\Miner::criteriaIn()</full_name>
-        <docblock line="1191">
+        <docblock line="1208">
           <description>Add an IN condition to the specified WHERE or HAVING criteria.</description>
           <long-description></long-description>
-          <tag name="param" line="1191" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
+          <tag name="param" line="1208" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
             <type>array</type>
           </tag>
-          <tag name="param" line="1191" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1208" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1191" description="&lt;p&gt;values&lt;/p&gt;" type="array" variable="$values">
+          <tag name="param" line="1208" description="&lt;p&gt;values&lt;/p&gt;" type="array" variable="$values">
             <type>array</type>
           </tag>
-          <tag name="param" line="1191" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1208" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1191" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1208" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1191" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1208" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="true">
@@ -1674,30 +1714,30 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1206" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1223" package="Miner">
         <name>criteriaNotIn</name>
         <full_name>\Miner::criteriaNotIn()</full_name>
-        <docblock line="1206">
+        <docblock line="1223">
           <description>Add a NOT IN condition to the specified WHERE or HAVING criteria.</description>
           <long-description></long-description>
-          <tag name="param" line="1206" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
+          <tag name="param" line="1223" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
             <type>array</type>
           </tag>
-          <tag name="param" line="1206" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1223" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1206" description="&lt;p&gt;values&lt;/p&gt;" type="array" variable="$values">
+          <tag name="param" line="1223" description="&lt;p&gt;values&lt;/p&gt;" type="array" variable="$values">
             <type>array</type>
           </tag>
-          <tag name="param" line="1206" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1223" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1206" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1223" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1206" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1223" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="true">
@@ -1726,33 +1766,33 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1222" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1239" package="Miner">
         <name>criteriaBetween</name>
         <full_name>\Miner::criteriaBetween()</full_name>
-        <docblock line="1222">
+        <docblock line="1239">
           <description>Add a BETWEEN condition to the specified WHERE or HAVING criteria.</description>
           <long-description></long-description>
-          <tag name="param" line="1222" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
+          <tag name="param" line="1239" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
             <type>array</type>
           </tag>
-          <tag name="param" line="1222" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1239" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1222" description="&lt;p&gt;minimum value&lt;/p&gt;" type="mixed" variable="$min">
+          <tag name="param" line="1239" description="&lt;p&gt;minimum value&lt;/p&gt;" type="mixed" variable="$min">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1222" description="&lt;p&gt;maximum value&lt;/p&gt;" type="mixed" variable="$max">
+          <tag name="param" line="1239" description="&lt;p&gt;maximum value&lt;/p&gt;" type="mixed" variable="$max">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1222" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1239" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1222" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1239" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1222" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1239" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="true">
@@ -1786,33 +1826,33 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1238" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1255" package="Miner">
         <name>criteriaNotBetween</name>
         <full_name>\Miner::criteriaNotBetween()</full_name>
-        <docblock line="1238">
+        <docblock line="1255">
           <description>Add a NOT BETWEEN condition to the specified WHERE or HAVING criteria.</description>
           <long-description></long-description>
-          <tag name="param" line="1238" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
+          <tag name="param" line="1255" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
             <type>array</type>
           </tag>
-          <tag name="param" line="1238" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1255" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1238" description="&lt;p&gt;minimum value&lt;/p&gt;" type="mixed" variable="$min">
+          <tag name="param" line="1255" description="&lt;p&gt;minimum value&lt;/p&gt;" type="mixed" variable="$min">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1238" description="&lt;p&gt;maximum value&lt;/p&gt;" type="mixed" variable="$max">
+          <tag name="param" line="1255" description="&lt;p&gt;maximum value&lt;/p&gt;" type="mixed" variable="$max">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1238" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1255" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1238" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1255" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1238" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1255" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="true">
@@ -1846,22 +1886,22 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1251" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1268" package="Miner">
         <name>getCriteriaString</name>
         <full_name>\Miner::getCriteriaString()</full_name>
-        <docblock line="1251">
+        <docblock line="1268">
           <description>Get the WHERE or HAVING portion of the statement as a string.</description>
           <long-description></long-description>
-          <tag name="param" line="1251" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
+          <tag name="param" line="1268" description="&lt;p&gt;WHERE or HAVING criteria&lt;/p&gt;" type="array" variable="$criteria">
             <type>array</type>
           </tag>
-          <tag name="param" line="1251" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
+          <tag name="param" line="1268" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
             <type>bool</type>
           </tag>
-          <tag name="param" line="1251" description="&lt;p&gt;optional placeholder values array&lt;/p&gt;" type="array" variable="$placeholderValues">
+          <tag name="param" line="1268" description="&lt;p&gt;optional placeholder values array&lt;/p&gt;" type="array" variable="$placeholderValues">
             <type>array</type>
           </tag>
-          <tag name="return" line="1251" description="WHERE or HAVING portion of the statement" type="string">
+          <tag name="return" line="1268" description="WHERE or HAVING portion of the statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -1881,17 +1921,17 @@ HAVING criteria.</description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1351" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1368" package="Miner">
         <name>openWhere</name>
         <full_name>\Miner::openWhere()</full_name>
-        <docblock line="1351">
+        <docblock line="1368">
           <description>Add an open bracket for nesting WHERE conditions.</description>
           <long-description></long-description>
-          <tag name="param" line="1351" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1368" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="return" line="1351" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1368" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -1900,41 +1940,41 @@ HAVING criteria.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1360" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1377" package="Miner">
         <name>closeWhere</name>
         <full_name>\Miner::closeWhere()</full_name>
-        <docblock line="1360">
+        <docblock line="1377">
           <description>Add a closing bracket for nesting WHERE conditions.</description>
           <long-description></long-description>
-          <tag name="return" line="1360" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1377" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1374" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1391" package="Miner">
         <name>where</name>
         <full_name>\Miner::where()</full_name>
-        <docblock line="1374">
+        <docblock line="1391">
           <description>Add a WHERE condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1374" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1391" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1374" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
+          <tag name="param" line="1391" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1374" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
+          <tag name="param" line="1391" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
             <type>string</type>
           </tag>
-          <tag name="param" line="1374" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1391" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1374" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1391" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1374" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1391" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -1963,27 +2003,27 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1387" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1404" package="Miner">
         <name>andWhere</name>
         <full_name>\Miner::andWhere()</full_name>
-        <docblock line="1387">
+        <docblock line="1404">
           <description>Add an AND WHERE condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1387" description="&lt;p&gt;colum name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1404" description="&lt;p&gt;colum name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1387" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
+          <tag name="param" line="1404" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1387" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
+          <tag name="param" line="1404" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
             <type>string</type>
           </tag>
-          <tag name="param" line="1387" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1404" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1387" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1404" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2007,27 +2047,27 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1400" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1417" package="Miner">
         <name>orWhere</name>
         <full_name>\Miner::orWhere()</full_name>
-        <docblock line="1400">
+        <docblock line="1417">
           <description>Add an OR WHERE condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1400" description="&lt;p&gt;colum name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1417" description="&lt;p&gt;colum name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1400" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
+          <tag name="param" line="1417" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1400" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
+          <tag name="param" line="1417" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
             <type>string</type>
           </tag>
-          <tag name="param" line="1400" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1417" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1400" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1417" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2051,27 +2091,27 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1413" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1430" package="Miner">
         <name>whereIn</name>
         <full_name>\Miner::whereIn()</full_name>
-        <docblock line="1413">
+        <docblock line="1430">
           <description>Add an IN WHERE condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1413" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1430" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1413" description="&lt;p&gt;values&lt;/p&gt;" type="array" variable="$values">
+          <tag name="param" line="1430" description="&lt;p&gt;values&lt;/p&gt;" type="array" variable="$values">
             <type>array</type>
           </tag>
-          <tag name="param" line="1413" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1430" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1413" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1430" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1413" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1430" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2095,27 +2135,27 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1426" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1443" package="Miner">
         <name>whereNotIn</name>
         <full_name>\Miner::whereNotIn()</full_name>
-        <docblock line="1426">
+        <docblock line="1443">
           <description>Add a NOT IN WHERE condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1426" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1443" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1426" description="&lt;p&gt;values&lt;/p&gt;" type="array" variable="$values">
+          <tag name="param" line="1443" description="&lt;p&gt;values&lt;/p&gt;" type="array" variable="$values">
             <type>array</type>
           </tag>
-          <tag name="param" line="1426" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1443" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1426" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1443" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1426" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1443" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2139,30 +2179,30 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1440" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1457" package="Miner">
         <name>whereBetween</name>
         <full_name>\Miner::whereBetween()</full_name>
-        <docblock line="1440">
+        <docblock line="1457">
           <description>Add a BETWEEN WHERE condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1440" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1457" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1440" description="&lt;p&gt;minimum value&lt;/p&gt;" type="mixed" variable="$min">
+          <tag name="param" line="1457" description="&lt;p&gt;minimum value&lt;/p&gt;" type="mixed" variable="$min">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1440" description="&lt;p&gt;maximum value&lt;/p&gt;" type="mixed" variable="$max">
+          <tag name="param" line="1457" description="&lt;p&gt;maximum value&lt;/p&gt;" type="mixed" variable="$max">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1440" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1457" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1440" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1457" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1440" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1457" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2191,30 +2231,30 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1454" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1471" package="Miner">
         <name>whereNotBetween</name>
         <full_name>\Miner::whereNotBetween()</full_name>
-        <docblock line="1454">
+        <docblock line="1471">
           <description>Add a NOT BETWEEN WHERE condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1454" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1471" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1454" description="&lt;p&gt;minimum value&lt;/p&gt;" type="mixed" variable="$min">
+          <tag name="param" line="1471" description="&lt;p&gt;minimum value&lt;/p&gt;" type="mixed" variable="$min">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1454" description="&lt;p&gt;maximum value&lt;/p&gt;" type="mixed" variable="$max">
+          <tag name="param" line="1471" description="&lt;p&gt;maximum value&lt;/p&gt;" type="mixed" variable="$max">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1454" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1471" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1454" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1471" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1454" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1471" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2243,17 +2283,17 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1464" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1481" package="Miner">
         <name>mergeWhereInto</name>
         <full_name>\Miner::mergeWhereInto()</full_name>
-        <docblock line="1464">
+        <docblock line="1481">
           <description>Merge this Miner's WHERE into the given Miner.</description>
           <long-description></long-description>
-          <tag name="param" line="1464" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="param" line="1481" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
+            <type>\Miner</type>
           </tag>
-          <tag name="return" line="1464" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1481" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2262,19 +2302,19 @@ HAVING criteria.</description>
           <type>\Miner</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1490" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1507" package="Miner">
         <name>getWhereString</name>
         <full_name>\Miner::getWhereString()</full_name>
-        <docblock line="1490">
+        <docblock line="1507">
           <description>Get the WHERE portion of the statement as a string.</description>
           <long-description></long-description>
-          <tag name="param" line="1490" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
+          <tag name="param" line="1507" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
             <type>bool</type>
           </tag>
-          <tag name="param" line="1490" description="&lt;p&gt;optional include 'WHERE' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
+          <tag name="param" line="1507" description="&lt;p&gt;optional include 'WHERE' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
             <type>bool</type>
           </tag>
-          <tag name="return" line="1490" description="WHERE portion of the statement" type="string">
+          <tag name="return" line="1507" description="WHERE portion of the statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -2289,32 +2329,32 @@ HAVING criteria.</description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1505" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1522" package="Miner">
         <name>getWherePlaceholderValues</name>
         <full_name>\Miner::getWherePlaceholderValues()</full_name>
-        <docblock line="1505">
+        <docblock line="1522">
           <description>Get the WHERE placeholder values.</description>
           <long-description></long-description>
-          <tag name="return" line="1505" description="WHERE placeholder values" type="array">
+          <tag name="return" line="1522" description="WHERE placeholder values" type="array">
             <type>array</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1516" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1533" package="Miner">
         <name>groupBy</name>
         <full_name>\Miner::groupBy()</full_name>
-        <docblock line="1516">
+        <docblock line="1533">
           <description>Add a GROUP BY column.</description>
           <long-description></long-description>
-          <tag name="param" line="1516" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1533" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1516" description="&lt;p&gt;optional order direction, default none&lt;/p&gt;" type="string|null" variable="$order">
+          <tag name="param" line="1533" description="&lt;p&gt;optional order direction, default none&lt;/p&gt;" type="string|null" variable="$order">
             <type>string</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1516" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1533" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2328,17 +2368,17 @@ HAVING criteria.</description>
           <type>string|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1529" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1546" package="Miner">
         <name>mergeGroupByInto</name>
         <full_name>\Miner::mergeGroupByInto()</full_name>
-        <docblock line="1529">
+        <docblock line="1546">
           <description>Merge this Miner's GROUP BY into the given Miner.</description>
           <long-description></long-description>
-          <tag name="param" line="1529" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="param" line="1546" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
+            <type>\Miner</type>
           </tag>
-          <tag name="return" line="1529" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1546" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2347,16 +2387,16 @@ HAVING criteria.</description>
           <type>\Miner</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1543" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1560" package="Miner">
         <name>getGroupByString</name>
         <full_name>\Miner::getGroupByString()</full_name>
-        <docblock line="1543">
+        <docblock line="1560">
           <description>Get the GROUP BY portion of the statement as a string.</description>
           <long-description></long-description>
-          <tag name="param" line="1543" description="&lt;p&gt;optional include 'GROUP BY' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
+          <tag name="param" line="1560" description="&lt;p&gt;optional include 'GROUP BY' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
             <type>bool</type>
           </tag>
-          <tag name="return" line="1543" description="GROUP BY portion of the statement" type="string">
+          <tag name="return" line="1560" description="GROUP BY portion of the statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -2366,17 +2406,17 @@ HAVING criteria.</description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1571" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1588" package="Miner">
         <name>openHaving</name>
         <full_name>\Miner::openHaving()</full_name>
-        <docblock line="1571">
+        <docblock line="1588">
           <description>Add an open bracket for nesting HAVING conditions.</description>
           <long-description></long-description>
-          <tag name="param" line="1571" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1588" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="return" line="1571" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1588" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2385,41 +2425,41 @@ HAVING criteria.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1580" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1597" package="Miner">
         <name>closeHaving</name>
         <full_name>\Miner::closeHaving()</full_name>
-        <docblock line="1580">
+        <docblock line="1597">
           <description>Add a closing bracket for nesting HAVING conditions.</description>
           <long-description></long-description>
-          <tag name="return" line="1580" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1597" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1594" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1611" package="Miner">
         <name>having</name>
         <full_name>\Miner::having()</full_name>
-        <docblock line="1594">
+        <docblock line="1611">
           <description>Add a HAVING condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1594" description="&lt;p&gt;colum name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1611" description="&lt;p&gt;colum name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1594" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
+          <tag name="param" line="1611" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1594" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
+          <tag name="param" line="1611" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
             <type>string</type>
           </tag>
-          <tag name="param" line="1594" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1611" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1594" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1611" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1594" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1611" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2448,27 +2488,27 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1607" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1624" package="Miner">
         <name>andHaving</name>
         <full_name>\Miner::andHaving()</full_name>
-        <docblock line="1607">
+        <docblock line="1624">
           <description>Add an AND HAVING condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1607" description="&lt;p&gt;colum name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1624" description="&lt;p&gt;colum name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1607" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
+          <tag name="param" line="1624" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1607" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
+          <tag name="param" line="1624" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
             <type>string</type>
           </tag>
-          <tag name="param" line="1607" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1624" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1607" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1624" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2492,27 +2532,27 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1620" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1637" package="Miner">
         <name>orHaving</name>
         <full_name>\Miner::orHaving()</full_name>
-        <docblock line="1620">
+        <docblock line="1637">
           <description>Add an OR HAVING condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1620" description="&lt;p&gt;colum name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1637" description="&lt;p&gt;colum name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1620" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
+          <tag name="param" line="1637" description="&lt;p&gt;value&lt;/p&gt;" type="mixed" variable="$value">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1620" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
+          <tag name="param" line="1637" description="&lt;p&gt;optional comparison operator, default =&lt;/p&gt;" type="string" variable="$operator">
             <type>string</type>
           </tag>
-          <tag name="param" line="1620" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1637" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1620" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1637" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2536,27 +2576,27 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1633" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1650" package="Miner">
         <name>havingIn</name>
         <full_name>\Miner::havingIn()</full_name>
-        <docblock line="1633">
+        <docblock line="1650">
           <description>Add an IN WHERE condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1633" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1650" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1633" description="&lt;p&gt;values&lt;/p&gt;" type="array" variable="$values">
+          <tag name="param" line="1650" description="&lt;p&gt;values&lt;/p&gt;" type="array" variable="$values">
             <type>array</type>
           </tag>
-          <tag name="param" line="1633" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1650" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1633" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1650" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1633" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1650" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2580,27 +2620,27 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1646" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1663" package="Miner">
         <name>havingNotIn</name>
         <full_name>\Miner::havingNotIn()</full_name>
-        <docblock line="1646">
+        <docblock line="1663">
           <description>Add a NOT IN HAVING condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1646" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1663" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1646" description="&lt;p&gt;values&lt;/p&gt;" type="array" variable="$values">
+          <tag name="param" line="1663" description="&lt;p&gt;values&lt;/p&gt;" type="array" variable="$values">
             <type>array</type>
           </tag>
-          <tag name="param" line="1646" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1663" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1646" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1663" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1646" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1663" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2624,30 +2664,30 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1660" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1677" package="Miner">
         <name>havingBetween</name>
         <full_name>\Miner::havingBetween()</full_name>
-        <docblock line="1660">
+        <docblock line="1677">
           <description>Add a BETWEEN HAVING condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1660" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1677" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1660" description="&lt;p&gt;minimum value&lt;/p&gt;" type="mixed" variable="$min">
+          <tag name="param" line="1677" description="&lt;p&gt;minimum value&lt;/p&gt;" type="mixed" variable="$min">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1660" description="&lt;p&gt;maximum value&lt;/p&gt;" type="mixed" variable="$max">
+          <tag name="param" line="1677" description="&lt;p&gt;maximum value&lt;/p&gt;" type="mixed" variable="$max">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1660" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1677" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1660" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1677" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1660" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1677" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2676,30 +2716,30 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1674" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1691" package="Miner">
         <name>havingNotBetween</name>
         <full_name>\Miner::havingNotBetween()</full_name>
-        <docblock line="1674">
+        <docblock line="1691">
           <description>Add a NOT BETWEEN HAVING condition.</description>
           <long-description></long-description>
-          <tag name="param" line="1674" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1691" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1674" description="&lt;p&gt;minimum value&lt;/p&gt;" type="mixed" variable="$min">
+          <tag name="param" line="1691" description="&lt;p&gt;minimum value&lt;/p&gt;" type="mixed" variable="$min">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1674" description="&lt;p&gt;maximum value&lt;/p&gt;" type="mixed" variable="$max">
+          <tag name="param" line="1691" description="&lt;p&gt;maximum value&lt;/p&gt;" type="mixed" variable="$max">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="1674" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
+          <tag name="param" line="1691" description="&lt;p&gt;optional logical connector, default AND&lt;/p&gt;" type="string" variable="$connector">
             <type>string</type>
           </tag>
-          <tag name="param" line="1674" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
+          <tag name="param" line="1691" description="&lt;p&gt;optional auto-escape value, default to global&lt;/p&gt;" type="bool|null" variable="$quote">
             <type>bool</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="1674" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1691" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2728,17 +2768,17 @@ HAVING criteria.</description>
           <type>bool|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1684" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1701" package="Miner">
         <name>mergeHavingInto</name>
         <full_name>\Miner::mergeHavingInto()</full_name>
-        <docblock line="1684">
+        <docblock line="1701">
           <description>Merge this Miner's HAVING into the given Miner.</description>
           <long-description></long-description>
-          <tag name="param" line="1684" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="param" line="1701" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
+            <type>\Miner</type>
           </tag>
-          <tag name="return" line="1684" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1701" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2747,19 +2787,19 @@ HAVING criteria.</description>
           <type>\Miner</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1711" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1728" package="Miner">
         <name>getHavingString</name>
         <full_name>\Miner::getHavingString()</full_name>
-        <docblock line="1711">
+        <docblock line="1728">
           <description>Get the HAVING portion of the statement as a string.</description>
           <long-description></long-description>
-          <tag name="param" line="1711" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
+          <tag name="param" line="1728" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
             <type>bool</type>
           </tag>
-          <tag name="param" line="1711" description="&lt;p&gt;optional include 'HAVING' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
+          <tag name="param" line="1728" description="&lt;p&gt;optional include 'HAVING' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
             <type>bool</type>
           </tag>
-          <tag name="return" line="1711" description="HAVING portion of the statement" type="string">
+          <tag name="return" line="1728" description="HAVING portion of the statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -2774,31 +2814,31 @@ HAVING criteria.</description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1726" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1743" package="Miner">
         <name>getHavingPlaceholderValues</name>
         <full_name>\Miner::getHavingPlaceholderValues()</full_name>
-        <docblock line="1726">
+        <docblock line="1743">
           <description>Get the HAVING placeholder values.</description>
           <long-description></long-description>
-          <tag name="return" line="1726" description="HAVING placeholder values" type="array">
+          <tag name="return" line="1743" description="HAVING placeholder values" type="array">
             <type>array</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1737" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1754" package="Miner">
         <name>orderBy</name>
         <full_name>\Miner::orderBy()</full_name>
-        <docblock line="1737">
+        <docblock line="1754">
           <description>Add a column to ORDER BY.</description>
           <long-description></long-description>
-          <tag name="param" line="1737" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
+          <tag name="param" line="1754" description="&lt;p&gt;column name&lt;/p&gt;" type="string" variable="$column">
             <type>string</type>
           </tag>
-          <tag name="param" line="1737" description="&lt;p&gt;optional order direction, default ASC&lt;/p&gt;" type="string" variable="$order">
+          <tag name="param" line="1754" description="&lt;p&gt;optional order direction, default ASC&lt;/p&gt;" type="string" variable="$order">
             <type>string</type>
           </tag>
-          <tag name="return" line="1737" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1754" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2812,17 +2852,17 @@ HAVING criteria.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1750" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1767" package="Miner">
         <name>mergeOrderByInto</name>
         <full_name>\Miner::mergeOrderByInto()</full_name>
-        <docblock line="1750">
+        <docblock line="1767">
           <description>Merge this Miner's ORDER BY into the given Miner.</description>
           <long-description></long-description>
-          <tag name="param" line="1750" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="param" line="1767" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
+            <type>\Miner</type>
           </tag>
-          <tag name="return" line="1750" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1767" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2831,16 +2871,16 @@ HAVING criteria.</description>
           <type>\Miner</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1764" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1781" package="Miner">
         <name>getOrderByString</name>
         <full_name>\Miner::getOrderByString()</full_name>
-        <docblock line="1764">
+        <docblock line="1781">
           <description>Get the ORDER BY portion of the statement as a string.</description>
           <long-description></long-description>
-          <tag name="param" line="1764" description="&lt;p&gt;optional include 'ORDER BY' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
+          <tag name="param" line="1781" description="&lt;p&gt;optional include 'ORDER BY' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
             <type>bool</type>
           </tag>
-          <tag name="return" line="1764" description="ORDER BY portion of the statement" type="string">
+          <tag name="return" line="1781" description="ORDER BY portion of the statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -2850,22 +2890,22 @@ HAVING criteria.</description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1787" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1804" package="Miner">
         <name>limit</name>
         <full_name>\Miner::limit()</full_name>
-        <docblock line="1787">
+        <docblock line="1804">
           <description>Set the LIMIT on number of rows to return with optional offset.</description>
           <long-description></long-description>
-          <tag name="param" line="1787" description="&lt;p&gt;number of rows to return&lt;/p&gt;" type="int|string" variable="$limit">
+          <tag name="param" line="1804" description="&lt;p&gt;number of rows to return&lt;/p&gt;" type="int|string" variable="$limit">
             <type>int</type>
             <type>string</type>
           </tag>
-          <tag name="param" line="1787" description="&lt;p&gt;optional row number to start at, default 0&lt;/p&gt;" type="int|string" variable="$offset">
+          <tag name="param" line="1804" description="&lt;p&gt;optional row number to start at, default 0&lt;/p&gt;" type="int|string" variable="$offset">
             <type>int</type>
             <type>string</type>
           </tag>
-          <tag name="return" line="1787" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1804" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2879,17 +2919,17 @@ HAVING criteria.</description>
           <type>int|string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1800" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1817" package="Miner">
         <name>mergeLimitInto</name>
         <full_name>\Miner::mergeLimitInto()</full_name>
-        <docblock line="1800">
+        <docblock line="1817">
           <description>Merge this Miner's LIMIT into the given Miner.</description>
           <long-description></long-description>
-          <tag name="param" line="1800" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="param" line="1817" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
+            <type>\Miner</type>
           </tag>
-          <tag name="return" line="1800" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1817" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2898,40 +2938,40 @@ HAVING criteria.</description>
           <type>\Miner</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1813" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1830" package="Miner">
         <name>getLimit</name>
         <full_name>\Miner::getLimit()</full_name>
-        <docblock line="1813">
+        <docblock line="1830">
           <description>Get the LIMIT on number of rows to return.</description>
           <long-description></long-description>
-          <tag name="return" line="1813" description="LIMIT on number of rows to return" type="int|string">
+          <tag name="return" line="1830" description="LIMIT on number of rows to return" type="int|string">
             <type>int</type>
             <type>string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1822" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1839" package="Miner">
         <name>getLimitOffset</name>
         <full_name>\Miner::getLimitOffset()</full_name>
-        <docblock line="1822">
+        <docblock line="1839">
           <description>Get the LIMIT row number to start at.</description>
           <long-description></long-description>
-          <tag name="return" line="1822" description="LIMIT row number to start at" type="int|string">
+          <tag name="return" line="1839" description="LIMIT row number to start at" type="int|string">
             <type>int</type>
             <type>string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1832" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1849" package="Miner">
         <name>getLimitString</name>
         <full_name>\Miner::getLimitString()</full_name>
-        <docblock line="1832">
+        <docblock line="1849">
           <description>Get the LIMIT portion of the statement as a string.</description>
           <long-description></long-description>
-          <tag name="param" line="1832" description="&lt;p&gt;optional include 'LIMIT' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
+          <tag name="param" line="1849" description="&lt;p&gt;optional include 'LIMIT' text, default true&lt;/p&gt;" type="bool" variable="$includeText">
             <type>bool</type>
           </tag>
-          <tag name="return" line="1832" description="LIMIT portion of the statement" type="string">
+          <tag name="return" line="1849" description="LIMIT portion of the statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -2941,75 +2981,75 @@ HAVING criteria.</description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1857" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1874" package="Miner">
         <name>isSelect</name>
         <full_name>\Miner::isSelect()</full_name>
-        <docblock line="1857">
+        <docblock line="1874">
           <description>Whether this is a SELECT statement.</description>
           <long-description></long-description>
-          <tag name="return" line="1857" description="whether this is a SELECT statement" type="bool">
+          <tag name="return" line="1874" description="whether this is a SELECT statement" type="bool">
             <type>bool</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1866" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1883" package="Miner">
         <name>isInsert</name>
         <full_name>\Miner::isInsert()</full_name>
-        <docblock line="1866">
+        <docblock line="1883">
           <description>Whether this is an INSERT statement.</description>
           <long-description></long-description>
-          <tag name="return" line="1866" description="whether this is an INSERT statement" type="bool">
+          <tag name="return" line="1883" description="whether this is an INSERT statement" type="bool">
             <type>bool</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1875" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1892" package="Miner">
         <name>isReplace</name>
         <full_name>\Miner::isReplace()</full_name>
-        <docblock line="1875">
+        <docblock line="1892">
           <description>Whether this is a REPLACE statement.</description>
           <long-description></long-description>
-          <tag name="return" line="1875" description="whether this is a REPLACE statement" type="bool">
+          <tag name="return" line="1892" description="whether this is a REPLACE statement" type="bool">
             <type>bool</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1884" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1901" package="Miner">
         <name>isUpdate</name>
         <full_name>\Miner::isUpdate()</full_name>
-        <docblock line="1884">
+        <docblock line="1901">
           <description>Whether this is an UPDATE statement.</description>
           <long-description></long-description>
-          <tag name="return" line="1884" description="whether this is an UPDATE statement" type="bool">
+          <tag name="return" line="1901" description="whether this is an UPDATE statement" type="bool">
             <type>bool</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1893" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1910" package="Miner">
         <name>isDelete</name>
         <full_name>\Miner::isDelete()</full_name>
-        <docblock line="1893">
+        <docblock line="1910">
           <description>Whether this is a DELETE statement.</description>
           <long-description></long-description>
-          <tag name="return" line="1893" description="whether this is a DELETE statement" type="bool">
+          <tag name="return" line="1910" description="whether this is a DELETE statement" type="bool">
             <type>bool</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1904" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1921" package="Miner">
         <name>mergeInto</name>
         <full_name>\Miner::mergeInto()</full_name>
-        <docblock line="1904">
+        <docblock line="1921">
           <description>Merge this Miner into the given Miner.</description>
           <long-description></long-description>
-          <tag name="param" line="1904" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="param" line="1921" description="&lt;p&gt;to merge into&lt;/p&gt;" type="\Miner" variable="$Miner">
+            <type>\Miner</type>
           </tag>
-          <tag name="param" line="1904" description="&lt;p&gt;optional override limit, default true&lt;/p&gt;" type="bool" variable="$overrideLimit">
+          <tag name="param" line="1921" description="&lt;p&gt;optional override limit, default true&lt;/p&gt;" type="bool" variable="$overrideLimit">
             <type>bool</type>
           </tag>
-          <tag name="return" line="1904" description="" type="\Miner">
-            <type link="Miner.html">\Miner</type>
+          <tag name="return" line="1921" description="" type="\Miner">
+            <type>\Miner</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -3023,16 +3063,16 @@ HAVING criteria.</description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1967" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="1984" package="Miner">
         <name>getSelectStatement</name>
         <full_name>\Miner::getSelectStatement()</full_name>
-        <docblock line="1967">
+        <docblock line="1984">
           <description>Get the full SELECT statement.</description>
           <long-description></long-description>
-          <tag name="param" line="1967" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
+          <tag name="param" line="1984" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
             <type>bool</type>
           </tag>
-          <tag name="return" line="1967" description="full SELECT statement" type="string">
+          <tag name="return" line="1984" description="full SELECT statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -3042,16 +3082,16 @@ HAVING criteria.</description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="2009" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="2026" package="Miner">
         <name>getInsertStatement</name>
         <full_name>\Miner::getInsertStatement()</full_name>
-        <docblock line="2009">
+        <docblock line="2026">
           <description>Get the full INSERT statement.</description>
           <long-description></long-description>
-          <tag name="param" line="2009" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
+          <tag name="param" line="2026" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
             <type>bool</type>
           </tag>
-          <tag name="return" line="2009" description="full INSERT statement" type="string">
+          <tag name="return" line="2026" description="full INSERT statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -3061,16 +3101,16 @@ HAVING criteria.</description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="2031" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="2048" package="Miner">
         <name>getReplaceStatement</name>
         <full_name>\Miner::getReplaceStatement()</full_name>
-        <docblock line="2031">
+        <docblock line="2048">
           <description>Get the full REPLACE statement.</description>
           <long-description></long-description>
-          <tag name="param" line="2031" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
+          <tag name="param" line="2048" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
             <type>bool</type>
           </tag>
-          <tag name="return" line="2031" description="full REPLACE statement" type="string">
+          <tag name="return" line="2048" description="full REPLACE statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -3080,16 +3120,16 @@ HAVING criteria.</description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="2053" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="2070" package="Miner">
         <name>getUpdateStatement</name>
         <full_name>\Miner::getUpdateStatement()</full_name>
-        <docblock line="2053">
+        <docblock line="2070">
           <description>Get the full UPDATE statement.</description>
           <long-description></long-description>
-          <tag name="param" line="2053" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
+          <tag name="param" line="2070" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
             <type>bool</type>
           </tag>
-          <tag name="return" line="2053" description="full UPDATE statement" type="string">
+          <tag name="return" line="2070" description="full UPDATE statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -3099,16 +3139,16 @@ HAVING criteria.</description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="2090" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="2107" package="Miner">
         <name>getDeleteStatement</name>
         <full_name>\Miner::getDeleteStatement()</full_name>
-        <docblock line="2090">
+        <docblock line="2107">
           <description>Get the full DELETE statement.</description>
           <long-description></long-description>
-          <tag name="param" line="2090" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
+          <tag name="param" line="2107" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
             <type>bool</type>
           </tag>
-          <tag name="return" line="2090" description="full DELETE statement" type="string">
+          <tag name="return" line="2107" description="full DELETE statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -3118,16 +3158,16 @@ HAVING criteria.</description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="2128" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="2145" package="Miner">
         <name>getStatement</name>
         <full_name>\Miner::getStatement()</full_name>
-        <docblock line="2128">
+        <docblock line="2145">
           <description>Get the full SQL statement.</description>
           <long-description></long-description>
-          <tag name="param" line="2128" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
+          <tag name="param" line="2145" description="&lt;p&gt;optional use ? placeholders, default true&lt;/p&gt;" type="bool" variable="$usePlaceholders">
             <type>bool</type>
           </tag>
-          <tag name="return" line="2128" description="full SQL statement" type="string">
+          <tag name="return" line="2145" description="full SQL statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -3137,36 +3177,36 @@ HAVING criteria.</description>
           <type>bool</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="2155" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="2172" package="Miner">
         <name>getPlaceholderValues</name>
         <full_name>\Miner::getPlaceholderValues()</full_name>
-        <docblock line="2155">
+        <docblock line="2172">
           <description>Get all placeholder values (SET, WHERE, and HAVING).</description>
           <long-description></long-description>
-          <tag name="return" line="2155" description="all placeholder values" type="array">
+          <tag name="return" line="2172" description="all placeholder values" type="array">
             <type>array</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="2166" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="2183" package="Miner">
         <name>execute</name>
         <full_name>\Miner::execute()</full_name>
-        <docblock line="2166">
+        <docblock line="2183">
           <description>Execute the statement using the PDO database connection.</description>
           <long-description></long-description>
-          <tag name="return" line="2166" description="executed statement or false if failed" type="\PDOStatement|false">
-            <type link="PDOStatement.html">\PDOStatement</type>
+          <tag name="return" line="2183" description="executed statement or false if failed" type="\PDOStatement|false">
+            <type>\PDOStatement</type>
             <type>false</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="2193" package="Miner">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="2210" package="Miner">
         <name>__toString</name>
         <full_name>\Miner::__toString()</full_name>
-        <docblock line="2193">
+        <docblock line="2210">
           <description>Get the full SQL statement without value placeholders.</description>
           <long-description></long-description>
-          <tag name="return" line="2193" description="full SQL statement" type="string">
+          <tag name="return" line="2210" description="full SQL statement" type="string">
             <type>string</type>
           </tag>
         </docblock>
@@ -3175,9 +3215,9 @@ HAVING criteria.</description>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
     </parse_markers>
-    <source>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</source>
+    <source>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</source>
   </file>
-  <package name="Default" full_name="Default"/>
+  <package name="global" full_name="global"/>
   <package name="Miner" full_name="Miner"/>
   <namespace name="global" full_name="global"/>
   <deprecated count="0"/>

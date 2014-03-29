@@ -144,10 +144,11 @@ disabled.</span><pre>autoQuote()</pre></a></li>
 <li class="method public "><a href="#method_replace" title="replace() :: Set the REPLACE table."><span class="description">Set the REPLACE table.</span><pre>replace()</pre></a></li>
 <li class="method public "><a href="#method_rightJoin" title="rightJoin() :: Add a RIGHT JOIN table with optional ON criteria."><span class="description">Add a RIGHT JOIN table with optional ON criteria.</span><pre>rightJoin()</pre></a></li>
 <li class="method public "><a href="#method_select" title="select() :: Add a SELECT column, table, or expression with optional alias."><span class="description">Add a SELECT column, table, or expression with optional alias.</span><pre>select()</pre></a></li>
-<li class="method public "><a href="#method_set" title="set() :: Add a column value to INSERT or UPDATE."><span class="description">Add a column value to INSERT or UPDATE.</span><pre>set()</pre></a></li>
+<li class="method public "><a href="#method_set" title="set() :: Add one or more column values to INSERT, UPDATE, or REPLACE."><span class="description">Add one or more column values to INSERT, UPDATE, or REPLACE.</span><pre>set()</pre></a></li>
 <li class="method public "><a href="#method_setAutoQuote" title="setAutoQuote() :: Set whether to automatically escape values."><span class="description">Set whether to automatically escape values.</span><pre>setAutoQuote()</pre></a></li>
 <li class="method public "><a href="#method_setPdoConnection" title="setPdoConnection() :: Set the PDO database connection to use in executing this statement."><span class="description">Set the PDO database connection to use in executing this statement.</span><pre>setPdoConnection()</pre></a></li>
 <li class="method public "><a href="#method_update" title="update() :: Set the UPDATE table."><span class="description">Set the UPDATE table.</span><pre>update()</pre></a></li>
+<li class="method public "><a href="#method_values" title="values() :: Add an array of columns =&gt; values to INSERT, UPDATE, or REPLACE."><span class="description">Add an array of columns =&gt; values to INSERT, UPDATE, or REPLACE.</span><pre>values()</pre></a></li>
 <li class="method public "><a href="#method_where" title="where() :: Add a WHERE condition."><span class="description">Add a WHERE condition.</span><pre>where()</pre></a></li>
 <li class="method public "><a href="#method_whereBetween" title="whereBetween() :: Add a BETWEEN WHERE condition."><span class="description">Add a BETWEEN WHERE condition.</span><pre>whereBetween()</pre></a></li>
 <li class="method public "><a href="#method_whereIn" title="whereIn() :: Add an IN WHERE condition."><span class="description">Add an IN WHERE condition.</span><pre>whereIn()</pre></a></li>
@@ -202,7 +203,7 @@ HAVING criteria.</span><pre>openCriteria()</pre></a></li>
 <li class="property private "><a href="#property_orderBy" title="$orderBy() :: Columns to ORDER BY."><span class="description"></span><pre>$orderBy</pre></a></li>
 <li class="property private "><a href="#property_replace" title="$replace() :: Table to REPLACE into."><span class="description"></span><pre>$replace</pre></a></li>
 <li class="property private "><a href="#property_select" title="$select() :: Columns, tables, and expressions to SELECT from."><span class="description"></span><pre>$select</pre></a></li>
-<li class="property private "><a href="#property_set" title="$set() :: Column values to INSERT or UPDATE."><span class="description"></span><pre>$set</pre></a></li>
+<li class="property private "><a href="#property_set" title="$set() :: Column values to INSERT, UPDATE, or REPLACE."><span class="description"></span><pre>$set</pre></a></li>
 <li class="property private "><a href="#property_setPlaceholderValues" title="$setPlaceholderValues() :: SET placeholder values."><span class="description"></span><pre>$setPlaceholderValues</pre></a></li>
 <li class="property private "><a href="#property_update" title="$update() :: Table to UPDATE."><span class="description"></span><pre>$update</pre></a></li>
 <li class="property private "><a href="#property_where" title="$where() :: WHERE criteria."><span class="description"></span><pre>$where</pre></a></li>
@@ -263,7 +264,7 @@ concatenation necessary.</p>
 </tr>
 <tr>
 <th>copyright</th>
-<td>Copyright 2013 by Justin Stayton</td>
+<td>Copyright 2014 by Justin Stayton</td>
 </tr>
 <tr>
 <th>license</th>
@@ -275,26 +276,26 @@ concatenation necessary.</p>
 </tr>
 <tr>
 <th>version</th>
-<td>0.9.4</td>
+<td>0.10.0</td>
 </tr>
 </table>
 <h3>
 <i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse" title="public">
 <h2>Constructor.</h2>
-<pre>__construct(\PDO|null $PdoConnection<code> = null</code>, bool $autoQuote<code> = true</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>__construct(\PDO|null $PdoConnection<code> = null</code>, bool $autoQuote<code> = true</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$PdoConnection</h4>
-<code><a href="PDO.html">\PDO</a></code><code>null</code><p>optional PDO database connection</p></div>
+<code>\PDO</code><code>null</code><p>optional PDO database connection</p></div>
 <div class="subelement argument">
 <h4>$autoQuote</h4>
 <code>bool</code><p>optional auto-escape values, default true</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method___toString"></a><div class="element clickable method public method___toString" data-toggle="collapse" data-target=".method___toString .collapse" title="public">
@@ -310,7 +311,7 @@ concatenation necessary.</p>
 </div>
 <a id="method_andHaving"></a><div class="element clickable method public method_andHaving" data-toggle="collapse" data-target=".method_andHaving .collapse" title="public">
 <h2>Add an AND HAVING condition.</h2>
-<pre>andHaving(string $column, mixed $value, string $operator<code> = self::EQUALS</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>andHaving(string $column, mixed $value, string $operator<code> = self::EQUALS</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -328,12 +329,12 @@ concatenation necessary.</p>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_andWhere"></a><div class="element clickable method public method_andWhere" data-toggle="collapse" data-target=".method_andWhere .collapse" title="public">
 <h2>Add an AND WHERE condition.</h2>
-<pre>andWhere(string $column, mixed $value, string $operator<code> = self::EQUALS</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>andWhere(string $column, mixed $value, string $operator<code> = self::EQUALS</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -351,7 +352,7 @@ concatenation necessary.</p>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_autoQuote"></a><div class="element clickable method public method_autoQuote" data-toggle="collapse" data-target=".method_autoQuote .collapse" title="public">
@@ -377,37 +378,37 @@ global setting.</div>
 </div>
 <a id="method_calcFoundRows"></a><div class="element clickable method public method_calcFoundRows" data-toggle="collapse" data-target=".method_calcFoundRows .collapse" title="public">
 <h2>Add SQL_CALC_FOUND_ROWS execution option.</h2>
-<pre>calcFoundRows() : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>calcFoundRows() : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_closeHaving"></a><div class="element clickable method public method_closeHaving" data-toggle="collapse" data-target=".method_closeHaving .collapse" title="public">
 <h2>Add a closing bracket for nesting HAVING conditions.</h2>
-<pre>closeHaving() : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>closeHaving() : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_closeWhere"></a><div class="element clickable method public method_closeWhere" data-toggle="collapse" data-target=".method_closeWhere .collapse" title="public">
 <h2>Add a closing bracket for nesting WHERE conditions.</h2>
-<pre>closeWhere() : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>closeWhere() : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_delete"></a><div class="element clickable method public method_delete" data-toggle="collapse" data-target=".method_delete .collapse" title="public">
 <h2>Add a table to DELETE from, or false if deleting from the FROM table.</h2>
-<pre>delete(string|false $table<code> = false</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>delete(string|false $table<code> = false</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -416,33 +417,33 @@ global setting.</div>
 <h4>$table</h4>
 <code>string</code><code>false</code><p>optional table name, default false</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_distinct"></a><div class="element clickable method public method_distinct" data-toggle="collapse" data-target=".method_distinct .collapse" title="public">
 <h2>Add DISTINCT execution option.</h2>
-<pre>distinct() : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>distinct() : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_execute"></a><div class="element clickable method public method_execute" data-toggle="collapse" data-target=".method_execute .collapse" title="public">
 <h2>Execute the statement using the PDO database connection.</h2>
-<pre>execute() : <a href="PDOStatement.html">\PDOStatement</a> | false</pre>
+<pre>execute() : \PDOStatement | false</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code><a href="PDOStatement.html">\PDOStatement</a></code><code>false</code>executed statement or false if failed</div>
+<code>\PDOStatement</code><code>false</code>executed statement or false if failed</div>
 </div></div>
 </div>
 <a id="method_from"></a><div class="element clickable method public method_from" data-toggle="collapse" data-target=".method_from .collapse" title="public">
 <h2>Set the FROM table with optional alias.</h2>
-<pre>from(string $table, string $alias<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>from(string $table, string $alias<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -454,7 +455,7 @@ global setting.</div>
 <h4>$alias</h4>
 <code>string</code><p>optional alias</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_getAutoQuote"></a><div class="element clickable method public method_getAutoQuote" data-toggle="collapse" data-target=".method_getAutoQuote .collapse" title="public">
@@ -675,13 +676,13 @@ global setting.</div>
 </div>
 <a id="method_getPdoConnection"></a><div class="element clickable method public method_getPdoConnection" data-toggle="collapse" data-target=".method_getPdoConnection .collapse" title="public">
 <h2>Get the PDO database connection to use in executing this statement.</h2>
-<pre>getPdoConnection() : <a href="PDO.html">\PDO</a> | null</pre>
+<pre>getPdoConnection() : \PDO | null</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code><a href="PDO.html">\PDO</a></code><code>null</code>
+<code>\PDO</code><code>null</code>
 </div>
 </div></div>
 </div>
@@ -838,7 +839,7 @@ global setting.</div>
 </div>
 <a id="method_groupBy"></a><div class="element clickable method public method_groupBy" data-toggle="collapse" data-target=".method_groupBy .collapse" title="public">
 <h2>Add a GROUP BY column.</h2>
-<pre>groupBy(string $column, string|null $order<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>groupBy(string $column, string|null $order<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -850,12 +851,12 @@ global setting.</div>
 <h4>$order</h4>
 <code>string</code><code>null</code><p>optional order direction, default none</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_having"></a><div class="element clickable method public method_having" data-toggle="collapse" data-target=".method_having .collapse" title="public">
 <h2>Add a HAVING condition.</h2>
-<pre>having(string $column, mixed $value, string $operator<code> = self::EQUALS</code>, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>having(string $column, mixed $value, string $operator<code> = self::EQUALS</code>, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -876,12 +877,12 @@ global setting.</div>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_havingBetween"></a><div class="element clickable method public method_havingBetween" data-toggle="collapse" data-target=".method_havingBetween .collapse" title="public">
 <h2>Add a BETWEEN HAVING condition.</h2>
-<pre>havingBetween(string $column, mixed $min, mixed $max, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>havingBetween(string $column, mixed $min, mixed $max, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -902,12 +903,12 @@ global setting.</div>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_havingIn"></a><div class="element clickable method public method_havingIn" data-toggle="collapse" data-target=".method_havingIn .collapse" title="public">
 <h2>Add an IN WHERE condition.</h2>
-<pre>havingIn(string $column, array $values, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>havingIn(string $column, array $values, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -925,12 +926,12 @@ global setting.</div>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_havingNotBetween"></a><div class="element clickable method public method_havingNotBetween" data-toggle="collapse" data-target=".method_havingNotBetween .collapse" title="public">
 <h2>Add a NOT BETWEEN HAVING condition.</h2>
-<pre>havingNotBetween(string $column, mixed $min, mixed $max, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>havingNotBetween(string $column, mixed $min, mixed $max, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -951,12 +952,12 @@ global setting.</div>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_havingNotIn"></a><div class="element clickable method public method_havingNotIn" data-toggle="collapse" data-target=".method_havingNotIn .collapse" title="public">
 <h2>Add a NOT IN HAVING condition.</h2>
-<pre>havingNotIn(string $column, array $values, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>havingNotIn(string $column, array $values, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -974,12 +975,12 @@ global setting.</div>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_innerJoin"></a><div class="element clickable method public method_innerJoin" data-toggle="collapse" data-target=".method_innerJoin .collapse" title="public">
 <h2>Add an INNER JOIN table with optional ON criteria.</h2>
-<pre>innerJoin(string $table, string|array $criteria<code> = null</code>, string $alias<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>innerJoin(string $table, string|array $criteria<code> = null</code>, string $alias<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -994,12 +995,12 @@ global setting.</div>
 <h4>$alias</h4>
 <code>string</code><p>optional alias</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_insert"></a><div class="element clickable method public method_insert" data-toggle="collapse" data-target=".method_insert .collapse" title="public">
 <h2>Set the INSERT table.</h2>
-<pre>insert(string $table) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>insert(string $table) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1008,7 +1009,7 @@ global setting.</div>
 <h4>$table</h4>
 <code>string</code><p>INSERT table</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_isDelete"></a><div class="element clickable method public method_isDelete" data-toggle="collapse" data-target=".method_isDelete .collapse" title="public">
@@ -1068,7 +1069,7 @@ global setting.</div>
 </div>
 <a id="method_join"></a><div class="element clickable method public method_join" data-toggle="collapse" data-target=".method_join .collapse" title="public">
 <h2>Add a JOIN table with optional ON criteria.</h2>
-<pre>join(string $table, string|array $criteria<code> = null</code>, string $type<code> = self::INNER_JOIN</code>, string $alias<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>join(string $table, string|array $criteria<code> = null</code>, string $type<code> = self::INNER_JOIN</code>, string $alias<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1086,12 +1087,12 @@ global setting.</div>
 <h4>$alias</h4>
 <code>string</code><p>optional alias</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_leftJoin"></a><div class="element clickable method public method_leftJoin" data-toggle="collapse" data-target=".method_leftJoin .collapse" title="public">
 <h2>Add a LEFT JOIN table with optional ON criteria.</h2>
-<pre>leftJoin(string $table, string|array $criteria<code> = null</code>, string $alias<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>leftJoin(string $table, string|array $criteria<code> = null</code>, string $alias<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1106,12 +1107,12 @@ global setting.</div>
 <h4>$alias</h4>
 <code>string</code><p>optional alias</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_limit"></a><div class="element clickable method public method_limit" data-toggle="collapse" data-target=".method_limit .collapse" title="public">
 <h2>Set the LIMIT on number of rows to return with optional offset.</h2>
-<pre>limit(int|string $limit, int|string $offset<code> = 0</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>limit(int|string $limit, int|string $offset<code> = 0</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1123,225 +1124,225 @@ global setting.</div>
 <h4>$offset</h4>
 <code>int</code><code>string</code><p>optional row number to start at, default 0</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeDeleteInto"></a><div class="element clickable method public method_mergeDeleteInto" data-toggle="collapse" data-target=".method_mergeDeleteInto .collapse" title="public">
 <h2>Merge this Miner's DELETE into the given Miner.</h2>
-<pre>mergeDeleteInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeDeleteInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeFromInto"></a><div class="element clickable method public method_mergeFromInto" data-toggle="collapse" data-target=".method_mergeFromInto .collapse" title="public">
 <h2>Merge this Miner's FROM into the given Miner.</h2>
-<pre>mergeFromInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeFromInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeGroupByInto"></a><div class="element clickable method public method_mergeGroupByInto" data-toggle="collapse" data-target=".method_mergeGroupByInto .collapse" title="public">
 <h2>Merge this Miner's GROUP BY into the given Miner.</h2>
-<pre>mergeGroupByInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeGroupByInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeHavingInto"></a><div class="element clickable method public method_mergeHavingInto" data-toggle="collapse" data-target=".method_mergeHavingInto .collapse" title="public">
 <h2>Merge this Miner's HAVING into the given Miner.</h2>
-<pre>mergeHavingInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeHavingInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeInsertInto"></a><div class="element clickable method public method_mergeInsertInto" data-toggle="collapse" data-target=".method_mergeInsertInto .collapse" title="public">
 <h2>Merge this Miner's INSERT into the given Miner.</h2>
-<pre>mergeInsertInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeInsertInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeInto"></a><div class="element clickable method public method_mergeInto" data-toggle="collapse" data-target=".method_mergeInto .collapse" title="public">
 <h2>Merge this Miner into the given Miner.</h2>
-<pre>mergeInto(\Miner $Miner, bool $overrideLimit<code> = true</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeInto(\Miner $Miner, bool $overrideLimit<code> = true</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <div class="subelement argument">
 <h4>$overrideLimit</h4>
 <code>bool</code><p>optional override limit, default true</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeJoinInto"></a><div class="element clickable method public method_mergeJoinInto" data-toggle="collapse" data-target=".method_mergeJoinInto .collapse" title="public">
 <h2>Merge this Miner's JOINs into the given Miner.</h2>
-<pre>mergeJoinInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeJoinInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeLimitInto"></a><div class="element clickable method public method_mergeLimitInto" data-toggle="collapse" data-target=".method_mergeLimitInto .collapse" title="public">
 <h2>Merge this Miner's LIMIT into the given Miner.</h2>
-<pre>mergeLimitInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeLimitInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeOptionsInto"></a><div class="element clickable method public method_mergeOptionsInto" data-toggle="collapse" data-target=".method_mergeOptionsInto .collapse" title="public">
 <h2>Merge this Miner's execution options into the given Miner.</h2>
-<pre>mergeOptionsInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeOptionsInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeOrderByInto"></a><div class="element clickable method public method_mergeOrderByInto" data-toggle="collapse" data-target=".method_mergeOrderByInto .collapse" title="public">
 <h2>Merge this Miner's ORDER BY into the given Miner.</h2>
-<pre>mergeOrderByInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeOrderByInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeReplaceInto"></a><div class="element clickable method public method_mergeReplaceInto" data-toggle="collapse" data-target=".method_mergeReplaceInto .collapse" title="public">
 <h2>Merge this Miner's REPLACE into the given Miner.</h2>
-<pre>mergeReplaceInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeReplaceInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeSelectInto"></a><div class="element clickable method public method_mergeSelectInto" data-toggle="collapse" data-target=".method_mergeSelectInto .collapse" title="public">
 <h2>Merge this Miner's SELECT into the given Miner.</h2>
-<pre>mergeSelectInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeSelectInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeSetInto"></a><div class="element clickable method public method_mergeSetInto" data-toggle="collapse" data-target=".method_mergeSetInto .collapse" title="public">
 <h2>Merge this Miner's SET into the given Miner.</h2>
-<pre>mergeSetInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeSetInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeUpdateInto"></a><div class="element clickable method public method_mergeUpdateInto" data-toggle="collapse" data-target=".method_mergeUpdateInto .collapse" title="public">
 <h2>Merge this Miner's UPDATE into the given Miner.</h2>
-<pre>mergeUpdateInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeUpdateInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_mergeWhereInto"></a><div class="element clickable method public method_mergeWhereInto" data-toggle="collapse" data-target=".method_mergeWhereInto .collapse" title="public">
 <h2>Merge this Miner's WHERE into the given Miner.</h2>
-<pre>mergeWhereInto(\Miner $Miner) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>mergeWhereInto(\Miner $Miner) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$Miner</h4>
-<code><a href="../classes/Miner.html">\Miner</a></code><p>to merge into</p></div>
+<code>\Miner</code><p>to merge into</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_openHaving"></a><div class="element clickable method public method_openHaving" data-toggle="collapse" data-target=".method_openHaving .collapse" title="public">
 <h2>Add an open bracket for nesting HAVING conditions.</h2>
-<pre>openHaving(string $connector<code> = self::LOGICAL_AND</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>openHaving(string $connector<code> = self::LOGICAL_AND</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1350,12 +1351,12 @@ global setting.</div>
 <h4>$connector</h4>
 <code>string</code><p>optional logical connector, default AND</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_openWhere"></a><div class="element clickable method public method_openWhere" data-toggle="collapse" data-target=".method_openWhere .collapse" title="public">
 <h2>Add an open bracket for nesting WHERE conditions.</h2>
-<pre>openWhere(string $connector<code> = self::LOGICAL_AND</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>openWhere(string $connector<code> = self::LOGICAL_AND</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1364,12 +1365,12 @@ global setting.</div>
 <h4>$connector</h4>
 <code>string</code><p>optional logical connector, default AND</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_option"></a><div class="element clickable method public method_option" data-toggle="collapse" data-target=".method_option .collapse" title="public">
 <h2>Add an execution option like DISTINCT or SQL_CALC_FOUND_ROWS.</h2>
-<pre>option(string $option) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>option(string $option) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1378,12 +1379,12 @@ global setting.</div>
 <h4>$option</h4>
 <code>string</code><p>execution option to add</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_orHaving"></a><div class="element clickable method public method_orHaving" data-toggle="collapse" data-target=".method_orHaving .collapse" title="public">
 <h2>Add an OR HAVING condition.</h2>
-<pre>orHaving(string $column, mixed $value, string $operator<code> = self::EQUALS</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>orHaving(string $column, mixed $value, string $operator<code> = self::EQUALS</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1401,12 +1402,12 @@ global setting.</div>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_orWhere"></a><div class="element clickable method public method_orWhere" data-toggle="collapse" data-target=".method_orWhere .collapse" title="public">
 <h2>Add an OR WHERE condition.</h2>
-<pre>orWhere(string $column, mixed $value, string $operator<code> = self::EQUALS</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>orWhere(string $column, mixed $value, string $operator<code> = self::EQUALS</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1424,12 +1425,12 @@ global setting.</div>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_orderBy"></a><div class="element clickable method public method_orderBy" data-toggle="collapse" data-target=".method_orderBy .collapse" title="public">
 <h2>Add a column to ORDER BY.</h2>
-<pre>orderBy(string $column, string $order<code> = self::ORDER_BY_ASC</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>orderBy(string $column, string $order<code> = self::ORDER_BY_ASC</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1441,7 +1442,7 @@ global setting.</div>
 <h4>$order</h4>
 <code>string</code><p>optional order direction, default ASC</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_quote"></a><div class="element clickable method public method_quote" data-toggle="collapse" data-target=".method_quote .collapse" title="public">
@@ -1461,7 +1462,7 @@ global setting.</div>
 </div>
 <a id="method_replace"></a><div class="element clickable method public method_replace" data-toggle="collapse" data-target=".method_replace .collapse" title="public">
 <h2>Set the REPLACE table.</h2>
-<pre>replace(string $table) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>replace(string $table) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1470,12 +1471,12 @@ global setting.</div>
 <h4>$table</h4>
 <code>string</code><p>REPLACE table</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_rightJoin"></a><div class="element clickable method public method_rightJoin" data-toggle="collapse" data-target=".method_rightJoin .collapse" title="public">
 <h2>Add a RIGHT JOIN table with optional ON criteria.</h2>
-<pre>rightJoin(string $table, string|array $criteria<code> = null</code>, string $alias<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>rightJoin(string $table, string|array $criteria<code> = null</code>, string $alias<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1490,12 +1491,12 @@ global setting.</div>
 <h4>$alias</h4>
 <code>string</code><p>optional alias</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_select"></a><div class="element clickable method public method_select" data-toggle="collapse" data-target=".method_select .collapse" title="public">
 <h2>Add a SELECT column, table, or expression with optional alias.</h2>
-<pre>select(string $column, string $alias<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>select(string $column, string $alias<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1507,32 +1508,32 @@ global setting.</div>
 <h4>$alias</h4>
 <code>string</code><p>optional alias</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_set"></a><div class="element clickable method public method_set" data-toggle="collapse" data-target=".method_set .collapse" title="public">
-<h2>Add a column value to INSERT or UPDATE.</h2>
-<pre>set(string $column, mixed $value, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<h2>Add one or more column values to INSERT, UPDATE, or REPLACE.</h2>
+<pre>set(string|array $column, mixed|null $value<code> = null</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$column</h4>
-<code>string</code><p>column name</p></div>
+<code>string</code><code>array</code><p>column name or array of columns => values</p></div>
 <div class="subelement argument">
 <h4>$value</h4>
-<code>mixed</code><p>value</p></div>
+<code>mixed</code><code>null</code><p>optional value for single column</p></div>
 <div class="subelement argument">
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_setAutoQuote"></a><div class="element clickable method public method_setAutoQuote" data-toggle="collapse" data-target=".method_setAutoQuote .collapse" title="public">
 <h2>Set whether to automatically escape values.</h2>
-<pre>setAutoQuote(bool|null $autoQuote) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>setAutoQuote(bool|null $autoQuote) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1541,26 +1542,26 @@ global setting.</div>
 <h4>$autoQuote</h4>
 <code>bool</code><code>null</code><p>whether to automatically escape values</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_setPdoConnection"></a><div class="element clickable method public method_setPdoConnection" data-toggle="collapse" data-target=".method_setPdoConnection .collapse" title="public">
 <h2>Set the PDO database connection to use in executing this statement.</h2>
-<pre>setPdoConnection(\PDO|null $PdoConnection<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>setPdoConnection(\PDO|null $PdoConnection<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$PdoConnection</h4>
-<code><a href="PDO.html">\PDO</a></code><code>null</code><p>optional PDO database connection</p></div>
+<code>\PDO</code><code>null</code><p>optional PDO database connection</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_update"></a><div class="element clickable method public method_update" data-toggle="collapse" data-target=".method_update .collapse" title="public">
 <h2>Set the UPDATE table.</h2>
-<pre>update(string $table) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>update(string $table) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1569,12 +1570,26 @@ global setting.</div>
 <h4>$table</h4>
 <code>string</code><p>UPDATE table</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
+</div></div>
+</div>
+<a id="method_values"></a><div class="element clickable method public method_values" data-toggle="collapse" data-target=".method_values .collapse" title="public">
+<h2>Add an array of columns =&gt; values to INSERT, UPDATE, or REPLACE.</h2>
+<pre>values(array $values) : \Miner</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$values</h4>
+<code>array</code><p>columns => values</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_where"></a><div class="element clickable method public method_where" data-toggle="collapse" data-target=".method_where .collapse" title="public">
 <h2>Add a WHERE condition.</h2>
-<pre>where(string $column, mixed $value, string $operator<code> = self::EQUALS</code>, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>where(string $column, mixed $value, string $operator<code> = self::EQUALS</code>, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1595,12 +1610,12 @@ global setting.</div>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_whereBetween"></a><div class="element clickable method public method_whereBetween" data-toggle="collapse" data-target=".method_whereBetween .collapse" title="public">
 <h2>Add a BETWEEN WHERE condition.</h2>
-<pre>whereBetween(string $column, mixed $min, mixed $max, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>whereBetween(string $column, mixed $min, mixed $max, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1621,12 +1636,12 @@ global setting.</div>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_whereIn"></a><div class="element clickable method public method_whereIn" data-toggle="collapse" data-target=".method_whereIn .collapse" title="public">
 <h2>Add an IN WHERE condition.</h2>
-<pre>whereIn(string $column, array $values, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>whereIn(string $column, array $values, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1644,12 +1659,12 @@ global setting.</div>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_whereNotBetween"></a><div class="element clickable method public method_whereNotBetween" data-toggle="collapse" data-target=".method_whereNotBetween .collapse" title="public">
 <h2>Add a NOT BETWEEN WHERE condition.</h2>
-<pre>whereNotBetween(string $column, mixed $min, mixed $max, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>whereNotBetween(string $column, mixed $min, mixed $max, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1670,12 +1685,12 @@ global setting.</div>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_whereNotIn"></a><div class="element clickable method public method_whereNotIn" data-toggle="collapse" data-target=".method_whereNotIn .collapse" title="public">
 <h2>Add a NOT IN WHERE condition.</h2>
-<pre>whereNotIn(string $column, array $values, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>whereNotIn(string $column, array $values, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1693,13 +1708,13 @@ global setting.</div>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_closeCriteria"></a><div class="element clickable method private method_closeCriteria" data-toggle="collapse" data-target=".method_closeCriteria .collapse" title="private">
 <h2>Add a closing bracket for nesting conditions to the specified WHERE or
 HAVING criteria.</h2>
-<pre>closeCriteria(array $criteria) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>closeCriteria(array $criteria) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1708,12 +1723,12 @@ HAVING criteria.</h2>
 <h4>$criteria</h4>
 <code>array</code><p>WHERE or HAVING criteria</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_criteria"></a><div class="element clickable method private method_criteria" data-toggle="collapse" data-target=".method_criteria .collapse" title="private">
 <h2>Add a condition to the specified WHERE or HAVING criteria.</h2>
-<pre>criteria(array $criteria, string $column, mixed $value, string $operator<code> = self::EQUALS</code>, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>criteria(array $criteria, string $column, mixed $value, string $operator<code> = self::EQUALS</code>, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1737,12 +1752,12 @@ HAVING criteria.</h2>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_criteriaBetween"></a><div class="element clickable method private method_criteriaBetween" data-toggle="collapse" data-target=".method_criteriaBetween .collapse" title="private">
 <h2>Add a BETWEEN condition to the specified WHERE or HAVING criteria.</h2>
-<pre>criteriaBetween(array $criteria, string $column, mixed $min, mixed $max, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>criteriaBetween(array $criteria, string $column, mixed $min, mixed $max, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1766,12 +1781,12 @@ HAVING criteria.</h2>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_criteriaIn"></a><div class="element clickable method private method_criteriaIn" data-toggle="collapse" data-target=".method_criteriaIn .collapse" title="private">
 <h2>Add an IN condition to the specified WHERE or HAVING criteria.</h2>
-<pre>criteriaIn(array $criteria, string $column, array $values, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>criteriaIn(array $criteria, string $column, array $values, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1792,12 +1807,12 @@ HAVING criteria.</h2>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_criteriaNotBetween"></a><div class="element clickable method private method_criteriaNotBetween" data-toggle="collapse" data-target=".method_criteriaNotBetween .collapse" title="private">
 <h2>Add a NOT BETWEEN condition to the specified WHERE or HAVING criteria.</h2>
-<pre>criteriaNotBetween(array $criteria, string $column, mixed $min, mixed $max, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>criteriaNotBetween(array $criteria, string $column, mixed $min, mixed $max, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1821,12 +1836,12 @@ HAVING criteria.</h2>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_criteriaNotIn"></a><div class="element clickable method private method_criteriaNotIn" data-toggle="collapse" data-target=".method_criteriaNotIn .collapse" title="private">
 <h2>Add a NOT IN condition to the specified WHERE or HAVING criteria.</h2>
-<pre>criteriaNotIn(array $criteria, string $column, array $values, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>criteriaNotIn(array $criteria, string $column, array $values, string $connector<code> = self::LOGICAL_AND</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -1847,7 +1862,7 @@ HAVING criteria.</h2>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_getCriteriaString"></a><div class="element clickable method private method_getCriteriaString" data-toggle="collapse" data-target=".method_getCriteriaString .collapse" title="private">
@@ -2000,7 +2015,7 @@ same column of the previous JOIN or FROM table.</h2>
 <a id="method_openCriteria"></a><div class="element clickable method private method_openCriteria" data-toggle="collapse" data-target=".method_openCriteria .collapse" title="private">
 <h2>Add an open bracket for nesting conditions to the specified WHERE or
 HAVING criteria.</h2>
-<pre>openCriteria(array $criteria, string $connector<code> = self::LOGICAL_AND</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>openCriteria(array $criteria, string $connector<code> = self::LOGICAL_AND</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -2012,12 +2027,12 @@ HAVING criteria.</h2>
 <h4>$connector</h4>
 <code>string</code><p>optional logical connector, default AND</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <a id="method_orCriteria"></a><div class="element clickable method private method_orCriteria" data-toggle="collapse" data-target=".method_orCriteria .collapse" title="private">
 <h2>Add an OR condition to the specified WHERE or HAVING criteria.</h2>
-<pre>orCriteria(array $criteria, string $column, mixed $value, string $operator<code> = self::EQUALS</code>, bool|null $quote<code> = null</code>) : <a href="../classes/Miner.html">\Miner</a></pre>
+<pre>orCriteria(array $criteria, string $column, mixed $value, string $operator<code> = self::EQUALS</code>, bool|null $quote<code> = null</code>) : \Miner</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -2038,14 +2053,14 @@ HAVING criteria.</h2>
 <h4>$quote</h4>
 <code>bool</code><code>null</code><p>optional auto-escape value, default to global</p></div>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="../classes/Miner.html">\Miner</a></code></div>
+<div class="subelement response"><code>\Miner</code></div>
 </div></div>
 </div>
 <h3>
 <i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
 <a id="property_PdoConnection"> </a><div class="element clickable property private property_PdoConnection" data-toggle="collapse" data-target=".property_PdoConnection .collapse" title="private">
 <h2>PDO database connection to use in executing the statement.</h2>
-<pre>$PdoConnection : <a href="PDO.html">\PDO</a> | null</pre>
+<pre>$PdoConnection : \PDO | null</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
 <div class="subelement argument"></div>
@@ -2184,7 +2199,7 @@ HAVING criteria.</h2>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="property_set"> </a><div class="element clickable property private property_set" data-toggle="collapse" data-target=".property_set .collapse" title="private">
-<h2>Column values to INSERT or UPDATE.</h2>
+<h2>Column values to INSERT, UPDATE, or REPLACE.</h2>
 <pre>$set : array</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
@@ -2397,9 +2412,9 @@ HAVING criteria.</h2>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.3.2
 </a> and<br>
-            generated on 2013-12-07T19:50:56-06:00.<br></footer></div>
+            generated on 2014-03-29T18:53:04-05:00.<br></footer></div>
 </div>
 </body>
 </html>
