@@ -247,9 +247,10 @@ Methods
 *   [getOptionsString](http://jstayton.github.io/Miner/classes/Miner.html#method_getOptionsString)
 *   [mergeOptionsInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeOptionsInto)
 
-### SET
+### SET / VALUES
 
 *   [set](http://jstayton.github.io/Miner/classes/Miner.html#method_set)
+*   [values](http://jstayton.github.io/Miner/classes/Miner.html#method_values)
 *   [getSetPlaceholderValues](http://jstayton.github.io/Miner/classes/Miner.html#method_getSetPlaceholderValues)
 *   [getSetString](http://jstayton.github.io/Miner/classes/Miner.html#method_getSetString)
 *   [mergeSetInto](http://jstayton.github.io/Miner/classes/Miner.html#method_mergeSetInto)
