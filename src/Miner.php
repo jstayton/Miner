@@ -199,7 +199,7 @@
     private $delete;
 
     /**
-     * Column values to INSERT or UPDATE.
+     * Column values to INSERT, UPDATE, or REPLACE.
      *
      * @var array
      */
@@ -791,19 +791,36 @@
     }
 
     /**
-     * Add a column value to INSERT or UPDATE.
+     * Add one or more column values to INSERT, UPDATE, or REPLACE.
      *
-     * @param  string $column column name
-     * @param  mixed $value value
+     * @param  string|array $column column name or array of columns => values
+     * @param  mixed|null $value optional value for single column
      * @param  bool|null $quote optional auto-escape value, default to global
      * @return Miner
      */
-    public function set($column, $value, $quote = null) {
-      $this->set[] = array('column' => $column,
-                           'value'  => $value,
-                           'quote'  => $quote);
+    public function set($column, $value = null, $quote = null) {
+      if (is_array($column)) {
+        foreach ($column as $columnName => $columnValue) {
+          $this->set($columnName, $columnValue, $quote);
+        }
+      }
+      else {
+        $this->set[] = array('column' => $column,
+                             'value'  => $value,
+                             'quote'  => $quote);
+      }
 
       return $this;
+    }
+
+    /**
+     * Add an array of columns => values to INSERT, UPDATE, or REPLACE.
+     *
+     * @param  array $values columns => values
+     * @return Miner
+     */
+    public function values(array $values) {
+      return $this->set($values);
     }
 
     /**
