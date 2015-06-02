@@ -5,7 +5,7 @@
    * concatenation necessary.
    *
    * @author    Justin Stayton
-   * @copyright Copyright 2014 by Justin Stayton
+   * @copyright Copyright 2015 by Justin Stayton
    * @license   https://github.com/jstayton/Miner/blob/master/LICENSE-MIT MIT
    * @package   Miner
    * @version   0.10.0
