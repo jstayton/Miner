@@ -913,7 +913,10 @@
      * @return string FROM table
      */
     public function getFrom() {
-      return $this->from['table'];
+      if (isset($this->from['table'])) {
+        return $this->from['table'];
+      }
+      return null;
     }
 
     /**
